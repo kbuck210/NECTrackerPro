@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
+<prizesForSeason xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nec="29">
+	<prize name="FIRST_HALF" amount="175" />
+	<prize name="SECOND_HALF" amount="175" />
+	<prize name="PLAYOFFS" amount="125" />
+	<prize name="SUPER_BOWL" amount="300" />
+	<prize name="MNF_TNT" amount="125" />
+	<prize name="TWO_AND_OUT" amount="100" />
+	<prize name="MONEY_BACK" amount="100" />
+</prizesForSeason>

@@ -1,0 +1,132 @@
+@CHARSET "UTF-8";
+.game-container {
+	text-align: center;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	margin-bottom: 20px;
+	background-image: url("../img/game-frame-shadow.png");
+	background-repeat: no-repeat;
+	background-origin: content-box;
+	background-size: contain;
+	background-position: bottom;
+	white-space: nowrap;
+}
+
+/*
+.score-col {
+	border: 1px solid black;
+}
+*/
+
+.picks-area-title {
+	padding: 0.5rem;
+}
+
+.home-team-name {
+	font-family: Tahoma, Geneva, sans-serif;
+}
+.away-team-name {
+	font-family: Tahoma, Geneva, sans-serif;
+}
+
+.home-helmet {
+	display: inline-block;
+	position: relative;
+}
+.away-helmet {
+	display: inline-block;
+	position: relative;
+}
+.selected-badge {
+	opacity:0;
+	transition:opacity 200ms;
+	position:absolute;
+	width:3em;height:3em;
+	text-align:center;
+	line-height:3em;
+	border-radius:50%;
+} 
+.selected-badge.home {
+	right:15%;
+}
+.selected-badge.away {
+	left: -15%;
+}
+.selected-badge.selected {
+	opacity:1;
+	transition:opacity 200ms;
+}
+
+.helmet {
+	display: block;
+	margin: auto;
+}
+
+.kickoff-time {
+	display: inline-block;
+	margin-top: 1.5rem;
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+}
+
+.home-score-col {
+	white-space: nowrap;
+	padding: 0;
+	text-align: right;
+}
+.home-score {
+	font-family: "Arial Black", Gadget, sans-serif;
+	display: inline-block;
+	text-align: right;
+	padding: 0.125rem 0.25rem 0.125rem 0.25rem;
+	margin-right: 0.3rem;
+}
+
+.away-score-col {
+	padding-left: 0;
+	text-align: left;
+}
+.away-score {
+	font-family: "Arial Black", Gadget, sans-serif;
+	display: inline-block;
+	text-align: left;
+	padding: 0.125rem 0.25rem 0.125rem 0.25rem;
+	margin-left: 0.3rem;
+}
+
+.arrow-col {
+	padding: 0;
+	padding-top: 0.45rem;
+}
+
+.spread-area-col {
+	padding: 0;
+	text-align: center;
+}
+.spread-area {
+	display: inline-block;
+	text-align: center;
+	margin-top: 0.4rem;
+	padding: 0 0.25rem 0 0.25rem;
+}
+.time-remaining {
+	font-family: "Trebuchet MS", Helvetica, sans-serif
+}
+
+/* Zoom In #1 */
+figure {
+	width: inherit;
+	height: inherit;
+	padding: 0;
+	margin: 0;
+}
+.helmet-link figure img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .1s ease-in-out;
+	transition: .1s ease-in-out;
+}
+.helmet-link figure:hover img {
+	-webkit-transform: scale(1.05);
+	transform: scale(1.05);
+}

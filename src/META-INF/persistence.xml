@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="NECTrackerPro" transaction-type="JTA">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<jta-data-source>jdbc/NECTrackerPro</jta-data-source>
+		<class>com.nectp.jpa.entities.AbstractTeam</class>
+		<class>com.nectp.jpa.entities.AbstractTeamForSeason</class>
+		<class>com.nectp.jpa.entities.Address</class>
+		<class>com.nectp.jpa.entities.Conference</class>
+		<class>com.nectp.jpa.entities.Division</class>
+		<class>com.nectp.jpa.entities.Email</class>
+		<class>com.nectp.jpa.entities.Game</class>
+		<class>com.nectp.jpa.entities.Pick</class>
+		<class>com.nectp.jpa.entities.Player</class>
+		<class>com.nectp.jpa.entities.PlayerForSeason</class>
+		<class>com.nectp.jpa.entities.Prize</class>
+		<class>com.nectp.jpa.entities.PrizeForSeason</class>
+		<class>com.nectp.jpa.entities.Record</class>
+		<class>com.nectp.jpa.entities.Season</class>
+		<class>com.nectp.jpa.entities.Stadium</class>
+		<class>com.nectp.jpa.entities.Subseason</class>
+		<class>com.nectp.jpa.entities.Team</class>
+		<class>com.nectp.jpa.entities.TeamForSeason</class>
+		<class>com.nectp.jpa.entities.Week</class>
+		<properties>
+			<property name="URL" value="jdbc:mysql://localhost:3306/NECTrackerPro"/> 
+			<property name="driverClass" value="com.mysql.jdbc.Driver"/> 
+			<property name="Password" value="NECWevman24!"/> 
+			<property name="portNumber" value="3306"/> 
+			<property name="databaseName" value="NECTrackerPro"/> 
+			<property name="serverName" value="localhost"/> 
+			<property name="User" value="nectpAdmin"/> 
+			<!-- <property name="eclipselink.ddl-generation" value="create-or-extend-tables" /> -->
+			<property name="eclipselink.ddl-generation" value="none" />
+			<property name="eclipselink.ddl-generation.output-mode" value="database" />
+	    </properties>
+	</persistence-unit>
+</persistence>

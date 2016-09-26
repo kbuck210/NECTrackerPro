@@ -1,0 +1,197 @@
+/* ===== Sticky menu  ===== */ 
+.interface {
+  position: relative;
+  overflow: hidden;
+}
+.site-panel {
+  position: absolute;
+  width: 218px;
+  top: 0;
+  left: 0;
+  -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+ 
+#panelClose {
+  color: white;
+  position: absolute;
+  left: 18%;
+  top: 0;
+} 
+
+.nav ul {
+  list-style: none;
+  padding-left: 0;
+  padding-top: 0;
+}
+.nav ul li {
+  color: #999;
+  /* margin: 0.5em 0; */
+}
+.nav ul li a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  padding: .25em;
+  padding-left: 1em; 
+}
+.nav-show .nav {
+  box-shadow: 0 3px 8px rgba(0,0,0,.75);
+}
+.nav-show .nav a {
+  background-color: #333;
+  border: 1px solid #222;
+  border-top-color: #444;
+  border-left-width: 0;
+  border-right-width: 0; 
+}
+.nav-show .nav ul li:hover a,
+.nav-show .nav .is-active {
+  background-color: #2b2b2b;
+  color: #fff;
+} 
+
+@media (min-width: 767px) {
+  #panelClose {
+    right: 0;
+  } 
+}
+
+.headerwrapper {
+  z-index: 9;  
+  padding: 0;
+  margin: 0;
+  position: relative;
+  background-image: -webkit-linear-gradient(top, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111);
+  background-image: -webkit-linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111);
+  background-image: -moz-linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111);
+  background-image: -o-linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111);
+  background-image: -ms-linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111);
+  background-image: linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111);
+}
+
+.menu-wrapper {
+	postion: absolute;
+	padding-top: 0.25rem;
+}
+
+.menu-title {
+	color: #fff;
+	width: 100%;
+	display: inline;
+}
+.menu-label-row {
+	padding-left: .5em;
+}
+
+.burger,
+.arrow {
+  font-style: normal;
+  
+}
+.arrow {
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-label {
+	display: inline-block;
+	text-align: center;
+	padding-left: 1rem;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin: 0;
+}
+.menu-label label {
+	color: #bfbfbf;
+    text-transform: uppercase;
+}
+	 
+/* #showMenu, */
+.show-menu {
+  display: inline-block;
+  text-align: left;
+  padding: .25em .5em .25em .5em;
+  background: transparent;
+  text-transform: uppercase;
+}
+
+ /* #showMenu a*/
+.show-menu a,
+.arrow {
+  color: #fff;
+} 
+.show-menu b,
+.is-visible .show-menu a {
+  color: transparent; 
+}
+
+.surface {
+  /* overflow-x: hidden; */
+  position: absolute;
+  top: 0;
+  left: 0;
+   -webkit-transform: translateX(-220px);
+  -moz-transform: translateX(-220px);
+  -ms-transform: translateX(-220px);
+  -o-transform: translateX(-220px);
+  transform: translateX(-220px)
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -ms-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  transition: all .6s ease-in-out;
+}
+
+
+.surface.nav-show {
+  overflow-x: visible;
+  -webkit-transform: translateX(230px);
+  -moz-transform: translateX(230px);
+  -ms-transform: translateX(230px);
+  -o-transform: translateX(230px);
+  transform: translateX(230px);
+}
+@media (min-width: 767px) {
+  .surface.nav-show {
+    -webkit-transform: translateX(269px);
+    -moz-transform: translateX(269px);
+    -ms-transform: translateX(269px);
+    -o-transform: translateX(269px);
+    transform: translateX(269px);
+  }
+}
+
+.nav-show .site-panel {
+  -webkit-transform: translateX(-269px);
+  -moz-transform: translateX(-269px);
+  -ms-transform: translateX(-269px);
+  -o-transform: translateX(-269px);
+  transform: translateX(-269px);
+  -webkit-transition-delay: .2s;
+  -moz-transition-delay: .2s;
+  -ms-transition-delay: .2s;
+  -o-transition-delay: .2s;
+  transition-delay: .2s;
+  background-color: #222; 
+  background-image: -webkit-linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111 55px, #333 62px, #333);
+  background-image: -moz-linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111 55px, #333 62px, #333);
+  background-image: -o-linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111 55px, #333 62px, #333); 
+  background-image: -ms-linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111 55px, #333 62px, #333);
+  background-image: linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111 55px, #333 62px, #333);
+  background-image: linear-gradient(to bottom, #000, #111 3px, #222 5px, #333 15px, #222 40px, #1c1c1c 45px, #171717 50px, #111 55px, #333 62px, #333); 
+}
+
+@media (min-width: 767px) {
+  .nav-show .site-panel {
+    -webkit-transform: translateX(-269px);
+    -moz-transform: translateX(-269px);
+    -ms-transform: translateX(-269px);
+    -o-transform: translateX(-269px);
+    transform: translateX(-269px);
+  }
+}

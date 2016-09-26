@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" >
+
+<ui:decorate template="home.xhtml">
+	<ui:define name="right-aside">
+	    
+	    <p:growl id="right-aside-growl" showDetail="true" />
+	    
+	    <!-- Sidebar -->
+	    <f:facet name="right">
+	    	<h:form>
+	    		<p:panelGrid id="leaderPanel" columns="1" class="ui-g-12 ui-md-3 ui-lg-3">
+	    			<f:facet name="header">
+	    				<f:facet name="left">
+	    					<p:menuButton value="&#9776;">
+	    						<p:menuitem value="Category:" disabled="true" />
+	    						<p:separator />
+				        		<p:repeat value="#{leaderListBean.prizeCategories}" var="prize">
+				        			<p:menuitem value="#{prize.title}" actionListener="#{leaderListBean.changeCategory}" >
+				        				<f:attribute name="category" value="#{prize}" />
+				        			</p:menuitem>
+			        			</p:repeat>
+		        			</p:menuButton>
+	    				</f:facet>
+	    				<h3 class="sticky-title">#{leaderListBean.headerTitle}</h3>
+	    			</f:facet>
+
+					<p:repeat value="#{leaderListBean.leaderList}" var="leader">
+						<a class="leader-link" href="#{leader.teamUrl}">
+							<p:panelGrid columns="2" layout="grid">
+								<h:panelGroup class="ui-g-12 ui-md-5 ui-lg-5 avatar-col">
+									<span class="position-badge"><img src="#{leader.positionImg}" /></span>
+									<img class="avatar" src="#{leader.avatar}" />
+								</h:panelGroup>
+								<h:panelGroup class="ui-g-12 ui-md-7 ui-lg-7 name-col">
+									<h5 class="leader-name">#{leader.nickname}</h5>
+									<h5 class="leader-record"><small>#{leader.record}</small></h5>
+									<p:panelGrid columns="#{leader.prizeCount}" layout="grid" >
+										<p:repeat value="#{leader.prizeCategories}" var="prize">
+											<h:panelGroup>
+												<img id="#{prize.id}" class="thumbnail icon-item" src="#{prize.getIcon(leader.leader)}" />
+												<pe:tooltip for="#{prize.id}" value="#{prize.title}" showEffect="fadeIn" hideEffect="fadeIn"/>
+											</h:panelGroup>
+										</p:repeat>
+									</p:panelGrid>
+								</h:panelGroup>
+							</p:panelGrid>
+						</a>
+					</p:repeat>
+		    	</p:panelGrid>
+	    	</h:form>
+	    </f:facet>
+	    
+	    <p:sticky target="leaderPanel" />
+
+	</ui:define>
+</ui:decorate>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:body>
+	<!-- Start Top Bar -->
+	<div class="top-bar">
+	  <div class="top-bar-left">
+	    <ul class="menu">
+	      <li class="menu-text">NEC Tracker PRO</li>
+	    </ul>
+	  </div>
+	  <div class="top-bar-right">
+	    <p:commandButton value="#{headerBean.buttonText}" disabled="#{headerBean.buttonDisabled}" type="button" onclick="PF('loginModal').show();" />
+	    <p:commandLink rendered="#{headerBean.buttonDisabled}" actionListener="#{headerBean.logout}">
+	    	<h:outputText value="Sign Out:" />
+	    </p:commandLink>
+	    <!-- Foundation implementation
+	    <ul class="menu">
+	      <li><a href="#">Login</a></li>
+	    </ul>
+	    -->
+	  </div>
+	</div>
+	<!-- End Top Bar -->
+	
+	<!-- Modal Dialog for Login Button -->
+	<p:dialog header="Please Log In:" widgetVar="loginModal" modal="true">
+		<p:messages />
+  			<h:panelGrid columns="2" columnClasses="label, value">
+  				<h:outputText value="Email: *" />
+  				<p:inputText value="#{headerBean.emailAddress}" required="true" label="Email" />
+  				
+  				<h:outputText value="Password: *" />
+  				<p:password value="#{headerBean.password}" required="true" label="Password" />
+  			</h:panelGrid>
+  			
+  			<p:commandButton value="Login:" id="login" actionListener="#{headerBean.login}" />
+	</p:dialog>
+	
+	<!-- Main Header -->
+	<header class="header large marketing-hero sites">
+		<a href="#"><p class="hero-framework-link">The New England Cup#{headerBean.seasonTitle}</p></a>
+		<h1 class="hero-main-header">NEC Tracker PRO</h1>
+		  <ul class="header-subnav">
+		    <li><a href="#">Take Action!</a></li>
+		    <li><a href="#" class="is-active">Carpe Diem!</a></li>
+		    <li><a target="_blank" href="http://zurb.com/responsive">Just do it!</a></li>
+		  </ul>
+	</header>
+	<!-- End Main Header -->
+	
+	<br />
+</h:body>	
+</html>

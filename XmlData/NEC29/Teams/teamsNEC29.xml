@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
+<teamsForSeason xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nec="29">
+	<tfs>
+		<name>Patriots</name>
+		<abbr>NE</abbr>
+		<nickname>The Pats</nickname>
+		<city>New England</city>
+		<excelName>New Eng</excelName>
+		<conference>AFC</conference>
+		<division>EAST</division>
+		<stadium>Gillette Stadium</stadium>
+		<homeImg>img/helmets/afc_east/patriotsHelmet-homeSmall.png</homeImg>
+		<awayImg>img/helmets/afc_east/patriotsHelmet-awaySmall.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Jets</name>
+		<abbr>NYJ</abbr>
+		<nickname>The J-E-T-S</nickname>
+		<city>New York</city>
+		<excelName>NY Jets</excelName>
+		<conference>AFC</conference>
+		<division>EAST</division>
+		<stadium>MetLife Stadium</stadium>
+		<homeImg>img/helmets/afc_east/nyjHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_east/nyjHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Bills</name>
+		<abbr>BUF</abbr>
+		<nickname>The Bills</nickname>
+		<city>Buffalo</city>
+		<excelName>Buffalo</excelName>
+		<conference>AFC</conference>
+		<division>EAST</division>
+		<stadium>Ralph Wilson Stadium</stadium>
+		<homeImg>img/helmets/afc_east/buffaloHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_east/buffaloHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Dolphins</name>
+		<abbr>MIA</abbr>
+		<nickname>The Fins</nickname>
+		<excelName>Miami</excelName>
+		<city>Miami</city>
+		<conference>AFC</conference>
+		<division>EAST</division>
+		<stadium>Sun Life Stadium</stadium>
+		<homeImg>img/helmets/afc_east/miamiHelmet-homeSmall.png</homeImg>
+		<awayImg>img/helmets/afc_east/miamiHelmet-awaySmall.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Bengals</name>
+		<abbr>CIN</abbr>
+		<nickname>Cincy</nickname>
+		<city>Cincinnati</city>
+		<excelName>Cincinn</excelName>
+		<conference>AFC</conference>
+		<division>NORTH</division>
+		<stadium>Paul Brown Stadium</stadium>
+		<homeImg>img/helmets/afc_north/cincinnatiHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_north/cincinnatiHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Steelers</name>
+		<abbr>PIT</abbr>
+		<nickname>Pitt</nickname>
+		<city>Pittsburgh</city>
+		<excelName>Pittsbur</excelName>
+		<conference>AFC</conference>
+		<division>NORTH</division>
+		<stadium>Heinz Field</stadium>
+		<homeImg>img/helmets/afc_north/pittsburghHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_north/pittsburghHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Ravens</name>
+		<abbr>BAL</abbr>
+		<nickname>Baltimore</nickname>
+		<city>Baltimore</city>
+		<excelName>Baltimore</excelName>
+		<conference>AFC</conference>
+		<division>NORTH</division>
+		<stadium>M&amp;T Bank Stadium</stadium>
+		<homeImg>img/helmets/afc_north/baltimoreHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_north/baltimoreHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Browns</name>
+		<abbr>CLE</abbr>
+		<nickname>The Browns</nickname>
+		<city>Cleveland</city>
+		<excelName>Cleveland</excelName>
+		<conference>AFC</conference>
+		<division>NORTH</division>
+		<stadium>FirstEnergy Stadium</stadium>
+		<homeImg>img/helmets/afc_north/clevelandHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_north/clevelandHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Colts</name>
+		<abbr>IND</abbr>
+		<nickname>Indy</nickname>
+		<city>Indianapolis</city>
+		<excelName>Indy</excelName>
+		<conference>AFC</conference>
+		<division>SOUTH</division>
+		<stadium>Lucas Oil Stadium</stadium>
+		<homeImg>img/helmets/afc_south/indyHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_south/indyHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Texans</name>
+		<abbr>HOU</abbr>
+		<nickname>The Texans</nickname>
+		<city>Houston</city>
+		<excelName>Houston</excelName>
+		<conference>AFC</conference>
+		<division>SOUTH</division>
+		<stadium>NRG Stadium</stadium>
+		<homeImg>img/helmets/afc_south/houstonHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_south/houstonHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Jaguars</name>
+		<abbr>JAC</abbr>
+		<nickname>The Jags</nickname>
+		<city>Jacksonville</city>
+		<excelName>Jacksonv</excelName>		
+		<conference>AFC</conference>
+		<division>SOUTH</division>
+		<stadium>EverBank Field</stadium>
+		<homeImg>img/helmets/afc_south/jacksonvilleHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_south/jacksonvilleHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Titans</name>
+		<abbr>TEN</abbr>
+		<nickname>The Titans</nickname>
+		<city>Tennessee</city>
+		<excelName>Tennessee</excelName>
+		<conference>AFC</conference>
+		<division>SOUTH</division>
+		<stadium>Nissan Stadium</stadium>
+		<homeImg>img/helmets/afc_south/tennesseeHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_south/tennesseeHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Broncos</name>
+		<abbr>DEN</abbr>
+		<nickname>The Broncos</nickname>
+		<city>Denver</city>
+		<excelName>Denver</excelName>
+		<conference>AFC</conference>
+		<division>WEST</division>
+		<stadium>Mile High Stadium</stadium>
+		<homeImg>img/helmets/afc_west/denverHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_west/denverHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Raiders</name>
+		<abbr>OAK</abbr>
+		<nickname>The Raiders</nickname>
+		<city>Oakland</city>
+		<excelName>Oakland</excelName>
+		<conference>AFC</conference>
+		<division>WEST</division>
+		<stadium>O.co Coliseum</stadium>
+		<homeImg>img/helmets/afc_west/oaklandHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_west/oaklandHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Chiefs</name>
+		<abbr>KC</abbr>
+		<nickname>KC</nickname>
+		<city>Kansas City</city>
+		<excelName>KansCity</excelName>
+		<conference>AFC</conference>
+		<division>WEST</division>
+		<stadium>Arrowhead Stadium</stadium>
+		<homeImg>img/helmets/afc_west/kcHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_west/kcHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Chargers</name>
+		<abbr>SD</abbr>
+		<nickname>San Diego</nickname>
+		<city>San Diego</city>
+		<excelName>SanDiego</excelName>
+		<conference>AFC</conference>
+		<division>WEST</division>
+		<stadium>Qualcomm Stadium</stadium>
+		<homeImg>img/helmets/afc_west/sanDiegoHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/afc_west/sanDiegoHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Giants</name>
+		<abbr>NYG</abbr>
+		<nickname>The New York Football Giants</nickname>
+		<city>New York</city>
+		<excelName>NY Giants</excelName>
+		<conference>NFC</conference>
+		<division>EAST</division>
+		<stadium>MetLife Stadium</stadium>
+		<homeImg>img/helmets/nfc_east/nygHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_east/nygHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Eagles</name>
+		<abbr>PHI</abbr>
+		<nickname>Philly</nickname>
+		<city>Philadelphia</city>
+		<excelName>Philly</excelName>
+		<conference>NFC</conference>
+		<division>EAST</division>
+		<stadium>Lincoln Financial Field</stadium>
+		<homeImg>img/helmets/nfc_east/philyHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_east/philyHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Redskins</name>
+		<abbr>WAS</abbr>
+		<nickname>Washington</nickname>
+		<city>Washington</city>
+		<excelName>Washing</excelName>
+		<conference>NFC</conference>
+		<division>EAST</division>
+		<stadium>FedEx Field</stadium>
+		<homeImg>img/helmets/nfc_east/washingtonHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_east/washingtonHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Cowboys</name>
+		<abbr>DAL</abbr>
+		<nickname>The Cowboys</nickname>
+		<city>Dallas</city>
+		<excelName>Dallas</excelName>
+		<conference>NFC</conference>
+		<division>EAST</division>
+		<stadium>AT&amp;T Stadium</stadium>
+		<homeImg>img/helmets/nfc_east/dallasHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_east/dallasHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Vikings</name>
+		<abbr>MIN</abbr>
+		<nickname>Minnesota</nickname>
+		<city>Minnesota</city>
+		<excelName>Minnesota</excelName>
+		<conference>NFC</conference>
+		<division>NORTH</division>
+		<stadium>TCF Bank Stadium</stadium>
+		<homeImg>img/helmets/nfc_north/minnesotaHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_north/minnesotaHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Packers</name>
+		<abbr>GB</abbr>
+		<nickname>The Packers</nickname>
+		<city>Green Bay</city>
+		<excelName>GreenBay</excelName>
+		<conference>NFC</conference>
+		<division>NORTH</division>
+		<stadium>Lambeau Field</stadium>
+		<homeImg>img/helmets/nfc_north/greenBayHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_north/greenBayHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Bears</name>
+		<abbr>CHI</abbr>
+		<nickname>Da&amp;#39; Bears</nickname>
+		<city>Chicago</city>
+		<excelName>Chicago</excelName>
+		<conference>NFC</conference>
+		<division>NORTH</division>
+		<stadium>Soldier Field</stadium>
+		<homeImg>img/helmets/nfc_north/chicagoHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_north/chicagoHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Lions</name>
+		<abbr>DET</abbr>
+		<nickname>The Lions</nickname>
+		<city>Detroit</city>
+		<excelName>Detroit</excelName>
+		<conference>NFC</conference>
+		<division>NORTH</division>
+		<stadium>Ford Field</stadium>
+		<homeImg>img/helmets/nfc_north/detroitHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_north/detroitHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Panthers</name>
+		<abbr>CAR</abbr>
+		<nickname>Carolina</nickname>
+		<city>Carolina</city>
+		<excelName>Carolina</excelName>
+		<conference>NFC</conference>
+		<division>SOUTH</division>
+		<stadium>Bank of America Stadium</stadium>
+		<homeImg>img/helmets/nfc_south/carolinaHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_south/carolinaHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Falcons</name>
+		<abbr>ATL</abbr>
+		<nickname>The Falcons</nickname>
+		<city>Atlanta</city>
+		<excelName>Atlanta</excelName>
+		<conference>NFC</conference>
+		<division>SOUTH</division>
+		<stadium>Georgia Dome</stadium>
+		<homeImg>img/helmets/nfc_south/atlantaHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_south/atlantaHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Saints</name>
+		<abbr>NO</abbr>
+		<nickname>The Saints</nickname>
+		<city>New Orleans</city>
+		<excelName>NewOrlea</excelName>
+		<conference>NFC</conference>
+		<division>SOUTH</division>
+		<stadium>The Superdome</stadium>
+		<homeImg>img/helmets/nfc_south/newOrleansHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_south/newOrleansHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Buccaneers</name>
+		<abbr>TB</abbr>
+		<nickname>The Bucs</nickname>
+		<city>Tampa Bay</city>
+		<excelName>TampaBay</excelName>
+		<conference>NFC</conference>
+		<division>SOUTH</division>
+		<stadium>Raymond James Stadium</stadium>
+		<homeImg>img/helmets/nfc_south/tampaBayHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_south/tampaBayHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Cardinals</name>
+		<abbr>ARI</abbr>
+		<nickname>Arizona</nickname>
+		<city>Arizona</city>
+		<excelName>Arizona</excelName>
+		<conference>NFC</conference>
+		<division>WEST</division>
+		<stadium>University of Phoenix Stadium</stadium>
+		<homeImg>img/helmets/nfc_west/arizonaHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_west/arizonaHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Rams</name>
+		<abbr>STL</abbr>
+		<nickname>The Rams</nickname>
+		<city>St. Louis</city>
+		<excelName>StLouis</excelName>
+		<conference>NFC</conference>
+		<division>WEST</division>
+		<stadium>Edward Jones Dome</stadium>
+		<homeImg>img/helmets/nfc_west/stLouisHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_west/stLouisHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>Seahawks</name>
+		<abbr>SEA</abbr>
+		<nickname>The Seahawks</nickname>
+		<city>Seattle</city>
+		<excelName>Seattle</excelName>
+		<conference>NFC</conference>
+		<division>WEST</division>
+		<stadium>CenturyLink Field</stadium>
+		<homeImg>img/helmets/nfc_west/seattleHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_west/seattleHelmet-smallAway.png</awayImg>
+	</tfs>
+	<tfs>
+		<name>49ers</name>
+		<abbr>SF</abbr>
+		<nickname>The Niners</nickname>
+		<city>San Francisco</city>
+		<excelName>San Fran</excelName>
+		<conference>NFC</conference>
+		<division>WEST</division>
+		<stadium>Levi's Stadium</stadium>
+		<homeImg>img/helmets/nfc_west/sanFransiscoHelmet-smallHome.png</homeImg>
+		<awayImg>img/helmets/nfc_west/sanFransiscoHelmet-smallAway.png</awayImg>
+	</tfs>
+</teamsForSeason>

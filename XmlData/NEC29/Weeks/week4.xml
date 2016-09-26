@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
+<week xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" weekNum="4" nec="29" status="completed">
+	<game>
+		<homeTeam>PIT</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>2.5</spread1>
+		<awayScore>23</awayScore>
+		<awayTeam>BAL</awayTeam>
+		<date>10.1.2015</date>
+		<time>8:25:PM</time>
+		<stadium>Heinz Field</stadium>
+	</game>
+	<game>
+		<homeTeam>MIA</homeTeam>
+		<homeScore>14</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>1.5</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>NYJ</awayTeam>
+		<date>10.4.2015</date>
+		<time>9:30:AM</time>
+		<stadium>Wembley Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>ATL</homeTeam>
+		<homeScore>48</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>6.5</spread1>
+		<awayScore>21</awayScore>
+		<awayTeam>HOU</awayTeam>
+		<date>10.4.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Georgia Dome</stadium>
+	</game>
+	<game>
+		<homeTeam>BUF</homeTeam>
+		<homeScore>10</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>5.5</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>NYG</awayTeam>
+		<date>10.4.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Ralph Wilson Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CHI</homeTeam>
+		<homeScore>22</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>OAK</awayTeam>
+		<date>10.4.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Soldier Field</stadium>
+	</game>
+	<game>
+		<homeTeam>CIN</homeTeam>
+		<homeScore>36</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>4</spread1>
+		<awayScore>21</awayScore>
+		<awayTeam>KC</awayTeam>
+		<date>10.4.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Paul Brown Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>IND</homeTeam>
+		<homeScore>16</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>9</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>JAC</awayTeam>
+		<date>10.4.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Lucas Oil Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>TB</homeTeam>
+		<homeScore>23</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>37</awayScore>
+		<awayTeam>CAR</awayTeam>
+		<date>10.4.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Raymond James Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>WAS</homeTeam>
+		<homeScore>23</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>PHI</awayTeam>
+		<date>10.4.2015</date>
+		<time>1:00:PM</time>
+		<stadium>FedEx Field</stadium>
+	</game>
+	<game>
+		<homeTeam>SD</homeTeam>
+		<homeScore>30</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>7.5</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>CLE</awayTeam>
+		<date>10.4.2015</date>
+		<time>4:05:PM</time>
+		<stadium>Qualcomm Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>ARI</homeTeam>
+		<homeScore>22</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>7</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>STL</awayTeam>
+		<date>10.4.2015</date>
+		<time>4:25:PM</time>
+		<stadium>University of Phoenix Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>DEN</homeTeam>
+		<homeScore>23</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>6.5</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>MIN</awayTeam>
+		<date>10.4.2015</date>
+		<time>4:25:PM</time>
+		<stadium>Mile High Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SF</homeTeam>
+		<homeScore>3</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>8</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>GB</awayTeam>
+		<date>10.4.2015</date>
+		<time>4:25:PM</time>
+		<stadium>Levi's Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NO</homeTeam>
+		<homeScore>26</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>4</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>DAL</awayTeam>
+		<date>10.4.2015</date>
+		<time>8:30:PM</time>
+		<stadium>The Superdome</stadium>
+	</game>
+	<game>
+		<homeTeam>SEA</homeTeam>
+		<homeScore>13</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>9.5</spread1>
+		<awayScore>10</awayScore>
+		<awayTeam>DET</awayTeam>
+		<date>10.5.2015</date>
+		<time>8:30:PM</time>
+		<stadium>CenturyLink Field</stadium>
+	</game>
+</week>

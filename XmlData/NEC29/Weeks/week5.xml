@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
+<week xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" weekNum="5" nec="29" status="completed">
+	<game>
+		<homeTeam>HOU</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>1</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>IND</awayTeam>
+		<date>10.8.2015</date>
+		<time>8:25:PM</time>
+		<stadium>NRG Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>ATL</homeTeam>
+		<homeScore>25</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>7</spread1>
+		<awayScore>19</awayScore>
+		<awayTeam>WAS</awayTeam>
+		<date>10.11.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Georgia Dome</stadium>
+	</game>
+	<game>
+		<homeTeam>BAL</homeTeam>
+		<homeScore>30</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>6</spread1>
+		<awayScore>33</awayScore>
+		<awayTeam>CLE</awayTeam>
+		<date>10.11.2015</date>
+		<time>1:00:PM</time>
+		<stadium>M&amp;T Bank Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CIN</homeTeam>
+		<homeScore>27</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>SEA</awayTeam>
+		<date>10.11.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Paul Brown Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>GB</homeTeam>
+		<homeScore>24</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>8.5</spread1>
+		<awayScore>10</awayScore>
+		<awayTeam>STL</awayTeam>
+		<date>10.11.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Lambeau Field</stadium>
+	</game>
+	<game>
+		<homeTeam>KC</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>9</spread1>
+		<awayScore>18</awayScore>
+		<awayTeam>CHI</awayTeam>
+		<date>10.11.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Arrowhead Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>PHI</homeTeam>
+		<homeScore>39</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>4.5</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>NO</awayTeam>
+		<date>10.11.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Lincoln Financial Field</stadium>
+	</game>
+	<game>
+		<homeTeam>TB</homeTeam>
+		<homeScore>38</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>31</awayScore>
+		<awayTeam>JAC</awayTeam>
+		<date>10.11.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Raymond James Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>TEN</homeTeam>
+		<homeScore>13</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>2.5</spread1>
+		<awayScore>14</awayScore>
+		<awayTeam>BUF</awayTeam>
+		<date>10.11.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Nissan Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>DET</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>2.5</spread1>
+		<awayScore>42</awayScore>
+		<awayTeam>ARI</awayTeam>
+		<date>10.11.2015</date>
+		<time>4:05:PM</time>
+		<stadium>Ford Field</stadium>
+	</game>
+	<game>
+		<homeTeam>DAL</homeTeam>
+		<homeScore>6</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>8.5</spread1>
+		<awayScore>30</awayScore>
+		<awayTeam>NE</awayTeam>
+		<date>10.11.2015</date>
+		<time>4:25:PM</time>
+		<stadium>AT&amp;T Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>OAK</homeTeam>
+		<homeScore>10</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>4.5</spread1>
+		<awayScore>16</awayScore>
+		<awayTeam>DEN</awayTeam>
+		<date>10.11.2015</date>
+		<time>4:25:PM</time>
+		<stadium>O.co Coliseum</stadium>
+	</game>
+	<game>
+		<homeTeam>NYG</homeTeam>
+		<homeScore>30</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>7</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>SF</awayTeam>
+		<date>10.11.2015</date>
+		<time>8:30:PM</time>
+		<stadium>MetLife Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SD</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>PIT</awayTeam>
+		<date>10.12.2015</date>
+		<time>8:30:PM</time>
+		<stadium>Qualcomm Stadium</stadium>
+	</game>
+</week>

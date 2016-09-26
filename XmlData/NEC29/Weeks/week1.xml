@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
+<week xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" weekNum="1" nec="29" status="completed">
+	<game>
+		<homeTeam>NE</homeTeam>
+		<homeScore>28</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>7</spread1>
+		<awayScore>21</awayScore>
+		<awayTeam>PIT</awayTeam>
+		<date>9.10.2015</date>
+		<time>8:30:PM</time>
+		<stadium>Gillette Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CHI</homeTeam>
+		<homeScore>23</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>6.5</spread1>
+		<awayScore>31</awayScore>
+		<awayTeam>GB</awayTeam>
+		<date>9.13.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Soldier Field</stadium>
+	</game>
+	<game>
+		<homeTeam>HOU</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>1</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>KC</awayTeam>
+		<date>9.13.2015</date>
+		<time>1:00:PM</time>
+		<stadium>NRG Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NYJ</homeTeam>
+		<homeScore>31</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>3.5</spread1>
+		<awayScore>10</awayScore>
+		<awayTeam>CLE</awayTeam>
+		<date>9.13.2015</date>
+		<time>1:00:PM</time>
+		<stadium>MetLife Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>BUF</homeTeam>
+		<homeScore>27</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>2.5</spread1>
+		<awayScore>14</awayScore>
+		<awayTeam>IND</awayTeam>
+		<date>9.13.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Ralph Wilson Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>WAS</homeTeam>
+		<homeScore>10</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3.5</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>MIA</awayTeam>
+		<date>9.13.2015</date>
+		<time>1:00:PM</time>
+		<stadium>FedEx Field</stadium>
+	</game>
+	<game>
+		<homeTeam>JAC</homeTeam>
+		<homeScore>9</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>CAR</awayTeam>
+		<date>9.13.2015</date>
+		<time>1:00:PM</time>
+		<stadium>EverBank Field</stadium>
+	</game>
+	<game>
+		<homeTeam>STL</homeTeam>
+		<homeScore>34</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>4</spread1>
+		<awayScore>31</awayScore>
+		<awayTeam>SEA</awayTeam>
+		<date>9.13.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Edward Jones Dome</stadium>
+	</game>
+	<game>
+		<homeTeam>ARI</homeTeam>
+		<homeScore>31</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>2.5</spread1>
+		<awayScore>19</awayScore>
+		<awayTeam>NO</awayTeam>
+		<date>9.13.2015</date>
+		<time>4:05:PM</time>
+		<stadium>University of Phoenix Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SD</homeTeam>
+		<homeScore>33</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>28</awayScore>
+		<awayTeam>DET</awayTeam>
+		<date>9.13.2015</date>
+		<time>4:05:PM</time>
+		<stadium>Qualcomm Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>TB</homeTeam>
+		<homeScore>14</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>42</awayScore>
+		<awayTeam>TEN</awayTeam>
+		<date>9.13.2015</date>
+		<time>4:25:PM</time>
+		<stadium>Raymond James Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>OAK</homeTeam>
+		<homeScore>13</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3.5</spread1>
+		<awayScore>33</awayScore>
+		<awayTeam>CIN</awayTeam>
+		<date>9.13.2015</date>
+		<time>4:25:PM</time>
+		<stadium>O.co Coliseum</stadium>
+	</game>
+	<game>
+		<homeTeam>DEN</homeTeam>
+		<homeScore>19</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>4</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>BAL</awayTeam>
+		<date>9.13.2015</date>
+		<time>4:25:PM</time>
+		<stadium>Mile High Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>DAL</homeTeam>
+		<homeScore>27</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>6</spread1>
+		<awayScore>26</awayScore>
+		<awayTeam>NYG</awayTeam>
+		<date>9.13.2015</date>
+		<time>8:30:PM</time>
+		<stadium>AT&amp;T Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>ATL</homeTeam>
+		<homeScore>26</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>PHI</awayTeam>
+		<date>9.14.2015</date>
+		<time>6:55:PM</time>
+		<stadium>Georgia Dome</stadium>
+	</game>
+	<game>
+		<homeTeam>SF</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>2.5</spread1>
+		<awayScore>3</awayScore>
+		<awayTeam>MIN</awayTeam>
+		<date>9.14.2015</date>
+		<time>10:15:PM</time>
+		<stadium>Levi's Stadium</stadium>
+	</game>
+</week>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
+<week xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" weekNum="13" nec="29" status="completed">
+	<game>
+		<homeTeam>DET</homeTeam>
+		<homeScore>23</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>GB</awayTeam>
+		<date>12.3.2015</date>
+		<time>8:25:PM</time>
+		<stadium>Ford Field</stadium>
+	</game>
+	<game>
+		<homeTeam>BUF</homeTeam>
+		<homeScore>30</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>21</awayScore>
+		<awayTeam>HOU</awayTeam>
+		<date>12.6.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Ralph Wilson Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CHI</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>7</spread1>
+		<awayScore>26</awayScore>
+		<awayTeam>SF</awayTeam>
+		<date>12.6.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Soldier Field</stadium>
+	</game>
+	<game>
+		<homeTeam>CLE</homeTeam>
+		<homeScore>3</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>10</spread1>
+		<awayScore>37</awayScore>
+		<awayTeam>CIN</awayTeam>
+		<date>12.6.2015</date>
+		<time>1:00:PM</time>
+		<stadium>FirstEnergy Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>MIA</homeTeam>
+		<homeScore>15</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>4</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>BAL</awayTeam>
+		<date>12.6.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Sun Life Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>MIN</homeTeam>
+		<homeScore>7</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>0</spread1>
+		<awayScore>38</awayScore>
+		<awayTeam>SEA</awayTeam>
+		<date>12.6.2015</date>
+		<time>1:00:PM</time>
+		<stadium>TCF Bank Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NO</homeTeam>
+		<homeScore>38</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>7</spread1>
+		<awayScore>41</awayScore>
+		<awayTeam>CAR</awayTeam>
+		<date>12.6.2015</date>
+		<time>4:25:PM</time>
+		<stadium>The Superdome</stadium>
+	</game>
+	<game>
+		<homeTeam>NYG</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>2.5</spread1>
+		<awayScore>23</awayScore>
+		<awayTeam>NYJ</awayTeam>
+		<date>12.6.2015</date>
+		<time>1:00:PM</time>
+		<stadium>MetLife Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>STL</homeTeam>
+		<homeScore>3</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>5.5</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>ARI</awayTeam>
+		<date>12.6.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Edward Jones Dome</stadium>
+	</game>
+	<game>
+		<homeTeam>TB</homeTeam>
+		<homeScore>23</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>1</spread1>
+		<awayScore>19</awayScore>
+		<awayTeam>ATL</awayTeam>
+		<date>12.6.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Raymond James Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>TEN</homeTeam>
+		<homeScore>42</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>2</spread1>
+		<awayScore>39</awayScore>
+		<awayTeam>JAC</awayTeam>
+		<date>12.6.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Nissan Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>OAK</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>34</awayScore>
+		<awayTeam>KC</awayTeam>
+		<date>12.6.2015</date>
+		<time>4:05:PM</time>
+		<stadium>O.co Coliseum</stadium>
+	</game>
+	<game>
+		<homeTeam>SD</homeTeam>
+		<homeScore>3</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>4</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>DEN</awayTeam>
+		<date>12.6.2015</date>
+		<time>4:05:PM</time>
+		<stadium>Qualcomm Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NE</homeTeam>
+		<homeScore>28</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>10</spread1>
+		<awayScore>35</awayScore>
+		<awayTeam>PHI</awayTeam>
+		<date>12.6.2015</date>
+		<time>4:25:PM</time>
+		<stadium>Gillette Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>PIT</homeTeam>
+		<homeScore>45</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>7</spread1>
+		<awayScore>10</awayScore>
+		<awayTeam>IND</awayTeam>
+		<date>12.6.2015</date>
+		<time>8:30:PM</time>
+		<stadium>Heinz Field</stadium>
+	</game>
+	<game>
+		<homeTeam>WAS</homeTeam>
+		<homeScore>16</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>4</spread1>
+		<awayScore>19</awayScore>
+		<awayTeam>DAL</awayTeam>
+		<date>12.7.2015</date>
+		<time>8:30:PM</time>
+		<stadium>FedEx Field</stadium>
+	</game>
+</week>

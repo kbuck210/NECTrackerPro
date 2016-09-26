@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:gc="http://java.sun.com/jsf/composite/components" >
+	  
+	<ui:decorate template="home.xhtml" >
+		<ui:define name="center-content" >
+			<ui:include src="/pagination.xhtml" />
+	
+			<!-- Player Picks blog post area - display only if player logged in with picks -->
+			<ui:fragment rendered="false">
+				<gc:gameContainer formId="homePlayerPicks" 
+								  gcBean="#{playerPicksBean}" 
+								  headline="#{homeContentBean.playerPickHeadline}" 
+								  subheadline="#{homeContentBean.playerRecord}" 
+								  blogstyle="player-picks" />
+	        </ui:fragment>
+       
+	        <!-- Other games blog post - displayed if there are no picks or player registered - or if not all games picked -->
+	        <ui:fragment rendered="true">
+	        	<gc:gameContainer formId="homeOtherGames" 
+	        					  gcBean="#{otherGamesBean}" 
+	        					  headline="#{homeContentBean.otherGamesHeadline}" 
+	        					  subheadline="#{homeContentBean.displayedWeekHeadline}" 
+	        					  blogstyle="other-games" />
+	        </ui:fragment>
+		
+		</ui:define>
+	</ui:decorate>
+	
+</html>

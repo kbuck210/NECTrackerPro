@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:ui="http://java.sun.com/jsf/facelets"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+		<div class="row">
+      		<div class="medium-12 columns week-nav-container">
+      			<ul class="pagination week-nav" role="navigation" aria-label="Pagination">
+      				<li class="week-link">
+      					<p:commandLink update="@form" disabled="#{not paginationBean.gotoBeginningEnabled}" 
+      								   class="#{paginationBean.beginningDisabled}">
+      						<i class="fi-previous" />
+      						<f:actionListener binding="#{paginationBean.gotoBeginning()}" />
+      						<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+      					</p:commandLink>
+      				</li>
+					<li class="week-link">
+						<p:commandLink update="@form" disabled="#{not paginationBean.gotoPreviousEnabled}" 
+									   class="#{paginationBean.previousDisabled}" >
+							<i class="fi-rewind" />&nbsp;&nbsp;Previous
+							<f:actionListener binding="#{paginationBean.gotoPrevious()}" />
+							<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+						</p:commandLink>
+					</li>
+					<li class="ellipsis" />
+					<li class="week-link">
+						<p:commandLink update="@form" disabled="#{not paginationBean.gotoMinThreeEnabled}" 
+								  	   class="#{paginationBean.minThreeDisabled}" >
+							#{paginationBean.weekMinThree}
+							<f:actionListener binding="#{paginationBean.gotoMinThree()}" />
+							<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+						</p:commandLink>
+					</li>
+					<li class="week-link">
+						<p:commandLink update="@form" disabled="#{not paginationBean.gotoMinTwoEnabled}" 
+									   class="#{paginationBean.minTwoDisabled}" >
+							#{paginationBean.weekMinTwo}
+							<f:actionListener binding="#{paginationBean.gotoMinTwo()}" />
+							<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+						</p:commandLink>
+					</li>
+					<li class="week-link">
+						<p:commandLink update="@form" disabled="#{not paginationBean.gotoMinOneEnabled}" 
+									   class="#{paginationBean.minOneDisabled}" >
+							#{paginationBean.weekMinOne}
+							<f:actionListener binding="#{paginationBean.gotoMinOne()}" />
+							<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+						</p:commandLink>
+					</li>
+					<li class="current current-week">
+						#{paginationBean.currentWeekText}
+					</li>
+					<li class="week-link">
+						<p:commandLink update="@form" disabled="#{not paginationBean.gotoPlusOneEnabled}" 
+									   class="#{paginationBean.plusOneDisabled}" >
+							#{paginationBean.weekPlusOne}
+							<f:actionListener binding="#{paginationBean.gotoPlusOne()}" />
+							<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+						</p:commandLink>
+					</li>
+					<li class="week-link">
+						<p:commandLink update="@form" disabled="#{not paginationBean.gotoPlusTwoEnabled}"
+									   class="#{paginationBean.plusTwoDisabled}" >
+							#{paginationBean.weekPlusTwo}
+							<f:actionListener binding="#{paginationBean.gotoPlusTwo()}" />
+							<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+						</p:commandLink>
+					</li>
+					<li class="week-link">
+						<p:commandLink update="@form" disabled="#{not paginationBean.gotoPlusThreeEnabled}" 
+									   class="#{paginationBean.plusThreeDisabled}" >
+							#{paginationBean.weekPlusThree}
+							<f:actionListener binding="#{paginationBean.gotoPlusThree()}" />
+							<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+						</p:commandLink>
+					</li>
+					<li class="ellipsis" />
+					<li class="week-link">
+						<p:commandLink update="@form" disabled="#{not paginationBean.gotoNextEnabled}" 
+									   class="#{paginationBean.nextDisabled}" >
+							Next&nbsp;&nbsp;<i class="fi-fast-forward" />
+							<f:actionListener binding="#{paginationBean.gotoNext()}" />
+							<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+						</p:commandLink>
+					</li>
+					<li class="week-link">
+						<p:commandLink update="@form" disabled="#{not paginationBean.gotoEndEnabled}" 
+									   class="#{paginationBean.endDisabled}" >
+							<i class="fi-next" />
+							<f:actionListener binding="#{paginationBean.gotoEnd()}" />
+							<f:actionListener binding="#{homeContentBean.updateDisplayedWeek(paginationBean.displayWeek)}"/>
+      						<f:actionListener binding="#{otherGamesBean.init()}" />
+      						<f:actionListener binding="#{playerPicksBean.init()}" />
+						</p:commandLink>
+					</li>
+				</ul>
+      		</div>
+   		</div>
+</h:body>
+</html>

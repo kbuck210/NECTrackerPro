@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
+<week xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" weekNum="11" nec="29" status="completed">
+	<game>
+		<homeTeam>JAC</homeTeam>
+		<homeScore>19</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>TEN</awayTeam>
+		<date>11.19.2015</date>
+		<time>8:25:PM</time>
+		<stadium>EverBank Field</stadium>
+	</game>
+	<game>
+		<homeTeam>ATL</homeTeam>
+		<homeScore>21</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>6</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>IND</awayTeam>
+		<date>11.22.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Georgia Dome</stadium>
+	</game>
+	<game>
+		<homeTeam>BAL</homeTeam>
+		<homeScore>16</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>2</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>STL</awayTeam>
+		<date>11.22.2015</date>
+		<time>1:00:PM</time>
+		<stadium>M&amp;T Bank Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CAR</homeTeam>
+		<homeScore>44</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>7</spread1>
+		<awayScore>16</awayScore>
+		<awayTeam>WAS</awayTeam>
+		<date>11.22.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Bank of America Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CHI</homeTeam>
+		<homeScore>15</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>1</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>DEN</awayTeam>
+		<date>11.22.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Soldier Field</stadium>
+	</game>
+	<game>
+		<homeTeam>DET</homeTeam>
+		<homeScore>18</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>1.5</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>OAK</awayTeam>
+		<date>11.22.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Ford Field</stadium>
+	</game>
+	<game>
+		<homeTeam>HOU</homeTeam>
+		<homeScore>24</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>2.5</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>NYJ</awayTeam>
+		<date>11.22.2015</date>
+		<time>1:00:PM</time>
+		<stadium>NRG Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>MIA</homeTeam>
+		<homeScore>14</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>0</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>DAL</awayTeam>
+		<date>11.22.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Sun Life Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>MIN</homeTeam>
+		<homeScore>13</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>1</spread1>
+		<awayScore>30</awayScore>
+		<awayTeam>GB</awayTeam>
+		<date>11.22.2015</date>
+		<time>4:25:PM</time>
+		<stadium>TCF Bank Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>PHI</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>5.5</spread1>
+		<awayScore>45</awayScore>
+		<awayTeam>TB</awayTeam>
+		<date>11.22.2015</date>
+		<time>1:00:PM</time>
+		<stadium>Lincoln Financial Field</stadium>
+	</game>
+	<game>
+		<homeTeam>ARI</homeTeam>
+		<homeScore>34</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>5</spread1>
+		<awayScore>31</awayScore>
+		<awayTeam>CIN</awayTeam>
+		<date>11.22.2015</date>
+		<time>8:30:PM</time>
+		<stadium>University of Phoenix Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SEA</homeTeam>
+		<homeScore>29</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>12.5</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>SF</awayTeam>
+		<date>11.22.2015</date>
+		<time>4:25:PM</time>
+		<stadium>CenturyLink Field</stadium>
+	</game>
+	<game>
+		<homeTeam>SD</homeTeam>
+		<homeScore>3</homeScore>
+		<homeFavored>N</homeFavored>
+		<spread1>3</spread1>
+		<awayScore>33</awayScore>
+		<awayTeam>KC</awayTeam>
+		<date>11.22.2015</date>
+		<time>4:05:PM</time>
+		<stadium>Qualcomm Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NE</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored>Y</homeFavored>
+		<spread1>7</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>BUF</awayTeam>
+		<date>11.23.2015</date>
+		<time>8:30:PM</time>
+		<stadium>Gillette Stadium</stadium>
+	</game>
+</week>

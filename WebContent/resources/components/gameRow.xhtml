@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:ui="http://java.sun.com/jsf/facelets"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:composite="http://java.sun.com/jsf/composite"
+	   xmlns:p="http://primefaces.org/ui">
+
+	<composite:interface>
+		<composite:attribute name="rowId" required="true" />
+		<composite:attribute name="homeCity" default="Home Team" />
+		<composite:attribute name="homeRecord" default="(0-0)" />
+		<composite:attribute name="homeScore" default="00" />
+		<composite:attribute name="homeHelmet" default="img/homeHelmet.png" />
+		<composite:attribute name="homeHelmetId" />
+		<composite:attribute name="homeBadgeId"  />
+		<composite:attribute name="homeSelected" default="" />
+		<composite:attribute name="homePickImage" default="img/arrows/blank.png" />
+		<composite:attribute name="homeTeamUrl" default="#" />
+		<composite:attribute name="awayCity" default="Away Team" />
+		<composite:attribute name="awayRecord" default="(0-0)"  />
+		<composite:attribute name="awayScore" default="00" />
+		<composite:attribute name="awayHelmet" default="img/awayHelmet.png" />
+		<composite:attribute name="awayHelmetId" />
+		<composite:attribute name="awayBadgeId" />
+		<composite:attribute name="awaySelected" default="" />
+		<composite:attribute name="awayPickImage" default="img/arrows/blank.png" />'
+		<composite:attribute name="awayTeamUrl" default="#" />
+		<composite:attribute name="spread" default="0.0" />
+		<composite:attribute name="gameTime" default="kickoff" />
+		<composite:attribute name="timeRemaining" default="60:00" />
+		<composite:attribute name="homeArrow" default="img/arrows/home-medDark.png" />
+		<composite:attribute name="awayArrow" default="img/arrows/away-medDark.png" />
+		<composite:attribute name="selectable" default="unselectable" />
+	</composite:interface>
+	
+	<composite:implementation>
+		<!-- Game container -->
+		  <div class="row game-container">
+			  <div class="medium-12 columns">
+
+			  	<!-- Game info row - uses attribute as ID for event handling -->
+			  	<div id="#{cc.attrs.rowId}" class="row game-info">
+
+			  		<!-- Home Column -->
+			  		<div class="medium-4 columns">
+			  			<div class="row">
+			  				<div class="medium-12 columns">
+			  					<h5 class="home-team-name">#{cc.attrs.homeCity} <small class="record">#{cc.attrs.homeRecord}</small></h5>
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="medium-12 columns home-helmet">
+			  					<span id="#{cc.attrs.homeBadgeId}" class="selected-badge home #{cc.attrs.homeSelected}">
+			  						<img src="#{cc.attrs.homePickImage}" />
+			  					</span>
+			  					<a class="helmet-link" href="#{cc.attrs.homeTeamUrl}">
+			  						<figure><img id="#{cc.attrs.homeHelmetId}" class="helmet #{cc.attrs.selectable}" src="#{cc.attrs.homeHelmet}" /></figure>
+			  					</a>
+			  					<h6>Home Team:</h6>
+			  				</div>
+			  			</div>
+			  		</div>
+
+			  		<!-- Score Column -->
+			  		<div class="medium-4 columns">
+			  			<div class="row">
+			  				<div class="medium-12 columns">
+			  					<h6 class="kickoff-time">#{cc.attrs.gameTime}</h6>
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="medium-4 columns score-col home-score-col">
+			  					<h4 class="home-score">#{cc.attrs.homeScore}</h4>
+			  				</div>
+			  				<div class="medium-1 columns score-col arrow-col">
+			  					<img src="#{cc.attrs.homeArrow}" />
+			  				</div>
+			  				<div class="medium-2 columns score-col spread-area-col">
+			  					<h5 class="spread-area">#{cc.attrs.spread}</h5>
+			  				</div>
+			  				<div class="medium-1 columns score-col arrow-col">
+			  					<img src="#{cc.attrs.awayArrow}" />
+			  				</div>
+			  				<div class="medium-4 columns score-col away-score-col">
+			  					<h4 class="away-score">#{cc.attrs.awayScore}</h4>
+			  				</div>
+			  			</div>
+			  			<div class="row">
+			  				<div class="medium-12 columns">
+			  					<h5 class="time-remaining">#{cc.attrs.timeRemaining}</h5>
+			  				</div>
+			  			</div>
+			  		</div>
+
+			  		<!-- Away Column -->
+			  		<div class="medium-4 columns">
+						<div class="row">
+							<div class="medium-12 columns">
+								<h5 class="away-team-name">#{cc.attrs.awayCity} <small class="record">#{cc.attrs.awayRecord}</small></h5>
+							</div>
+						</div>
+						<div class="row">
+							<div class="medium-12 columns away-helmet">
+								<span id="#{cc.attrs.awayBadgeId}" class="selected-badge away #{cc.attrs.awaySelected}" >
+									<img src="#{cc.attrs.awayPickImage}" />
+								</span>
+								<a class="helmet-link" href="#{cc.attrs.awayTeamUrl}">
+									<figure><img id="#{cc.attrs.awayHelmetId}" class="helmet #{cc.attrs.selectable}" src="#{cc.attrs.awayHelmet}" /></figure>
+								</a>
+								<h6>Away Team:</h6>
+							</div>
+						</div>
+			  		</div>
+			  	</div>
+
+			  </div>
+          </div>
+		  <!-- End Game Container -->
+	</composite:implementation>
+
+</html>

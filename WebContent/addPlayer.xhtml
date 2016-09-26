@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:ui="http://java.sun.com/jsf/facelets"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:p="http://primefaces.org/ui"
+	   xmlns:ri="http://java.sun.com/jsf/composite/components">
+ 	<h:head>
+ 		<title>NEC Tracker PRO | Home</title>
+ 	</h:head>
+ 	<h:body>
+ 		<!-- Add Player Form -->
+ 		<h:form>
+ 		
+ 			<!-- Growl messages container -->
+ 			<p:growl id="growl" sticky="true" showDetail="true" />
+		    
+		    <!-- The Add/Modify player wizard -->
+		    <p:wizard flowListener="#{playerWizard.onFlowProcess}">
+		    
+		    	<!-- Player Info Tab -->
+		    	<p:tab id="player" title="Player">
+		    		<p:panel header="Player Information:">
+		    			<p:messages />
+		    			<h:panelGrid columns="2" columnClasses="label, value">
+		    				<h:outputText class="" value="First Name: *" />
+		    				<p:inputText value="#{playerWizard.firstName}" label="Firstname" />
+		    				
+		    				<h:outputText value="Last Name: *" />
+		    				<p:inputText value="#{playerWizard.lastName}" label="Lastname" />
+		    				
+		    				<!-- Include a repeating Input field for email, requiring at least 1 to be entered -->
+		    				<ri:repeatingInput list="#{playerWizard.emailAddresses}" label="Email(s): " value="example@email.com" />
+		    				
+		    			</h:panelGrid>
+		    		</p:panel>
+		    	</p:tab>
+		    	
+		    	<!-- Player Seasons Tab -->
+		    	<p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+		    </p:wizard>
+		</h:form>
+ 	</h:body>
+ </html>

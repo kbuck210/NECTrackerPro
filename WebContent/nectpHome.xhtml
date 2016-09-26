@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+ <link href="https://fonts.googleapis.com/css?family=Suez+One" rel="stylesheet" />
+    <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet" />
+  	<link rel="stylesheet" href="css/offcanvasOverride.css" />
+  	<link rel="stylesheet" href="css/header-subnav.css" />
+	<link rel="stylesheet" href="css/gamerow.css" />
+	<link rel="stylesheet" href="css/stickymenu.css" />
+	<link rel="stylesheet" href="css/leaderboard.css" />
+  	<link rel="stylesheet" href="css/footer.css" />
+  	<link rel="stylesheet" href="css/colors.css" />
+  	<link rel="stylesheet" href="css/app.css" />
+  	<title>NEC Tracker PRO | Home</title>
+</h:head>
+<h:body>
+	<!-- Start Top Bar -->
+	<div class="top-bar">
+	  <div class="top-bar-left">
+	    <ul class="menu">
+	      <li class="menu-text">NEC Tracker PRO</li>
+	    </ul>
+	  </div>
+	  <div class="top-bar-right">
+	  	<p:commandButton value="Login:" type="button" onclick="modal.show()" />
+	    <!--
+	    <p:commandButton value="#{headerBean.buttonText}" disabled="#{headerBean.buttonDisabled}" type="button" onclick="loginModal.show()" />
+	    -->
+	    <p:commandLink rendered="#{headerBean.buttonDisabled}" actionListener="#{headerBean.logout}">
+	    	<h:outputText value="Sign Out:" />
+	    </p:commandLink>
+	    <!-- Foundation implementation
+	    <ul class="menu">
+	      <li><a href="#">Login</a></li>
+	    </ul>
+	    -->
+	  </div>
+	</div>
+	<!-- End Top Bar -->
+	
+	<h:form>
+	<!-- Modal Dialog for Login Button -->
+	<p:dialog header="Please Log In:" id="modal" widgetVar="loginModal" modal="true" resizable="false" position="center center" height="123"
+        width="456">
+		<p:messages />
+		<h:panelGrid columns="2" columnClasses="label, value">
+			<h:outputText value="Email: *" />
+			<p:inputText value="#{headerBean.emailAddress}" required="true" label="Email" />
+			
+			<h:outputText value="Password: *" />
+			<p:password value="#{headerBean.password}" required="true" label="Password" />
+		</h:panelGrid>
+		
+		<p:commandButton value="Login:" id="login" actionListener="#{headerBean.login}" />
+	</p:dialog>
+	</h:form>
+	
+	<!-- Main Header -->
+	<header class="header large marketing-hero sites">
+		<a href="#"><p class="hero-framework-link">The New England Cup#{headerBean.seasonTitle}</p></a>
+		<h1 class="hero-main-header">NEC Tracker PRO</h1>
+		  <ul class="header-subnav">
+		    <li><a href="#">Take Action!</a></li>
+		    <li><a href="#" class="is-active">Carpe Diem!</a></li>
+		    <li><a target="_blank" href="http://zurb.com/responsive">Just do it!</a></li>
+		  </ul>
+	</header>
+	<!-- End Main Header -->
+	
+	<br />
+	
+	<h1>Main Content Here</h1>
+	
+	<footer class="footer">
+	  <div class="row">
+	    <div class="small-12 medium-6 large-5 columns">
+	      <p class="logo"><i class="fi-shield"></i> NEC Tracker PRO</p>
+	      <p class="footer-links">
+	        <a href="#">Home</a><i class="fi-home"></i>
+	        <a href="#">About</a><i class="fi-torsos-all"></i>
+	        <a href="#">Stats</a><i class="fi-graph-bar"></i>
+	        <a href="#">FAQ</a><i class="fi-info"></i>
+	        <a href="#">Contact</a><i class="fi-mail"></i>
+	      </p>
+	      <p class="copywrite">Proudly tracking since 2016!</p>
+	    </div>
+	    <div class="small-12 medium-6 large-4 columns">
+	      <ul class="contact">
+	        <li><p><i class="fi-marker"></i>38 Prospect St. # 26, Pawcatuck CT, 06379</p></li>
+	        <li><p><i class="fi-telephone"></i>+1-603-918-0542</p></li>
+	        <li><p><i class="fi-mail"></i>necAdmin@gmail.com</p></li>
+	      </ul>
+	    </div>
+	    <div class="small-12 medium-12 large-3 columns">
+	      <p class="about">About the NEC</p>
+	      <p class="about subheader">Started in 1986, the New England Cup brings together generations of
+	      							 family and NFL fans to vie for the eponymous trophy, the victor earning
+	      							 the right to be called "Commish" and inscribe their name on it for all to witness...
+	      							 or really we just try to not suck at picking football games </p>
+	      <ul class="inline-list social">
+	        <a href="#"><i class="fi-social-facebook"></i></a>
+	        <a href="#"><i class="fi-social-twitter"></i></a>
+	        <a href="#"><i class="fi-social-linkedin"></i></a>
+	        <a href="#"><i class="fi-social-github"></i></a>
+	      </ul>
+	    </div>
+	  </div>
+	</footer>
+	<!-- 
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+	<script src="js/stickymenu.js"></script>
+	<script>
+   		$(document).foundation();
+    </script>
+	 -->
+	<f:facet name="first">
+		<h:outputScript library="js" name="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js" />
+	</f:facet>
+    <h:outputScript library="js" name="stickymenu.js" />
+    <h:outputScript library="js" name="app.js" />
+</h:body>
+</html>

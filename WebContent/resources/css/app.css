@@ -1,0 +1,113 @@
+@CHARSET "UTF-8";
+.top-bar {
+	background-color: #333;
+	color: #f5f5f5;
+}
+.top-bar .menu {
+	background-color: #333;
+	color: #f5f5f5;
+}
+.hero-framework-link{
+	text-align:center;
+	color:#fefefe;
+	letter-spacing:5px;
+	text-transform:uppercase;
+	font-size:0.8em}
+.hero-main-header{
+	font-size:2.875rem;
+	text-align:center;
+	color:#fefefe;
+	margin:0}
+@media screen and (max-width: 768px){
+	.marketing-hero .hero-main-header{
+	font-size:2.5rem;
+	font-weight:200}
+}
+.marketing-hero .hero-main-header.upload{
+	line-height:1.3em}
+.marketing-hero .hero-subheader{
+	color:#fefefe;
+	font-size:1.3125rem;
+	font-weight:200}
+	
+@import 'https://fonts.googleapis.com/css?family=Suez+One';	
+.hero-main-header {
+	font-family:"Suez One", serif;
+	font-size: 4em;
+	font-weight:normal;
+	font-style:normal;
+	text-shadow: 2px 2px #260000;
+	/*color:#f6f6bb;*/
+	color:#cefddd;
+	text-rendering:optimizeLegibility;
+	margin-top:0;
+	margin-bottom:0.5rem;
+	line-height:1.4}
+
+#content {
+	padding-top: 20px;
+}
+
+.content-column {
+	padding-left: 4rem;
+}
+
+.blog-post {
+	padding: 5px;
+	margin-bottom: 15px;
+	border: 1px solid #dedede;
+	-webkit-box-shadow: 3px 3px 3px 2px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  	-moz-box-shadow:    3px 3px 3px 2px #ccc;  /* Firefox 3.5 - 3.6 */
+  	box-shadow:         3px 3px 3px 2px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+/*
+.blog-post.player-picks {
+	background-color: rgb(245,255,255);
+}
+*/
+.blog-post.player-picks {
+	background-color: #cce0ff;
+}
+
+.picks-headline {
+	font-family: Georgia, serif;
+}
+.week-number {
+	padding-left: 1rem;
+}
+.sticky-title {
+	font-family: Georgia, serif;
+	padding-left: 0.5rem;
+}
+
+.week-nav-container {
+	display: inline-block;
+}
+.week-nav {
+	text-align: center;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+.week-nav .week-link {
+	background: rgba(230, 240, 255, 0.5);
+	border-radius: 5px;
+}
+.week-nav .week-link a:hover {
+	background: rgb(230, 240, 255);
+	border-radius: 5px;
+}
+li.current-week {
+	border-radius: 5px;
+}
+tbody, tfoot, thead {
+    background-color: inherit;
+    border: inherit;
+}
+.label {
+    background: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+tbody tr:nth-child(2n) {
+    background-color: inherit;
+}

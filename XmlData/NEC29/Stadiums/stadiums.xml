@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE xml>
+<stadiums xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<stadium>
+		<name>University of Phoenix Stadium</name>
+		<street>1 Cardinals Drive</street>
+		<city>Glendale</city>
+		<state>AZ</state>
+		<zip>85305</zip>
+		<country>US</country>
+		<lat>33.5275</lat>
+		<long>-112.2625</long>
+		<capacity>63400</capacity>
+		<roof>retractable</roof>
+		<timezone>MOUNTAIN</timezone>
+	</stadium>
+	<stadium>
+		<name>Georgia Dome</name>
+		<street>1 Georgia Dome Drive NW</street>
+		<city>Atlanta</city>
+		<state>GA</state>
+		<zip>30313</zip>
+		<country>US</country>
+		<lat>33.7575</lat>
+		<long>-84.400833</long>
+		<capacity>71250</capacity>
+		<roof>dome</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>M&amp;T Bank Stadium</name>
+		<street>1101 Russell Street</street>
+		<city>Baltimore</city>
+		<state>MD</state>
+		<zip>21230</zip>
+		<country>US</country>
+		<lat>39.277881</lat>
+		<long>-76.622639</long>
+		<capacity>71008</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>Ralph Wilson Stadium</name>
+		<street>1 Bills Drive</street>
+		<city>Orchard Park</city>
+		<state>NY</state>
+		<zip>14127</zip>
+		<country>US</country>
+		<lat>42.774</lat>
+		<long>-78.787</long>
+		<capacity>73079</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>Bank of America Stadium</name>
+		<street>800 South Mint Street</street>
+		<city>Charlotte</city>
+		<state>NC</state>
+		<zip>28202</zip>
+		<country>US</country>
+		<lat>35.225833</lat>
+		<long>-80.852778</long>
+		<capacity>73778</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>Soldier Field</name>
+		<street>1410 S Museum Campus Drive</street>
+		<city>Chicago</city>
+		<state>IL</state>
+		<zip>60605</zip>
+		<country>US</country>
+		<lat>41.8625</lat>
+		<long>-87.616667</long>
+		<capacity>61500</capacity>
+		<roof>open</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>Paul Brown Stadium</name>
+		<street>1 Paul Brown Stadium</street>
+		<city>Cincinnati</city>
+		<state>OH</state>
+		<zip>45202</zip>
+		<country>US</country>
+		<lat>39.095444</lat>
+		<long>-84.516039</long>
+		<capacity>65515</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>FirstEnergy Stadium</name>
+		<street>100 Alfred Lerner Way</street>
+		<city>Cleveland</city>
+		<state>OH</state>
+		<zip>44114</zip>
+		<country>US</country>
+		<lat>41.506111</lat>
+		<long>-81.699444</long>
+		<capacity>67431</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>AT&amp;T Stadium</name>
+		<street>1 AT&amp;T Way</street>
+		<city>Arlington</city>
+		<state>TX</state>
+		<zip>76011</zip>
+		<country>US</country>
+		<lat>32.747778</lat>
+		<long>-97.092778</long>
+		<capacity>80000</capacity>
+		<roof>retractable</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>Mile High Stadium</name>
+		<street>1701 Mile High Stadium Circle</street>
+		<city>Denver</city>
+		<state>CO</state>
+		<zip>80204</zip>
+		<country>US</country>
+		<lat>39.743889</lat>
+		<long>-105.02</long>
+		<capacity>76125</capacity>
+		<roof>open</roof>
+		<timezone>MOUNTAIN</timezone>
+	</stadium>
+	<stadium>
+		<name>Ford Field</name>
+		<street>2000 Brush Street</street>
+		<city>Detroit</city>
+		<state>MI</state>
+		<zip>48226</zip>
+		<country>US</country>
+		<lat>42.34</lat>
+		<long>-83.045556</long>
+		<capacity>65000</capacity>
+		<roof>dome</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>Lambeau Field</name>
+		<street>1265 Lombardi Ave</street>
+		<city>Green Bay</city>
+		<state>WI</state>
+		<zip>54304</zip>
+		<country>US</country>
+		<lat>44.501</lat>
+		<long>-88.062</long>
+		<capacity>83435</capacity>
+		<roof>open</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>NRG Stadium</name>
+		<street>1 Reliant Park</street>
+		<city>Houston</city>
+		<state>TX</state>
+		<zip>77054</zip>
+		<country>US</country>
+		<lat>29.684722</lat>
+		<long>-95.410833</long>
+		<capacity>71500</capacity>
+		<roof>retractable</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>Lucas Oil Stadium</name>
+		<street>500 South Capitol Ave</street>
+		<city>Indianapolis</city>
+		<state>IN</state>
+		<zip>46225</zip>
+		<country>US</country>
+		<lat>39.760058</lat>
+		<long>-86.163806</long>
+		<capacity>67000</capacity>
+		<roof>retractable</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>EverBank Field</name>
+		<street>1 EverBank Field Drive</street>
+		<city>Jacksonville</city>
+		<state>FL</state>
+		<zip>32202</zip>
+		<country>US</country>
+		<lat>30.323889</lat>
+		<long>-81.6375</long>
+		<capacity>67243</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>Arrowhead Stadium</name>
+		<street>1 Arrowhead Drive</street>
+		<city>Kansas City</city>
+		<state>MO</state>
+		<zip>64129</zip>
+		<country>US</country>
+		<lat>39.048889</lat>
+		<long>-94.483889</long>
+		<capacity>76416</capacity>
+		<roof>open</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>Sun Life Stadium</name>
+		<street>347 Don Shula Drive</street>
+		<city>Miami Gardens</city>
+		<state>FL</state>
+		<zip>33056</zip>
+		<country>US</country>
+		<lat>25.958056</lat>
+		<long>-80.238889</long>
+		<capacity>65000</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>TCF Bank Stadium</name>
+		<street>420 SE 23rd Ave</street>
+		<city>Minneapolis</city>
+		<state>MN</state>
+		<zip>55455</zip>
+		<country>US</country>
+		<lat>44.976</lat>
+		<long>-93.225</long>
+		<capacity>52525</capacity>
+		<roof>open</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>Gillette Stadium</name>
+		<street>1 Patriot Place</street>
+		<city>Foxborough</city>
+		<state>MA</state>
+		<zip>02035</zip>
+		<country>US</country>
+		<lat>42.090944</lat>
+		<long>-71.264344</long>
+		<capacity>68756</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>The Superdome</name>
+		<street>1500 Sugar Bowl Drive</street>
+		<city>New Orleans</city>
+		<state>LA</state>
+		<zip>70112</zip>
+		<country>US</country>
+		<lat>29.950833</lat>
+		<long>-90.081111</long>
+		<capacity>73000</capacity>
+		<roof>dome</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>MetLife Stadium</name>
+		<street>1 MetLife Stadium Drive</street>
+		<city>East Rutherford</city>
+		<state>NJ</state>
+		<zip>07073</zip>
+		<country>US</country>
+		<lat>40.813611</lat>
+		<long>-74.074444</long>
+		<capacity>82500</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>O.co Coliseum</name>
+		<street>7000 Coliseum Way</street>
+		<city>Oakland</city>
+		<state>CA</state>
+		<zip>94621</zip>
+		<country>US</country>
+		<lat>37.751667</lat>
+		<long>-122.200556</long>
+		<capacity>56057</capacity>
+		<roof>open</roof>
+		<timezone>PACIFIC</timezone>
+	</stadium>
+	<stadium>
+		<name>Lincoln Financial Field</name>
+		<street>1020 Pattison Ave</street>
+		<city>Philadelphia</city>
+		<state>PA</state>
+		<zip>19148</zip>
+		<country>US</country>
+		<lat>39.900833</lat>
+		<long>-75.1675</long>
+		<capacity>69596</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>Heinz Field</name>
+		<street>100 Art Rooney Ave</street>
+		<city>Pittsburgh</city>
+		<state>PA</state>
+		<zip>15212</zip>
+		<country>US</country>
+		<lat>40.446667</lat>
+		<long>-80.015833</long>
+		<capacity>68400</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>Qualcomm Stadium</name>
+		<street>9449 Friars Road</street>
+		<city>San Diego</city>
+		<state>CA</state>
+		<zip>92108</zip>
+		<country>US</country>
+		<lat>32.783056</lat>
+		<long>-117.119444</long>
+		<capacity>70561</capacity>
+		<roof>open</roof>
+		<timezone>PACIFIC</timezone>
+	</stadium>
+	<stadium>
+		<name>CenturyLink Field</name>
+		<street>800 Occidental Ave S</street>
+		<city>Seattle</city>
+		<state>WA</state>
+		<zip>98134</zip>
+		<country>US</country>
+		<lat>47.5952</lat>
+		<long>-122.3316</long>
+		<capacity>67000</capacity>
+		<roof>open</roof>
+		<timezone>PACIFIC</timezone>
+	</stadium>
+	<stadium>
+		<name>Levi's Stadium</name>
+		<street>4900 Marie P DeBartolo Way</street>
+		<city>Santa Clara</city>
+		<state>CA</state>
+		<zip>95054</zip>
+		<country>US</country>
+		<lat>37.403</lat>
+		<long>-121.97</long>
+		<capacity>68500</capacity>
+		<roof>open</roof>
+		<timezone>PACIFIC</timezone>
+	</stadium>
+	<stadium>
+		<name>Edward Jones Dome</name>
+		<street>701 Convention Plaza</street>
+		<city>St. Louis</city>
+		<state>MO</state>
+		<zip>63101</zip>
+		<country>US</country>
+		<lat>38.632778</lat>
+		<long>-90.188611</long>
+		<capacity>66000</capacity>
+		<roof>dome</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>Raymond James Stadium</name>
+		<street>4201 N. Dale Mabry Highway</street>
+		<city>Tampa</city>
+		<state>FL</state>
+		<zip>33607</zip>
+		<country>US</country>
+		<lat>27.975833</lat>
+		<long>-82.503333</long>
+		<capacity>65890</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>Nissan Stadium</name>
+		<street>1 Titans Way</street>
+		<city>Nashville</city>
+		<state>TN</state>
+		<zip>37213</zip>
+		<country>US</country>
+		<lat>36.166389</lat>
+		<long>-86.771389</long>
+		<capacity>69149</capacity>
+		<roof>open</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>FedEx Field</name>
+		<street>1600 FedEx Way</street>
+		<city>Landover</city>
+		<state>MD</state>
+		<zip>20785</zip>
+		<country>US</country>
+		<lat>38.907778</lat>
+		<long>-76.864444</long>
+		<capacity>73000</capacity>
+		<roof>open</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
+	<stadium>
+		<name>Wembley Stadium</name>
+		<street>HA9 0WS</street>
+		<city>London</city>
+		<country>UK</country>
+		<lat>51.555833</lat>
+		<long>-0.279722</long>
+		<capacity>86000</capacity>
+		<roof>retractable</roof>
+		<timezone>GMT</timezone>
+	</stadium>
+</stadiums>
