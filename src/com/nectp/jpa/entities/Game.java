@@ -34,8 +34,8 @@ import java.util.List;
 					+ "INNER JOIN FETCH g.awayTeam at "
 					+ "INNER JOIN FETCH g.week w "
 					+ "WHERE w.weekId = :weekId "
-					+ "AND ht.abstractTeamForSeasonId = :atfsId "
-					+ "OR at.abstractTeamForSeasonId = :atfsId")
+					+ "AND (ht.abstractTeamForSeasonId = :atfsId "
+					+ "OR at.abstractTeamForSeasonId = :atfsId)")
 })
 public class Game implements Serializable, Comparable<Game> {
 	private static final long serialVersionUID = 1L;
@@ -289,6 +289,42 @@ public class Game implements Serializable, Comparable<Game> {
 		return pick;
 	}
 
+	public Boolean homeTeamCoveringSpread1() {
+		return homeCoveringSpread(spread1);
+	}
+	
+	public Boolean homeTeamCoveringSpread2() {
+		return homeCoveringSpread(spread2);
+	}
+	
+	private Boolean homeCoveringSpread(BigDecimal spread) {
+		//	If spread is null, return null
+		if (spread == null) return null;
+		
+		//	If even spread, return whether homeTeam is winning or won
+		if (homeFavoredSpread1 == null) {
+			return homeScore == awayScore ? null : homeScore > awayScore;
+		}
+		//	If not an even spread, return whether the home team is covering the margin
+		else {
+			BigDecimal margin;
+			if (homeFavoredSpread1) {
+				//	If the home team is favored, get it's score margin over the away team
+				margin = new BigDecimal(homeScore - awayScore);
+				int compare = margin.compareTo(spread1);
+				//	Compared to the spread, if it is equal return null, otherwise return whether the home margin > 0
+				return compare == 0 ? null : compare > 0;
+			}
+			else {
+				//	If the away team is favored, get it's score margin over the home team
+				margin = new BigDecimal(awayScore - homeScore);
+				int compare = margin.compareTo(spread1);
+				//	Compared to the spread, if it is equal return null, otherwise return whether the away margin < 0 (home covering)
+				return compare == 0 ? null : compare < 0;
+			}
+		}
+	}
+	
 	@Override
     public int compareTo(Game g) {
         return gameDate.compareTo(g.getGameDate());

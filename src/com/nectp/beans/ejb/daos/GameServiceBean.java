@@ -75,7 +75,7 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 				log.warning("No games found for " + team.getTeam().getTeamAbbr() + 
 						" in week: " + week.getWeekNumber());
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving game: " + e.getMessage());
 				e.printStackTrace();

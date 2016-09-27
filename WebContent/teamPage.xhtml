@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:decorate template="homeTemplate.xhtml">
+		<ui:define name="header">
+			<ui:include src="/header.xhtml" />
+		</ui:define>
+		<ui:define name="content">
+			<!-- Do Team Profile Card -->
+			<div class="row">
+				<div class="medium-5 columns">
+					<p:panelGrid columns="2">
+						<img src="img/terps_logo.png" />
+						<h2>#{teamChartBean.displayedTeam.team.teamCity}</h2>
+					</p:panelGrid>
+				</div>
+				<div class="medium-7 columns">
+					<!-- Team Chart -->
+					<p:tabView orientation="bottom" >
+						<p:tab title="Season" >
+							<div class="row columns">
+								<p:chart type="line" model="#{teamChartBean.seasonChartModel}" style="height:25rem;" responsive="true" />
+							</div>
+						</p:tab>
+						<p:tab title="First Half" >
+							<div class="row columns">
+								<p:chart type="line" model="#{teamChartBean.firstHalfModel}" style="height:25rem;" responsive="true" />
+							</div>
+						</p:tab>
+						<p:tab title="Second Half" >
+							<div class="row columns">
+								<p:chart type="line" model="#{teamChartBean.secondHalfModel}" style="height:25rem;" responsive="true" />
+							</div>
+						</p:tab>
+						<!-- 
+						<p:tab title="Playoffs" >
+							<div class="row columns">
+								<p:chart type="line" model="#{teamChartBean.playoffModel}"  />
+							</div>
+						</p:tab>
+						<p:tab title="Super Bowl">
+							<div class="row columns">
+								<p:chart type="line" model="#{teamChartBean.superbowlModel}"  />
+							</div>
+						</p:tab>
+						-->
+					</p:tabView>
+				</div>
+			</div>
+		</ui:define>
+		
+		<ui:define name="footer">
+			<ui:include src="/footer.xhtml" />
+		</ui:define>
+	</ui:decorate>
+</html>

@@ -17,6 +17,8 @@ public interface RecordService extends DataService<Record> {
 	
 	public RecordAggregator getAggregateRecordForAtfsForType(AbstractTeamForSeason atfs, NEC recordType);
 	
+	public RecordAggregator getRecordForConcurrentWeeksForAtfs(AbstractTeamForSeason atfs, Week startWeek, Week endWeek, NEC recordType);
+	
 	public RecordAggregator getOverallRecordThroughWeekForAtfs(AbstractTeamForSeason atfs, Week week, NEC recordType);
 	
 	public TreeMap<RecordAggregator, List<PlayerForSeason>> getPlayerForSeasonRankedScoresForType(NEC recordType, Season season);

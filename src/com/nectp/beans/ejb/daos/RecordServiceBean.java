@@ -134,6 +134,39 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 	}
 	
 	@Override
+	public RecordAggregator getRecordForConcurrentWeeksForAtfs(AbstractTeamForSeason atfs, Week startWeek, Week endWeek,
+			NEC recordType) {
+		Logger log = Logger.getLogger(RecordServiceBean.class.getName());
+		RecordAggregator agg = new RecordAggregator(atfs);
+		if (atfs == null || recordType == null) {
+			log.severe("ATFS/RecordType not specified, can not retrieve aggregate record.");
+		}
+		else {
+			//	Get the current week in the season
+			Season season = atfs.getSeason();
+			
+			//	Create a list to store all of the weeks corresponding to the specified record
+			List<Week> weeksForRecord = weekService.selectConcurrentWeeksInRangeInSeason(season, startWeek.getWeekNumber(), endWeek.getWeekNumber());
+			
+			for (Week w : weeksForRecord) {
+				Record record = null;
+				try {
+					NEC searchType = recordType;
+					if (recordType == NEC.SEASON) {
+						searchType = w.getSubseason().getSubseasonType();
+					}
+					record = selectWeekRecordForAtfs(w, atfs, searchType);
+					agg.addRecord(record);
+				} catch (NoResultException e) {
+					log.warning("No Record found for week " + w.getWeekNumber() + " for " + atfs.getNickname());
+				}
+			}
+		}
+		
+		return agg;
+	}
+	
+	@Override
 	public RecordAggregator getOverallRecordThroughWeekForAtfs(AbstractTeamForSeason atfs, Week week, NEC recordType) {
 		Logger log = Logger.getLogger(RecordServiceBean.class.getName());
 		RecordAggregator agg = new RecordAggregator(atfs);

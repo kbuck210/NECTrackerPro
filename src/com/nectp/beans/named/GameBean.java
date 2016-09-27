@@ -601,11 +601,11 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 			TeamForSeason homeTeam = game.getHomeTeam();
 			TeamForSeason awayTeam = game.getAwayTeam();
 			
-			String homeCity = homeTeam.getTeam().getTeamCity();
-			String awayCity = awayTeam.getTeam().getTeamCity();
+			String homeAbbr = homeTeam.getTeam().getTeamAbbr();
+			String awayAbbr = awayTeam.getTeam().getTeamAbbr();
 			
-			this.homeTeamUrl = "faces/teams/" + homeCity;
-			this.awayTeamUrl = "faces/teams/" + awayCity;
+			this.homeTeamUrl = homeAbbr;
+			this.awayTeamUrl = awayAbbr;
 		}
 	}
 	
