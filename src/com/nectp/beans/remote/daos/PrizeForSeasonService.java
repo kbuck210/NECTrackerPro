@@ -12,4 +12,5 @@ public interface PrizeForSeasonService extends DataService<PrizeForSeason> {
 	
 	public List<PrizeForSeason> selectAllPrizesInSeason(Season season);
 	
+	public void calculateWinner(PrizeForSeason prize);
 }

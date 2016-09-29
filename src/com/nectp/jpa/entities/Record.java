@@ -23,7 +23,13 @@ import com.nectp.jpa.constants.NEC;
 				query="SELECT DISTINCT r FROM Record r "
 					+ "WHERE r.week.weekId = :weekId "
 					+ "AND r.team.abstractTeamForSeasonId = :atfsId "
-					+ "AND r.recordType = :recordType")
+					+ "AND r.recordType = :recordType"),
+	@NamedQuery(name="Record.selectHomeRecordForTfs",
+				query="SELECT r FROM Record r, Week w "
+					+ "INNER JOIN FETCH w.game g "
+					+ "WHERE r.week.weekId = w.weekId "
+					+ "AND g.week.weekId = w.weekId "
+					+ "AND g.homeTeam.abstractTeamForSeasonId = :atfsId")
 })
 public class Record implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -40,16 +46,34 @@ public class Record implements Serializable {
 	private int wins = 0;
 	
 	@Basic(optional=false)
-	private int winModifier = 0;
+	private int winsATS1 = 0;
 	
 	@Basic(optional=false)
+	private int winsATS2 = 0;
+	
+	@Basic(optional=false)
+	private int winModifier = 0;
+
+	@Basic(optional=false)
 	private int losses = 0;
+
+	@Basic(optional=false)
+	private int lossesATS1 = 0;
+	
+	@Basic(optional=false)
+	private int lossesATS2 = 0;
 	
 	@Basic(optional=false)
 	private int lossModifier = 0;
 	
 	@Basic(optional=false)
 	private int ties = 0;
+	
+	@Basic(optional=false)
+	private int tiesATS1 = 0;
+	
+	@Basic(optional=false)
+	private int tiesATS2 = 0;
 	
 	@Basic(optional=false)
 	private int tieModifier = 0;
@@ -78,52 +102,12 @@ public class Record implements Serializable {
 		this.recordId = recordId;
 	}
 
-	public int getLosses() {
-		return this.losses;
-	}
-
-	public void setLosses(int losses) {
-		this.losses = losses;
-	}
-	
-	public void addLoss() {
-		this.losses += 1;
-	}
-	
-	public int getLossModifier() {
-		return lossModifier;
-	}
-	
-	public void setLossModifier(int lossModifier) {
-		this.lossModifier = lossModifier;
-	}
-
 	public NEC getRecordType() {
 		return NEC.values()[this.recordType];
 	}
 
 	public void setRecordType(NEC recordType) {
 		this.recordType = recordType.ordinal();
-	}
-
-	public int getTies() {
-		return this.ties;
-	}
-
-	public void setTies(int ties) {
-		this.ties = ties;
-	}
-	
-	public void addTie() {
-		this.ties += 1;
-	}
-	
-	public int getTieModifier() {
-		return tieModifier;
-	}
-	
-	public void setTieModifier(int tieModifier) {
-		this.tieModifier = tieModifier;
 	}
  
 	public int getWins() {
@@ -138,12 +122,124 @@ public class Record implements Serializable {
 		this.wins += 1;
 	}
 	
+	public int getWinsATS1() {
+		return this.winsATS1;
+	}
+	
+	public void setWinsATS1(int winsATS) {
+		this.winsATS1 = winsATS;
+	}
+	
+	public void addWinATS1() {
+		winsATS1 += 1;
+	}
+	
+	public int getWinsATS2() {
+		return winsATS2;
+	}
+	
+	public void setWinsATS2(int winsATS) {
+		this.winsATS2 = winsATS;
+	}
+	
+	public void addWinATS2() {
+		this.winsATS2 += 1;
+	}
+	
 	public int getWinModifier() {
 		return winModifier;
 	}
 	
 	public void setWinModifier(int winModifier) {
 		this.winModifier = winModifier;
+	}
+	
+	public int getLosses() {
+		return this.losses;
+	}
+
+	public void setLosses(int losses) {
+		this.losses = losses;
+	}
+	
+	public void addLoss() {
+		this.losses += 1;
+	}
+	
+	public int getLossesATS1() {
+		return lossesATS1;
+	}
+	
+	public void setLossesATS1(int lossesATS) {
+		this.lossesATS1 = lossesATS;
+	}
+	
+	public void addLossATS1() {
+		this.lossesATS1 += 1;
+	}
+	
+	public int getLossesATS2() {
+		return lossesATS2;
+	}
+	
+	public void setLossesATS2(int lossesATS) {
+		this.lossesATS2 = lossesATS;
+	}
+	
+	public void addLossATS2() {
+		this.lossesATS2 += 1;
+	}
+	
+	public int getLossModifier() {
+		return lossModifier;
+	}
+	
+	public void setLossModifier(int lossModifier) {
+		this.lossModifier = lossModifier;
+	}
+	
+	public int getTies() {
+		return this.ties;
+	}
+
+	public void setTies(int ties) {
+		this.ties = ties;
+	}
+	
+	public void addTie() {
+		this.ties += 1;
+	}
+	
+	public int getTiesATS1() {
+		return tiesATS1;
+	}
+	
+	public void setTiesATS1(int tiesATS) {
+		this.tiesATS1 = tiesATS;
+	}
+	
+	public void addTieATS1() {
+		this.tiesATS1 += 1;
+	}
+	
+	public int getTiesATS2() {
+		return tiesATS2;
+	}
+	
+	public void setTiesATS2(int tiesATS) {
+		this.tiesATS2 = tiesATS;
+	}
+	
+	public void addTieATS2() {
+		this.tiesATS2 += 1;
+	}
+	
+	public int getTieModifier() {
+		return tieModifier;
+	}
+	
+	public void setTieModifier(int tieModifier) {
+		this.tieModifier = tieModifier;
 	}
 
 	public AbstractTeamForSeason getTeam() {

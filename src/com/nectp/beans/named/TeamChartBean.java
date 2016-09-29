@@ -1,6 +1,9 @@
 package com.nectp.beans.named;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -129,54 +132,52 @@ public class TeamChartBean implements Serializable {
 		straightUpSeries.setLabel("No Spread");
 		straightUpSeries.setFill(false);
 		
-		Week rangeStart;
-		Week rangeEnd;
+		Integer rangeStart;
+		Integer rangeEnd;
+		
+		Week currentWeek = currentSeason.getCurrentWeek();
+		int currentWeekNum = currentWeek.getWeekNumber();
+		NEC subseasonType = currentWeek.getSubseason().getSubseasonType();
 		
 		switch(displayType) {
-		case FIRST_HALF:
-			rangeStart = weekService.selectWeekByNumberInSeason(1, currentSeason);
-			//	If currently in the first half, set the end of the range to the current week, otherwise to the end of the first half
-			if (currentSeason.getCurrentWeek().getSubseason().getSubseasonType().equals(NEC.FIRST_HALF)) {
-				rangeEnd = weekService.selectWeekByNumberInSeason(currentSeason.getCurrentWeek().getWeekNumber(), currentSeason);
-			}
-			else {
-				rangeEnd = weekService.selectWeekByNumberInSeason((currentSeason.getSecondHalfStartWeek() - 1), currentSeason);
-			}
-			break;
 		case SECOND_HALF:
-			rangeStart = weekService.selectWeekByNumberInSeason(currentSeason.getSecondHalfStartWeek(), currentSeason);
+			rangeStart = currentSeason.getSecondHalfStartWeek();
 			//	If currently in the second half, set the end of the range to the current week, otherwise to the end of the second half
-			if (currentSeason.getCurrentWeek().getSubseason().getSubseasonType().equals(NEC.SECOND_HALF)) {
-				rangeEnd = weekService.selectWeekByNumberInSeason(currentSeason.getCurrentWeek().getWeekNumber(), currentSeason);
+			if (subseasonType.equals(NEC.SECOND_HALF)) {
+				rangeEnd = currentWeekNum;
 			}
 			else {
-				rangeEnd = weekService.selectWeekByNumberInSeason((currentSeason.getPlayoffStartWeek() - 1), currentSeason);
+				rangeEnd = currentSeason.getPlayoffStartWeek() - 1;
 			}
 			break;
 		case PLAYOFFS:
-			rangeStart = weekService.selectWeekByNumberInSeason(currentSeason.getPlayoffStartWeek(), currentSeason);
+			rangeStart = currentSeason.getPlayoffStartWeek();
 			//	If currently in the playoffs, set the end of the range to the current week, otherwise to the end of the playoffs
-			if (currentSeason.getCurrentWeek().getSubseason().getSubseasonType().equals(NEC.PLAYOFFS)) {
-				rangeEnd = weekService.selectWeekByNumberInSeason(currentSeason.getCurrentWeek().getWeekNumber(), currentSeason);
+			if (subseasonType.equals(NEC.PLAYOFFS)) {
+				rangeEnd = currentWeekNum;
 			}
 			else {
-				rangeEnd = weekService.selectWeekByNumberInSeason((currentSeason.getSuperbowlWeek() - 2), currentSeason);
+				rangeEnd = currentSeason.getSuperbowlWeek() - 2;
 			}
 			break;
 		case SUPER_BOWL:
-			rangeStart = weekService.selectWeekByNumberInSeason(currentSeason.getSuperbowlWeek(), currentSeason);
-			rangeEnd = weekService.selectWeekByNumberInSeason(currentSeason.getSuperbowlWeek(), currentSeason);
+			rangeStart = currentSeason.getSuperbowlWeek();
+			rangeEnd = currentSeason.getSuperbowlWeek();
 			break;
 		default:
-			rangeStart = weekService.selectWeekByNumberInSeason(1, currentSeason);
-			rangeEnd = currentSeason.getCurrentWeek();
-			break;
+			rangeStart = 1;
+			if (currentWeekNum <= currentSeason.getPlayoffStartWeek()) {
+				rangeEnd = currentWeekNum;
+			}
+			else {
+				rangeEnd = currentSeason.getPlayoffStartWeek() - 1;
+			}
 		}
 		
-		List<Week> weeks = weekService.selectConcurrentWeeksInRangeInSeason(currentSeason, rangeStart.getWeekNumber(), rangeEnd.getWeekNumber());
+		List<Week> weeks = weekService.selectConcurrentWeeksInRangeInSeason(currentSeason, rangeStart, rangeEnd);
 		
 		for (Week w : weeks) {
-			RecordAggregator ragg = recordService.getRecordForConcurrentWeeksForAtfs(displayedTeam, rangeStart, w, displayType);
+			RecordAggregator ragg = recordService.getRecordForConcurrentWeeksForAtfs(displayedTeam, rangeStart, w.getWeekNumber(), displayType);
 			//	Get the total score, then convert to a percentage of total games played
 			int wins = ragg.getRawWins();
 			int totalRecords = ragg.getRecords().size();
@@ -188,7 +189,6 @@ public class TeamChartBean implements Serializable {
 				percentage = 0.5;
 			}
 			
-			System.out.println("Raw Week " + w.getWeekNumber() + " - " + percentage);
 			straightUpSeries.set(w.getWeekNumber(), percentage);
 		}
 		
@@ -198,6 +198,8 @@ public class TeamChartBean implements Serializable {
 		LineChartSeries spread1Series = new LineChartSeries();
 		spread1Series.setLabel("Vs. Spread");
 		spread1Series.setFill(false);
+		
+		List<Game> gamesWithSpread2 = new ArrayList<Game>();
 		
 		int winAts = 0;
 		int totalGames = 0;
@@ -209,14 +211,13 @@ public class TeamChartBean implements Serializable {
 				log.warning("No game found for week " + w.getWeekNumber() + " for " + displayedTeam.getTeam().getTeamAbbr() + " - skipping spread score");
 			}
 			if (game != null) {
-				boolean homeTeam = game.getHomeTeam().equals(displayedTeam);
-				Boolean homeCovering = game.homeTeamCoveringSpread1();
-				//	If the home team & covering, increment wins
-				if (homeTeam && homeCovering != null && homeCovering) {
-					winAts += 1;
+				//	Add the game to the list of games with spread2, to create a series for them if they exist for this team
+				if (game.getSpread2() != null && 
+						(game.getHomeTeam().equals(displayedTeam) ||
+						 game.getAwayTeam().equals(displayedTeam))) {
+					gamesWithSpread2.add(game);
 				}
-				//	If the away team & covering, increment wins
-				else if (!homeTeam && homeCovering != null && !homeCovering) {
+				if (displayedTeam.equals(game.getWinnerATS1())) {
 					winAts += 1;
 				}
 				totalGames += 1;
@@ -230,11 +231,44 @@ public class TeamChartBean implements Serializable {
 				percentage = 0.5;
 			}
 			
-			System.out.println("Spread Week " + w.getWeekNumber() + " - " + percentage);
 			spread1Series.set(w.getWeekNumber(), percentage);
 		}
 		
 		chartModel.addSeries(spread1Series);
+		
+		//	Check whether there were any spread 2 games, if so, create a series for them as well
+		winAts = 0;
+		if (!gamesWithSpread2.isEmpty()) {
+			Collections.sort(gamesWithSpread2, new Comparator<Game>() {
+				@Override
+				public int compare(Game g1, Game g2) {
+					return g1.getWeek().getWeekNumber().compareTo(g2.getWeek().getWeekNumber());
+				}
+			});
+			
+			LineChartSeries spread2Series = new LineChartSeries();
+			spread2Series.setLabel("Vs. Early Spreads");
+			spread2Series.setFill(false);
+			for (Game g : gamesWithSpread2) {
+				if (displayedTeam.equals(g.getWinnerATS2())) {
+					winAts += 1;
+				}
+				
+				totalGames = gamesWithSpread2.size();
+			
+				double percentage;
+				if (totalGames != 0) {
+					percentage = (double) winAts / (double) totalGames;
+				}
+				else {
+					percentage = 0.5;
+				}
+				
+				spread2Series.set(g.getWeek().getWeekNumber(), percentage);
+			}
+			
+			chartModel.addSeries(spread2Series);
+		}
 		
 		return chartModel;
 	}

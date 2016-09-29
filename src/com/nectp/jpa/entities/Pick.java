@@ -28,7 +28,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 					+ "INNER JOIN FETCH p.game g "
 					+ "INNER JOIN FETCH g.week w "
 					+ "WHERE pl.abstractTeamForSeasonId = :playerId "
-					+ "AND w.weekId = :weekId")
+					+ "AND w.weekId = :weekId"),
+	@NamedQuery(name="Pick.selectPicksForGameByType",
+				query="SELECT p FROM Pick p "
+					+ "INNER JOIN FETCH p.game g "
+					+ "INNER JOIN FETCH p.applicableRecord r "
+					+ "WHERE g.gameId = :gameId "
+					+ "AND r.recordType = :recordType")
 })
 @NamedQuery(name="Pick.findAll", query="SELECT p FROM Pick p")
 public class Pick implements Serializable {

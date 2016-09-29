@@ -28,14 +28,25 @@ import java.util.List;
 					+ "WHERE w.weekId = :weekId "
 					+ "AND ht.abstractTeamForSeasonId = :homeTfsId "
 					+ "AND at.abstractTeamForSeasonId = :awayTfsId"),
-	@NamedQuery(name="Game.selectGameByTeamWeek", 
-				query="SELECT DISTINCT g FROM Game g "
+	@NamedQuery(name="Game.selectDivisionalGamesForTFS",
+				query="SELECT g FROM Game g "
 					+ "INNER JOIN FETCH g.homeTeam ht "
 					+ "INNER JOIN FETCH g.awayTeam at "
-					+ "INNER JOIN FETCH g.week w "
-					+ "WHERE w.weekId = :weekId "
-					+ "AND (ht.abstractTeamForSeasonId = :atfsId "
-					+ "OR at.abstractTeamForSeasonId = :atfsId)")
+					+ "WHERE ht.division.divisionId = at.division.divisionId "
+					+ "AND ht.season.seasonNumber = at.season.seasonNumber "
+					+ "AND ht.season.seasonNumber = :seasonNumber"),
+	@NamedQuery(name="Game.selectConferenceGamesForTFS",
+				query="SELECT g FROM Game g "
+					+ "INNER JOIN FETCH g.homeTeam ht "
+					+ "INNER JOIN FETCH g.awayTeam at "
+					+ "WHERE ht.division.conference.conferenceId = at.division.conference.conferenceId "
+					+ "AND ht.season.seasonNumber = at.season.seasonNumber "
+					+ "AND ht.season.seasonNumber = :seasonNumber"),
+	@NamedQuery(name="Game.selectPrimetimeGamesForTFS",
+				query="SELECT g FROM Game g "
+					+ "INNER JOIN FETCH g.homeTeam ht "
+					+ "WHERE g.primeTime = true "
+					+ "AND ht.season.seasonNumber = :seasonNumber")
 })
 public class Game implements Serializable, Comparable<Game> {
 	private static final long serialVersionUID = 1L;
@@ -84,7 +95,7 @@ public class Game implements Serializable, Comparable<Game> {
 	private BigDecimal spread1;
 
 	@Basic(optional=true)
-	private BigDecimal spread2;
+	private BigDecimal spread2 = null;
 
 	@Basic(optional=false)
 	private String timeRemaining;
@@ -258,6 +269,16 @@ public class Game implements Serializable, Comparable<Game> {
 	public void setAwayTeam(TeamForSeason awayTeam) {
 		this.awayTeam = awayTeam;
 	}
+	
+	public TeamForSeason getOtherTeam(TeamForSeason team) {
+		if (homeTeam.equals(team)) {
+			return awayTeam;
+		}
+		else if (awayTeam.equals(team)) {
+			return homeTeam;
+		}
+		else return null;
+	}
 
 	public Week getWeek() {
 		return this.week;
@@ -325,6 +346,70 @@ public class Game implements Serializable, Comparable<Game> {
 		}
 	}
 	
+	public TeamForSeason getWinner() {
+		if (homeScore.equals(awayScore)) {
+			return null;
+		}
+		else return homeScore > awayScore ? homeTeam : awayTeam;
+	}
+	
+	public TeamForSeason getLoser() {
+		if (getWinner() == null) return null;
+		else return getWinner().equals(homeTeam) ? awayTeam : homeTeam;
+	}
+	
+	public TeamForSeason getWinnerATS1() {
+		Boolean homeCovered = homeTeamCoveringSpread1();
+		if (homeCovered == null) {
+			return null;
+		}
+		else if (homeCovered) {
+			return homeTeam;
+		}
+		else {
+			return awayTeam;
+		}
+	}
+	
+	public TeamForSeason getLoserATS1() {
+		Boolean homeCovered = homeTeamCoveringSpread1();
+		if (homeCovered == null) {
+			return null;
+		}
+		else if (homeCovered) {
+			return awayTeam;
+		}
+		else {
+			return homeTeam;
+		}
+	}
+	
+	public TeamForSeason getWinnerATS2() {
+		Boolean homeCovered = homeTeamCoveringSpread2();
+		if (homeCovered == null) {
+			return null;
+		}
+		else if (homeCovered) {
+			return homeTeam;
+		}
+		else {
+			return awayTeam;
+		}
+	}
+	
+	public TeamForSeason getLoserATS2() {
+		Boolean homeCovered = homeTeamCoveringSpread2();
+		if (homeCovered == null) {
+			return null;
+		}
+		else if (homeCovered) {
+			return awayTeam;
+		}
+		else {
+			return homeTeam;
+		}
+	}
+	
 	@Override
     public int compareTo(Game g) {
         return gameDate.compareTo(g.getGameDate());
@@ -339,7 +424,6 @@ public class Game implements Serializable, Comparable<Game> {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Game)) {
             return false;
         }

@@ -8,4 +8,6 @@ public interface WeekFactory extends WeekService {
 
 	public Week createWeekInSeason(int weekNumber, Season season, WeekStatus status, boolean current);
 	
+	public void updateWeekForGameComplete(Week week);
+	
 }

@@ -2,15 +2,21 @@ package com.nectp.beans.ejb.daos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 
 import com.nectp.beans.remote.daos.PrizeForSeasonService;
+import com.nectp.beans.remote.daos.RecordService;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.PlayerForSeason;
+import com.nectp.jpa.entities.Prize;
 import com.nectp.jpa.entities.PrizeForSeason;
 import com.nectp.jpa.entities.Season;
 
@@ -18,6 +24,9 @@ import com.nectp.jpa.entities.Season;
 public class PrizeForSeasonServiceBean extends DataServiceBean<PrizeForSeason> implements PrizeForSeasonService {
 	private static final long serialVersionUID = 1334982580042392979L;
 
+	@EJB
+	private RecordService recordService;
+	
 	@Override
 	public PrizeForSeason selectPrizeForSeason(NEC prizeType, Season season) {
 		Logger log = Logger.getLogger(PrizeForSeasonServiceBean.class.getName());
@@ -64,4 +73,31 @@ public class PrizeForSeasonServiceBean extends DataServiceBean<PrizeForSeason> i
 		return prizes;
 	}
 
+	@Override
+	public void calculateWinner(PrizeForSeason prizeForSeason) {
+		Logger log = Logger.getLogger(PrizeForSeasonServiceBean.class.getName());
+		Prize prize = prizeForSeason.getPrize();
+		Season season = prizeForSeason.getSeason();
+		TreeMap<RecordAggregator, List<PlayerForSeason>> rankMap = recordService.getPlayerForSeasonRankedScoresForType(prize.getPrizeType(), season);
+		
+		Entry<RecordAggregator, List<PlayerForSeason>> winningEntry = rankMap.pollFirstEntry();
+		List<PlayerForSeason> winnerList = winningEntry.getValue();
+		
+		//	Check if there is only 1 winner, set the winner fields
+		if (winnerList.size() == 1) {
+			PlayerForSeason winner = winnerList.get(0);
+			prizeForSeason.setWinner(winner);
+			winner.addPrizeforseason(prizeForSeason);
+			
+			update(prizeForSeason);
+		}
+		//	If there are more than 1 winner, must allocate prize manually
+		else if (winnerList.size() != 0) {
+			log.warning("Multiple winners found, must allocate prize manually.");
+		}
+		//	If there are no winners found, must allocate prize manually
+		else {
+			log.warning("No eligible winners found, must allocate prize manually.");
+		}
+	}
 }

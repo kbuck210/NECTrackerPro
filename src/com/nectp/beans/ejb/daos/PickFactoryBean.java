@@ -33,7 +33,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 	private RecordService recordService;
 	
 	@Override
-	public Pick createPlayerPickInWeek(PlayerForSeason player, TeamForSeason pickedTeam, Week week, NEC pickFor) {
+	public Pick createPlayerPickInWeek(PlayerForSeason player, TeamForSeason pickedTeam, Week week, NEC pickFor, PickType pickType) {
 		Logger log = Logger.getLogger(PickFactoryBean.class.getName());
 		Pick pick = null;
 		if (player == null || pickedTeam == null || week == null) {
@@ -71,28 +71,6 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				
 				pick.setPickedTeam(pickedTeam);
 				pickedTeam.addPickForTeam(pick);
-				
-				PickType pickType;
-				switch (pickFor) {
-				case TWO_AND_OUT:
-					pickType = PickType.STRAIGHT_UP;
-					break;
-				case ONE_AND_OUT:
-					pickType = PickType.STRAIGHT_UP;
-					break;
-				case TNT:
-					if (gameForPick.getSpread2() != null) {
-						pickType = PickType.SPREAD2;
-					}
-					else {
-						pickType = PickType.SPREAD1;
-					}
-					break;
-				default:
-					pickType = PickType.SPREAD1;
-					break;
-				}
-				
 				pick.setPickType(pickType);
 				
 				boolean success = insert(pick);

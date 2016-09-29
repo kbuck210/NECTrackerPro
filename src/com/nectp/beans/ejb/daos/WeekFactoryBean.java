@@ -7,6 +7,8 @@ import javax.persistence.NoResultException;
 import com.nectp.beans.remote.daos.SubseasonFactory;
 import com.nectp.beans.remote.daos.WeekFactory;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.Game;
+import com.nectp.jpa.entities.Game.GameStatus;
 import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.Week;
@@ -61,5 +63,33 @@ public class WeekFactoryBean extends WeekServiceBean implements WeekFactory {
 		}
 		
 		return week;
+	}
+	
+	@Override
+	public void updateWeekForGameComplete(Week week) {
+		//	Check whether every game in the week is complete, if so, set the status accordingly
+		boolean allComplete = true;
+		for (Game g : week.getGames()) {
+			if (!g.getGameStatus().equals(GameStatus.FINAL)) {
+				allComplete = false;
+				break;
+			}
+		}
+		
+		if (allComplete) {
+			Season season = week.getSubseason().getSeason();
+			//	Set the status of this week to complete
+			week.setWeekStatus(WeekStatus.COMPLETED);
+			//	If the current week number is less than the week number of the superbowl week, create the next week if it doesnt exist
+			if (week.getWeekNumber() < season.getSuperbowlWeek()) {
+				createWeekInSeason(week.getWeekNumber() + 1, season, WeekStatus.WAITING, true);
+			}
+			
+			//	Update the current week
+			update(week);
+			
+			//	Update subseason
+			subseasonFactory.updateSubseasonForWeekComplete(week.getSubseason());
+		}
 	}
 }

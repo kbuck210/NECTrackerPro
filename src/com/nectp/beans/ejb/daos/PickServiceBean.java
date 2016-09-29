@@ -10,6 +10,7 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 
 import com.nectp.beans.remote.daos.PickService;
+import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.PlayerForSeason;
@@ -71,4 +72,27 @@ public class PickServiceBean extends DataServiceBean<Pick> implements PickServic
 		return picks != null ? picks : new ArrayList<Pick>();
 	}
 
+	@Override
+	public List<Pick> selectPicksForGameByType(Game game, NEC pickType) {
+		Logger log = Logger.getLogger(PickServiceBean.class.getName());
+		List<Pick> picks;
+		if (game == null || pickType == null) {
+			log.severe("Game/Type not defined, can not retrieve picks!");
+			picks = new ArrayList<Pick>();
+		}
+		else {
+			TypedQuery<Pick> pq = em.createNamedQuery("Pick.selectPicksForGameByType", Pick.class);
+			pq.setParameter("gameId", game.getGameId());
+			pq.setParameter("pickType", pickType.ordinal());
+			try {
+				picks = pq.getResultList();
+			} catch (Exception e) {
+				log.severe("Exception caught retrieving list of picks: " + e.getMessage());
+				e.printStackTrace();
+				picks = new ArrayList<Pick>();
+			}
+		}
+		
+		return picks;
+	}
 }

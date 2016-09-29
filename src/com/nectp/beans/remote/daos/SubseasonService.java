@@ -9,4 +9,5 @@ public interface SubseasonService extends DataService<Subseason> {
 
 	public Subseason selectSubseasonInSeason(NEC subseasonType, Season season);
 	
+	public void updateSubseasonForWeekComplete(Subseason subseason);
 }

@@ -12,16 +12,60 @@
 			<ui:include src="/header.xhtml" />
 		</ui:define>
 		<ui:define name="content">
+			<div class="ui-g">
+			<div class="ui-g-12 ui-md-12 ui-lg-5">
 			<!-- Do Team Profile Card -->
-			<div class="row">
-				<div class="medium-5 columns">
-					<p:panelGrid columns="2">
-						<img src="img/terps_logo.png" />
-						<h2>#{teamChartBean.displayedTeam.team.teamCity}</h2>
-					</p:panelGrid>
+				<p:panelGrid columns="2">
+				<!-- Avatar Column -->
+				<div class="show-for-medium-up medium-4 columns">
+					<img class="helmet-avatar" src="#{teamChartBean.displayedTeam.homeHelmetUrl}" />
+					<hr/>
+					<a href="#" class="expanded button">Edit Info:</a>
 				</div>
-				<div class="medium-7 columns">
+
+				<!-- Player Info Col -->
+				<div class="medium-8 columns">
+					<div class="row columns nickname-col no-pad">
+						<h1 class="nickname no-pad">#{teamChartBean.displayedTeam.team.teamCity}</h1>
+					</div>
+					<div class="row columns">
+						<h3>#{teamChartBean.displayedTeam.team.teamName}</h3>
+					</div>
+					<div class="row columns">
+						<h5>Active Since 2005</h5>
+					</div>
+
+					<!-- trend button row -->
+					<div class="row columns">
+						<div class="expanded button-group">
+							<a href="#" class="button trend-left">Position:
+								<p class="no-pad trend">1st</p>
+							</a>
+							<a href="#" class="button trend-center">Trending:
+								<p class="no-pad trend">+5</p>
+							</a>
+							<a href="#" class="button trend-right">League:
+								<p class="no-pad trend">+2</p>
+							</a>
+						</div>
+					</div>
+
+					<!-- prize icon row -->
+					<div class="row column align-spaced award-row">
+						<span><img src="img/icons/firstHalfWinner-small.png" /></span>
+						<span><img src="img/icons/secondHalfNonWin-small-light.png" /></span>
+						<span><img src="img/icons/mnfTntNonWin-small-light.png" /></span>
+						<span><img src="img/icons/twoAndOutWinner2-small.png" /></span>
+						<span><img src="img/icons/playoffNonWin-small-light.png" /></span>
+						<span><img src="img/icons/moneyBackNonWin-small-light.png" /></span>
+						<span><img src="img/icons/superbowlWinner-small.png" /></span>
+					</div>
+				</div>
+				</p:panelGrid>
+				</div>
+				
 					<!-- Team Chart -->
+					<div class="ui-g-12 ui-md-12 ui-lg-7" >
 					<p:tabView orientation="bottom" >
 						<p:tab title="Season" >
 							<div class="row columns">
@@ -51,8 +95,8 @@
 						</p:tab>
 						-->
 					</p:tabView>
-				</div>
-			</div>
+					</div>
+					</div>
 		</ui:define>
 		
 		<ui:define name="footer">

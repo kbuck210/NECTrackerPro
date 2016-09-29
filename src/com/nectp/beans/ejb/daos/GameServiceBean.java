@@ -1,20 +1,39 @@
 package com.nectp.beans.ejb.daos;
 
+import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 
 import com.nectp.beans.remote.daos.GameService;
+import com.nectp.beans.remote.daos.PickService;
+import com.nectp.beans.remote.daos.RecordFactory;
+import com.nectp.beans.remote.daos.WeekFactory;
 import com.nectp.jpa.entities.Game;
+import com.nectp.jpa.entities.Game.GameStatus;
+import com.nectp.jpa.entities.Pick;
+import com.nectp.jpa.entities.Pick.PickType;
+import com.nectp.jpa.entities.Record;
+import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
 
 @Stateless
 public class GameServiceBean extends DataServiceBean<Game> implements GameService {
 	private static final long serialVersionUID = 5822019567154362536L;
+	
+	@EJB
+	private RecordFactory recordFactory;
+	
+	@EJB
+	private WeekFactory weekFactory;
+	
+	@EJB
+	private PickService pickService;
 
 	@Override
 	public Game selectGameByTeamsWeek(TeamForSeason homeTeam, TeamForSeason awayTeam, Week week) {
@@ -85,4 +104,109 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 		return game;
 	}
 
+	@Override
+	public void updateGameComplete(Game game) {
+		Logger log = Logger.getLogger(GameServiceBean.class.getName());
+		if (game == null) {
+			log.warning("No game specifed! can not update game.");
+		}
+		else {
+			//	Update the status attributes
+			game.setGameStatus(GameStatus.FINAL);
+			game.setTimeRemaining("FINAL");
+			
+			Week week = game.getWeek();
+			Subseason subseason = week.getSubseason();
+			
+			Boolean homeCoveredSpread1 = game.homeTeamCoveringSpread1();
+			Boolean homeCoveredSpread2 = game.homeTeamCoveringSpread2();
+			
+			//	Get/Create & update the team records associated with the game
+			TeamForSeason homeTeam = game.getHomeTeam();
+			Record homeRecordForWeek = recordFactory.createWeekRecordForAtfs(week, homeTeam, subseason.getSubseasonType());
+			
+			TeamForSeason awayTeam = game.getAwayTeam();
+			Record awayRecordForWeek = recordFactory.createWeekRecordForAtfs(week, awayTeam, subseason.getSubseasonType());
+			
+			List<Pick> picksForGame = game.getPicks();
+			
+			//	Update the records for the raw win/loss for each team
+			TeamForSeason rawWinner = game.getWinner();
+			TeamForSeason rawLoser = game.getLoser();
+			
+			TeamForSeason winnerAts1 = game.getWinnerATS1();
+			TeamForSeason loserAts1 = game.getLoserATS1();
+			
+			TeamForSeason winnerAts2 = game.getWinnerATS2();
+			TeamForSeason loserAts2 = game.getLoserATS2();
+			
+			if (rawWinner == null) {
+				homeRecordForWeek.addTie();
+				awayRecordForWeek.addTie();
+			}
+			else if (rawWinner.equals(homeTeam)) {
+				homeRecordForWeek.addWin();
+				awayRecordForWeek.addLoss();
+			}
+			else if (rawWinner.equals(awayTeam)) {
+				homeRecordForWeek.addLoss();
+				awayRecordForWeek.addWin();
+			}
+			
+			//	Update the records against the spread1 for each team
+			if (homeCoveredSpread1 == null) {
+				homeRecordForWeek.addTieATS1();
+				awayRecordForWeek.addTieATS1();
+			}
+			else if (homeCoveredSpread1) {
+				homeRecordForWeek.addWinATS1();
+				awayRecordForWeek.addLossATS1();
+			}
+			else {
+				homeRecordForWeek.addLossATS1();
+				awayRecordForWeek.addWinATS1();
+			}
+			
+			//	Update the records against the spread2 for each team if a spread 2 exists
+			if (game.getSpread2() != null) {
+				if (homeCoveredSpread2 == null) {
+					homeRecordForWeek.addTieATS2();
+					awayRecordForWeek.addTieATS2();
+				}
+				else if (homeCoveredSpread2) {
+					homeRecordForWeek.addWinATS2();
+					awayRecordForWeek.addLossATS2();
+				}
+				else {
+					homeRecordForWeek.addLossATS2();
+					awayRecordForWeek.addWinATS2();
+				}
+			}
+			
+			
+			//	Update the Team records
+			recordFactory.update(homeRecordForWeek);
+			recordFactory.update(awayRecordForWeek);
+			
+			//	Update player picks based on pick type
+			for (Pick p : picksForGame) {
+				PickType type = p.getPickType();
+				if (PickType.STRAIGHT_UP.equals(type)) {
+					recordFactory.updateRecordForPlayerPick(p, rawWinner, rawLoser);
+				}
+				else if (PickType.SPREAD1.equals(type)) {
+					recordFactory.updateRecordForPlayerPick(p, winnerAts1, loserAts1);
+				}
+				else if (PickType.SPREAD2.equals(type)) {
+					recordFactory.updateRecordForPlayerPick(p, winnerAts2, loserAts2);
+				}
+			}
+			
+			//	Update the game
+			update(game);
+			
+			//	Update the week with the completed game
+			weekFactory.updateWeekForGameComplete(week);
+		}
+	}
 }

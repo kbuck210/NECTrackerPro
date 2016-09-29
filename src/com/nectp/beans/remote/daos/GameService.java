@@ -10,4 +10,5 @@ public interface GameService extends DataService<Game> {
 	
 	public Game selectGameByTeamWeek(TeamForSeason team, Week week);
 	
+	public void updateGameComplete(Game game);
 }
