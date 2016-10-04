@@ -80,9 +80,8 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 	}
 
 	@Override
-	public RecordAggregator getAggregateRecordForAtfsForType(AbstractTeamForSeason atfs, NEC recordType) {
-		boolean ats = (recordType != NEC.TWO_AND_OUT && recordType != NEC.ONE_AND_OUT);
-		RecordAggregator agg = new RecordAggregator(atfs, ats);
+	public RecordAggregator getAggregateRecordForAtfsForType(AbstractTeamForSeason atfs, NEC recordType, boolean againstSpread) {
+		RecordAggregator agg = new RecordAggregator(atfs, againstSpread);
 		if (atfs == null || recordType == null) {
 			log.severe("ATFS/RecordType not specified, can not retrieve aggregate record.");
 		}
@@ -151,9 +150,8 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 	}
 	
 	@Override
-	public RecordAggregator getRecordForConcurrentWeeksForAtfs(AbstractTeamForSeason atfs, Integer startWeek, Integer endWeek, NEC recordType) {
-		boolean ats = (recordType != NEC.TWO_AND_OUT && recordType != NEC.ONE_AND_OUT);
-		RecordAggregator agg = new RecordAggregator(atfs, ats);
+	public RecordAggregator getRecordForConcurrentWeeksForAtfs(AbstractTeamForSeason atfs, Integer startWeek, Integer endWeek, NEC recordType, boolean againstSpread) {
+		RecordAggregator agg = new RecordAggregator(atfs, againstSpread);
 		if (atfs == null || recordType == null) {
 			log.severe("ATFS/RecordType not specified, can not retrieve aggregate record.");
 		}
@@ -184,9 +182,8 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 	}
 	
 	@Override
-	public RecordAggregator getOverallRecordThroughWeekForAtfs(AbstractTeamForSeason atfs, Week week, NEC recordType) {
-		boolean ats = (recordType != NEC.TWO_AND_OUT && recordType != NEC.ONE_AND_OUT);
-		RecordAggregator agg = new RecordAggregator(atfs, ats);
+	public RecordAggregator getOverallRecordThroughWeekForAtfs(AbstractTeamForSeason atfs, Week week, NEC recordType, boolean againstSpread) {
+		RecordAggregator agg = new RecordAggregator(atfs, againstSpread);
 		if (atfs == null || recordType == null) {
 			log.severe("ATFS/RecordType not specified, can not retrieve aggregate record.");
 		}
@@ -214,12 +211,38 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 		
 		return agg;
 	}
+	
+	private TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getAtfsRankedScoresByType(List<AbstractTeamForSeason> atfsList, Comparator<RecordAggregator> comparator, NEC recordType, Season season, boolean againstSpread) {
+		if (comparator == null) {
+			comparator = Collections.reverseOrder();
+		}
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rankMap = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(comparator);
+		for (AbstractTeamForSeason afts : atfsList) {
+			RecordAggregator agg = getAggregateRecordForAtfsForType(afts, recordType, againstSpread);
+			if (rankMap.containsKey(agg)) {
+				rankMap.get(agg).add(afts);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(afts);
+				rankMap.put(agg, rankList);
+			}
+		}
+		
+		return rankMap;
+	}
+	
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getTeamRankedScoresForType(NEC recordType, Season season, boolean againstSpread) {
+		List<AbstractTeamForSeason> teams = new ArrayList<AbstractTeamForSeason>(season.getTeams());
+		return getAtfsRankedScoresByType(teams, null, recordType, season, againstSpread);
+	}
 
 	@Override
-	public TreeMap<RecordAggregator, List<PlayerForSeason>> getPlayerForSeasonRankedScoresForType(NEC recordType, Season season) {
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getPlayerRankedScoresForType(NEC recordType, Season season, boolean againstSpread) {
 		//	Get the list of players from the season
-		List<PlayerForSeason> players = season.getPlayers();
-		
+		List<AbstractTeamForSeason> players = new ArrayList<AbstractTeamForSeason>(season.getPlayers());
+
 		//	Create a comparator for the treemap: use reverse natural ordering for all but Moneyback condition (Raggs compare themselves)
 		Comparator<RecordAggregator> rankComparator;
 		//	If moneyback condition, rank by natural ordering for eligible players, put players having won a prize at the end;
@@ -261,20 +284,8 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 		else {
 			rankComparator = Collections.reverseOrder();
 		}
-		TreeMap<RecordAggregator, List<PlayerForSeason>> rankMap = new TreeMap<RecordAggregator, List<PlayerForSeason>>(rankComparator);
-		for (PlayerForSeason player : players) {
-			RecordAggregator agg = getAggregateRecordForAtfsForType(player, recordType);
-			if (rankMap.containsKey(agg)) {
-				rankMap.get(agg).add(player);
-			}
-			else {
-				List<PlayerForSeason> rankList = new ArrayList<PlayerForSeason>();
-				rankList.add(player);
-				rankMap.put(agg, rankList);
-			}
-		}
-		
-		return rankMap;
+
+		return getAtfsRankedScoresByType(players, rankComparator, recordType, season, againstSpread);
 	}
 	
 	private List<Week> getWeekRangeList(Season currentSeason, NEC recordType, Integer startWeek, Integer endWeek) {

@@ -83,11 +83,11 @@ public class OtherGamesBean implements Serializable, GameContainer {
 		bean.setGame(game);
 		bean.setSelectable(false);
 		TeamForSeason homeTeam = game.getHomeTeam();
-		RecordAggregator homeRagg = recordService.getOverallRecordThroughWeekForAtfs(homeTeam, displayWeek, displayType);
+		RecordAggregator homeRagg = recordService.getOverallRecordThroughWeekForAtfs(homeTeam, displayWeek, displayType, false);
 		bean.setHomeRecord(createRecordString(homeRagg));
 		
 		TeamForSeason awayTeam = game.getAwayTeam();
-		RecordAggregator awayRagg = recordService.getOverallRecordThroughWeekForAtfs(awayTeam, displayWeek, displayType);
+		RecordAggregator awayRagg = recordService.getOverallRecordThroughWeekForAtfs(awayTeam, displayWeek, displayType, false);
 		bean.setAwayRecord(createRecordString(awayRagg));
 		
 		return bean;

@@ -176,8 +176,9 @@ public class TeamChartBean implements Serializable {
 		
 		List<Week> weeks = weekService.selectConcurrentWeeksInRangeInSeason(currentSeason, rangeStart, rangeEnd);
 		
+		boolean againstSpread = (displayType != NEC.TWO_AND_OUT && displayType != NEC.ONE_AND_OUT);
 		for (Week w : weeks) {
-			RecordAggregator ragg = recordService.getRecordForConcurrentWeeksForAtfs(displayedTeam, rangeStart, w.getWeekNumber(), displayType);
+			RecordAggregator ragg = recordService.getRecordForConcurrentWeeksForAtfs(displayedTeam, rangeStart, w.getWeekNumber(), displayType, againstSpread);
 			//	Get the total score, then convert to a percentage of total games played
 			int wins = ragg.getRawWins();
 			int totalRecords = ragg.getRecords().size();

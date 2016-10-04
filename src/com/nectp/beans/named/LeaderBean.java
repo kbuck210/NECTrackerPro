@@ -17,6 +17,7 @@ import com.nectp.beans.ejb.ApplicationState;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.daos.RecordService;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.Season;
 
@@ -64,7 +65,7 @@ public class LeaderBean implements Serializable {
 	
 	private Season currentSeason;
 	
-	private TreeMap<RecordAggregator, List<PlayerForSeason>> rankMap;
+	private TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rankMap;
 	
 	@Inject
 	private ApplicationState appState;
@@ -79,7 +80,7 @@ public class LeaderBean implements Serializable {
 	public void init() {
 		currentSeason = appState.getCurrentSeason();
 		displayedCategory = currentSeason.getCurrentWeek().getSubseason().getSubseasonType();
-		rankMap = recordService.getPlayerForSeasonRankedScoresForType(displayedCategory, currentSeason);
+		rankMap = recordService.getPlayerRankedScoresForType(displayedCategory, currentSeason, true);
 	}
 	
 	public void setPlayer(PlayerForSeason player) {
@@ -89,7 +90,7 @@ public class LeaderBean implements Serializable {
 		this.nickname = player.getNickname();
 		
 		int posCount = 1;
-		for (Map.Entry<RecordAggregator, List<PlayerForSeason>> leaderEntry : rankMap.entrySet()) {
+		for (Map.Entry<RecordAggregator, List<AbstractTeamForSeason>> leaderEntry : rankMap.entrySet()) {
 			if (leaderEntry.getValue().contains(player)) {
 				RecordAggregator ragg = leaderEntry.getKey();
 				record = "(" + ragg.getRawWins() + "-" + ragg.getRawLosses();

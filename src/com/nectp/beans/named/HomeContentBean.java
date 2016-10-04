@@ -161,7 +161,7 @@ public class HomeContentBean implements Serializable {
 	private void setPlayerRecord() {
 		if (userInstance != null && currentSeason != null && displayWeek != null) {
 			NEC subseasonType = displayWeek.getSubseason().getSubseasonType();
-			RecordAggregator ragg = recordService.getAggregateRecordForAtfsForType(userInstance, subseasonType);
+			RecordAggregator ragg = recordService.getAggregateRecordForAtfsForType(userInstance, subseasonType, true);
 			playerRecord = "(" + ragg.getRawWins() + "-" + ragg.getRawLosses();
 			if (ragg.getRawTies() > 0) {
 				playerRecord += "-" + ragg.getRawTies();

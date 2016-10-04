@@ -50,6 +50,25 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 		this.againstSpread = againstSpread;
 	}
 	
+	public static RecordAggregator combine(RecordAggregator... raggs) {
+		RecordAggregator combined = null;
+		if (raggs != null) {
+			AbstractTeamForSeason atfs = raggs[0].atfs;
+			boolean ats = raggs[0].againstSpread;
+			combined = new RecordAggregator(atfs, ats);
+			
+			//	Go through each record aggregator in the list, 
+			//	and add each of its records to the combined aggregator
+			for (RecordAggregator ragg : raggs) {
+				for (Record r : ragg.getRecords()) {
+					combined.addRecord(r);
+				}
+			}
+		}
+		
+		return combined;
+	}
+	
 	public void addRecord(Record record) {
 		if (record == null) {
 			log.warning("Attempting to add Null record, scores not processed.");
@@ -459,6 +478,13 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 	public List<Record> getRecords() {
 		return records;
 	}
+
+	/**
+	 * @param records the records to set
+	 */
+	public void setRecords(List<Record> records) {
+		this.records = records;
+	}
 	
 	public boolean isSortingAgainstSpread() {
 		return againstSpread;
@@ -466,13 +492,6 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 	
 	public void setSortAgainstSpread(boolean againstSpread) {
 		this.againstSpread = againstSpread;
-	}
-
-	/**
-	 * @param records the records to set
-	 */
-	public void setRecords(List<Record> records) {
-		this.records = records;
 	}
 
 	@Override

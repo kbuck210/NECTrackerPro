@@ -15,8 +15,8 @@ import javax.persistence.TypedQuery;
 import com.nectp.beans.remote.daos.PrizeForSeasonService;
 import com.nectp.beans.remote.daos.RecordService;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.PlayerForSeason;
-import com.nectp.jpa.entities.Prize;
 import com.nectp.jpa.entities.PrizeForSeason;
 import com.nectp.jpa.entities.Season;
 
@@ -76,20 +76,25 @@ public class PrizeForSeasonServiceBean extends DataServiceBean<PrizeForSeason> i
 	@Override
 	public void calculateWinner(PrizeForSeason prizeForSeason) {
 		Logger log = Logger.getLogger(PrizeForSeasonServiceBean.class.getName());
-		Prize prize = prizeForSeason.getPrize();
+		NEC prizeType = prizeForSeason.getPrize().getPrizeType();
 		Season season = prizeForSeason.getSeason();
-		TreeMap<RecordAggregator, List<PlayerForSeason>> rankMap = recordService.getPlayerForSeasonRankedScoresForType(prize.getPrizeType(), season);
 		
-		Entry<RecordAggregator, List<PlayerForSeason>> winningEntry = rankMap.pollFirstEntry();
-		List<PlayerForSeason> winnerList = winningEntry.getValue();
+		boolean againstSpread = (!prizeType.equals(NEC.TWO_AND_OUT) && !prizeType.equals(NEC.ONE_AND_OUT));
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rankMap = recordService.getPlayerRankedScoresForType(prizeType, season, againstSpread);
+		
+		Entry<RecordAggregator, List<AbstractTeamForSeason>> winningEntry = rankMap.pollFirstEntry();
+		List<AbstractTeamForSeason> winnerList = winningEntry.getValue();
 		
 		//	Check if there is only 1 winner, set the winner fields
 		if (winnerList.size() == 1) {
-			PlayerForSeason winner = winnerList.get(0);
-			prizeForSeason.setWinner(winner);
-			winner.addPrizeforseason(prizeForSeason);
-			
-			update(prizeForSeason);
+			AbstractTeamForSeason atfs = winnerList.get(0);
+			if (atfs instanceof PlayerForSeason) {
+				PlayerForSeason winner = (PlayerForSeason)atfs;
+				prizeForSeason.setWinner(winner);
+				winner.addPrizeforseason(prizeForSeason);
+				
+				update(prizeForSeason);
+			}
 		}
 		//	If there are more than 1 winner, must allocate prize manually
 		else if (winnerList.size() != 0) {

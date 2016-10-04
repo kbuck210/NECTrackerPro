@@ -61,15 +61,16 @@ public class PlayerPicksBean implements Serializable, GameContainer {
 				Game game = p.getGame();
 				bean.setPlayer(user);
 				NEC displayType = p.getApplicableRecord().getRecordType();
+				boolean againstSpread = (displayType != NEC.TWO_AND_OUT && displayType != NEC.ONE_AND_OUT);
 				bean.setGameDisplayType(displayType);
 				bean.setGame(game);
 				bean.setSelectable(false);
 				TeamForSeason homeTeam = game.getHomeTeam();
-				RecordAggregator homeRagg = recordService.getAggregateRecordForAtfsForType(homeTeam, displayType);
+				RecordAggregator homeRagg = recordService.getAggregateRecordForAtfsForType(homeTeam, displayType, againstSpread);
 				bean.setHomeRecord(createRecordString(homeRagg));
 				
 				TeamForSeason awayTeam = game.getAwayTeam();
-				RecordAggregator awayRagg = recordService.getAggregateRecordForAtfsForType(awayTeam, displayType);
+				RecordAggregator awayRagg = recordService.getAggregateRecordForAtfsForType(awayTeam, displayType, againstSpread);
 				bean.setAwayRecord(createRecordString(awayRagg));
 				
 				gameBeans.add(bean);
