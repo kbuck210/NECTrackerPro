@@ -15,19 +15,5 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/Java EE 7/primefaces/primefaces-6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/Java EE 7/primefaces/primefaces-6.0-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/Java EE 7/primefaces/dot-luv-1.0.10.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/POI/poi-bin-3.14/poi-3.14/poi-3.14-20160307.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/POI/poi-bin-3.14/poi-3.14/poi-examples-3.14-20160307.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/POI/poi-bin-3.14/poi-3.14/poi-excelant-3.14-20160307.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/POI/poi-bin-3.14/poi-3.14/poi-ooxml-3.14-20160307.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/POI/poi-bin-3.14/poi-3.14/poi-ooxml-schemas-3.14-20160307.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/POI/poi-bin-3.14/poi-3.14/poi-scratchpad-3.14-20160307.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/Java EE 7/primefaces/primefaces-extensions-6.0.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/Java EE 7/primefaces/commons-lang3-3.4-bin/commons-lang3-3.4/commons-lang3-3.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/Java EE 7/primefaces/start-1.0.10.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/Java EE 7/primefaces/redmond-1.0.10.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/kbuck_000/Documents/Java EE 7/primefaces/afterdark-1.0.10.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
