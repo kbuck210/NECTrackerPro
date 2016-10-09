@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<week nec="28" year="2014" number="9" current="false" ss="FIRST_HALF" status="completed">
+	<game>
+		<homeTeam>CAR</homeTeam>
+		<homeScore>10</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>2</spread1>
+		<awayScore>28</awayScore>
+		<awayTeam>NO</awayTeam>
+		<date>10.30.2014</date>
+		<time>8:30:PM</time>
+		<status>FINAL</status>
+		<stadium>Bank of America Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CLE</homeTeam>
+		<homeScore>22</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6.5</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>TB</awayTeam>
+		<date>11.2.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>FirstEnergy Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>DAL</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>4</spread1>
+		<awayScore>28</awayScore>
+		<awayTeam>ARI</awayTeam>
+		<date>11.2.2014</date>
+		<time>1:04:PM</time>
+		<status>FINAL</status>
+		<stadium>AT&amp;T Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>HOU</homeTeam>
+		<homeScore>21</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>2</spread1>
+		<awayScore>31</awayScore>
+		<awayTeam>PHI</awayTeam>
+		<date>11.2.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>NRG Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>KC</homeTeam>
+		<homeScore>24</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>9.5</spread1>
+		<awayScore>10</awayScore>
+		<awayTeam>NYJ</awayTeam>
+		<date>11.2.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>Arrowhead Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CIN</homeTeam>
+		<homeScore>33</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>11</spread1>
+		<awayScore>23</awayScore>
+		<awayTeam>JAC</awayTeam>
+		<date>11.2.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>Paul Brown Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>MIA</homeTeam>
+		<homeScore>37</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>2.5</spread1>
+		<awayScore>0</awayScore>
+		<awayTeam>SD</awayTeam>
+		<date>11.2.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>Sun Life Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>MIN</homeTeam>
+		<homeScore>29</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>1</spread1>
+		<awayScore>26</awayScore>
+		<awayTeam>WAS</awayTeam>
+		<date>11.2.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>TCF Bank Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SF</homeTeam>
+		<homeScore>10</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>10</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>STL</awayTeam>
+		<date>11.2.2014</date>
+		<time>4:05:PM</time>
+		<status>FINAL</status>
+		<stadium>Levi's Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NE</homeTeam>
+		<homeScore>43</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>3</spread1>
+		<awayScore>21</awayScore>
+		<awayTeam>DEN</awayTeam>
+		<date>11.2.2014</date>
+		<time>4:25:PM</time>
+		<status>FINAL</status>
+		<stadium>Gillette Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SEA</homeTeam>
+		<homeScore>30</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>15</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>OAK</awayTeam>
+		<date>11.2.2014</date>
+		<time>4:26:PM</time>
+		<status>FINAL</status>
+		<stadium>CenturyLink Field</stadium>
+	</game>
+	<game>
+		<homeTeam>PIT</homeTeam>
+		<homeScore>43</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>1</spread1>
+		<awayScore>23</awayScore>
+		<awayTeam>BAL</awayTeam>
+		<date>11.2.2014</date>
+		<time>8:30:PM</time>
+		<status>FINAL</status>
+		<stadium>Heinz Field</stadium>
+	</game>
+	<game>
+		<homeTeam>NYG</homeTeam>
+		<homeScore>24</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>3.5</spread1>
+		<awayScore>40</awayScore>
+		<awayTeam>IND</awayTeam>
+		<date>11.3.2014</date>
+		<time>8:31:PM</time>
+		<status>FINAL</status>
+		<stadium>MetLife Stadium</stadium>
+	</game>
+</week>

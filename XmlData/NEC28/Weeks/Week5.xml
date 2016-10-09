@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<week nec="28" year="2014" number="5" current="false" ss="FIRST_HALF" status="completed">
+	<game>
+		<homeTeam>GB</homeTeam>
+		<homeScore>42</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>7.5</spread1>
+		<awayScore>10</awayScore>
+		<awayTeam>MIN</awayTeam>
+		<date>10.2.2014</date>
+		<time>8:26:PM</time>
+		<status>FINAL</status>
+		<stadium>Lambeau Field</stadium>
+	</game>
+	<game>
+		<homeTeam>CAR</homeTeam>
+		<homeScore>31</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>2.5</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>CHI</awayTeam>
+		<date>10.5.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>Bank of America Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>TEN</homeTeam>
+		<homeScore>28</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>2</spread1>
+		<awayScore>29</awayScore>
+		<awayTeam>CLE</awayTeam>
+		<date>10.5.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>Nissan Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>PHI</homeTeam>
+		<homeScore>34</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>7</spread1>
+		<awayScore>28</awayScore>
+		<awayTeam>STL</awayTeam>
+		<date>10.5.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>Lincoln Financial Field</stadium>
+	</game>
+	<game>
+		<homeTeam>NYG</homeTeam>
+		<homeScore>30</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>4</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>ATL</awayTeam>
+		<date>10.5.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>MetLife Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NO</homeTeam>
+		<homeScore>37</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>10</spread1>
+		<awayScore>31</awayScore>
+		<awayTeam>TB</awayTeam>
+		<date>10.5.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>The Superdome</stadium>
+	</game>
+	<game>
+		<homeTeam>DAL</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>HOU</awayTeam>
+		<date>10.5.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>AT&amp;T Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>DET</homeTeam>
+		<homeScore>14</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>7</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>BUF</awayTeam>
+		<date>10.5.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>Ford Field</stadium>
+	</game>
+	<game>
+		<homeTeam>IND</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>3.5</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>BAL</awayTeam>
+		<date>10.5.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>Lucas Oil Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>JAC</homeTeam>
+		<homeScore>9</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>6</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>PIT</awayTeam>
+		<date>10.5.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>EverBank Field</stadium>
+	</game>
+	<game>
+		<homeTeam>DEN</homeTeam>
+		<homeScore>41</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>7.5</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>ARI</awayTeam>
+		<date>10.5.2014</date>
+		<time>4:05:PM</time>
+		<status>FINAL</status>
+		<stadium>Mile High Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SF</homeTeam>
+		<homeScore>22</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>KC</awayTeam>
+		<date>10.5.2014</date>
+		<time>4:25:PM</time>
+		<status>FINAL</status>
+		<stadium>Levi's Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SD</homeTeam>
+		<homeScore>31</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6.5</spread1>
+		<awayScore>0</awayScore>
+		<awayTeam>NYJ</awayTeam>
+		<date>10.5.2014</date>
+		<time>4:25:PM</time>
+		<status>FINAL</status>
+		<stadium>Qualcomm Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NE</homeTeam>
+		<homeScore>43</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>1</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>CIN</awayTeam>
+		<date>10.5.2014</date>
+		<time>8:43:PM</time>
+		<status>FINAL</status>
+		<stadium>Gillette Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>WAS</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>7</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>SEA</awayTeam>
+		<date>10.6.2014</date>
+		<time>8:30:PM</time>
+		<status>FINAL</status>
+		<stadium>FedEx Field</stadium>
+	</game>
+</week>

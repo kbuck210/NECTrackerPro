@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<week nec="28" year="2014" number="20" current="false" ss="PLAYOFFS" status="completed">
+	<game>
+		<homeTeam>SEA</homeTeam>
+		<homeScore>28</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>7.5</spread1>
+		<awayScore>22</awayScore>
+		<awayTeam>GB</awayTeam>
+		<date>1.18.2015</date>
+		<time>3:06:PM</time>
+		<status>FINAL</status>
+		<stadium>CenturyLink Field</stadium>
+	</game>
+	<game>
+		<homeTeam>NE</homeTeam>
+		<homeScore>45</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6.5</spread1>
+		<awayScore>7</awayScore>
+		<awayTeam>IND</awayTeam>
+		<date>1.18.2015</date>
+		<time>6:50:PM</time>
+		<status>FINAL</status>
+		<stadium>Gillette Stadium</stadium>
+	</game>
+</week>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<week nec="28" year="2014" number="11" current="false" ss="SECOND_HALF" status="completed">
+	<game>
+		<homeTeam>MIA</homeTeam>
+		<homeScore>22</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>4.5</spread1>
+		<awayScore>9</awayScore>
+		<awayTeam>BUF</awayTeam>
+		<date>11.13.2014</date>
+		<time>8:26:PM</time>
+		<status>FINAL</status>
+		<stadium>Sun Life Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CHI</homeTeam>
+		<homeScore>21</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>3</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>MIN</awayTeam>
+		<date>11.16.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>Soldier Field</stadium>
+	</game>
+	<game>
+		<homeTeam>CLE</homeTeam>
+		<homeScore>7</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>3</spread1>
+		<awayScore>23</awayScore>
+		<awayTeam>HOU</awayTeam>
+		<date>11.16.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>FirstEnergy Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>KC</homeTeam>
+		<homeScore>24</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>2</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>SEA</awayTeam>
+		<date>11.16.2014</date>
+		<time>1:04:PM</time>
+		<status>FINAL</status>
+		<stadium>Arrowhead Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>CAR</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored1></homeFavored1>
+		<spread1>0</spread1>
+		<awayScore>19</awayScore>
+		<awayTeam>ATL</awayTeam>
+		<date>11.16.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>Bank of America Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NO</homeTeam>
+		<homeScore>10</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>7</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>CIN</awayTeam>
+		<date>11.16.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>The Superdome</stadium>
+	</game>
+	<game>
+		<homeTeam>WAS</homeTeam>
+		<homeScore>7</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>7.5</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>TB</awayTeam>
+		<date>11.16.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>FedEx Field</stadium>
+	</game>
+	<game>
+		<homeTeam>STL</homeTeam>
+		<homeScore>22</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>9.5</spread1>
+		<awayScore>7</awayScore>
+		<awayTeam>DEN</awayTeam>
+		<date>11.16.2014</date>
+		<time>1:00:PM</time>
+		<status>FINAL</status>
+		<stadium>Edward Jones Dome</stadium>
+	</game>
+	<game>
+		<homeTeam>NYG</homeTeam>
+		<homeScore>10</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>4</spread1>
+		<awayScore>16</awayScore>
+		<awayTeam>SF</awayTeam>
+		<date>11.16.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>MetLife Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SD</homeTeam>
+		<homeScore>13</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>10</spread1>
+		<awayScore>6</awayScore>
+		<awayTeam>OAK</awayTeam>
+		<date>11.16.2014</date>
+		<time>4:05:PM</time>
+		<status>FINAL</status>
+		<stadium>Qualcomm Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>GB</homeTeam>
+		<homeScore>53</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>PHI</awayTeam>
+		<date>11.16.2014</date>
+		<time>4:25:PM</time>
+		<status>FINAL</status>
+		<stadium>Lambeau Field</stadium>
+	</game>
+	<game>
+		<homeTeam>ARI</homeTeam>
+		<homeScore>14</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>1.5</spread1>
+		<awayScore>6</awayScore>
+		<awayTeam>DET</awayTeam>
+		<date>11.16.2014</date>
+		<time>4:25:PM</time>
+		<status>FINAL</status>
+		<stadium>University of Phoenix Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>IND</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>3</spread1>
+		<awayScore>42</awayScore>
+		<awayTeam>NE</awayTeam>
+		<date>11.16.2014</date>
+		<time>8:31:PM</time>
+		<status>FINAL</status>
+		<stadium>Lucas Oil Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>TEN</homeTeam>
+		<homeScore>24</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>5.5</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>PIT</awayTeam>
+		<date>11.17.2014</date>
+		<time>8:30:PM</time>
+		<status>FINAL</status>
+		<stadium>Nissan Stadium</stadium>
+	</game>
+</week>

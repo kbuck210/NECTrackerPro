@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<week nec="28" year="2014" number="18" current="false" ss="PLAYOFFS" status="completed">
+	<game>
+		<homeTeam>CAR</homeTeam>
+		<homeScore>27</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6.5</spread1>
+		<awayScore>16</awayScore>
+		<awayTeam>ARI</awayTeam>
+		<date>1.3.2015</date>
+		<time>4:20:PM</time>
+		<status>FINAL</status>
+		<stadium>Bank of America Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>PIT</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>3</spread1>
+		<awayScore>30</awayScore>
+		<awayTeam>BAL</awayTeam>
+		<date>1.3.2015</date>
+		<time>8:15:PM</time>
+		<status>FINAL</status>
+		<stadium>Heinz Field</stadium>
+	</game>
+	<game>
+		<homeTeam>IND</homeTeam>
+		<homeScore>26</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>3.5</spread1>
+		<awayScore>10</awayScore>
+		<awayTeam>CIN</awayTeam>
+		<date>1.4.2015</date>
+		<time>1:05:PM</time>
+		<status>FINAL</status>
+		<stadium>Lucas Oil Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>DAL</homeTeam>
+		<homeScore>24</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6.5</spread1>
+		<awayScore>20</awayScore>
+		<awayTeam>DET</awayTeam>
+		<date>1.4.2015</date>
+		<time>4:41:PM</time>
+		<status>FINAL</status>
+		<stadium>AT&amp;T Stadium</stadium>
+	</game>
+</week>

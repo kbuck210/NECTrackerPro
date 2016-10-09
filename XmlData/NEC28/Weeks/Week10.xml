@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<week nec="28" year="2014" number="10" current="false" ss="SECOND_HALF" status="completed">
+	<game>
+		<homeTeam>CIN</homeTeam>
+		<homeScore>3</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6</spread1>
+		<awayScore>24</awayScore>
+		<awayTeam>CLE</awayTeam>
+		<date>11.6.2014</date>
+		<time>8:29:pm</time>
+		<status>FINAL</status>
+		<stadium>Paul Brown Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>BUF</homeTeam>
+		<homeScore>13</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>2</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>KC</awayTeam>
+		<date>11.9.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>Ralph Wilson Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>DET</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>2.5</spread1>
+		<awayScore>16</awayScore>
+		<awayTeam>MIA</awayTeam>
+		<date>11.9.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>Ford Field</stadium>
+	</game>
+	<game>
+		<homeTeam>JAC</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>7</spread1>
+		<awayScore>31</awayScore>
+		<awayTeam>DAL</awayTeam>
+		<date>11.9.2014</date>
+		<time>1:06:PM</time>
+		<status>FINAL</status>
+		<stadium>Wembley Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NO</homeTeam>
+		<homeScore>24</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>5</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>SF</awayTeam>
+		<date>11.9.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>The Superdome</stadium>
+	</game>
+	<game>
+		<homeTeam>BAL</homeTeam>
+		<homeScore>21</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>9.5</spread1>
+		<awayScore>7</awayScore>
+		<awayTeam>TEN</awayTeam>
+		<date>11.9.2014</date>
+		<time>1:03:PM</time>
+		<status>FINAL</status>
+		<stadium>M&amp;T Bank Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>NYJ</homeTeam>
+		<homeScore>20</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>5</spread1>
+		<awayScore>13</awayScore>
+		<awayTeam>PIT</awayTeam>
+		<date>11.9.2014</date>
+		<time>1:02:PM</time>
+		<status>FINAL</status>
+		<stadium>MetLife Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>TB</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>2.5</spread1>
+		<awayScore>27</awayScore>
+		<awayTeam>ATL</awayTeam>
+		<date>11.9.2014</date>
+		<time>1:04:PM</time>
+		<status>FINAL</status>
+		<stadium>Raymond James Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>OAK</homeTeam>
+		<homeScore>17</homeScore>
+		<homeFavored1>N</homeFavored1>
+		<spread1>11.5</spread1>
+		<awayScore>41</awayScore>
+		<awayTeam>DEN</awayTeam>
+		<date>11.9.2014</date>
+		<time>4:05:PM</time>
+		<status>FINAL</status>
+		<stadium>O.co Coliseum</stadium>
+	</game>
+	<game>
+		<homeTeam>ARI</homeTeam>
+		<homeScore>31</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>7</spread1>
+		<awayScore>14</awayScore>
+		<awayTeam>STL</awayTeam>
+		<date>11.9.2014</date>
+		<time>4:25:PM</time>
+		<status>FINAL</status>
+		<stadium>University of Phoenix Stadium</stadium>
+	</game>
+	<game>
+		<homeTeam>SEA</homeTeam>
+		<homeScore>38</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>9</spread1>
+		<awayScore>17</awayScore>
+		<awayTeam>NYG</awayTeam>
+		<date>11.9.2014</date>
+		<time>4:26:PM</time>
+		<status>FINAL</status>
+		<stadium>CenturyLink Field</stadium>
+	</game>
+	<game>
+		<homeTeam>GB</homeTeam>
+		<homeScore>55</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>7</spread1>
+		<awayScore>14</awayScore>
+		<awayTeam>CHI</awayTeam>
+		<date>11.9.2014</date>
+		<time>8:30:PM</time>
+		<status>FINAL</status>
+		<stadium>Lambeau Field</stadium>
+	</game>
+	<game>
+		<homeTeam>PHI</homeTeam>
+		<homeScore>45</homeScore>
+		<homeFavored1>Y</homeFavored1>
+		<spread1>6.5</spread1>
+		<awayScore>21</awayScore>
+		<awayTeam>CAR</awayTeam>
+		<date>11.10.2014</date>
+		<time>8:32:PM</time>
+		<status>FINAL</status>
+		<stadium>Lincoln Financial Field</stadium>
+	</game>
+</week>

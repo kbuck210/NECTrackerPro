@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<week nec="28" year="2014" number="22" current="false" ss="SUPER_BOWL" status="completed">
+	<game>
+		<homeTeam>SEA</homeTeam>
+		<homeScore>24</homeScore>
+		<homeFavored1></homeFavored1>
+		<spread1></spread1>
+		<awayScore>28</awayScore>
+		<awayTeam>NE</awayTeam>
+		<date>2.1.2015</date>
+		<time>6:30:PM</time>
+		<status>FINAL</status>
+		<stadium>University of Phoenix Stadium</stadium>
+	</game>
+</week>
