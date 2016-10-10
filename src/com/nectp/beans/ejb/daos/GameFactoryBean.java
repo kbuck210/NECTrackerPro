@@ -33,6 +33,80 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 			//	Attempt to select the game from the week with the two teams
 			try {
 				game = selectGameByTeamsWeek(homeTeam, awayTeam, week);
+				
+				//	Check whether the game needs to be updated
+				boolean update = false;
+				if (game.getHomeScore() != homeScore) {
+					game.setHomeScore(homeScore);
+					update = true;
+				}
+				if (game.getAwayScore() != awayScore) {
+					game.setAwayScore(awayScore);
+					update = true;
+				}
+				if (!game.getSpread1().equals(spread1)) {
+					game.setSpread1(spread1);
+					update = true;
+				}
+				if (game.getSpread2() != null) {
+					if (!game.getSpread2().equals(spread2)) {
+						game.setSpread2(spread2);
+						update = true;
+					}
+					else if (spread2 == null) {
+						game.setSpread2(null);
+						update = true;
+					}
+				}
+				else if (spread2 != null) {
+					game.setSpread2(spread2);
+					update = true;
+				}
+				if (!game.getGameDate().equals(gameDate)) {
+					game.setGameDate(gameDate);
+					update = true;
+				}
+				if (!game.getGameStatus().equals(gameStatus)) {
+					game.setGameStatus(gameStatus);
+					update = true;
+				}
+				if (game.getHomeFavoredSpread1() != null && homeFavoredSpread1 != null) {
+					if (!game.getHomeFavoredSpread1().equals(homeFavoredSpread1)) {
+						game.setHomeFavoredSpread1(homeFavoredSpread1);
+						update = true;
+					}
+				}
+				//	Use XOR to determine if one or the other has null spread, if both null, do not update
+				else if (game.getHomeFavoredSpread1() == null ^ homeFavoredSpread1 == null) {
+					game.setHomeFavoredSpread1(homeFavoredSpread1);
+					update = true;
+				}
+				if (game.getHomeFavoredSpread2() != null && homeFavoredSpread2 != null) {
+					if (!game.getHomeFavoredSpread2().equals(homeFavoredSpread2)) {
+						game.setHomeFavoredSpread2(homeFavoredSpread2);
+						update = true;
+					}
+				}
+				//	Use XOR to determine if one or the other has null spread, if both null, do not update
+				else if (game.getHomeFavoredSpread2() == null ^ homeFavoredSpread2 == null) {
+					game.setHomeFavoredSpread2(homeFavoredSpread2);
+					update = true;
+				}
+				if (!game.getTimeRemaining().equals(timeRemaining)) {
+					game.setTimeRemaining(timeRemaining);
+					update = true;
+				}
+				if (!game.getStadium().equals(stadium)) {
+					game.getStadium().removeGamePlayedInStadium(game);
+					game.setStadium(stadium);
+					stadium.addGamePlayedInStadium(game);
+					update = true;
+				}
+				
+				if (update) {
+					update(game);
+				}
+				
 			} catch (NoResultException e) {
 				game = new Game();
 				game.setHomeTeam(homeTeam);
@@ -68,3 +142,4 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 	}
 
 }
+

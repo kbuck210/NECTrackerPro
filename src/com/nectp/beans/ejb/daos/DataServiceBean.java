@@ -3,7 +3,8 @@ package com.nectp.beans.ejb.daos;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.logging.Level;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import com.nectp.beans.remote.daos.DataService;
 
@@ -52,13 +54,13 @@ public class DataServiceBean<T> implements Serializable, DataService<T> {
 	@Override
     public boolean insert(final T obj) {
         boolean success = true;
-        
+        Logger log = Logger.getLogger(obj.getClass().getName());
         try {
         	em.persist(obj);
-            Logger.getLogger(obj.getClass().getName()).log(Level.INFO, "Inserted " + obj.getClass().getSimpleName());
+            log.info("Inserted " + obj.getClass().getSimpleName());
         } catch (Exception e) {
-        	Logger.getLogger(obj.getClass().getName()).log(Level.SEVERE,
-                    "Rollback inserting " + obj.getClass().getSimpleName() + ": " + e.getMessage(), e);
+        	log.severe("Rollback inserting " + obj.getClass().getSimpleName() + ": " + e.getMessage());
+        	e.printStackTrace();
             success = false;
         }
 
@@ -68,14 +70,13 @@ public class DataServiceBean<T> implements Serializable, DataService<T> {
 	@Override
     public boolean update(final T obj) {
         boolean success = true;
-       
+        Logger log = Logger.getLogger(obj.getClass().getName());
         try {
         	em.merge(obj);
-            Logger.getLogger(obj.getClass().getName()).log(Level.INFO,
-                    "Merged " + obj.getClass().getSimpleName());
+            log.info("Merged " + obj.getClass().getSimpleName());
         } catch (Exception e) {
-        	Logger.getLogger(obj.getClass().getName()).log(Level.SEVERE,
-                    "Rollback merging " + obj.getClass().getSimpleName() + ": " + e.getMessage(), e);
+        	log.severe("Rollback merging " + obj.getClass().getSimpleName() + ": " + e.getMessage());
+        	e.printStackTrace();
             success = false;
         } 
         
@@ -85,14 +86,13 @@ public class DataServiceBean<T> implements Serializable, DataService<T> {
 	@Override
     public boolean remove(final T obj) {
         boolean success = true;
-        
+        Logger log = Logger.getLogger(obj.getClass().getName());
         try {
         	em.remove(obj);
-            Logger.getLogger(obj.getClass().getName()).log(Level.INFO,
-                    "Removed " + obj.getClass().getSimpleName());
+        	log.info("Removed " + obj.getClass().getSimpleName());
         } catch (Exception e) {
-        	Logger.getLogger(obj.getClass().getName()).log(Level.SEVERE,
-                    "Rollback removing " + obj.getClass().getSimpleName() + ": " + e.getMessage(), e);
+        	log.severe("Rollback removing " + obj.getClass().getSimpleName() + ": " + e.getMessage());
+        	e.printStackTrace();
             success = false;
         } 
 
@@ -101,16 +101,34 @@ public class DataServiceBean<T> implements Serializable, DataService<T> {
 	
 	@Override
     public T selectById(Object id) {
+		Logger log = Logger.getLogger(type.getName());
         T result = null;
         try {
             result = em.find(type, id);
         } catch (EntityNotFoundException e) {
-            Logger.getLogger(type.getName()).log(Level.WARNING,
-                    "No result found for select by PK: " + e.getMessage(), e);
+        	log.warning("No result found for select by PK: " + e.getMessage());
         } catch (IllegalArgumentException e) {
-            Logger.getLogger(type.getName()).log(Level.SEVERE,
-                    "Exception caught in select by PK: " + e.getMessage(), e);
+        	log.severe("Exception caught in select by PK: " + e.getMessage());
+        	e.printStackTrace();
         }
         return result;
     }
+	
+	@Override
+	public List<T> findAll() {
+		Logger log = Logger.getLogger(type.getName());
+		List<T> results;
+		String className = type.getName();
+		TypedQuery<T> tq = em.createNamedQuery(className + ".findAll", type);
+		try {
+			results = tq.getResultList();
+		} catch (Exception e) {
+			log.severe("Exception caught retrieving all " + className + "'s with message: " + e.getMessage());
+			e.printStackTrace();
+			results = new ArrayList<T>();
+		}
+		
+		return results;
+	}
 }
+

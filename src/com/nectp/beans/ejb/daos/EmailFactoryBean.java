@@ -25,6 +25,21 @@ public class EmailFactoryBean extends EmailServiceBean implements EmailFactory {
 			//	Check whether the specified email already exists
 			try {
 				email = selectEmailForPlayer(emailAddress, player);
+				
+				//	Check whether any options have been updated
+				boolean update = false;
+				if (email.isPrimaryAddress() != primary) {
+					email.setPrimaryAddress(primary);
+					update = true;
+				}
+				if (email.isEmailsRequested() != emailsRequested) {
+					email.setEmailsRequested(emailsRequested);
+					update = true;
+				}
+				
+				if (update) {
+					update(email);
+				}
 			} 
 			//	If no email already exists, create one
 			catch (NoResultException e) {

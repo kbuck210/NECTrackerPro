@@ -110,9 +110,9 @@ public class ExcelReader {
         //  Add each team from the season to the map of teams
         for (TeamForSeason tfs : season.getTeams()) {
             //  Check team city to conform to sheet style:
-            String teamCity = tfs.getTeam().getTeamCity().toUpperCase();
+            String teamCity = tfs.getTeamCity().toUpperCase();
             if (teamCity.equals("NEW YORK")) {
-                String teamAbbr = tfs.getTeam().getTeamAbbr();
+                String teamAbbr = tfs.getTeamAbbr();
                 if (teamAbbr.equals("NYJ")) {
                     teamCity = "NY JETS";
                 } else if (teamAbbr.equals("NYG")) {

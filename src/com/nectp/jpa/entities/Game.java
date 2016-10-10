@@ -20,6 +20,15 @@ import java.util.List;
 @XmlRootElement
 @NamedQueries({
 	@NamedQuery(name="Game.findAll", query="SELECT g FROM Game g"),
+	@NamedQuery(name="Game.selectOpponentHistory",
+				query="SELECT g FROM Game g "
+					+ "INNER JOIN FETCH g.homeTeam htfs "
+					+ "INNER JOIN FETCH htfs.team ht "
+					+ "INNER JOIN FETCH g.awayTeam atfs "
+					+ "INNER JOIN FETCH atfs.team at "
+					+ "WHERE ((ht.abstractTeamId = :team1Id AND at.abstractTeamId = :team2Id) "
+					+ "OR (ht.abstractTeamId = :team2Id AND at.abstractTeamId = :team1Id)) "
+					+ "AND htfs.season.seasonNumber = atfs.season.seasonNumber"),
 	@NamedQuery(name="Game.selectGameByTeamsWeek", 
 				query="SELECT DISTINCT g FROM Game g "
 					+ "INNER JOIN FETCH g.homeTeam ht "
@@ -28,6 +37,14 @@ import java.util.List;
 					+ "WHERE w.weekId = :weekId "
 					+ "AND ht.abstractTeamForSeasonId = :homeTfsId "
 					+ "AND at.abstractTeamForSeasonId = :awayTfsId"),
+	@NamedQuery(name="Game.selectGameByTeamWeek", 
+				query="SELECT DISTINCT g FROM Game g "
+					+ "INNER JOIN FETCH g.homeTeam ht "
+					+ "INNER JOIN FETCH g.awayTeam at "
+					+ "INNER JOIN FETCH g.week w "
+					+ "WHERE w.weekId = :weekId "
+					+ "AND ht.abstractTeamForSeasonId = :atfsId "
+					+ "OR at.abstractTeamForSeasonId = :atfsId"),
 	@NamedQuery(name="Game.selectDivisionalGamesForTFS",
 				query="SELECT g FROM Game g "
 					+ "INNER JOIN FETCH g.homeTeam ht "
@@ -46,7 +63,15 @@ import java.util.List;
 				query="SELECT g FROM Game g "
 					+ "INNER JOIN FETCH g.homeTeam ht "
 					+ "WHERE g.primeTime = true "
-					+ "AND ht.season.seasonNumber = :seasonNumber")
+					+ "AND ht.season.seasonNumber = :seasonNumber"),
+	@NamedQuery(name="Game.selectGamesPlayedInStadium",
+				query="SELECT g FROM Game g "
+					+ "INNER JOIN FETCH g.stadium s "
+					+ "INNER JOIN FETCH g.homeTeam ht "
+					+ "INNER JOIN FETCH g.awayTeam at "
+					+ "WHERE (ht.abstractTeamForSeasonId = :atfsId "
+					+ "OR at.abstractTeamForSeasonId = :atfsId) "
+					+ "AND s.stadiumId = :stadiumId")
 })
 public class Game implements Serializable, Comparable<Game> {
 	private static final long serialVersionUID = 1L;
@@ -55,7 +80,19 @@ public class Game implements Serializable, Comparable<Game> {
 		PREGAME,
 		ACTIVE,
 		HALFTIME,
-		FINAL
+		FINAL;
+		
+		public static GameStatus getGameStatusForString(final String gameStatus) {
+			if (gameStatus == null || gameStatus.trim().isEmpty()) return null;
+			
+			for (GameStatus status : GameStatus.values()) {
+				if (status.name().toLowerCase().trim().equals(gameStatus.toLowerCase().trim())) {
+					return status;
+				}
+			}
+			
+			return null;
+		}
 	}
 	
 	@Id

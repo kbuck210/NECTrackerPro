@@ -50,11 +50,11 @@ public class EmailServiceBean extends DataServiceBean<Email> implements EmailSer
 			try {
 				email = eq.getSingleResult();
 			} catch (NonUniqueResultException e) {
-				log.log(Level.SEVERE, "Multiple results found for: " + emailAddress + " - " + player.getTeamName());
+				log.log(Level.SEVERE, "Multiple results found for: " + emailAddress + " - " + player.getName());
 				log.log(Level.SEVERE, e.getMessage());
 				e.printStackTrace();
 			} catch (NoResultException e) {
-				log.log(Level.WARNING, "No Results found for: " + emailAddress + " - " + player.getTeamName());
+				log.log(Level.WARNING, "No Results found for: " + emailAddress + " - " + player.getName());
 				log.log(Level.WARNING, e.getMessage());
 				throw new NoResultException();
 			}
@@ -71,7 +71,7 @@ public class EmailServiceBean extends DataServiceBean<Email> implements EmailSer
 			try {
 				allAddresses = eq.getResultList();
 			} catch (NoResultException e) {
-				log.log(Level.WARNING, "No Results found for: " + player.getTeamName());
+				log.log(Level.WARNING, "No Results found for: " + player.getName());
 				log.log(Level.WARNING, e.getMessage());
 			}
 		}

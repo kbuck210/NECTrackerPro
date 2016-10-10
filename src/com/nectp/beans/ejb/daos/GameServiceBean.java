@@ -52,13 +52,13 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 			try {
 				game = gq.getSingleResult();
 			} catch (NonUniqueResultException e) {
-				log.severe("Multiple games found for " + awayTeam.getTeam().getTeamAbbr() + 
-						" at: " + homeTeam.getTeam().getTeamAbbr() + " in week: " + week.getWeekNumber());
+				log.severe("Multiple games found for " + awayTeam.getTeamAbbr() + 
+						" at: " + homeTeam.getTeamAbbr() + " in week: " + week.getWeekNumber());
 				log.severe(e.getMessage());
 				e.printStackTrace();
 			} catch (NoResultException e) {
-				log.warning("No games found for " + awayTeam.getTeam().getTeamAbbr() + 
-						" at: " + homeTeam.getTeam().getTeamAbbr() + " in week: " + week.getWeekNumber());
+				log.warning("No games found for " + awayTeam.getTeamAbbr() + 
+						" at: " + homeTeam.getTeamAbbr() + " in week: " + week.getWeekNumber());
 				log.warning(e.getMessage());
 				throw new NoResultException();
 			} catch (Exception e) {
@@ -86,12 +86,12 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 			try {
 				game = gq.getSingleResult();
 			} catch (NonUniqueResultException e) {
-				log.severe("Multiple games found for " + team.getTeam().getTeamAbbr() + 
+				log.severe("Multiple games found for " + team.getTeamAbbr() + 
 						" in week: " + week.getWeekNumber());
 				log.severe(e.getMessage());
 				e.printStackTrace();
 			} catch (NoResultException e) {
-				log.warning("No games found for " + team.getTeam().getTeamAbbr() + 
+				log.warning("No games found for " + team.getTeamAbbr() + 
 						" in week: " + week.getWeekNumber());
 				log.warning(e.getMessage());
 				throw e;

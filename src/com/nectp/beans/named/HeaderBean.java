@@ -42,7 +42,7 @@ public class HeaderBean implements Serializable {
 			buttonDisabled = false;
 		}
 		else {
-			String name = user.getTeamName();
+			String name = user.getName();
 			String[] nameParts = name.split(" ");
 			String firstName = nameParts[0];
 			buttonText = "Hi " + firstName + "!";

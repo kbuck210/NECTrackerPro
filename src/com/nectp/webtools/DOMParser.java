@@ -6,7 +6,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +27,9 @@ public class DOMParser {
     private DocumentBuilder dBuilder;
     private Document doc;
     private String qName;
-    private final LinkedList<Element> elements = new LinkedList<Element>();
+    private final ArrayList<Element> elements = new ArrayList<Element>();
+    
+    private static final Logger log = Logger.getLogger(DOMParser.class.getName());
 
     //	Default constructor is private to avoid instantiation
     private DOMParser() { }
@@ -42,7 +45,7 @@ public class DOMParser {
 
         //	Return null if the xmlFile is undefined
         if (xmlFile == null || !xmlFile.exists()) {
-        	System.out.println("ERROR: File not found.");
+        	log.severe("File null/not found!");
             return null;
         }
 
@@ -69,6 +72,41 @@ public class DOMParser {
         parser.setQualifiedNodeName(qName);
 
         return parser;
+    }
+    
+    /** Creates an instance of the DOM parser for the given InputStream (i.e. for reading web-uploaded Files) - NOTE: need to set qualified name
+     * 
+     * @param iStream the InputStream to parse
+     * @return a DOMParser object containing the normalized DOM from the parsed XML, null if no XML file defined
+     */
+    public static DOMParser newInstance(final InputStream iStream) {
+    	 DOMParser parser = new DOMParser();
+    	 if (iStream == null) {
+    		 log.severe("InputStream not defined! can not parse XML");
+    		 return null;
+    	 }
+    	 
+    	 //	Create the document builder factory
+         parser.dbFactory = DocumentBuilderFactory.newInstance();
+         try {
+             //	Create the document builder & parse the XML file into the document
+             parser.dBuilder = parser.dbFactory.newDocumentBuilder();
+             parser.doc = parser.dBuilder.parse(iStream);
+             
+             //	Normalize the document to fix newlines etc.
+             parser.doc.getDocumentElement().normalize();
+         } catch (ParserConfigurationException e) {
+        	 log.severe("ParserConfigurationException: " + e.getMessage());
+             e.printStackTrace();
+         } catch (SAXException e) {
+        	 log.severe("SAXException: " + e.getMessage());
+             e.printStackTrace();
+         } catch (IOException e) {
+        	 log.severe("IOException: " + e.getMessage());
+             e.printStackTrace();
+         }
+
+         return parser;
     }
     
     /** Create an instance of a DOMParser for the specified URL and qualified node name
@@ -135,7 +173,7 @@ public class DOMParser {
      * 
      * @param qName the String representation of the element node names to list 
      */
-    protected void setQualifiedNodeName(final String qName) {
+    public void setQualifiedNodeName(final String qName) {
         if (qName != null) {
             this.qName = qName.trim().toLowerCase();
         }
@@ -155,10 +193,10 @@ public class DOMParser {
 
     /** Generates a list of element nodes that were found in the DOM for the specified qualified name
      * 
-     * @return a LinkedList of Elements found from nodes in the DOM, empty list if either the qualified name or document are undefined
+     * @return a ArrayList of Elements found from nodes in the DOM, empty list if either the qualified name or document are undefined
      */
-    public LinkedList<Element> generateElementList() {
-        LinkedList<Element> eList = new LinkedList<Element>();
+    public List<Element> generateElementList() {
+        ArrayList<Element> eList = new ArrayList<Element>();
         if (qName !=  null && doc != null) {
             NodeList nodes = doc.getElementsByTagName(qName);
             if (nodes != null) {
@@ -175,15 +213,15 @@ public class DOMParser {
         return eList;
     }
 
-    /** Returns a LinkedList containing the child element nodes corresponding to the specified tag name
+    /** Returns a List containing the child element nodes corresponding to the specified tag name
      * 
      * @param parentElement
      * @param tagName
      * @return
      */
-    public static LinkedList<Element> getSubElementsByTagName(final Element parentElement, final String tagName) {
+    public List<Element> getSubElementsByTagName(final Element parentElement, final String tagName) {
         NodeList nodes = parentElement.getElementsByTagName(tagName);
-        LinkedList<Element> subElements = new LinkedList<Element>();
+        ArrayList<Element> subElements = new ArrayList<Element>();
         for (int i = 0; i < nodes.getLength(); ++i) {
             Node n = nodes.item(i);
             if (n.getNodeType() == Node.ELEMENT_NODE) {
@@ -200,21 +238,42 @@ public class DOMParser {
      * @param tagName
      * @return
      */
-    public static String getTextSubElementByTagName(final Element parentElement, final String tagName) {
+    public String getTextSubElementByTagName(final Element parentElement, final String tagName) {
+    	List<String> nodes = getTextSubElementsByTagName(parentElement, tagName);
+    	if (nodes.size() == 1) {
+    		return nodes.get(0);
+    	}
+    	else return null;
+    }
+    
+    /** Gets the text nodes with the specified tag name as a list of Strings
+     * 
+     * @param parentElement the DOM element that is a parent of the specified tag
+     * @param tagName the qualified node name to search for within the parent
+     * @return a List of strings containing the text from the text Nodes
+     */
+    public List<String> getTextSubElementsByTagName(final Element parentElement, final String tagName) {
+    	List<String> nodes = new ArrayList<String>();
     	NodeList list = parentElement.getElementsByTagName(tagName);
     	String text = null;
     	if (list != null && list.getLength() > 0) {
-    		text = list.item(0).getTextContent();
-    		 if (text != null) text.trim();
+    		for (int i = 0; i < list.getLength(); ++i) {
+    			text = list.item(i).getTextContent();
+    			if (text != null) {
+    				text.trim();
+    				nodes.add(text);
+    			}
+    		} 
     	}
-        return text;
+        return nodes;
     }
 
     /** Returns the list of DOM elements that were parsed for the given qualified node name
      * 
-     * @return a LinkedList of Elements found from nodes in the DOM
+     * @return a ArrayList of Elements found from nodes in the DOM
      */
-    public LinkedList<Element> getDOMElements() {
+    public List<Element> getDOMElements() {
         return elements;
     }
 }
+

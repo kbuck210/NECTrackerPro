@@ -11,7 +11,6 @@ import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.Pick.PickType;
 import com.nectp.jpa.entities.PlayerForSeason;
-import com.nectp.jpa.entities.Team;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Game.GameStatus;
 
@@ -192,8 +191,7 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	 * @param homeCity the homeCity to set
 	 */
 	private void setHomeCity(TeamForSeason homeTeam) {
-		Team home = homeTeam.getTeam();
-		this.homeCity = home.getTeamCity();
+		this.homeCity = homeTeam.getTeamCity();
 	}
 	/**
 	 * @return the homeRecord
@@ -249,8 +247,7 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	 * @param awayCity the awayCity to set
 	 */
 	private void setAwayCity(TeamForSeason awayTeam) {
-		Team away = awayTeam.getTeam();
-		this.awayCity = away.getTeamCity();
+		this.awayCity = awayTeam.getTeamCity();
 	}
 	/**
 	 * @return the awayRecord
@@ -601,8 +598,8 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 			TeamForSeason homeTeam = game.getHomeTeam();
 			TeamForSeason awayTeam = game.getAwayTeam();
 			
-			String homeAbbr = homeTeam.getTeam().getTeamAbbr();
-			String awayAbbr = awayTeam.getTeam().getTeamAbbr();
+			String homeAbbr = homeTeam.getTeamAbbr();
+			String awayAbbr = awayTeam.getTeamAbbr();
 			
 			this.homeTeamUrl = homeAbbr;
 			this.awayTeamUrl = awayAbbr;

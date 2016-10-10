@@ -23,9 +23,6 @@ public class AbstractTeam implements Serializable {
 	@Basic(optional=false)
 	private Integer abstractTeamId;
 
-	@Basic(optional=false)
-	private String teamName;
-
 	public AbstractTeam() {
 	}
 
@@ -35,14 +32,6 @@ public class AbstractTeam implements Serializable {
 
 	public void setAbstractTeamId(Integer abstractTeamId) {
 		this.abstractTeamId = abstractTeamId;
-	}
-
-	public String getTeamName() {
-		return this.teamName;
-	}
-
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
 	}
 	
 	@Override
