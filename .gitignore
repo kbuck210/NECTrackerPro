@@ -1,7 +1,7 @@
 /build/
 
+/src/META-INF/
+
 login.properties
 
 .DS_Store
-
-persistence.xml
