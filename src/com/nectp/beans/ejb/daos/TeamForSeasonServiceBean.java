@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import com.nectp.beans.ejb.daos.DataServiceBean;
 import com.nectp.beans.remote.daos.TeamForSeasonService;
 import com.nectp.jpa.entities.Season;
+import com.nectp.jpa.entities.Team;
 import com.nectp.jpa.entities.TeamForSeason;
 
 @Stateless
@@ -18,25 +19,25 @@ public class TeamForSeasonServiceBean extends DataServiceBean<TeamForSeason> imp
 
 	
 	@Override
-	public TeamForSeason selectTfsByAbbr(String teamAbbr, Season season) {
+	public TeamForSeason selectTfsByTeamSeason(Team team, Season season) {
 		Logger log = Logger.getLogger(TeamForSeasonServiceBean.class.getName());
 		TeamForSeason tfs = null;
 		
-		if (teamAbbr == null || season == null) {
-			log.severe("Abbreviation or season not specified, can not select TeamForSeason!");
+		if (team == null || season == null) {
+			log.severe("Team or season not specified, can not select TeamForSeason!");
 		}
 		else {
-			TypedQuery<TeamForSeason> tq = em.createNamedQuery("TeamForSeason.selectTfsByAbbr", TeamForSeason.class);
-			tq.setParameter("teamAbbr", teamAbbr);
+			TypedQuery<TeamForSeason> tq = em.createNamedQuery("TeamForSeason.selectTfsByTeamSeason", TeamForSeason.class);
+			tq.setParameter("franchiseId", team.getFranchiseId());
 			tq.setParameter("seasonNumber", season.getSeasonNumber());
 			try {
 				tfs = tq.getSingleResult();
 			} catch (NonUniqueResultException e) {
-				log.severe("Multiple TFS found for: " + teamAbbr + " in season " + season.getSeasonNumber());
+				log.severe("Multiple TFS found for franchise: " + team.getFranchiseId() + " in season " + season.getSeasonNumber());
 				log.severe(e.getMessage());
 				e.printStackTrace();
 			} catch (NoResultException e) {
-				log.warning("No TFS found for: " + teamAbbr + " in season " + season.getSeasonNumber());
+				log.warning("No TFS found for for franchise: " + team.getFranchiseId() + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
 				throw new NoResultException();
 			} catch (Exception e) {
@@ -48,4 +49,36 @@ public class TeamForSeasonServiceBean extends DataServiceBean<TeamForSeason> imp
 		return tfs;
 	}
 
+
+	@Override
+	public TeamForSeason selectTfsByAbbrSeason(String abbr, Season season) {
+		Logger log = Logger.getLogger(TeamForSeasonServiceBean.class.getName());
+		TeamForSeason tfs = null;
+		
+		if (abbr == null || season == null) {
+			log.severe("Abbreviation or season not specified, can not select TeamForSeason!");
+		}
+		else {
+			TypedQuery<TeamForSeason> tq = em.createNamedQuery("TeamForSeason.selectTfsByAbbrSeason", TeamForSeason.class);
+			tq.setParameter("teamAbbr", abbr);
+			tq.setParameter("seasonNumber", season.getSeasonNumber());
+			try {
+				tfs = tq.getSingleResult();
+			} catch (NonUniqueResultException e) {
+				log.severe("Multiple TFS found for franchise: " + abbr + " in season " + season.getSeasonNumber());
+				log.severe(e.getMessage());
+				e.printStackTrace();
+			} catch (NoResultException e) {
+				log.warning("No TFS found for for franchise: " + abbr + " in season " + season.getSeasonNumber());
+				log.warning(e.getMessage());
+			} catch (Exception e) {
+				log.severe("Exception caught while retrieving TFS: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+		return tfs;
+	}
+
 }
+

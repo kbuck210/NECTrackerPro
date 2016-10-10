@@ -4,6 +4,6 @@ import com.nectp.jpa.entities.Team;
 
 public interface TeamFactory extends TeamService {
 
-	public Team createTeam(String teamName, String teamAbbr, String teamCity);
+	public Team createTeam(Integer franchiseId);
 	
 }

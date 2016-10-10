@@ -18,28 +18,15 @@ import java.util.List;
 @XmlRootElement
 @NamedQueries({
 	@NamedQuery(name="Team.findAll", query="SELECT t FROM Team t"),
-	@NamedQuery(name="Team.selectTeamByName", 
-				query="SELECT t FROM Team t "
-					+ "WHERE t.teamName = :teamName"),
-	@NamedQuery(name="Team.selectTeamByAbbr", 
-				query="SELECT t FROM Team t "
-					+ "WHERE t.teamAbbr = :teamAbbr"),
-	@NamedQuery(name="Team.selectTeamByCity",
-				query="SELECT t FROM Team t WHERE t.teamCity = :teamCity"),
-	@NamedQuery(name="Team.selectTeamByNameCity", 
-				query="SELECT DISTINCT t FROM Team t "
-					+ "WHERE t.teamName = :teamName "
-					+ "AND t.teamCity = :teamCity")
+	@NamedQuery(name="Team.selectByFranchiseId",
+				query="SELECT DISTINCT t FROM Team t WHERE t.franchiseId = :franchiseId")
 })
 public class Team extends AbstractTeam implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	@Basic(optional=false)
+	private Integer franchiseId;
 	
-	@Basic(optional=false)
-	private String teamAbbr;
-
-	@Basic(optional=false)
-	private String teamCity;
-
 	//bi-directional many-to-one association to TeamForSeason
 	@OneToMany(mappedBy="team")
 	private List<TeamForSeason> teamInstances;
@@ -47,21 +34,13 @@ public class Team extends AbstractTeam implements Serializable {
 	public Team() {
 		teamInstances = new LinkedList<TeamForSeason>();
 	}
-
-	public String getTeamAbbr() {
-		return this.teamAbbr;
+	
+	public Integer getFranchiseId() {
+		return franchiseId;
 	}
-
-	public void setTeamAbbr(String teamAbbr) {
-		this.teamAbbr = teamAbbr;
-	}
-
-	public String getTeamCity() {
-		return this.teamCity;
-	}
-
-	public void setTeamCity(String teamCity) {
-		this.teamCity = teamCity;
+	
+	public void setFranchiseId(int franchiseId) {
+		this.franchiseId = franchiseId;
 	}
 
 	public List<TeamForSeason> getTeamInstances() {
@@ -89,8 +68,8 @@ public class Team extends AbstractTeam implements Serializable {
 	@Override
     public int hashCode() {
         int hash = 7;
-        hash = 11 * hash + (this.teamCity != null ? this.teamCity.hashCode() : 0);
-        hash = 11 * hash + (this.teamAbbr != null ? this.teamAbbr.hashCode() : 0);
+        hash = 11 * hash + (this.getAbstractTeamId() != null ? this.getAbstractTeamId().hashCode() : 0);
+        hash = 11 * hash + (this.franchiseId != null ? this.franchiseId.hashCode() : 0);
         return hash;
     }
     

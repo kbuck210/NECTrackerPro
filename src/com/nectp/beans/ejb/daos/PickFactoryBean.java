@@ -1,5 +1,6 @@
 package com.nectp.beans.ejb.daos;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
@@ -9,7 +10,7 @@ import javax.persistence.NoResultException;
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.PickFactory;
 import com.nectp.beans.remote.daos.PickService;
-import com.nectp.beans.remote.daos.RecordService;
+import com.nectp.beans.remote.daos.RecordFactory;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
@@ -30,22 +31,21 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 	private PickService pickService;
 	
 	@EJB
-	private RecordService recordService;
+	private RecordFactory recordFactory;
+	
+	private Logger log = Logger.getLogger(PickFactoryBean.class.getName());
 	
 	@Override
 	public Pick createPlayerPickInWeek(PlayerForSeason player, TeamForSeason pickedTeam, Week week, NEC pickFor, PickType pickType) {
-		Logger log = Logger.getLogger(PickFactoryBean.class.getName());
 		Pick pick = null;
 		if (player == null || pickedTeam == null || week == null) {
 			log.severe("Parameters not set, can not create pick for player!");
 		}
 		else {
 			//	Get the game for this pick
-			Game gameForPick = null;
-			try {
-				gameForPick = gameService.selectGameByTeamWeek(pickedTeam, week);
-			} catch (NoResultException e) {
-				log.severe("No game found for " + pickedTeam.getTeam().getTeamAbbr() 
+			Game gameForPick = gameService.selectGameByTeamWeek(pickedTeam, week);
+			if (gameForPick == null) {
+				log.severe("No game found for " + pickedTeam.getTeamAbbr() 
 						+ " in week " + week.getWeekNumber() + ". Can not create Pick!");
 				return null;
 			}
@@ -54,6 +54,12 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 			try {
 				pick = pickService.selectPlayerPickForGame(player, gameForPick);
 			} catch (NoResultException e) {
+				if (!checkPickEligibility(player, pickedTeam, pickFor)) {
+					log.severe("The selected pick is ineligible, can not create pick of "
+							+ pickedTeam.getTeamCity() + " for " + player.getNickname());
+					return null;
+				}
+				
 				pick = new Pick();
 				
 				pick.setPlayer(player);
@@ -61,7 +67,8 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				
 				Record applicableRecord = null;
 				try {
-					applicableRecord = recordService.selectWeekRecordForAtfs(week, player, pickFor);
+					//	If the record doesn't already exist, creates one
+					applicableRecord = recordFactory.createWeekRecordForAtfs(week, pickedTeam, pickFor);
 					pick.setApplicableRecord(applicableRecord);
 					applicableRecord.addPickInRecord(pick);
 				} catch (NoResultException ex) {
@@ -71,6 +78,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				
 				pick.setPickedTeam(pickedTeam);
 				pickedTeam.addPickForTeam(pick);
+				
 				pick.setPickType(pickType);
 				
 				boolean success = insert(pick);
@@ -82,5 +90,53 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 		
 		return pick;
 	}
+	
+	/** If the pick is for TWO_AND_OUT or ONE_AND_OUT, check whether the max losses has been reached 
+	 * and/or whether the selected team has already been picked.
+	 * 
+	 * @param player the PlayerForSeason making the pick
+	 * @param pickedTeam the TeamForSeason that was selected
+	 * @param pickFor the NEC enum value represnting the type of pick
+	 * @return true if the pick is a generic pick, or if team not picked and max losses not exceeded, false otherwise
+	 */
+	private boolean checkPickEligibility(PlayerForSeason player, TeamForSeason pickedTeam, NEC pickFor) {
+		//	Before creating the record/pick, check whether type is two/one & out, & whether 
+		//	team has already been taken, or the max number of losses has been accrued
+		int maxLosses = 0;
+		if (pickFor == NEC.TWO_AND_OUT) {
+			maxLosses = 2;
+		}
+		else if (pickFor == NEC.ONE_AND_OUT) {
+			maxLosses = 1;
+		}
+		if (maxLosses != 0) {
+			RecordAggregator ragg = recordFactory.getAggregateRecordForAtfsForType(pickedTeam, pickFor, false);
+			//	Check the number of losses
+			if (ragg.getRawLosses() >= maxLosses) {
+				log.warning(player.getNickname() + " has already exceeded the number of "
+						+ "acceptable losses! Can not create pick!");
+				return false;
+			}
+			//	Check the records for team already picked
+			List<Record> records = ragg.getRecords();
+			for (Record record : records) {
+				if (record.getTeam() instanceof PlayerForSeason) {
+					PlayerForSeason pl = (PlayerForSeason)record.getTeam();
+					List<Pick> picks = pickService.selectPlayerPicksForType(pl, pickFor);
+					for (Pick p : picks) {
+						if (p.getPickedTeam().equals(pickedTeam)) {
+							log.warning(player.getNickname() + " has already picked "
+									+ pickedTeam.getTeamCity() + "! Can not create pick!");
+							return false;
+						}
+					}
+				}
+			}
+		}
+		
+		//	If losses does not exceed maximum or selected team not already picked, current pick is eligible
+		return true;
+	}
 
 }
+

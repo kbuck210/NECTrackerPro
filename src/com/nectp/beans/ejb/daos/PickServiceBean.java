@@ -95,4 +95,29 @@ public class PickServiceBean extends DataServiceBean<Pick> implements PickServic
 		
 		return picks;
 	}
+
+	@Override
+	public List<Pick> selectPlayerPicksForType(PlayerForSeason player, NEC pickType) {
+		Logger log = Logger.getLogger(PickServiceBean.class.getName());
+		List<Pick> picks;
+		if (player == null || pickType == null) {
+			log.severe("Player/Type not defined, can not retrieve picks!");
+			picks = new ArrayList<Pick>();
+		}
+		else {
+			TypedQuery<Pick> pq = em.createNamedQuery("Pick.selectPlayerPicksForType", Pick.class);
+			pq.setParameter("atfsId", player.getAbstractTeamForSeasonId());
+			pq.setParameter("pickType", pickType.ordinal());
+			try {
+				picks = pq.getResultList();
+			} catch (Exception e) {
+				log.severe("Exception caught retrieving list of picks: " + e.getMessage());
+				e.printStackTrace();
+				picks = new ArrayList<Pick>();
+			}
+		}
+		
+		return picks;
+	}
 }
+

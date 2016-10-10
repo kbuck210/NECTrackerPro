@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import com.nectp.beans.remote.daos.PrizeForSeasonFactory;
 import com.nectp.beans.remote.daos.PrizeService;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.Prize;
 import com.nectp.jpa.entities.PrizeForSeason;
 import com.nectp.jpa.entities.Season;
@@ -22,7 +23,7 @@ public class PrizeForSeasonFactoryBean extends PrizeForSeasonServiceBean impleme
 	private PrizeService prizeService;
 	
 	@Override
-	public PrizeForSeason createPrizeInSeason(NEC prizeType, Season season, Subseason subseason, int amount) {
+	public PrizeForSeason createPrizeInSeason(NEC prizeType, Season season, Subseason subseason, int amount, PlayerForSeason winner) {
 		Logger log = Logger.getLogger(PrizeForSeasonFactoryBean.class.getName());
 		PrizeForSeason pfs = null;
 		if (prizeType == null || season == null) {
@@ -32,6 +33,36 @@ public class PrizeForSeasonFactoryBean extends PrizeForSeasonServiceBean impleme
 			//	Check whether the prize for the season already exists
 			try {
 				pfs = selectPrizeForSeason(prizeType, season);
+				
+				//	 check whether any of the PZFS options have changed
+				boolean update = false;
+				if (pfs.getPrizeAmount() != amount) {
+					pfs.setPrizeAmount(amount);
+					update = true;
+				}
+				if (!pfs.getSubseason().equals(subseason)) {
+					pfs.getSubseason().removePrizeForSubseason(pfs);
+					pfs.setSubseason(subseason);
+					subseason.addPrizeForSubseason(pfs);
+					update = true;
+				}
+				if (winner != null) {
+					if (pfs.getWinner() == null) {
+						pfs.setWinner(winner);
+						update = true;
+					}
+					else if (!pfs.getWinner().equals(winner)) {
+						pfs.getWinner().removePrizeforseason(pfs);
+						pfs.setWinner(winner);
+						winner.addPrizeforseason(pfs);
+						update = true;
+					}
+				}
+				
+				if (update) {
+					update(pfs);
+				}
+				
 			}
 			//	If no PFS found, create one
 			catch (NoResultException e) {
@@ -66,3 +97,4 @@ public class PrizeForSeasonFactoryBean extends PrizeForSeasonServiceBean impleme
 	}
 
 }
+

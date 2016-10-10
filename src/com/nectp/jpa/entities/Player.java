@@ -19,11 +19,14 @@ import java.util.List;
 @NamedQueries({
 	@NamedQuery(name="Player.findAll", query="SELECT p FROM Player p"),
 	@NamedQuery(name="Player.selectPlayerByName",
-				query="SELECT DISTINCT p FROM Player p WHERE p.teamName = :playerName")
+				query="SELECT DISTINCT p FROM Player p WHERE p.name = :playerName")
 })
 public class Player extends AbstractTeam implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Basic(optional=false)
+	private String name;
+	
 	@Basic(optional=false)
 	private String password;
 
@@ -44,6 +47,14 @@ public class Player extends AbstractTeam implements Serializable {
 	public Player() {
 		emails = new LinkedList<Email>();
 		playerInstances = new LinkedList<PlayerForSeason>();
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPassword() {

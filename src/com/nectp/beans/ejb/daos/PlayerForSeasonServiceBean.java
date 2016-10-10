@@ -30,11 +30,71 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 			try {
 				pfs = pq.getSingleResult();
 			} catch (NonUniqueResultException e) {
-				log.severe("Multiple PFS found for " + player.getTeamName() + " in season " + season.getSeasonNumber());
+				log.severe("Multiple PFS found for " + player.getName() + " in season " + season.getSeasonNumber());
 				log.severe(e.getMessage());
 				e.printStackTrace();
 			} catch (NoResultException e) {
-				log.warning("No result found for " + player.getTeamName() + " in season " + season.getSeasonNumber());
+				log.warning("No result found for " + player.getName() + " in season " + season.getSeasonNumber());
+				log.warning(e.getMessage());
+				throw new NoResultException();
+			} catch (Exception e) {
+				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+		return pfs;
+	}
+
+	@Override
+	public PlayerForSeason selectPlayerByExcelName(String excelName, Season season) {
+		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
+		PlayerForSeason pfs = null;
+		if (excelName == null || season == null) {
+			log.severe("Excel name or season not defined, can not select PlayerForSeason");
+		}
+		else {
+			TypedQuery<PlayerForSeason> pq = em.createNamedQuery("PlayerForSeason.selectByExcelName", PlayerForSeason.class);
+			pq.setParameter("excelName", excelName);
+			pq.setParameter("seasonNumber", season.getSeasonNumber());
+			try {
+				pfs = pq.getSingleResult();
+			} catch (NonUniqueResultException e) {
+				log.severe("Multiple PFS found for " + excelName + " in season " + season.getSeasonNumber());
+				log.severe(e.getMessage());
+				e.printStackTrace();
+			} catch (NoResultException e) {
+				log.warning("No result found for " + excelName + " in season " + season.getSeasonNumber());
+				log.warning(e.getMessage());
+				throw new NoResultException();
+			} catch (Exception e) {
+				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+		return pfs;
+	}
+
+	@Override
+	public PlayerForSeason selectPlayerByExcelCol(int excelCol, Season season) {
+		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
+		PlayerForSeason pfs = null;
+		if (season == null) {
+			log.severe("Season not defined, can not select PlayerForSeason");
+		}
+		else {
+			TypedQuery<PlayerForSeason> pq = em.createNamedQuery("PlayerForSeason.selectByExcelCol", PlayerForSeason.class);
+			pq.setParameter("excelCol", excelCol);
+			pq.setParameter("seasonNumber", season.getSeasonNumber());
+			try {
+				pfs = pq.getSingleResult();
+			} catch (NonUniqueResultException e) {
+				log.severe("Multiple PFS found for column " + excelCol + " in season " + season.getSeasonNumber());
+				log.severe(e.getMessage());
+				e.printStackTrace();
+			} catch (NoResultException e) {
+				log.warning("No result found for column " + excelCol + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
 				throw new NoResultException();
 			} catch (Exception e) {
@@ -47,3 +107,4 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	}
 
 }
+

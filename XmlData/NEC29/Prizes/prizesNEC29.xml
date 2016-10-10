@@ -1,11 +1,39 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xml>
-<prizesForSeason xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nec="29">
-	<prize name="FIRST_HALF" amount="175" />
-	<prize name="SECOND_HALF" amount="175" />
-	<prize name="PLAYOFFS" amount="125" />
-	<prize name="SUPER_BOWL" amount="300" />
-	<prize name="MNF_TNT" amount="125" />
-	<prize name="TWO_AND_OUT" amount="100" />
-	<prize name="MONEY_BACK" amount="100" />
-</prizesForSeason>
+<prizes nec="29" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<prize>
+		<name>FIRST_HALF</name>
+		<amount>175</amount>
+		<winner></winner>
+	</prize>
+	<prize>
+		<name>SECOND_HALF</name>
+		<amount>175</amount>
+		<winner></winner>
+	</prize>
+	<prize>
+		<name>PLAYOFFS</name>
+		<amount>125</amount>
+		<winner></winner>
+	</prize>
+	<prize>
+		<name>SUPER_BOWL</name>
+		<amount>300</amount>
+		<winner></winner>
+	</prize>
+	<prize>
+		<name>MNF_TNT</name>
+		<amount>125</amount>
+		<winner></winner>
+	</prize>
+	<prize>
+		<name>TWO_AND_OUT</name>
+		<amount>100</amount>
+		<winner></winner>
+	</prize>
+	<prize>
+		<name>MONEY_BACK</name>
+		<amount>100</amount>
+		<winner></winner>
+	</prize>
+</prizes>

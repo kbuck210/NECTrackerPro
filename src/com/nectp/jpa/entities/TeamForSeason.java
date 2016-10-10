@@ -18,16 +18,30 @@ import java.util.List;
 @XmlRootElement
 @NamedQueries({
 	@NamedQuery(name="TeamForSeason.findAll", query="SELECT t FROM TeamForSeason t"),
-	@NamedQuery(name="TeamForSeason.selectTfsByAbbr", 
-				query="SELECT tfs FROM TeamForSeason tfs "
-					+ "INNER JOIN FETCH tfs.team t "
+	@NamedQuery(name="TeamForSeason.selectTfsByTeamSeason", 
+				query="SELECT DISTINCT tfs FROM TeamForSeason tfs "
 					+ "INNER JOIN FETCH tfs.season s "
-					+ "WHERE t.teamAbbr = :teamAbbr "
+					+ "INNER JOIN FETCH tfs.team t "
+					+ "WHERE t.franchiseId = :franchiseId "
+					+ "AND s.seasonNumber = :seasonNumber"),
+	@NamedQuery(name="TeamForSeason.selectTfsByAbbrSeason",
+				query="SELECT DISTINCT tfs FROM TeamForSeason tfs "
+					+ "INNER JOIN FETCH tfs.season s "
+					+ "WHERE tfs.teamAbbr = :teamAbbr "
 					+ "AND s.seasonNumber = :seasonNumber")
 })
 public class TeamForSeason extends AbstractTeamForSeason implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@Basic(optional=false)
+	private String name;
+	
+	@Basic(optional=false)
+	private String teamAbbr;
+
+	@Basic(optional=false)
+	private String teamCity;
+	
 	@Basic(optional=false)
 	private String homeHelmetUrl = "img/homeHelmet.png";
 	
@@ -65,6 +79,30 @@ public class TeamForSeason extends AbstractTeamForSeason implements Serializable
 		homeGames = new LinkedList<Game>();
 		awayGames = new LinkedList<Game>();
 		picksForTeam = new LinkedList<Pick>();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getTeamAbbr() {
+		return this.teamAbbr;
+	}
+
+	public void setTeamAbbr(String teamAbbr) {
+		this.teamAbbr = teamAbbr;
+	}
+
+	public String getTeamCity() {
+		return this.teamCity;
+	}
+
+	public void setTeamCity(String teamCity) {
+		this.teamCity = teamCity;
 	}
 	
 	public String getHomeHelmetUrl() {

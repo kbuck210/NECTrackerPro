@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name="season")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name="Season.findAll", query="SELECT s FROM Season s"),
+	@NamedQuery(name="Season.findAll", query="SELECT s FROM Season s ORDER BY s.seasonNumber DESC"),
 	@NamedQuery(name="Season.selectCurrentSeason", 
 				query="SELECT DISTINCT s FROM Season s "
 					+ "WHERE s.currentSeason = true"),

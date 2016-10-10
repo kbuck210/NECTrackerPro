@@ -23,6 +23,16 @@ import java.util.List;
 					+ "INNER JOIN FETCH p.player pl "
 					+ "INNER JOIN FETCH p.season s "
 					+ "WHERE pl.abstractTeamId = :playerId "
+					+ "AND s.seasonNumber = :seasonNumber"),
+	@NamedQuery(name="PlayerForSeason.selectByExcelName",
+				query="SELECT DISTINCT p FROM PlayerForSeason p "
+					+ "INNER JOIN FETCH p.season s "
+					+ "WHERE p.excelPrintName = :excelName "
+					+ "AND s.seasonNumber = :seasonNumber"),
+	@NamedQuery(name="PlayerForSeason.selectByExcelCol",
+				query="SELECT DISTINCT p FROM PlayerForSeason p "
+					+ "INNER JOIN FETCH p.season s "
+					+ "WHERE p.excelColumn = :excelCol "
 					+ "AND s.seasonNumber = :seasonNumber")
 })
 public class PlayerForSeason extends AbstractTeamForSeason implements Serializable {
@@ -30,6 +40,9 @@ public class PlayerForSeason extends AbstractTeamForSeason implements Serializab
 
 	@Basic(optional=true)
 	private Integer excelColumn;
+	
+	@Basic(optional=false)
+	private Boolean commish;
 	
 	//bi-directional many-to-one association to Pick
 	@OneToMany(mappedBy="player")
@@ -52,6 +65,14 @@ public class PlayerForSeason extends AbstractTeamForSeason implements Serializab
 	public PlayerForSeason() {
 		picks = new LinkedList<Pick>();
 		prizesWon = new LinkedList<PrizeForSeason>();
+	}
+	
+	public Boolean isCommish() {
+		return commish;
+	}
+	
+	public void setCommish(boolean commish) {
+		this.commish = commish;
 	}
 
 	public Integer getExcelColumn() {

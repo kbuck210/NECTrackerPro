@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -15,6 +16,7 @@ import javax.persistence.TypedQuery;
 
 import com.nectp.beans.remote.daos.TeamStatisticService;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.Conference;
 import com.nectp.jpa.entities.Division;
 import com.nectp.jpa.entities.Game;
@@ -23,6 +25,7 @@ import com.nectp.jpa.entities.Stadium.RoofType;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
 import com.nectp.jpa.entities.Record;
+import com.nectp.jpa.entities.Season;
 
 @Stateless
 public class TeamStatisticServiceBean extends RecordServiceBean implements TeamStatisticService {
@@ -119,6 +122,26 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		
 		return homeAwayAgg;
 	}
+	
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getHomeAwayRank(TeamForSeason tfs, NEC subseasonType, boolean home, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> homeAwayRanks = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		Season season = tfs.getSeason();
+		for (TeamForSeason team : season.getTeams()) {
+			RecordAggregator homeAwayAgg = getHomeAwayRecord(team, subseasonType, home, againstSpread);
+			if (homeAwayRanks.containsKey(homeAwayAgg)) {
+				homeAwayRanks.get(homeAwayAgg).add(team);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(team);
+				homeAwayRanks.put(homeAwayAgg, rankList);
+			}
+		}
+		
+		return homeAwayRanks;
+	}
 
 	@Override
 	public RecordAggregator getDivisionRecord(TeamForSeason tfs, Division division, NEC subseasonType, boolean againstSpread) {
@@ -161,6 +184,30 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		
 		return divisionalAgg;
 	}
+	
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getDivisionRank(TeamForSeason tfs, Division division, NEC subseasonType, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> divisionRanks = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		List<TeamForSeason> seasonTeams = tfs.getSeason().getTeams();
+		List<TeamForSeason> divisionTeams = division.getTeamHistory();
+		//	Get only the teams in the division for this season
+		divisionTeams.retainAll(seasonTeams);
+		
+		for (TeamForSeason team : divisionTeams) {
+			RecordAggregator divAgg = getDivisionRecord(team, division, subseasonType, againstSpread);
+			if (divisionRanks.containsKey(divAgg)) {
+				divisionRanks.get(divAgg).add(team);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(team);
+				divisionRanks.put(divAgg, rankList);
+			}
+		}
+		
+		return divisionRanks;
+	}
 
 	@Override
 	public RecordAggregator getConferenceRecord(TeamForSeason tfs, Conference conference, NEC subseasonType, boolean againstSpread) {
@@ -202,6 +249,33 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		}
 
 		return conferenceAgg;
+	}
+	
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getConferenceRank(TeamForSeason tfs, Conference conference, NEC subseasonType, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> conferenceRanks = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		List<TeamForSeason> seasonTeams = tfs.getSeason().getTeams();
+		List<TeamForSeason> conferenceTeams = new ArrayList<TeamForSeason>();
+		for (Division d : conference.getDivisions()) {
+			conferenceTeams.addAll(d.getTeamHistory());
+		}
+		//	Get only the teams for this conference for this season
+		conferenceTeams.retainAll(seasonTeams);
+		
+		for (TeamForSeason team : conferenceTeams) {
+			RecordAggregator confAgg = getConferenceRecord(team, conference, subseasonType, againstSpread);
+			if (conferenceRanks.containsKey(confAgg)) {
+				conferenceRanks.get(confAgg).add(team);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(team);
+				conferenceRanks.put(confAgg, rankList);
+			}
+		}
+		
+		return conferenceRanks;
 	}
 
 	@Override
@@ -331,6 +405,26 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 
 		return primetimeAgg;
 	}
+	
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getPrimetimeRank(TeamForSeason tfs, NEC subseasonType, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> primetimeRanks = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		Season season = tfs.getSeason();
+		for (TeamForSeason team : season.getTeams()) {
+			RecordAggregator primetimeAgg = getPrimetimeRecord(team, subseasonType, againstSpread);
+			if (primetimeRanks.containsKey(primetimeAgg)) {
+				primetimeRanks.get(primetimeAgg).add(team);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(team);
+				primetimeRanks.put(primetimeAgg, rankList);
+			}
+		}
+		
+		return primetimeRanks;
+	}
 
 	@Override
 	public RecordAggregator getRecordByDateTime(TeamForSeason tfs, Integer month, Integer dayOfWeek, Integer kickoffHour, NEC subseasonType, boolean againstSpread) {
@@ -398,6 +492,26 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		
 		return gameDateAgg;
 	}
+	
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getDateTimeRank(TeamForSeason tfs, Integer month, Integer dayOfWeek, Integer kickoffHour, NEC subseasonType, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> dateTimeRanks = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		Season season = tfs.getSeason();
+		for (TeamForSeason team : season.getTeams()) {
+			RecordAggregator dateTimeAgg = getRecordByDateTime(team, month, dayOfWeek, kickoffHour, subseasonType, againstSpread);
+			if (dateTimeRanks.containsKey(dateTimeAgg)) {
+				dateTimeRanks.get(dateTimeAgg).add(team);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(team);
+				dateTimeRanks.put(dateTimeAgg, rankList);
+			}
+		}
+		
+		return dateTimeRanks;
+	}
 
 	@Override
 	public RecordAggregator getRecordForStadium(TeamForSeason tfs, Stadium stadium, RoofType roofType, NEC subseasonType, boolean againstSpread) {
@@ -452,6 +566,26 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		
 		return stadiumAgg;
 	}
+	
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getStadiumRank(TeamForSeason tfs, Stadium stadium, RoofType roofType, NEC subseasonType, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> stadiumRanks = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		Season season = tfs.getSeason();
+		for (TeamForSeason team : season.getTeams()) {
+			RecordAggregator stadiumAgg = getRecordForStadium(team, stadium, roofType, subseasonType, againstSpread);
+			if (stadiumRanks.containsKey(stadiumAgg)) {
+				stadiumRanks.get(stadiumAgg).add(team);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(team);
+				stadiumRanks.put(stadiumAgg, rankList);
+			}
+		}
+		
+		return stadiumRanks;
+	}
 
 	@Override
 	public RecordAggregator getRecordByTimezone(TeamForSeason tfs, TimeZone timezone, NEC subseasonType, boolean againstSpread) {
@@ -493,6 +627,49 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		}
 		
 		return timezoneAgg;
+	}
+
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getTimezoneRank(TeamForSeason tfs, TimeZone timezone, NEC subseasonType, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> timezoneRanks = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		Season season = tfs.getSeason();
+		for (TeamForSeason team : season.getTeams()) {
+			RecordAggregator timezoneAgg = getRecordByTimezone(team, timezone, subseasonType, againstSpread);
+			if (timezoneRanks.containsKey(timezoneAgg)) {
+				timezoneRanks.get(timezoneAgg).add(team);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(team);
+				timezoneRanks.put(timezoneAgg, rankList);
+			}
+		}
+		
+		return timezoneRanks;
+	}
+
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getMnfTntRank(TeamForSeason tfs, NEC subseasonType, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfTntRanks = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		Season season = tfs.getSeason();
+		for (TeamForSeason team : season.getTeams()) {
+			RecordAggregator mnfAgg = getRecordByDateTime(team, null, GregorianCalendar.MONDAY, null, subseasonType, againstSpread);
+			RecordAggregator tntAgg = getRecordByDateTime(team, null, GregorianCalendar.THURSDAY, null, subseasonType, againstSpread);
+			RecordAggregator combined = RecordAggregator.combine(mnfAgg, tntAgg);
+			
+			if (mnfTntRanks.containsKey(combined)) {
+				mnfTntRanks.get(combined).add(team);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(team);
+				mnfTntRanks.put(combined, rankList);
+			}
+		}
+		
+		return mnfTntRanks;
 	}
 
 }

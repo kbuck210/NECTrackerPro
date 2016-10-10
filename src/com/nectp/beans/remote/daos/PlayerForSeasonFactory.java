@@ -6,6 +6,7 @@ import com.nectp.jpa.entities.Season;
 
 public interface PlayerForSeasonFactory extends PlayerForSeasonService {
 
-	public PlayerForSeason createPlayerForSeason(Player player, Season season, String nickname, String excelPrintName, Integer excelCol);
+	public PlayerForSeason createPlayerForSeason(Player player, Season season, String nickname,
+			String excelPrintName, Integer excelCol, boolean commish);
 	
 }

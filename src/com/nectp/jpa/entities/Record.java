@@ -26,7 +26,7 @@ import com.nectp.jpa.constants.NEC;
 					+ "AND r.recordType = :recordType"),
 	@NamedQuery(name="Record.selectHomeRecordForTfs",
 				query="SELECT r FROM Record r, Week w "
-					+ "INNER JOIN FETCH w.game g "
+					+ "INNER JOIN FETCH w.games g "
 					+ "WHERE r.week.weekId = w.weekId "
 					+ "AND g.week.weekId = w.weekId "
 					+ "AND g.homeTeam.abstractTeamForSeasonId = :atfsId")

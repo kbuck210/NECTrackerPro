@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE xml>
-<week xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" weekNum="1" nec="29" status="completed">
+<week nec="29" number="1" current="false" ss="FIRST_HALF" status="completed" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<game>
 		<homeTeam>NE</homeTeam>
 		<homeScore>28</homeScore>

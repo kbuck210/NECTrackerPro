@@ -14,7 +14,7 @@ public class RecordDisplay {
 	
 	private String pctStr;
 	
-	private String rankStr;
+	private String rankStr = "N/a";
 	
 	private RecordAggregator ragg;
 	
@@ -87,7 +87,7 @@ public class RecordDisplay {
 		}
 		else {
 			if (leaders.size() > 1) {
-				rankStr = "T-";
+				rankStr = "T(" + leaders.size() + ")-";
 			}
 			if (rank == 1) {
 				rankStr += "1st";

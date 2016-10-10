@@ -16,6 +16,8 @@ import javax.persistence.NoResultException;
 
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartSeries;
+import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
@@ -27,7 +29,9 @@ import com.nectp.beans.remote.daos.TeamForSeasonService;
 import com.nectp.beans.remote.daos.WeekService;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Game;
+import com.nectp.jpa.entities.Pick.PickType;
 import com.nectp.jpa.entities.Season;
+import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
 
@@ -41,6 +45,7 @@ public class TeamChartBean implements Serializable {
 	private LineChartModel secondHalfModel;
 	private LineChartModel playoffModel;
 	private LineChartModel superbowlModel;
+	private LineChartModel allTimeModel;
 	
 	private String teamAbbr;
 	
@@ -77,13 +82,13 @@ public class TeamChartBean implements Serializable {
 		teamAbbr = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("teamAbbr");
 		currentSeason = seasonService.selectCurrentSeason();	//	TODO: delete
 		try {
-			displayedTeam = tfsService.selectTfsByAbbr(teamAbbr, currentSeason);
+			displayedTeam = tfsService.selectTfsByAbbrSeason(teamAbbr, currentSeason);
 		} catch (NoResultException e) {
 			//	Catch
 		}
 		if (displayedTeam != null) {
 			currentSeason = displayedTeam.getSeason();
-			this.chartTitle = "NEC " + currentSeason.getSeasonNumber() + " - " + displayedTeam.getTeam().getTeamCity();
+			this.chartTitle = "NEC " + currentSeason.getSeasonNumber() + " - " + displayedTeam.getTeamCity();
 			seasonChartModel = createAnimatedModel(NEC.SEASON);
 		}
 	}
@@ -111,6 +116,153 @@ public class TeamChartBean implements Serializable {
 	public LineChartModel getSuperbowlModel() {
 		superbowlModel = createAnimatedModel(NEC.SUPER_BOWL);
 		return superbowlModel;
+	}
+	
+	public LineChartModel getAllTimeModel() {
+		allTimeModel = generateAllTimeModel();
+		return allTimeModel;
+	}
+	
+	private LineChartModel generateDefaultModel() {
+		LineChartModel chartModel = new LineChartModel();
+		chartModel.setTitle(chartTitle);
+		chartModel.setAnimate(true);
+		chartModel.setLegendPosition("ne");
+		chartModel.setShowDatatip(true);
+	
+		Axis yAxis = chartModel.getAxis(AxisType.Y);
+		yAxis.setMax(1.0);
+		yAxis.setMin(0.0);
+		yAxis.setLabel("Win Percentage:");
+		
+		return chartModel;
+	}
+	
+	private LineChartSeries getStraightUpSeries() {
+		LineChartSeries straightUpSeries = new LineChartSeries();
+		straightUpSeries.setLabel("No Spread");
+		straightUpSeries.setFill(false);
+		
+		return straightUpSeries;
+	}
+	
+	private LineChartSeries getVsSpreadSeries() {
+		LineChartSeries spread1Series = new LineChartSeries();
+		spread1Series.setLabel("Vs. Spread");
+		spread1Series.setFill(false);
+		
+		return spread1Series;
+	}
+	
+	private double calculatePct(RecordAggregator ragg, PickType spreadType) {
+		if (ragg == null) {
+			log.warning("Record aggregator not defined! returning 0.0");
+			return 0.0;
+		}
+		int wins;
+		if (spreadType == PickType.STRAIGHT_UP) {
+			wins = ragg.getRawWins();
+		}
+		else if (spreadType == PickType.SPREAD2) {
+			wins = ragg.getWinsATS2();
+		}
+		else {
+			wins = ragg.getWinsATS1();
+		}
+		int totalRecords = ragg.getRecords().size();
+		double percentage;
+		if (totalRecords != 0) {
+			percentage = (double) wins / (double) totalRecords;
+		}
+		else {
+			percentage = 0.5;
+		}
+		
+		return percentage;
+	}
+	
+	public LineChartModel generateAllTimeModel() {
+		LineChartModel model = generateDefaultModel();
+		model.setTitle("All Time Performance:");
+		
+		CategoryAxis seasonAxis = new CategoryAxis("Season Number:");
+		CategoryAxis weeksAxis = new CategoryAxis("Weeks:");
+		weeksAxis.setTickAngle(90);
+		
+		BarChartSeries barRawSeries = new BarChartSeries();
+		barRawSeries.setLabel("Season - No Spread");
+		barRawSeries.setXaxis(AxisType.X);
+		barRawSeries.setYaxis(AxisType.Y);
+		
+		BarChartSeries barSpread1Series = new BarChartSeries();
+		barSpread1Series.setLabel("Season - vs Spread");
+		barRawSeries.setXaxis(AxisType.X);
+		barRawSeries.setYaxis(AxisType.Y);
+		
+		LineChartSeries straightUpSeries = getStraightUpSeries();
+		straightUpSeries.setLabel("Weeks - No Spread");
+		straightUpSeries.setXaxis(AxisType.X2);
+		straightUpSeries.setYaxis(AxisType.Y);
+		
+		LineChartSeries spread1Series = getVsSpreadSeries();
+		spread1Series.setLabel("Weeks - Vs Spread");
+		spread1Series.setXaxis(AxisType.X2);
+		spread1Series.setYaxis(AxisType.Y);
+		
+		//	Get all seasons, and reverse order (1 to n from n to 1)
+		List<Season> allSeasons = seasonService.findAll();
+		Collections.reverse(allSeasons);
+		
+		Season minSeason = allSeasons.get(0);
+		model.getAxis(AxisType.X).setMin(minSeason.getSeasonNumber());
+		
+		for (Season season : allSeasons) {
+			Integer rangeStart = 1;
+			Integer rangeEnd;
+			
+			//	If the current season, handle only weeks that have already passed
+			if (season.getCurrentSeason()) {
+				rangeEnd = season.getCurrentWeek().getWeekNumber();
+			}
+			//	If a past season, handle all weeks in range
+			else {
+				
+				rangeEnd = 0;
+				for (Subseason ss : season.getSubseasons()) {
+					rangeEnd += ss.getWeeks().size();
+				}
+			}
+			
+			List<Week> weeks = weekService.selectConcurrentWeeksInRangeInSeason(season, rangeStart, rangeEnd);
+			RecordAggregator ragg = null;
+			for (Week w : weeks) {
+				ragg = recordService.getRecordForConcurrentWeeksForAtfs(displayedTeam, rangeStart, w.getWeekNumber(), NEC.SEASON, true);
+				//	Get the total score, then convert to a percentage of total games played
+				double rawPct = calculatePct(ragg, PickType.STRAIGHT_UP);
+				double ats1Pct = calculatePct(ragg, PickType.SPREAD1);
+				String weekVal = season.getSeasonNumber() + "." + w.getWeekNumber();
+				straightUpSeries.set(weekVal, rawPct);
+				spread1Series.set(weekVal, ats1Pct);
+			}
+			
+			String seasonval = season.getSeasonNumber().toString();
+			//	Uses the final overall win pct for the bars
+			double rawTotal = calculatePct(ragg, PickType.STRAIGHT_UP);
+			barRawSeries.set(seasonval, rawTotal);
+			
+			double atsTotal = calculatePct(ragg, PickType.SPREAD1);
+			barSpread1Series.set(seasonval, atsTotal);	
+		}
+		
+		model.getAxes().put(AxisType.X, seasonAxis);
+		model.getAxes().put(AxisType.X2, weeksAxis);
+		
+		model.addSeries(barRawSeries);
+		model.addSeries(barSpread1Series);
+		model.addSeries(straightUpSeries);
+		model.addSeries(spread1Series);
+		
+		return model;
 	}
 	
 	private LineChartModel createAnimatedModel(NEC displayType) {
@@ -209,7 +361,7 @@ public class TeamChartBean implements Serializable {
 			try {
 				game = gameService.selectGameByTeamWeek(displayedTeam, w);
 			} catch (NoResultException e) {
-				log.warning("No game found for week " + w.getWeekNumber() + " for " + displayedTeam.getTeam().getTeamAbbr() + " - skipping spread score");
+				log.warning("No game found for week " + w.getWeekNumber() + " for " + displayedTeam.getTeamAbbr() + " - skipping spread score");
 			}
 			if (game != null) {
 				//	Add the game to the list of games with spread2, to create a series for them if they exist for this team
@@ -282,3 +434,4 @@ public class TeamChartBean implements Serializable {
 		return displayedTeam;
 	}
 }
+

@@ -34,6 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 					+ "INNER JOIN FETCH p.game g "
 					+ "INNER JOIN FETCH p.applicableRecord r "
 					+ "WHERE g.gameId = :gameId "
+					+ "AND r.recordType = :recordType"),
+	@NamedQuery(name="Pick.selectPlayerPicksForType",
+				query="SELECT p FROM Pick p "
+					+ "INNER JOIN FETCH p.player pl "
+					+ "INNER JOIN FETCH p.applicableRecord r "
+					+ "WHERE pl.abstractTeamForSeasonId = :atfsId "
 					+ "AND r.recordType = :recordType")
 })
 @NamedQuery(name="Pick.findAll", query="SELECT p FROM Pick p")

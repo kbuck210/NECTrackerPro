@@ -1,15 +1,114 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE xml>
-<playersForSeason xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nec="29">
-	<pfs name="Kevin Buckley" since="2005" nn="The Terp" epl="Terp" xlscol="2" email="kbuck210@gmail.com" avatar="img/avatars/terps_logo.png" />
-	<pfs name="Brian Buckley" since="1986" nn="The Tracker" epl="Tracker" xlscol="1" email="bbuckley20@comcast.net" avatar="img/avatars/tracker_logo.png" />
-	<pfs name="John Thompson" since="2010" nn="Iceman" epl="Iceman" xlscol="3" email="johnjthompson5@gmail.com" avatar="img/avatars/iceman_logo.jpg" />
-	<pfs name="Joe Buckley" since="1986" nn="The Senator" epl="Senator" xlscol="4" email="jeb@edclectics-llc.org" avatar="img/avatars/porgy.jpg" />
-	<pfs name="David Buckley" since="1986" nn="Commish" epl="Commish" xlscol="5" email="thebuck@cox.net" avatar="img/avatars/vegas.png" />
-	<pfs name="Pete Peterson" since="1986" nn="Kingfish" epl="Kingfish" xlscol="6" email="pvpeterson@comcast.net" avatar="img/avatars/Kingfish_logo.jpg" />
-	<pfs name="Derek Peterson" since="2000" nn="The Big Cat" epl="Big Cat" xlscol="7" email="dbp@hartadvisers.com" avatar="img/avatars/big_cat_logo.png" />
-	<pfs name="Paul Buckley" since="1986" nn="The Clam Man" epl="Clam Man" xlscol="8" email="buckleypa@aol.com" avatar="img/avatars/clam_man_logo.png" />
-	<pfs name="Daniel Buckley" since="2000" nn="The Chief" epl="Chief" xlscol="9" email="danielbuckley003@hotmail.com" avatar="img/avatars/chief_logo.png" />
-	<pfs name="Will Buckley" since="2000" nn="Willy B" epl="Willy B" xlscol="10" email="bi11ybux81@yahoo.com" avatar="img/avatars/honduras-flag.gif" />
-	<pfs name="Javier Vargas" since="2005" nn="Po' Boy" epl="Po' Boy" xlscol="11" email="javier.alonzo.vargas@gmail.com" avatar="img/avatars/shrimp_poboy.jpg" />
-</playersForSeason>
+<players nec="29" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<player>
+		<name>Kevin Buckley</name>
+		<nickname>The Terp</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/terps_logo.png</avatar>
+		<excelCol>2</excelCol>
+		<excelName>Terp</excelName>
+		<email>kbuck210@gmail.com</email>
+	</player>
+	<player>
+		<name>Brian Buckley</name>
+		<nickname>The Tracker</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/tracker.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Tracker</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+	<player>
+		<name>John Thompson</name>
+		<nickname>Iceman</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/iceman.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Iceman</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+	<player>
+		<name>Joe Buckley</name>
+		<nickname>The Senator</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/pogie.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Senator</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+	<player>
+		<name>David Buckley</name>
+		<nickname>Vegas Varmint</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/varmint.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Varmint</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+	<player>
+		<name>Pete Peterson</name>
+		<nickname>Kingfish</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/tracker.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Kingfish</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+	<player>
+		<name>Derek Peterson</name>
+		<nickname>The Big Cat</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/tracker.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Big Cat</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+	<player>
+		<name>Paul Buckley</name>
+		<nickname>The Clam Man</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/tracker.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Clam Man</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+	<player>
+		<name>Daniel Buckley</name>
+		<nickname>The Chief</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/tracker.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Chief</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+	<player>
+		<name>Will Buckley</name>
+		<nickname>Willy B</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/tracker.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Willy B</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+	<player>
+		<name>Javier Vargas</name>
+		<nickname>Po' Boy</nickname>
+		<sinceYear>2005</sinceYear>
+		<commish>N</commish>
+		<avatar>img/avatars/tracker.png</avatar>
+		<excelCol>1</excelCol>
+		<excelName>Po' Boy</excelName>
+		<email>bbuckley20@comcast.net</email>
+	</player>
+</players>

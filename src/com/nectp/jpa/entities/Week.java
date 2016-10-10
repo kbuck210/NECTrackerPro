@@ -4,6 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -54,7 +56,18 @@ public class Week implements Serializable, Comparable<Week> {
 	public enum WeekStatus {
     	WAITING,
     	ACTIVE,
-    	COMPLETED
+    	COMPLETED;
+		
+		public static WeekStatus getWeekStatusForString(final String statusString) {
+    		if (statusString == null || statusString.trim().isEmpty()) return null;
+    		
+    		for (WeekStatus status : WeekStatus.values()) {
+    			if (status.name().toLowerCase().trim().equals(statusString.toLowerCase().trim())) {
+    				return status;
+    			}
+    		}
+    		return null;
+    	}
     }
 	
 	@Id
@@ -135,6 +148,35 @@ public class Week implements Serializable, Comparable<Week> {
 		game.setWeek(null);
 
 		return game;
+	}
+	
+	/** Return a list of the games in the week that are on the specified day
+	 * 
+	 * @param dayOfWeek an int in the format GregorianCalendar.DAY_OF_WEEK
+	 * @return a list of the games in the week that are on the specified day
+	 */
+	public List<Game> getGamesInWeekForDay(int dayOfWeek) {
+		List<Game> dayGames = new ArrayList<Game>();
+		for (Game g : games) {
+			if (g.getGameDate().get(GregorianCalendar.DAY_OF_WEEK) == dayOfWeek) {
+				dayGames.add(g);
+			}
+		}
+		return dayGames;
+	}
+	
+	/** Returns a list of the games in the week that are prior to the Sunday games
+	 * 
+	 * @return a list of the games in the week that are prior to the Sunday games
+	 */
+	public List<Game> getEarlyGames() {
+		List<Game> earlyGames = new ArrayList<Game>();
+		for (Game g : games) {
+			if (g.getGameDate().get(GregorianCalendar.DAY_OF_WEEK) > GregorianCalendar.MONDAY) {
+				earlyGames.add(g);
+			}
+		}
+		return earlyGames;
 	}
 
 	public List<Record> getRecords() {

@@ -13,24 +13,22 @@ public class TeamFactoryBean extends TeamServiceBean implements TeamFactory {
 	private static final long serialVersionUID = -4296204769641649399L;
 
 	@Override
-	public Team createTeam(String teamName, String teamAbbr, String teamCity) {
+	public Team createTeam(Integer franchiseId) {
 		Logger log = Logger.getLogger(TeamFactoryBean.class.getName());
 		Team team = null;
-		if (teamName == null || teamAbbr == null || teamCity == null) {
-			log.severe("Parameters not defined, can not create Team!");
+		if (franchiseId == null) {
+			log.severe("Franchise ID not defined, can not create Team!");
 		}
 		else {
 			//	Check whether the specified team exists
 			try {
-				team = selectTeamByNameCity(teamName, teamCity);
-				log.info("Team exists for: " + teamCity + " " + teamName);
+				team = selectTeamByFranchiseId(franchiseId);
+				log.info("Franchise exists for: " + franchiseId.toString());
 			} 
 			//	If no results found, create new team
 			catch (NoResultException e) {
 				team = new Team();
-				team.setTeamAbbr(teamAbbr);
-				team.setTeamCity(teamCity);
-				team.setTeamName(teamName);
+				team.setFranchiseId(franchiseId);
 				
 				boolean success = insert(team);
 				if (!success) {

@@ -23,9 +23,24 @@ public class PlayerFactoryBean extends PlayerServiceBean implements PlayerFactor
 			//	Check whether player already exists before creating
 			try {
 				player = selectPlayerByName(playerName);
+				
+				//	If player found, check whether sinceyear or avatar are updated
+				boolean update = false;
+				if (!player.getSinceYear().equals(sinceYear)) {
+					player.setSinceYear(sinceYear);
+					update = true;
+				}
+				if (!player.getAvatarUrl().toLowerCase().equals(avatarUrl.toLowerCase())) {
+					player.setAvatarUrl(avatarUrl);
+					update = true;
+				}
+				if (update) {
+					update(player);
+				}
+				
 			} catch (NoResultException e) {
 				player = new Player();
-				player.setTeamName(playerName);
+				player.setName(playerName);
 				player.setSinceYear(sinceYear);
 				player.setAvatarUrl(avatarUrl);
 				player.setPassword(playerName);	//	Default password is player name

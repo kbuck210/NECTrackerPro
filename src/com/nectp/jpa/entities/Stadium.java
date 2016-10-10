@@ -31,6 +31,20 @@ public class Stadium implements Serializable {
     	OPEN,
     	DOME,
     	RETRACTABLE;
+		
+		@Override
+		public String toString() {
+			switch(this) {
+			case OPEN:
+				return "Open";
+			case DOME:
+				return "Dome";
+			case RETRACTABLE:
+				return "Retractable";
+			default:
+				return null;
+			}
+		}
     	
     	public static RoofType getRoofTypeForString(String type) {
     		RoofType rtype = null;

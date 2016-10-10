@@ -8,7 +8,8 @@ import com.nectp.jpa.entities.TeamForSeason;
 
 public interface TeamForSeasonFactory extends TeamForSeasonService {
 
-	public TeamForSeason createTeamForSeason(Team team, Season season, Division division, Stadium stadium, 
-			String nickname, String excelPrintName, String homeHelmet, String awayHelmet);
-	
+	public TeamForSeason createTeamForSeason(Team team, Season season, String teamAbbr, String teamName, 
+			String teamCity, Division division, Stadium stadium, String nickname, 
+			String excelPrintName, String homeHelmet, String awayHelmet);
 }
+

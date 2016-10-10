@@ -17,8 +17,9 @@ public class TeamForSeasonFactoryBean extends TeamForSeasonServiceBean implement
 	private static final long serialVersionUID = -6583194394407751179L;
 
 	@Override
-	public TeamForSeason createTeamForSeason(Team team, Season season, Division division, Stadium stadium, String nickname, String excelPrintName, String homeHelmet,
-			String awayHelmet) {
+	public TeamForSeason createTeamForSeason(Team team, Season season, String teamAbbr, String teamName, 
+			String teamCity, Division division, Stadium stadium, String nickname, 
+			String excelPrintName, String homeHelmet, String awayHelmet) {
 
 		Logger log = Logger.getLogger(TeamForSeasonFactoryBean.class.getName());
 		TeamForSeason tfs = null;
@@ -29,10 +30,61 @@ public class TeamForSeasonFactoryBean extends TeamForSeasonServiceBean implement
 		else {
 			//	Check to see if a TFS already exists, otherwise create one
 			try {
-				tfs = selectTfsByAbbr(team.getTeamAbbr(), season);
+				tfs = selectTfsByTeamSeason(team, season);
+				
+				//	Check whether the team for season needs to be updated
+				boolean update = false;
+				if (!tfs.getTeamAbbr().equals(teamAbbr)) {
+					tfs.setTeamAbbr(teamAbbr);
+					update = true;
+				}
+				if (!tfs.getTeamCity().equals(teamCity)) {
+					tfs.setTeamCity(teamCity);
+					update = true;
+				}
+				if (!tfs.getName().equals(teamName)) {
+					tfs.setName(teamName);
+					update = true;
+				}
+				if (!tfs.getDivision().equals(division)) {
+					tfs.getDivision().removeTeamHistory(tfs);
+					tfs.setDivision(division);
+					division.addTeamHistory(tfs);
+					update = true;
+				}
+				if (!tfs.getStadium().equals(stadium)) {
+					tfs.getStadium().removeTeamUsingStadium(tfs);
+					tfs.setStadium(stadium);
+					stadium.addTeamUsingStadium(tfs);
+					update = true;
+				}
+				if (!tfs.getNickname().equals(nickname)) {
+					tfs.setNickname(nickname);
+					update = true;
+				}
+				if (!tfs.getExcelPrintName().equals(excelPrintName)) {
+					tfs.setExcelPrintName(excelPrintName);
+					update = true;
+				}
+				if (!tfs.getHomeHelmetUrl().equals(homeHelmet)) {
+					tfs.setHomeHelmetUrl(homeHelmet);
+					update = true;
+				}
+				if (!tfs.getAwayHelmetUrl().equals(awayHelmet)) {
+					tfs.setAwayHelmetUrl(awayHelmet);
+					update = true;
+				}
+				
+				if (update) {
+					update(tfs);
+				}
+				
 			} catch (NoResultException e) {
 				tfs = new TeamForSeason();
 				
+				tfs.setTeamAbbr(teamAbbr);
+				tfs.setTeamCity(teamCity);
+				tfs.setName(teamName);
 				tfs.setNickname(nickname);
 				tfs.setExcelPrintName(excelPrintName);
 				tfs.setHomeHelmetUrl(homeHelmet);
@@ -61,3 +113,4 @@ public class TeamForSeasonFactoryBean extends TeamForSeasonServiceBean implement
 	}
 
 }
+
