@@ -33,7 +33,11 @@
 		<composite:attribute name="timeRemaining" default="60:00" />
 		<composite:attribute name="homeArrow" default="img/arrows/home-medDark.png" />
 		<composite:attribute name="awayArrow" default="img/arrows/away-medDark.png" />
-		<composite:attribute name="selectable" default="unselectable" />
+		<composite:attribute name="homeSelectable" default="unselectable" />
+		<composite:attribute name="awaySelectable" default="unselectable" />
+		<composite:attribute name="homeGrayed" default="" />
+		<composite:attribute name="awayGrayed" default="" />
+		<composite:attribute name="singlePick" default="" />
 	</composite:interface>
 	
 	<composite:implementation>
@@ -56,10 +60,15 @@
 			  					<span id="#{cc.attrs.homeBadgeId}" class="selected-badge home #{cc.attrs.homeSelected}">
 			  						<img src="#{cc.attrs.homePickImage}" />
 			  					</span>
-			  					<h:link class="helmet-link" outcome="teamPage">
+			  					<h:link outcome="teamPage">
 			  						<f:param name="teamAbbr" value="#{cc.attrs.homeTeamUrl}" />
-			  						<figure><img id="#{cc.attrs.homeHelmetId}" class="helmet #{cc.attrs.selectable}" src="#{cc.attrs.homeHelmet}" /></figure>
+			  						<figure><img id="#{cc.attrs.homeHelmetId}" class="helmet #{cc.attrs.homeSelectable} #{cc.attrs.homeGrayed} #{cc.attrs.singlePick}" src="#{cc.attrs.homeHelmet}" /></figure>
 			  					</h:link>
+			  					<!--  
+			  					<a class="helmet-link" href="#{cc.attrs.homeTeamUrl}">
+			  						<figure><img id="#{cc.attrs.homeHelmetId}" class="helmet #{cc.attrs.selectable}" src="#{cc.attrs.homeHelmet}" /></figure>
+			  					</a>
+			  					-->
 			  					<h6>Home Team:</h6>
 			  				</div>
 			  			</div>
@@ -108,10 +117,9 @@
 								<span id="#{cc.attrs.awayBadgeId}" class="selected-badge away #{cc.attrs.awaySelected}" >
 									<img src="#{cc.attrs.awayPickImage}" />
 								</span>
-								<h:link class="helmet-link" outcome="teamPage">
-									<f:param name="teamAbbr" value="#{cc.attrs.awayTeamUrl}" />
-									<figure><img id="#{cc.attrs.awayHelmetId}" class="helmet #{cc.attrs.selectable}" src="#{cc.attrs.awayHelmet}" /></figure>
-								</h:link>
+								<a class="helmet-link" href="#{cc.attrs.awayTeamUrl}">
+									<figure><img id="#{cc.attrs.awayHelmetId}" class="helmet #{cc.attrs.awaySelectable} #{cc.attrs.awayGrayed} #{cc.attrs.singlePick}" src="#{cc.attrs.awayHelmet}" /></figure>
+								</a>
 								<h6>Away Team:</h6>
 							</div>
 						</div>
@@ -124,3 +132,4 @@
 	</composite:implementation>
 
 </html>
+

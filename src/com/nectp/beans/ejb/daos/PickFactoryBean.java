@@ -9,7 +9,6 @@ import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.PickFactory;
-import com.nectp.beans.remote.daos.PickService;
 import com.nectp.beans.remote.daos.RecordFactory;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Game;
@@ -26,9 +25,6 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 
 	@EJB
 	private GameService gameService;
-	
-	@EJB
-	private PickService pickService;
 	
 	@EJB
 	private RecordFactory recordFactory;
@@ -52,7 +48,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 			
 			//	First check to determine whether the pick already exists, creating it if not
 			try {
-				pick = pickService.selectPlayerPickForGame(player, gameForPick);
+				pick = selectPlayerPickForGameForType(player, gameForPick, pickFor);
 			} catch (NoResultException e) {
 				if (!checkPickEligibility(player, pickedTeam, pickFor)) {
 					log.severe("The selected pick is ineligible, can not create pick of "
@@ -79,6 +75,10 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				pick.setPickedTeam(pickedTeam);
 				pickedTeam.addPickForTeam(pick);
 				
+				//	If the specified pick type is spread2, but no spread2 exists, use spread1
+				if (pickType == PickType.SPREAD2 && gameForPick.getSpread2() == null) {
+					pickType = PickType.SPREAD1;
+				}
 				pick.setPickType(pickType);
 				
 				boolean success = insert(pick);
@@ -122,7 +122,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 			for (Record record : records) {
 				if (record.getTeam() instanceof PlayerForSeason) {
 					PlayerForSeason pl = (PlayerForSeason)record.getTeam();
-					List<Pick> picks = pickService.selectPlayerPicksForType(pl, pickFor);
+					List<Pick> picks = selectPlayerPicksForType(pl, pickFor);
 					for (Pick p : picks) {
 						if (p.getPickedTeam().equals(pickedTeam)) {
 							log.warning(player.getNickname() + " has already picked "
@@ -139,4 +139,5 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 	}
 
 }
+
 

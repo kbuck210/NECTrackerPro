@@ -81,7 +81,8 @@ public class OtherGamesBean implements Serializable, GameContainer {
 		NEC displayType = NEC.SEASON;
 		bean.setGameDisplayType(displayType);
 		bean.setGame(game);
-		bean.setSelectable(false);
+		bean.setHomeSelectable(false);
+		bean.setAwaySelectable(false);
 		TeamForSeason homeTeam = game.getHomeTeam();
 		RecordAggregator homeRagg = recordService.getOverallRecordThroughWeekForAtfs(homeTeam, displayWeek, displayType, false);
 		bean.setHomeRecord(createRecordString(homeRagg));

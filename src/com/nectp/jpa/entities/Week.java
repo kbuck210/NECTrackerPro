@@ -48,7 +48,14 @@ import java.util.List;
 				query="SELECT w FROM Week w "
 					+ "WHERE w.subseason.season.seasonNumber = :seasonNumber "
 					+ "AND w.weekNumber >= :lowerBound "
-					+ "AND w.weekNumber <= :upperBound")
+					+ "AND w.weekNumber <= :upperBound"),
+	@NamedQuery(name="Week.selectWeeksInSubseason",
+				query="SELECT w FROM Week w "
+					+ "INNER JOIN FETCH w.subseason ss "
+					+ "INNER JOIN FETCH ss.season s "
+					+ "WHERE ss.subseasonId = :subseasonId "
+					+ "AND w.weekNumber <= s.currentWeek.weekNumber "
+					+ "ORDER BY w.weekNumber ASC")
 })
 public class Week implements Serializable, Comparable<Week> {
 	private static final long serialVersionUID = 1L;

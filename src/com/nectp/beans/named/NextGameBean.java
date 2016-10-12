@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -31,16 +32,16 @@ import com.nectp.jpa.entities.Week.WeekStatus;
 public class NextGameBean implements Serializable {
 	private static final long serialVersionUID = 1651701974905343726L;
 
-	@Inject
+	@EJB
 	private WeekService weekService;
 
-	@Inject
+	@EJB
 	private GameService gameService;
 
-	@Inject
+	@EJB
 	private TeamForSeasonService teamService;
 
-	@Inject
+	@EJB
 	private SeasonService seasonService;
 
 	private Season currentSeason;

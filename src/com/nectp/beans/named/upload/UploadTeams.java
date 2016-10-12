@@ -5,14 +5,14 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.FileUploadEvent;
 import org.w3c.dom.Element;
 
 import com.nectp.beans.ejb.daos.xml.XmlTeamUpdater;
-import com.nectp.beans.named.FileUploadImpl;
 import com.nectp.beans.remote.daos.ConferenceFactory;
 import com.nectp.beans.remote.daos.DivisionFactory;
 import com.nectp.beans.remote.daos.SeasonService;
@@ -50,22 +50,22 @@ public class UploadTeams extends FileUploadImpl {
 	
 	private Logger log;
 	
-	@Inject
+	@EJB
 	private SeasonService seasonService;
 	
-	@Inject
+	@EJB
 	private TeamFactory teamFactory;
 	
-	@Inject
+	@EJB
 	private TeamForSeasonFactory tfsFactory;
 	
-	@Inject
+	@EJB
 	private ConferenceFactory confFactory;
 	
-	@Inject
+	@EJB
 	private DivisionFactory divFactory;
 	
-	@Inject
+	@EJB
 	private StadiumService stadiumService;
 	
 	public UploadTeams() {
@@ -73,7 +73,8 @@ public class UploadTeams extends FileUploadImpl {
 	}
 
 	@Override
-	public void upload() {
+	public void upload(FileUploadEvent event) {
+		file = event.getFile();
 		if (file != null) {
 			try {
 				InputStream iStream = file.getInputstream();

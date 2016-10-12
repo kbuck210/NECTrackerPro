@@ -15,8 +15,14 @@ $(".helmet-link").click(function() {
 		toggleId = "#away-badge" + idNum;
 		removeId = "#home-badge" + idNum;
 	}
-	
-	if (toggleId.length > 0 && removeId.length > 0 && $(toggleId).hasClass("selectable")) {
+	//	check first whether this is a single pick selection (i.e. unselect all other selectables)
+	if (toggleId.length > 0 && $(toggleId).hasClass("selectable") && $(toggleId).hasClass("singlePick")) {
+		//	First remove the 'selected' class from all selectables, then toggle the clicked Id
+		$(".selectable").removeClass("selected");
+		$(toggleId).toggleClass("selected");
+	}
+	//	If not a single pick selection, check whether the id is selectable
+	else if (toggleId.length > 0 && removeId.length > 0 && $(toggleId).hasClass("selectable")) {
 		$(toggleId).toggleClass("selected");
   		$(removeId).removeClass("selected");
   		event.preventDefault();

@@ -10,9 +10,9 @@ import com.nectp.jpa.entities.Week;
 
 public interface PickService extends DataService<Pick> {
 
-	public Pick selectPlayerPickForGame(PlayerForSeason player, Game game);
+	public Pick selectPlayerPickForGameForType(PlayerForSeason player, Game game, NEC pickFor);
 	
-	public List<Pick> selectPlayerPicksForWeek(PlayerForSeason player, Week week);
+	public List<Pick> selectPlayerPicksForWeekForType(PlayerForSeason player, Week week, NEC pickFor);
 
 	public List<Pick> selectPicksForGameByType(Game game, NEC pickType);
 

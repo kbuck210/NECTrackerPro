@@ -5,15 +5,15 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
 
+import org.primefaces.event.FileUploadEvent;
 import org.w3c.dom.Element;
 
 import com.nectp.beans.ejb.daos.xml.XmlWeekUpdater;
-import com.nectp.beans.named.FileUploadImpl;
 import com.nectp.beans.remote.daos.GameFactory;
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.beans.remote.daos.StadiumService;
@@ -57,22 +57,22 @@ public class UploadWeek extends FileUploadImpl {
 
 	private Logger log;
 	
-	@Inject
+	@EJB
 	private SeasonService seasonService;
 	
-	@Inject
+	@EJB
 	private SubseasonService subseasonService;
 	
-	@Inject
+	@EJB
 	private WeekFactory weekFactory;
 	
-	@Inject
+	@EJB
 	private GameFactory gameFactory;
 	
-	@Inject
+	@EJB
 	private StadiumService stadiumService;
 	
-	@Inject
+	@EJB
 	private TeamForSeasonService tfsService;
 	
 	public UploadWeek() {
@@ -80,7 +80,8 @@ public class UploadWeek extends FileUploadImpl {
 	}
 	
 	@Override
-	public void upload() {
+	public void upload(FileUploadEvent event) {
+		file = event.getFile();
 		if (file != null) {
 			try {
 				InputStream iStream = file.getInputstream();

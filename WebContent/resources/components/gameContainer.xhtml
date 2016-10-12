@@ -10,7 +10,6 @@
 	   xmlns:gc="http://java.sun.com/jsf/composite/components">
 
 	<composite:interface>
-		<composite:attribute name="formId" required="true" />
 		<composite:attribute name="gcBean" type="com.nectp.beans.remote.GameContainer" required="true" />
 		<composite:attribute name="headline" required="true" />
 		<composite:attribute name="subheadline" />
@@ -18,48 +17,49 @@
 	</composite:interface>
 
 	<composite:implementation>
-		<h:form id="#{cc.attrs.formId}">
-			<div class="blog-post shadow #{cc.attrs.blogstyle}">
-	          <!-- Player Picks Area -->
-			  <div class="picks-area-title">
-				<h3 class="picks-headline">#{cc.attrs.headline}<small class="week-number">#{cc.attrs.subheadline}</small></h3>
-	          </div>
-	          
-	          <ui:repeat value="#{cc.attrs.gcBean.gameBeans}" var="gameBean">
-	          	<gc:gameRow rowId="#{gameBean.rowId}"
-	          				  homeCity="#{gameBean.homeCity}" 
-	          				  homeRecord="#{gameBean.homeRecord}"
-	          				  homeScore="#{gameBean.homeScore}" 
-	          				  homeHelmet="#{gameBean.homeHelmet}"
-	          				  homeHelmetId="#{gameBean.homeHelmetId}"
-	          				  homeBadgeId="#{gameBean.homeBadgeId}"
-	          				  homeSelected="#{gameBean.homeSelected}"
-	          				  homePickImage="#{gameBean.homePickImage}"
-	          				  homeTeamUrl="#{gameBean.homeTeamUrl}"
-	          				  awayCity="#{gameBean.awayCity}"
-	          				  awayRecord="#{gameBean.awayRecord}"
-	          				  awayScore="#{gameBean.awayScore}"
-	          				  awayHelmet="#{gameBean.awayHelmet}"
-	          				  awayHelmetId="#{gameBean.awayHelmetId}"
-	          				  awayBadgeId="#{gameBean.awayBadgeId}"
-	          				  awaySelected="#{gameBean.awaySelected}"
-	          				  awayPickImage="#{gameBean.awayPickImage}"
-	          				  awayTeamUrl="#{gameBean.awayTeamUrl}"
-	          				  spread="#{gameBean.spread}"
-	          				  gameTime="#{gameBean.gameTime}"
-	          				  timeRemaining="#{gameBean.timeRemaining}"
-	          				  homeArrow="#{gameBean.homeArrow}"
-	          				  awayArrow="#{gameBean.awayArrow}"
-	          				  selectable="#{gameBean.selectable}" > 
-	          	
-	          		<p:effect type="drop" event="load" > 
-	          			<f:param name="mode" value="'show'" />
-	          		</p:effect>
-	          	</gc:gameRow>
-	          </ui:repeat>
-	        </div>
-		</h:form>
-	
+		<div class="blog-post shadow #{cc.attrs.blogstyle}">
+          <!-- Player Picks Area -->
+		  <div class="picks-area-title">
+			<h3 class="picks-headline">#{cc.attrs.headline}<small class="week-number">#{cc.attrs.subheadline}</small></h3>
+          </div>
+          
+          <ui:repeat value="#{cc.attrs.gcBean.gameBeans}" var="gameBean">
+          	<gc:gameRow rowId="#{gameBean.rowId}"
+          				  homeCity="#{gameBean.homeCity}" 
+          				  homeRecord="#{gameBean.homeRecord}"
+          				  homeScore="#{gameBean.homeScore}" 
+          				  homeHelmet="#{gameBean.homeHelmet}"
+          				  homeHelmetId="#{gameBean.homeHelmetId}"
+          				  homeBadgeId="#{gameBean.homeBadgeId}"
+          				  homeSelected="#{gameBean.homeSelected}"
+          				  homePickImage="#{gameBean.homePickImage}"
+          				  homeTeamUrl="#{gameBean.homeTeamUrl}"
+          				  awayCity="#{gameBean.awayCity}"
+          				  awayRecord="#{gameBean.awayRecord}"
+          				  awayScore="#{gameBean.awayScore}"
+          				  awayHelmet="#{gameBean.awayHelmet}"
+          				  awayHelmetId="#{gameBean.awayHelmetId}"
+          				  awayBadgeId="#{gameBean.awayBadgeId}"
+          				  awaySelected="#{gameBean.awaySelected}"
+          				  awayPickImage="#{gameBean.awayPickImage}"
+          				  awayTeamUrl="#{gameBean.awayTeamUrl}"
+          				  spread="#{gameBean.spread}"
+          				  gameTime="#{gameBean.gameTime}"
+          				  timeRemaining="#{gameBean.timeRemaining}"
+          				  homeArrow="#{gameBean.homeArrow}"
+          				  awayArrow="#{gameBean.awayArrow}"
+          				  homeSelectable="#{gameBean.homeSelectable}" 
+          				  awaySelectable="#{gameBean.awaySelectable}" 
+          				  homeGrayed="#{gameBean.homeGrayed}" 
+          				  awayGrayed="#{gameBean.awayGrayed}" 
+          				  singlePick="#{gameBean.singlePick}" > 
+          	
+          		<p:effect type="drop" event="load" > 
+          			<f:param name="mode" value="'show'" />
+          		</p:effect>
+          	</gc:gameRow>
+          </ui:repeat>
+        </div>
 	</composite:implementation>
 
 </html>

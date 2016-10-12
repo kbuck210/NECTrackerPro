@@ -116,7 +116,8 @@ public class HomeContentBean implements Serializable {
 		
 		if (user != null) {
 			userInstance = pfsService.selectPlayerInSeason(user, currentSeason);
-			userPicks = pickService.selectPlayerPicksForWeek(userInstance, displayWeek);
+			NEC pickType = displayWeek.getSubseason().getSubseasonType();
+			userPicks = pickService.selectPlayerPicksForWeekForType(userInstance, displayWeek, pickType);
 			//	If the user has any picks for the week, make sure the picks area is displayed
 			if (!userPicks.isEmpty()) {
 				renderPlayerPicks = true;

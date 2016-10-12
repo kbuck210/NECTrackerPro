@@ -172,7 +172,7 @@ public class Season implements Serializable {
 		this.minPicks = minPicks;
 	}
 	
-	public int getMaxPicks() {
+	public Integer getMaxPicks() {
 		return maxPicks;
 	}
 	

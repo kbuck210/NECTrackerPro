@@ -16,19 +16,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="pick")
 @XmlRootElement
 @NamedQueries({
-	@NamedQuery(name="Pick.selectPlayerPickForGame",
+	@NamedQuery(name="Pick.findAll", query="SELECT p FROM Pick p"),
+	@NamedQuery(name="Pick.selectPlayerPickForGameForType",
 				query="SELECT DISTINCT p FROM Pick p "
 					+ "INNER JOIN FETCH p.player pl "
 					+ "INNER JOIN FETCH p.game g "
+					+ "INNER JOIN FETCH p.applicableRecord r "
 					+ "WHERE pl.abstractTeamForSeasonId = :playerId "
-					+ "AND g.gameId = :gameId"),
-	@NamedQuery(name="Pick.selectPlayerPicksForWeek",
+					+ "AND g.gameId = :gameId "
+					+ "AND r.recordType = :pickType"),
+	@NamedQuery(name="Pick.selectPlayerPicksForWeekForType",
 				query="SELECT p FROM Pick p "
 					+ "INNER JOIN FETCH p.player pl "
 					+ "INNER JOIN FETCH p.game g "
 					+ "INNER JOIN FETCH g.week w "
+					+ "INNER JOIN FETCH p.applicableRecord r "
 					+ "WHERE pl.abstractTeamForSeasonId = :playerId "
-					+ "AND w.weekId = :weekId"),
+					+ "AND w.weekId = :weekId "
+					+ "AND r.recordType = :pickType"),
 	@NamedQuery(name="Pick.selectPicksForGameByType",
 				query="SELECT p FROM Pick p "
 					+ "INNER JOIN FETCH p.game g "
@@ -42,7 +47,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 					+ "WHERE pl.abstractTeamForSeasonId = :atfsId "
 					+ "AND r.recordType = :recordType")
 })
-@NamedQuery(name="Pick.findAll", query="SELECT p FROM Pick p")
 public class Pick implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -197,3 +201,4 @@ public class Pick implements Serializable {
         return "com.nectp.jpa.entities.Pick[ pickId=" + pickId + " ]";
     }
 }
+

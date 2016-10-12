@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import com.nectp.jpa.entities.AbstractTeamForSeason;
+import com.nectp.jpa.entities.Pick.PickType;
 import com.nectp.jpa.entities.Record;
 import com.nectp.jpa.entities.Season;
 
@@ -483,15 +484,55 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 	 * @param records the records to set
 	 */
 	public void setRecords(List<Record> records) {
-		this.records = records;
+		if (records != null) {
+			//	reset the list of records & add each specified record to the new array
+			this.records = new ArrayList<Record>();
+			for (Record r : records) {
+				addRecord(r);
+			}
+		}
 	}
 	
-	public boolean isSortingAgainstSpread() {
-		return againstSpread;
+	public String toString(PickType printType) {
+		String record;
+		if (printType != null) {
+			if (printType == PickType.STRAIGHT_UP) {
+				record = "(" + rawWins + "-" + rawLosses;
+				if (rawTies > 0) {
+					record += "-" + rawTies;
+				}
+				record += ")";
+			}
+			else {
+				int combinedWin = winsATS1 + winsATS2;
+				int combinedLoss = lossATS1 + lossATS2;
+				int combinedTie = tiesATS1 + tiesATS2;
+				record = "(" + combinedWin + "-" + combinedLoss;
+				if (combinedTie > 0) {
+					record += "-" + combinedTie;
+				}
+				record += ")";
+			}
+		}
+		else {
+			record = "(N/A)";
+		}
+		
+		return record;
 	}
 	
-	public void setSortAgainstSpread(boolean againstSpread) {
-		this.againstSpread = againstSpread;
+	public String scoreString(boolean againstSpread) {
+		String scoreString = "";
+		int score;
+		if (againstSpread) score = totalScore;
+		else score = rawTotal;
+		
+		if (score > 0) {
+			scoreString += "+";
+		}
+		scoreString += score;
+		
+		return scoreString;
 	}
 
 	@Override

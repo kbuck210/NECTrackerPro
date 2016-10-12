@@ -21,16 +21,17 @@ public class PickServiceBean extends DataServiceBean<Pick> implements PickServic
 	private static final long serialVersionUID = -8057607122514555934L;
 
 	@Override
-	public Pick selectPlayerPickForGame(PlayerForSeason player, Game game) {
+	public Pick selectPlayerPickForGameForType(PlayerForSeason player, Game game, NEC pickFor) {
 		Logger log = Logger.getLogger(PickServiceBean.class.getName());
 		Pick pick = null;
 		if (player == null || game == null) {
 			log.severe("Player/Game not defined, can not retrieve pick!");
 		}
 		else {
-			TypedQuery<Pick> pq = em.createNamedQuery("Pick.selectPlayerPickForGame", Pick.class);
+			TypedQuery<Pick> pq = em.createNamedQuery("Pick.selectPlayerPickForGameForType", Pick.class);
 			pq.setParameter("playerId", player.getAbstractTeamForSeasonId());
 			pq.setParameter("gameId", game.getGameId());
+			pq.setParameter("pickType", pickFor.ordinal());
 			try {
 				pick = pq.getSingleResult();
 			} catch (NonUniqueResultException e) {
@@ -51,16 +52,17 @@ public class PickServiceBean extends DataServiceBean<Pick> implements PickServic
 	}
 
 	@Override
-	public List<Pick> selectPlayerPicksForWeek(PlayerForSeason player, Week week) {
+	public List<Pick> selectPlayerPicksForWeekForType(PlayerForSeason player, Week week, NEC pickFor) {
 		Logger log = Logger.getLogger(PickServiceBean.class.getName());
 		List<Pick> picks = null;
 		if (player == null || week == null) {
 			log.severe("Player/Week not defined, can not retrieve pick!");
 		}
 		else {
-			TypedQuery<Pick> pq = em.createNamedQuery("Pick.selectPlayerPicksForWeek", Pick.class);
+			TypedQuery<Pick> pq = em.createNamedQuery("Pick.selectPlayerPicksForWeekForType", Pick.class);
 			pq.setParameter("playerId", player.getAbstractTeamForSeasonId());
 			pq.setParameter("weekId", week.getWeekId());
+			pq.setParameter("pickType", pickFor.ordinal());
 			try {
 				picks = pq.getResultList();
 			} catch (Exception e) {
@@ -120,4 +122,3 @@ public class PickServiceBean extends DataServiceBean<Pick> implements PickServic
 		return picks;
 	}
 }
-

@@ -1,4 +1,4 @@
-package com.nectp.beans.named;
+package com.nectp.beans.named.upload;
 
 import java.io.Serializable;
 
@@ -20,5 +20,14 @@ public abstract class FileUploadImpl implements Serializable, FileUpload {
 	public void setFile(UploadedFile file) {
 		this.file = file;
 	}
+	
+	@Override
+	public String getFilename() {
+		return file == null ? "" : file.getFileName();
+	}
 
+	@Override
+	public boolean getDisabled() {
+		return file == null;
+	}
 }

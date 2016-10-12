@@ -55,7 +55,8 @@ public class PlayerPicksBean implements Serializable, GameContainer {
 		displayWeek = pageBean.getDisplayWeek();
 		
 		if (user != null && displayWeek != null) {
-			List<Pick> userPicks = pickService.selectPlayerPicksForWeek(user, displayWeek);
+			NEC picksFor = displayWeek.getSubseason().getSubseasonType();
+			List<Pick> userPicks = pickService.selectPlayerPicksForWeekForType(user, displayWeek, picksFor);
 			for (Pick p : userPicks) {
 				GameBean bean = new GameBean();
 				Game game = p.getGame();
@@ -64,7 +65,8 @@ public class PlayerPicksBean implements Serializable, GameContainer {
 				boolean againstSpread = (displayType != NEC.TWO_AND_OUT && displayType != NEC.ONE_AND_OUT);
 				bean.setGameDisplayType(displayType);
 				bean.setGame(game);
-				bean.setSelectable(false);
+				bean.setHomeSelectable(false);
+				bean.setAwaySelectable(false);
 				TeamForSeason homeTeam = game.getHomeTeam();
 				RecordAggregator homeRagg = recordService.getAggregateRecordForAtfsForType(homeTeam, displayType, againstSpread);
 				bean.setHomeRecord(createRecordString(homeRagg));

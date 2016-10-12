@@ -26,6 +26,33 @@ public class AddressFactoryBean extends AddressServiceBean implements AddressFac
 			//	Check that the specified address does not already exist
 			try {
 				address = selectByStreetCity(street, city);
+				
+				//	Check whether other attributes need to be updated
+				boolean update = false;
+				if (!address.getState().equals(state)) {
+					address.setState(state);
+					update = true;
+				}
+				if (!address.getZip().equals(zip)) {
+					address.setZip(zip);
+					update = true;
+				}
+				if (!address.getLongitude().equals(longitude)) {
+					address.setLongitude(longitude);
+					update = true;
+				}
+				if (!address.getLatitude().equals(latitude)) {
+					address.setLatitude(latitude);
+					update = true;
+				}
+				if (!address.getCountry().equals(country)) {
+					address.setCountry(country);
+					update = true;
+				}
+				
+				if (update) {
+					update(address);
+				}
 			}
 			//	If not already existing, create it
 			catch (NoResultException e) {

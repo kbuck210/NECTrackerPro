@@ -1,13 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	   xmlns:ui="http://java.sun.com/jsf/facelets"
-	   xmlns:h="http://java.sun.com/jsf/html"
-	   xmlns:f="http://java.sun.com/jsf/core"
-	   xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:gc="http://java.sun.com/jsf/composite/components"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:pe="http://primefaces.org/ui/extensions" >
 
-	<h:body>
-		<h:form>
-			<h:commandButton action="#{loadDataNEC29.createSeason29()}" value="DO IT! - Create season 29 Framework" />
-		</h:form>
-	</h:body>
+	<ui:decorate template="homeTemplate.xhtml">
+		<ui:define name="header">
+			<ui:include src="/header.xhtml" />
+		</ui:define>
+		<ui:define name="content">
+			<!-- Center content update area -->
+			<h:form enctype="multipart/form-data">
+				<p:growl id="growl" showDetail="true" life="2000" sticky="true" />
+				<h:panelGrid columns="2">
+					<p:fieldset legend="Upload Stadiums:">
+						<h:outputText value="Select the Stadiums.xml file to upload: " />
+						<p:fileUpload value="#{uploadStadiums.file}" mode="advanced" 
+									  skinSimple="true" update="growl"
+									  fileUploadListener="#{uploadStadiums.upload}" />
+					</p:fieldset>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+		<ui:define name="footer">
+			<ui:include src="/footer.xhtml" />
+		</ui:define>
+	</ui:decorate>
 </html>

@@ -9,8 +9,8 @@ import java.util.TimeZone;
 import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
 
@@ -84,13 +84,13 @@ public class TeamStatsViewBean implements Serializable {
 	private RecordAggregator teamOverallRecord;
 	private TreeMap<RecordAggregator, List<AbstractTeamForSeason>> divisionRanks;
 	
-	@Inject
+	@EJB
 	private TeamStatisticService teamStats;
 	
-	@Inject
+	@EJB
 	private WeekService weekService;
 	
-	@Inject 
+	@EJB 
 	private GameService gameService;
 	
 	public TeamStatsViewBean() {

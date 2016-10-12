@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nectp.beans.remote.daos.DataService;
 import com.nectp.jpa.entities.Season;
+import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.Week;
 
 public interface WeekService extends DataService<Week> {
@@ -17,5 +18,7 @@ public interface WeekService extends DataService<Week> {
 	public List<Week> selectConcurrentWeeksInRangeInSeason(Season season, int beginning, int end);
 	
 	public List<Week> listAllWeeksInSeason(Season season);
-	
+
+	public List<Week> selectWeeksInSubseason(Subseason subseason);
 }
+

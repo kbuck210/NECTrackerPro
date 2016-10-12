@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
 
@@ -21,8 +21,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.primefaces.event.FileUploadEvent;
 
-import com.nectp.beans.named.FileUploadImpl;
 import com.nectp.beans.remote.daos.PickFactory;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
 import com.nectp.beans.remote.daos.SeasonService;
@@ -42,16 +42,16 @@ public class UploadExcelPicks extends FileUploadImpl {
 
 	private Logger log;
 	
-	@Inject
+	@EJB
 	private SeasonService seasonService;
 	
-	@Inject
+	@EJB
 	private WeekService weekService;
 	
-	@Inject
+	@EJB
 	private PlayerForSeasonService pfsService;
 	
-	@Inject
+	@EJB
 	private PickFactory pickFactory;
 	
 	private Workbook workbook;
@@ -74,7 +74,8 @@ public class UploadExcelPicks extends FileUploadImpl {
 	}
 	
 	@Override
-	public void upload() {
+	public void upload(FileUploadEvent event) {
+		file = event.getFile();
 		if (file != null) {
 			try {
 				InputStream iStream = file.getInputstream();

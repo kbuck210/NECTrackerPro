@@ -46,9 +46,13 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	private String awayArrow;
 	private String homePickImage = "img/arrows/blank.png";
 	private String awayPickImage = "img/arrows/blank.png";
-	private String selectable = "unselectable";
+	private String homeSelectable = "unselectable";
+	private String awaySelectable = "unselectable";
+	private String homeGrayed = "";
+	private String awayGrayed = "";
 	private String homeTeamUrl = "#";
 	private String awayTeamUrl = "#";
+	private String singlePick = "";
 	
 	private PickType spreadType;
 	
@@ -110,14 +114,54 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 		}
 	}
 	
-	public void setSelectable(boolean selectable) {
-		if (selectable) {
-			this.selectable = "selectable";
+	public void setSinglePick(boolean singlePick) {
+		if (singlePick) {
+			this.singlePick = "singlePick";
 		}
 	}
 	
-	public String getSelectable() {
-		return selectable;
+	public String getSinglePick() {
+		return singlePick;
+	}
+	
+	public void setHomeSelectable(boolean selectable) {
+		if (selectable) {
+			this.homeSelectable = "selectable";
+		}
+	}
+	
+	public String getHomeSelectable() {
+		return homeSelectable;
+	}
+	
+	public void setAwaySelectable(boolean selectable) {
+		if (selectable) {
+			this.awaySelectable = "selectable";
+		}
+	}
+	
+	public String getAwaySelectable() {
+		return awaySelectable;
+	}
+	
+	public void setHomeGrayed(boolean grayed) {
+		if (grayed) {
+			this.homeGrayed = "grayed";
+		}
+	}
+	
+	public String getHomeGrayed() {
+		return homeGrayed;
+	}
+	
+	public void setAwayGrayed(boolean grayed) {
+		if (grayed) {
+			this.awayGrayed = "grayed";
+		}
+	}
+	
+	public String getAwayGrayed() {
+		return awayGrayed;
 	}
 	
 	/** 
@@ -638,3 +682,4 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	}
 
 }
+

@@ -5,10 +5,11 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.FileUploadEvent;
 import org.w3c.dom.Element;
 
 import com.nectp.beans.ejb.daos.xml.XmlPlayerUpdater;
@@ -16,7 +17,6 @@ import com.nectp.beans.ejb.daos.xml.XmlPrizeUpdater;
 import com.nectp.beans.ejb.daos.xml.XmlSubseasonUpdater;
 import com.nectp.beans.ejb.daos.xml.XmlTeamUpdater;
 import com.nectp.beans.ejb.daos.xml.XmlWeekUpdater;
-import com.nectp.beans.named.FileUploadImpl;
 import com.nectp.beans.remote.daos.ConferenceFactory;
 import com.nectp.beans.remote.daos.DivisionFactory;
 import com.nectp.beans.remote.daos.EmailFactory;
@@ -41,46 +41,46 @@ public class UploadSeason extends FileUploadImpl {
 
 	private DOMParser parser;
 	
-	@Inject
+	@EJB
 	private SeasonFactory seasonFactory;
 	
-	@Inject
+	@EJB
 	private SubseasonFactory subseasonFactory;
 	
-	@Inject
+	@EJB
 	private PlayerFactory playerFactory;
 	
-	@Inject
+	@EJB
 	private PlayerForSeasonFactory pfsFactory;
 	
-	@Inject
+	@EJB
 	private EmailFactory emailFactory;
 	
-	@Inject
+	@EJB
 	private TeamFactory teamFactory;
 	
-	@Inject
+	@EJB
 	private TeamForSeasonFactory tfsFactory;
 	
-	@Inject
+	@EJB
 	private ConferenceFactory confFactory;
 	
-	@Inject
+	@EJB
 	private DivisionFactory divFactory;
 	
-	@Inject
+	@EJB
 	private PrizeFactory prizeFactory;
 	
-	@Inject
+	@EJB
 	private PrizeForSeasonFactory pzfsFactory;
 	
-	@Inject
+	@EJB
 	private StadiumService stadiumService;
 	
-	@Inject
+	@EJB
 	private WeekFactory weekFactory;
 	
-	@Inject
+	@EJB
 	private GameFactory gameFactory;
 	
 	private Season season;
@@ -92,7 +92,8 @@ public class UploadSeason extends FileUploadImpl {
 	}
 	
 	@Override
-	public void upload() {
+	public void upload(FileUploadEvent event) {
+		file = event.getFile();
 		if (file != null) {
 			//	Get the inputStream from the uploaded file
 			InputStream iStream = null;

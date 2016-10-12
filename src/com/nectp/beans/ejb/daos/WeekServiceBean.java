@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 import com.nectp.beans.ejb.daos.DataServiceBean;
 import com.nectp.beans.remote.daos.WeekService;
 import com.nectp.jpa.entities.Season;
+import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.Week;
 
 @Stateless
@@ -130,6 +131,7 @@ public class WeekServiceBean extends DataServiceBean<Week> implements WeekServic
 		List<Week> weeks = null;
 		if (season == null) {
 			log.log(Level.SEVERE, "No Season sepecified! can't get week range in season.");
+			weeks = new ArrayList<Week>();
 		}
 		else {
 			TypedQuery<Week> wq = em.createNamedQuery("Week.selectWeeksInRangeInSeason", Week.class);
@@ -147,4 +149,28 @@ public class WeekServiceBean extends DataServiceBean<Week> implements WeekServic
 		
 		return weeks;
 	}
+	
+	@Override
+	public List<Week> selectWeeksInSubseason(Subseason subseason) {
+		Logger log = Logger.getLogger(WeekServiceBean.class.getName());
+		List<Week> weeks = null;
+		if (subseason == null) {
+			log.log(Level.SEVERE, "No Subseason sepecified! can't get weeks in subseason.");
+			weeks = new ArrayList<Week>();
+		}
+		else {
+			TypedQuery<Week> wq = em.createNamedQuery("Week.selectWeeksInSubseason", Week.class);
+			wq.setParameter("subseasonId", subseason.getSubseasonId());
+			try {
+				weeks = wq.getResultList();
+			} catch (Exception e) {
+				log.log(Level.SEVERE, "Exception caught in retrieving weeks: " + e.getMessage());
+				e.printStackTrace();
+				weeks = new ArrayList<Week>();
+			}
+		}
+		
+		return weeks;
+	}
 }
+

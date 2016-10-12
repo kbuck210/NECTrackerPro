@@ -28,6 +28,25 @@ public class StadiumFactoryBean extends StadiumServiceBean implements StadiumFac
 			//	First check whether the specified stadium already exists
 			try {
 				stadium = selectStadiumByName(stadiumName);
+				
+				//	Check whether any of the stadium attributes need to be updated
+				boolean update = false;
+				if (!stadium.getAddress().equals(address)) {
+					stadium.setAddress(address);
+					update = true;
+				}
+				if (stadium.getCapacity().longValue() != capacity) {
+					stadium.setCapacity(capacity);
+					update = true;
+				}
+				if (stadium.getInternational() != international) {
+					stadium.setInternational(international);
+					update = true;
+				}
+				
+				if (update) {
+					update(stadium);
+				}
 			} 
 			//	If no stadium found, create one
 			catch (NoResultException e) {
