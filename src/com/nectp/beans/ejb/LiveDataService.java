@@ -1,27 +1,29 @@
 package com.nectp.beans.ejb;
 
-import java.util.GregorianCalendar;
-import java.util.LinkedList;
-import java.util.logging.Level;
+import java.util.Calendar;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 
 import org.w3c.dom.Element;
 
-import com.nectp.beans.remote.daos.GameService;
+import com.nectp.beans.ejb.daos.xml.XmlLiveReader;
+import com.nectp.beans.remote.daos.GameFactory;
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.beans.remote.daos.TeamForSeasonService;
 import com.nectp.beans.remote.daos.WeekFactory;
 import com.nectp.jpa.entities.Game;
+import com.nectp.jpa.entities.Game.GameStatus;
 import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
 import com.nectp.webtools.DOMParser;
 
+@Stateless
 public class LiveDataService {
 
 	private Logger log;
@@ -34,9 +36,7 @@ public class LiveDataService {
 	
 	private Element weekDomElement;
 	
-	private LinkedList<Element> gameElements;
-	
-	boolean initialized;
+	private List<Element> gameElements;
 	
 	@EJB
 	private SeasonService seasonService;
@@ -48,7 +48,7 @@ public class LiveDataService {
 	private TeamForSeasonService tfsService;
 	
 	@EJB
-	private GameService gameService;
+	private GameFactory gameFactory;
 	
 	@PostConstruct
 	public void init() {
@@ -63,21 +63,7 @@ public class LiveDataService {
 			queryUrl = "http://www.nfl.com/liveupdate/scorestrip/ss.xml";
 		}
 		else {
-			//	TODO: update to playoff url
-			queryUrl = "http://www.nfl.com/liveupdate/scorestrip/ss.xml";
-		}
-		
-		//	Get the DOM Element corresponding to the week information, verifying that the DB is working with the correct week
-		weekDomElement = getWeekDomElement(queryUrl);
-		boolean weekVerified = verifyWeekInfo();
-		if (!weekVerified) {
-			log.severe("Failed to verify the current week! Aborting live updates.");
-			initialized = false;
-		}
-		
-		//	If the week was successfully verified, read the DOM elements to process the game information
-		else {
-			gameElements = DOMParser.getSubElementsByTagName(weekDomElement, "g");
+			queryUrl = "http://www.nfl.com/liveupdate/scorestrip/postseason/ss.xml";
 		}
 	}
 	
@@ -102,136 +88,105 @@ public class LiveDataService {
 		
 		//	Check whether the current week in the season is not the read week number
 		if (currentWeek != null && currentWeek.getWeekNumber() != weekNumber) {
-			log.info("The DB current week does not match the live data, updating the current week.");
-			
-			//	Change the value of the current week, creating the next week if necessary
-			Week newWeek = weekFactory.createWeekInSeason(weekNumber, currentSeason);
-			if (newWeek != null) {
-				boolean updated = seasonService.updateCurrentWeek(newWeek);
-				if (updated) {
-					currentWeek = newWeek;
-				}
-				else {
-					log.severe("Week updated but could not update database! Aborting data parsing.");
-					return false;
-				}
-			}
+			log.info("The DB current week does not match the live data, skipping live data read.");
+			return false;
 		}
 		
 		return true;
 	}
 	
-	private void updateGames() {
+	/** Update Games method calls on the specified query URL, and parses the game information, 
+	 *  updating where necessary.
+	 * 
+	 * @return true if all of the games were parsed and updated without issue, false otherwise
+	 */
+	public boolean updateGames() {
+		//	Get the DOM Element corresponding to the week information, verifying that the DB is working with the correct week
+		DOMParser parser = DOMParser.newInstance(queryUrl, "gms");
+		List<Element> wks = parser.generateElementList();
+		weekDomElement = wks.get(0);
+		boolean weekVerified = verifyWeekInfo();
+		if (!weekVerified) {
+			log.severe("Failed to verify the current week! Aborting live updates.");
+			return false;
+		}
+
+		//	If the week was successfully verified, read the DOM elements to process the game information
+		gameElements = parser.getSubElementsByTagName(weekDomElement, "g");
+		if (gameElements.isEmpty()) {
+			log.warning("No games found to update!");
+			return false;
+		}
+		
 		int weekNumber = currentWeek.getWeekNumber();
 		
 		//	Loop over the XML DOM game elements to parse
+		boolean anyErrors = false;
 		for (Element g : gameElements) {
-			String time = g.getAttribute("t");
 			String type = g.getAttribute("gt");
 			String awayScoreStr = g.getAttribute("vs");
 			String awayAbbr = g.getAttribute("v");
 			String homeScoreStr = g.getAttribute("hs");
 			String homeAbbr = g.getAttribute("h");
 			String quarter = g.getAttribute("q");
-			String day = g.getAttribute("d");
-			String date = g.getAttribute("eid");
+			String timeRemaining = g.getAttribute("k");
+			String red_zone = g.getAttribute("rz");
+			String possession = g.getAttribute("p");
 
 			//  Skip redundant playoff entries for parsed playoff weeks
 			if (skipByType(type, weekNumber, currentSeason)) {
 				continue;
 			}
-
-			//  Get the home/away teams by their abbreviations
-			TeamForSeason homeTeam = tfsService.selectTfsByAbbr(homeAbbr, currentSeason);
-			if (homeTeam == null) {
-				log.severe("Failed to get home team by abbr: " + homeAbbr);
+			
+			TeamForSeason homeTeam = null;
+			TeamForSeason awayTeam = null;
+			try {
+				homeTeam = tfsService.selectTfsByAbbrSeason(homeAbbr, currentSeason);
+				awayTeam = tfsService.selectTfsByAbbrSeason(awayAbbr, currentSeason);
+			} catch (NoResultException e) {
+				log.severe("Failed to retrieve home/away teams for: " + homeAbbr + ", " + awayAbbr);
+				log.severe(e.getMessage());
+				anyErrors = true;
+				continue;
+			}
+			
+			Game game = null;
+			try {
+				game = gameFactory.selectGameByTeamsWeek(homeTeam, awayTeam, currentWeek);
+			} catch (NoResultException e) {
+				log.severe("No game found for " + homeAbbr + " vs " + awayAbbr 
+						+ " in week " + currentWeek.getWeekNumber());
+				log.severe(e.getMessage());
+				anyErrors = true;
 				continue;
 			}
 
-			TeamForSeason awayTeam = tfsService.selectTfsByAbbr(awayAbbr, currentSeason);
-			if (awayTeam == null) {
-				log.severe("Failed to get away team by abbr: " + awayAbbr);
-				continue;
-			}
-
-			//  Get the game for these teams by week in season
-			Game game = GameDB.selectGameByTeamsWeekInSeason(homeTeam, awayTeam, week, season);
-			if (game == null) {
-				Logger.getLogger(GameDayService.class.getName())
-				.log(Level.SEVERE, "Failed to find game for teams in week: " + awayAbbr + " at " + homeAbbr);
-				continue;
-			}
-
-			boolean gameUpdated = false;
-
-			//	Check that the game date & time haven't changed
-			GregorianCalendar gameDate = game.getGameDate();
-			GregorianCalendar parsedDate = parseGameDate(day, time);
-			if (parsedDate != null && gameDate != null) {
-				int hour, min, dayOfWeek;
-				hour = parsedDate.get(GregorianCalendar.HOUR);
-				min = parsedDate.get(GregorianCalendar.MINUTE);
-				dayOfWeek = parsedDate.get(GregorianCalendar.DAY_OF_WEEK);
-
-				if (gameDate.get(GregorianCalendar.DAY_OF_WEEK) != dayOfWeek) {
-					gameDate.set(GregorianCalendar.DAY_OF_WEEK, dayOfWeek);
-					game.setGameDate(gameDate);
-					gameUpdated = true;
-				}
-				if (gameDate.get(GregorianCalendar.HOUR) != hour) {
-					gameDate.set(GregorianCalendar.HOUR, hour);
-					game.setGameDate(gameDate);
-					gameUpdated = true;
-				}
-				if (gameDate.get(GregorianCalendar.MINUTE) != min) {
-					gameDate.set(GregorianCalendar.MINUTE, min);
-					game.setGameDate(gameDate);
-					gameUpdated = true;
-				}
-			}
+			//	Get the game date from the live data
+			Calendar parsedDate = XmlLiveReader.parseDate(g);
 
 			//  Check whether the score has changed
-			Integer homeScore = null;
-			try { homeScore = Integer.parseInt(homeScoreStr); }
-			catch (NumberFormatException ex) {
-				Logger.getLogger(GameDayService.class.getName())
-				.log(Level.WARNING, "Failed to read home score, score left unchanged: " + ex.getMessage(), ex);
+			Integer homeScore = XmlLiveReader.parseInteger(homeScoreStr);
+			Integer awayScore = XmlLiveReader.parseInteger(awayScoreStr);
+			
+			if (parsedDate == null || homeScore == null || awayScore == null) {
+				anyErrors = true;
+				continue;
 			}
-			if (homeScore != null && homeScore != game.getHomeScore()) {
-				game.setHomeScore(homeScore);
-				gameUpdated = true;
-			}
-
-			Integer awayScore = null;
-			try { awayScore = Integer.parseInt(awayScoreStr); }
-			catch (NumberFormatException ex) {
-				Logger.getLogger(GameDayService.class.getName())
-				.log(Level.WARNING, "Failed to read away score, score left unchanged: " + ex.getMessage(), ex);
-			}
-			if (awayScore != null && awayScore != game.getAwayScore()) {
-				game.setAwayScore(awayScore);
-				gameUpdated = true; 
-			}
-
-			//	Get the time remaining in the game, or whether the game is completed
-			//	TODO: evaluate quarter string in-game;
-
-			if (gameUpdated) {
-				GameDB.updateGame(game);
+			
+			GameStatus newStatus = parseGameStatus(quarter);
+			String parsedTimeRemaining = getTimeRemainingString(quarter, timeRemaining, newStatus);
+		
+			boolean redZone = !"0".equals(red_zone);
+			
+			Game updated = gameFactory.createGameInWeek(currentWeek, homeTeam, awayTeam, homeScore, 
+					awayScore, game.getSpread1(), game.getSpread2(), parsedDate, 
+					newStatus, game.getHomeFavoredSpread1(), game.getHomeFavoredSpread2(), 
+					parsedTimeRemaining, possession, redZone, game.getStadium());
+			if (updated == null) {
+				anyErrors = true;
 			}
 		}
-
-	}
-	
-	private Element getWeekDomElement(String queryUrl) {
-		LinkedList<Element> elements = new LinkedList<Element>();
-		DOMParser parser = DOMParser.newInstance(queryUrl, "gms");
-        if (parser != null) {
-            elements = parser.generateElementList();
-        }
-        
-        //	Should only be 1 gms element, return as dom Root
-        return elements.get(0);
+		return !anyErrors;
 	}
 	
 	/** The live updates for Playoffs include all playoff weeks, skip processing rounds not associated with this week
@@ -263,4 +218,54 @@ public class LiveDataService {
         }
         else return true;
     }
+    
+    /** Parse the game's status from the quarter string
+	 * 
+	 * @param quarter the quarter attribute from the game XML element, displaying the current quarter of the game
+	 * @return the GameStatus enum value for the corresponding status, either PREGAME, ACTIVE, HALFTIME, OVERTIME, or FINAL
+	 */
+	private GameStatus parseGameStatus(String quarter) {
+		if (quarter == null) return null;
+		else if (quarter.equals("P")) return GameStatus.PREGAME;
+		else if (quarter.equals("H")) return GameStatus.HALFTIME;
+		else if (quarter.startsWith("F")) return GameStatus.FINAL;
+		else return GameStatus.ACTIVE;
+	}
+    
+    /** Based on the status of the game, and the time remaining & quarter strings, get the text for the time remaining display
+	 * 
+	 * @param quarter the quarter attribute representing the current quarter for the specifed game (VALUES: 'P', numerical quarter number, 'H', 'F', or 'FOT')
+	 * @param timeRemaining the string representing the time remaining in the specified quarter
+	 * @param status the GameStatus enum value for the current state of the game
+	 * @return a String representing the current quarter & time remaining, or state of the game. Null if status not recognized or failed to parse quarter
+	 */
+	private String getTimeRemainingString(String quarter, String timeRemaining, GameStatus status) {
+		switch(status) {
+		case ACTIVE:
+			String timeRemainingStr = null;
+			if (quarter != null && timeRemaining !=null) {
+				if (quarter.equals("1")) timeRemainingStr = timeRemaining + " 1st";
+				else if (quarter.equals("2")) timeRemainingStr = timeRemaining + " 2nd";
+				else if (quarter.equals("3")) timeRemainingStr = timeRemaining + " 3rd";
+				else if (quarter.equals("4")) timeRemainingStr = timeRemaining + " 4th";
+				else { 
+					Integer otPeriod;
+					try { otPeriod = Integer.parseInt(quarter); }
+					catch(NumberFormatException e) {
+						log.warning("Failed to parser quarter: " + e.getMessage());
+						return null;
+					}
+					int otNum = otPeriod - 4;
+					timeRemainingStr = timeRemaining + " " + otNum + "OT";
+				}
+			}
+			return timeRemainingStr;
+		case HALFTIME:
+			return "Halftime";
+		case FINAL:
+			return "Final";
+		default:
+			return null;
+		}
+	}
 }

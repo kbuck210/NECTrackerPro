@@ -12,9 +12,9 @@
 			<ui:include src="/header.xhtml" />
 		</ui:define>
 		<ui:define name="content">
+			<p:growl id="growl" showDetail="true" life="2000" sticky="true" />
 			<!-- Center content update area -->
-			<h:form enctype="multipart/form-data">
-				<p:growl id="growl" showDetail="true" life="2000" sticky="true" />
+			<h:form id="stadiumUploadForm" enctype="multipart/form-data">
 				<h:panelGrid columns="2">
 					<p:fieldset legend="Upload Stadiums:">
 						<h:outputText value="Select the Stadiums.xml file to upload: " />
@@ -23,6 +23,12 @@
 									  fileUploadListener="#{uploadStadiums.upload}" />
 					</p:fieldset>
 				</h:panelGrid>
+			</h:form>
+			
+			<h:form id="emailForm">
+				<h3>Email Test: Paste Content Below:</h3>
+				<p:inputTextarea rows="10" cols="50" queryDelay="750" minQueryLength="4" />
+				<p:commandButton value="Send Email:" actionListener="#{emailTestBean.send}" update="growl" />
 			</h:form>
 		</ui:define>
 		<ui:define name="footer">

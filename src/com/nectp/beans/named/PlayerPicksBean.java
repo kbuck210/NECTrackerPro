@@ -2,6 +2,9 @@ package com.nectp.beans.named;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.nectp.beans.ejb.ApplicationState;
+import com.nectp.beans.ejb.LiveDataService;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.GameContainer;
 import com.nectp.beans.remote.daos.PickService;
@@ -21,6 +25,7 @@ import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
+import com.nectp.jpa.entities.Week.WeekStatus;
 
 @Named(value="playerPicksBean")
 @RequestScoped
@@ -36,6 +41,9 @@ public class PlayerPicksBean implements Serializable, GameContainer {
 	
 	@EJB
 	private RecordService recordService;
+	
+	@EJB
+	private LiveDataService liveDataService;
 	
 	@Inject
 	private PaginationBean pageBean;
@@ -54,28 +62,41 @@ public class PlayerPicksBean implements Serializable, GameContainer {
 		user = appState.getUserInstance();
 		displayWeek = pageBean.getDisplayWeek();
 		
-		if (user != null && displayWeek != null) {
-			NEC picksFor = displayWeek.getSubseason().getSubseasonType();
-			List<Pick> userPicks = pickService.selectPlayerPicksForWeekForType(user, displayWeek, picksFor);
-			for (Pick p : userPicks) {
-				GameBean bean = new GameBean();
-				Game game = p.getGame();
-				bean.setPlayer(user);
-				NEC displayType = p.getApplicableRecord().getRecordType();
-				boolean againstSpread = (displayType != NEC.TWO_AND_OUT && displayType != NEC.ONE_AND_OUT);
-				bean.setGameDisplayType(displayType);
-				bean.setGame(game);
-				bean.setHomeSelectable(false);
-				bean.setAwaySelectable(false);
-				TeamForSeason homeTeam = game.getHomeTeam();
-				RecordAggregator homeRagg = recordService.getAggregateRecordForAtfsForType(homeTeam, displayType, againstSpread);
-				bean.setHomeRecord(createRecordString(homeRagg));
-				
-				TeamForSeason awayTeam = game.getAwayTeam();
-				RecordAggregator awayRagg = recordService.getAggregateRecordForAtfsForType(awayTeam, displayType, againstSpread);
-				bean.setAwayRecord(createRecordString(awayRagg));
-				
-				gameBeans.add(bean);
+		if (displayWeek != null) {
+			//	Determine whether the game week is active, and whether the games are ongoing, if so, get live updates
+			if (displayWeek.getWeekStatus() == WeekStatus.ACTIVE) {
+				List<Game> gamesInWeek = displayWeek.getGames();
+				Collections.sort(gamesInWeek);
+				Calendar firstGameDate = gamesInWeek.get(0).getGameDate();
+				Calendar now = new GregorianCalendar();
+				if (now.compareTo(firstGameDate) > 1) {
+					liveDataService.updateGames();
+				}
+			}
+			
+			if (user != null) {
+				NEC picksFor = displayWeek.getSubseason().getSubseasonType();
+				List<Pick> userPicks = pickService.selectPlayerPicksForWeekForType(user, displayWeek, picksFor);
+				for (Pick p : userPicks) {
+					GameBean bean = new GameBean();
+					Game game = p.getGame();
+					bean.setPlayer(user);
+					NEC displayType = p.getApplicableRecord().getRecordType();
+					boolean againstSpread = (displayType != NEC.TWO_AND_OUT && displayType != NEC.ONE_AND_OUT);
+					bean.setGameDisplayType(displayType);
+					bean.setGame(game);
+					bean.setHomeSelectable(false);
+					bean.setAwaySelectable(false);
+					TeamForSeason homeTeam = game.getHomeTeam();
+					RecordAggregator homeRagg = recordService.getAggregateRecordForAtfsForType(homeTeam, displayType, againstSpread);
+					bean.setHomeRecord(createRecordString(homeRagg));
+					
+					TeamForSeason awayTeam = game.getAwayTeam();
+					RecordAggregator awayRagg = recordService.getAggregateRecordForAtfsForType(awayTeam, displayType, againstSpread);
+					bean.setAwayRecord(createRecordString(awayRagg));
+					
+					gameBeans.add(bean);
+				}
 			}
 		}
 	}

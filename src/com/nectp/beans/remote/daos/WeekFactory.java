@@ -9,5 +9,6 @@ public interface WeekFactory extends WeekService {
 
 	public Week createWeekInSeason(int weekNumber, Subseason subseason, Season season, WeekStatus status, boolean current);
 
-	public void updateWeekForGameComplete(Week week);
+	public boolean updateWeekForGameComplete(Week week);
 }
+

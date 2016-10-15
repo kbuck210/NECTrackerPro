@@ -23,6 +23,8 @@ public interface GameFactory extends GameService {
 								 Boolean homeFavoredSpread1,
 								 Boolean homeFavoredSpread2,
 								 String timeRemaining,
+								 String possession,
+								 boolean redzone,
 								 Stadium stadium);
 	
 }

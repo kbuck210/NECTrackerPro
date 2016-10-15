@@ -21,7 +21,8 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 	@Override
 	public Game createGameInWeek(Week week, TeamForSeason homeTeam, TeamForSeason awayTeam, Integer homeScore,
 			Integer awayScore, BigDecimal spread1, BigDecimal spread2, Calendar gameDate, GameStatus gameStatus,
-			Boolean homeFavoredSpread1, Boolean homeFavoredSpread2, String timeRemaining, Stadium stadium) 
+			Boolean homeFavoredSpread1, Boolean homeFavoredSpread2, String timeRemaining, 
+			String possession, boolean redzone, Stadium stadium) 
 	{
 		Logger log = Logger.getLogger(GameFactoryBean.class.getName());
 		Game game = null;
@@ -96,6 +97,22 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 					game.setTimeRemaining(timeRemaining);
 					update = true;
 				}
+				if (possession != null && game.getPossession() == null) {
+					game.setPossession(possession);
+					update = true;
+				}
+				else if (possession == null && game.getPossession() != null) {
+					game.setPossession(possession);
+					update = true;
+				}
+				else if (possession != null && game.getPossession() != null && !game.getPossession().equals(possession)) {
+					game.setPossession(possession);
+					update = true;
+				}
+				if (game.getRedZone() != redzone) {
+					game.setRedZone(redzone);
+					update = true;
+				}
 				if (!game.getStadium().equals(stadium)) {
 					game.getStadium().removeGamePlayedInStadium(game);
 					game.setStadium(stadium);
@@ -104,7 +121,8 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 				}
 				
 				if (update) {
-					update(game);
+					boolean updateSuccess = update(game);
+					return updateSuccess ? game : null;
 				}
 				
 			} catch (NoResultException e) {

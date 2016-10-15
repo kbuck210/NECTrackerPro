@@ -415,4 +415,43 @@
 		<roof>retractable</roof>
 		<timezone>GMT</timezone>
 	</stadium>
+	<stadium>
+		<name>The Metrodome</name>
+		<street>900 South 5th Street</street>
+		<city>Minneapolis</city>
+		<state>MN</state>
+		<zip>55415</zip>
+		<country>US</country>
+		<lat>44.973889</lat>
+		<long>-93.258056</long>
+		<capacity>64121</capacity>
+		<roof>dome</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>Candlestick Park</name>
+		<street>602 Jamestown Avenue</street>
+		<city>San Francisco</city>
+		<state>CA</state>
+		<zip>94124</zip>
+		<country>US</country>
+		<lat>37.713611</lat>
+		<long>-122.386111</long>
+		<capacity>69732</capacity>
+		<roof>open</roof>
+		<timezone>PACIFIC</timezone>
+	</stadium>
+	<stadium>
+		<name>Rogers Centre</name>
+		<street>1 Blue Jays Way</street>
+		<city>Toronto</city>
+		<state>Ontario</state>
+		<zip>M5V 1J1</zip>
+		<country>CA</country>
+		<lat>43.641389</lat>
+		<long>-79.389167</long>
+		<capacity>54000</capacity>
+		<roof>retractable</roof>
+		<timezone>EASTERN</timezone>
+	</stadium>
 </stadiums>

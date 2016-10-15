@@ -130,7 +130,7 @@ public class XmlGameUpdater {
 			GameStatus gameStatus = GameStatus.getGameStatusForString(status);
 			String timeRemaining = gameStatus != null ? gameStatus.name() : null;
 			
-			gameFactory.createGameInWeek(week, home, away, homeScore, awayScore, spread1, spread2, gameCal, gameStatus, isHomeFavored1, isHomeFavored2, timeRemaining, stadium);
+			gameFactory.createGameInWeek(week, home, away, homeScore, awayScore, spread1, spread2, gameCal, gameStatus, isHomeFavored1, isHomeFavored2, timeRemaining, null, false, stadium);
 		}
 	}
 }
