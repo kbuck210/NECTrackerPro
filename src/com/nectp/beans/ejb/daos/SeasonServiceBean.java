@@ -31,7 +31,7 @@ public class SeasonServiceBean extends DataServiceBean<Season> implements Season
 			log.log(Level.SEVERE, e.getMessage());
 			e.printStackTrace();
 		} catch (NoResultException e) {
-			log.log(Level.WARNING, "No Seasons found for currnet year!");
+			log.log(Level.WARNING, "No Seasons found for current year!");
 			log.log(Level.WARNING, e.getMessage());
 		} catch (Exception e) {
 			log.log(Level.SEVERE, "Exception retrieving current season: " + e.getMessage());

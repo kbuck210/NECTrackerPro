@@ -18,7 +18,7 @@ import java.util.List;
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="Type")
 @NamedQuery(name="AbstractTeamForSeason.findAll", query="SELECT a FROM AbstractTeamForSeason a")
-public class AbstractTeamForSeason implements Serializable {
+public class AbstractTeamForSeason implements Serializable, Comparable<AbstractTeamForSeason> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -122,4 +122,9 @@ public class AbstractTeamForSeason implements Serializable {
     public String toString() {
         return "com.nectp.jpa.entities.AbstractTeamForSeason[ abstractTeamForSeasonId=" + abstractTeamForSeasonId + " ]";
     }
+
+	@Override
+	public int compareTo(AbstractTeamForSeason atfs) {
+		return atfs != null ? this.nickname.compareTo(atfs.getNickname()) : -1;
+	}
 }

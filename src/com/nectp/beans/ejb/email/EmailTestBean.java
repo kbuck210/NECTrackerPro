@@ -29,29 +29,35 @@ public class EmailTestBean {
 	}
 	
 	public void send() {
-//		List<Email> addresses = new ArrayList<Email>();
-//		Email email = new Email();
-//		email.setEmailAddress("kbuck210@gmail.com");
-//		email.setEmailsRequested(true);
-//		email.setPrimaryAddress(true);
-//		addresses.add(email);
-//		
-//		FacesMessage message = null;
-//		if (messageText == null || messageText.trim().isEmpty()) {
-//			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Message text is null!");
-//		}
-//		else {
-//			boolean sent = emailService.sendEmail(addresses, "Test Email:", messageText, null);
-//			if (sent) {
-//				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success!", "Message was sent!");
-//			}
-//			else {
-//				message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Message failed to send!");
-//			}
-//		}
-//		if (message != null) {
-//			FacesContext.getCurrentInstance().addMessage(null, message);
-//		}	
+		List<Email> addresses = new ArrayList<Email>();
+		Email email = new Email();
+		email.setEmailAddress("kbuck210@gmail.com");
+		email.setEmailsRequested(true);
+		email.setPrimaryAddress(true);
+		addresses.add(email);
+		
+		Email dad = new Email();
+		dad.setEmailAddress("bbuckley20@comcast.net");
+		dad.setEmailsRequested(true);
+		dad.setPrimaryAddress(true);
+		addresses.add(dad);
+		
+		FacesMessage message = null;
+		if (messageText == null || messageText.trim().isEmpty()) {
+			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Message text is null!");
+		}
+		else {
+			boolean sent = emailService.sendEmail(addresses, "NEC Tracker Pro - Week 5 Results: (Test Email)", "I didn't get the HTML text...", messageText);
+			if (sent) {
+				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success!", "Message was sent!");
+			}
+			else {
+				message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Message failed to send!");
+			}
+		}
+		if (message != null) {
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}	
 	}
 	
 }

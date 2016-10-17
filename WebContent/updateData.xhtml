@@ -27,7 +27,7 @@
 			
 			<h:form id="emailForm">
 				<h3>Email Test: Paste Content Below:</h3>
-				<p:inputTextarea rows="10" cols="50" queryDelay="750" minQueryLength="4" />
+				<p:inputTextarea value="#{emailTestBean.messageText}" rows="10" cols="50" queryDelay="750" minQueryLength="4" />
 				<p:commandButton value="Send Email:" actionListener="#{emailTestBean.send}" update="growl" />
 			</h:form>
 		</ui:define>
