@@ -47,7 +47,7 @@ public class EmailTestBean {
 			message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Message text is null!");
 		}
 		else {
-			boolean sent = emailService.sendEmail(addresses, "NEC Tracker Pro - Week 5 Results: (Test Email)", "I didn't get the HTML text...", messageText);
+			boolean sent = emailService.sendEmail(addresses, "NEC Tracker Pro - Test 3 - Did it expand?", "I didn't get the HTML text...", messageText);
 			if (sent) {
 				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success!", "Message was sent!");
 			}

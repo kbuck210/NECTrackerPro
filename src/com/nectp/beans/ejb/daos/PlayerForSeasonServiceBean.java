@@ -106,5 +106,33 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 		return pfs;
 	}
 
+	@Override
+	public PlayerForSeason selectCommishBySeason(Season season) {
+		Logger log = Logger.getLogger(PlayerForSeasonService.class.getName());
+		PlayerForSeason commish = null;
+		if (season == null) {
+			log.severe("Season not defined, can not select commish!");
+		}
+		else {
+			TypedQuery<PlayerForSeason> pq = em.createNamedQuery("PlayerForSeason.selectCommishBySeason", PlayerForSeason.class);
+			pq.setParameter("seasonNumber", season.getSeasonNumber());
+			try {
+				commish = pq.getSingleResult();
+			} catch (NonUniqueResultException e) {
+				log.severe("Multiple commisioners found for season " + season.getSeasonNumber() + "!");
+				log.severe(e.getMessage());
+				e.printStackTrace();
+			} catch (NoResultException e) {
+				log.warning("No commisioner found for season " + season.getSeasonNumber());
+				log.warning(e.getMessage());
+				throw e;
+			} catch (Exception e) {
+				log.severe("Exception thrown retrieving commish: " + e.getMessage());
+				e.printStackTrace();
+			}
+		} 
+		
+		return commish;
+	}
 }
 

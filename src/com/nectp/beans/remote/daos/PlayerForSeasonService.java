@@ -11,5 +11,7 @@ public interface PlayerForSeasonService extends DataService<PlayerForSeason> {
 	public PlayerForSeason selectPlayerByExcelName(String excelName, Season season);
 	
 	public PlayerForSeason selectPlayerByExcelCol(int excelCol, Season season);
+	
+	public PlayerForSeason selectCommishBySeason(Season season);
 }
 

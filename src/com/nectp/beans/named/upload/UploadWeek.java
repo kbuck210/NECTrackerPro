@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.w3c.dom.Element;
 
 import com.nectp.beans.ejb.daos.xml.XmlWeekUpdater;
@@ -51,7 +52,7 @@ import com.nectp.webtools.DOMParser;
  * @since  1.0
  */
 @Named(value="uploadWeek")
-@RequestScoped
+@ViewScoped
 public class UploadWeek extends FileUploadImpl {
 	private static final long serialVersionUID = -2603772511079306013L;
 
@@ -81,14 +82,20 @@ public class UploadWeek extends FileUploadImpl {
 	
 	@Override
 	public void upload(FileUploadEvent event) {
-		file = event.getFile();
-		if (file != null) {
-			try {
-				InputStream iStream = file.getInputstream();
-				parseWeek(iStream);
-			} catch (IOException e) {
-				log.severe("Exception retrieving input stream from uploaded file, can not update week: " + e.getMessage());
-				e.printStackTrace();
+		files.add(event.getFile());
+	}
+	
+	@Override
+	public void submit() {
+		for (UploadedFile file : files) {
+			if (file != null) {
+				try {
+					InputStream iStream = file.getInputstream();
+					parseWeek(iStream);
+				} catch (IOException e) {
+					log.severe("Exception retrieving input stream from uploaded file, can not update week: " + e.getMessage());
+					e.printStackTrace();
+				}
 			}
 		}
 	}

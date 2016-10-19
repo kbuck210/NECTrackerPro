@@ -28,6 +28,11 @@ import java.util.List;
 				query="SELECT DISTINCT tfs FROM TeamForSeason tfs "
 					+ "INNER JOIN FETCH tfs.season s "
 					+ "WHERE tfs.teamAbbr = :teamAbbr "
+					+ "AND s.seasonNumber = :seasonNumber"),
+	@NamedQuery(name="TeamForSeason.selectTfsByCitySeason",
+				query="SELECT DISTINCT tfs FROM TeamForSeason tfs "
+					+ "INNER JOIN FETCH tfs.season s "
+					+ "WHERE UPPER(tfs.teamCity) = :teamCity "
 					+ "AND s.seasonNumber = :seasonNumber")
 })
 public class TeamForSeason extends AbstractTeamForSeason implements Serializable {

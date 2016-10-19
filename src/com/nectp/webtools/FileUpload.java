@@ -1,18 +1,19 @@
 package com.nectp.webtools;
 
+import java.util.List;
+
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 public interface FileUpload {
 
-	public UploadedFile getFile();
+	public List<UploadedFile> getFiles();
 	
-	public void setFile(UploadedFile file);
+	public void setFiles(List<UploadedFile> files);
 	
 	public void upload(FileUploadEvent event);
 	
-	public String getFilename();
-	
 	public boolean getDisabled();
 	
+	public void submit();
 }

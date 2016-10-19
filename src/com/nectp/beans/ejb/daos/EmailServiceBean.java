@@ -1,5 +1,6 @@
 package com.nectp.beans.ejb.daos;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import javax.persistence.TypedQuery;
 import com.nectp.beans.remote.daos.EmailService;
 import com.nectp.jpa.entities.Email;
 import com.nectp.jpa.entities.Player;
+import com.nectp.jpa.entities.Season;
 
 @Stateless
 public class EmailServiceBean extends DataServiceBean<Email> implements EmailService {
@@ -77,5 +79,27 @@ public class EmailServiceBean extends DataServiceBean<Email> implements EmailSer
 		}
 		
 		return allAddresses;
+	}
+	
+	@Override
+	public List<Email> selectAllRecipientsBySeason(Season season) {
+		List<Email> recipients;
+		if (season == null) {
+			log.severe("No Season specified! Can not retrieve emails.");
+			recipients = new ArrayList<Email>();
+		}
+		else {
+			TypedQuery<Email> eq = em.createNamedQuery("Email.selectAllRecipientsBySeason", Email.class);
+			eq.setParameter("seasonNumber", season.getSeasonNumber());
+			try {
+				recipients = eq.getResultList();
+			} catch (Exception e) {
+				log.severe("Exception retrieving emails for season: " + e.getMessage());
+				e.printStackTrace();
+				recipients = new ArrayList<Email>();
+			}
+		}
+		
+		return recipients;
 	}
 }

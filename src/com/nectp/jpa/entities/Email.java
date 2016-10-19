@@ -28,7 +28,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 	@NamedQuery(name="Email.selectUserForPrimaryEmail",
 				query="SELECT DISTINCT e.player FROM Email e "
 					+ "WHERE e.emailAddress = :emailAddress "
-					+ "AND e.primaryAddress = true")
+					+ "AND e.primaryAddress = true"),
+	@NamedQuery(name="Email.selectAllRecipientsBySeason",
+				query="SELECT e FROM Email e INNER JOIN FETCH e.player p "
+					+ "INNER JOIN FETCH p.playerInstances pfs "
+					+ "INNER JOIN FETCH pfs.season s "
+					+ "WHERE e.emailsRequested = true "
+					+ "AND s.seasonNumber = :seasonNumber")
 })
 public class Email implements Serializable {
 	private static final long serialVersionUID = 1L;

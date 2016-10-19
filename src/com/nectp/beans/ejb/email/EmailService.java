@@ -6,6 +6,9 @@ import com.nectp.jpa.entities.Email;
 
 public interface EmailService {
 
+	public boolean sendEmail(List<Email> recipients, String subject, String textBody, String htmlBody, 
+			String headerImgRelPath, String mainImgRelPath);
+	
 	public boolean sendEmail(List<Email> recipients, String subject, String textBody, String htmlBody);
 	
 }

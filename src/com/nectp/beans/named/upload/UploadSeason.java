@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.w3c.dom.Element;
 
 import com.nectp.beans.ejb.daos.xml.XmlPlayerUpdater;
@@ -35,7 +36,7 @@ import com.nectp.jpa.entities.Season;
 import com.nectp.webtools.DOMParser;
 
 @Named(value="seasonUpload")
-@RequestScoped
+@ViewScoped
 public class UploadSeason extends FileUploadImpl {
 	private static final long serialVersionUID = -6846892764373561471L;
 
@@ -93,59 +94,65 @@ public class UploadSeason extends FileUploadImpl {
 	
 	@Override
 	public void upload(FileUploadEvent event) {
-		file = event.getFile();
-		if (file != null) {
-			//	Get the inputStream from the uploaded file
-			InputStream iStream = null;
-			try {
-				iStream = file.getInputstream();
-			} catch (IOException e) {
-				log.severe("IOException getting input stream: " + e.getMessage());
-				e.printStackTrace();
-			}
-			
-			if (iStream != null) {
-				//	Parse the file for Players, Teams, Prizes and Weeks
-				parser = DOMParser.newInstance(iStream);
-				
-				Integer seasonNum = parseSeason(parser.getRootElement());
-				if (seasonNum != null) {
-					boolean insert = false;
-					season = seasonFactory.selectById(seasonNum);
-					//	If the season does not exist, create a new season
-					if (season == null) {
-						season = new Season();
-						insert = true;
-					}
-					
-					parser.setQualifiedNodeName("subseasons");
-					List<Element> elements = parser.generateElementList();
-					parseSubseasons(elements);
-					
-					parser.setQualifiedNodeName("players");
-					elements = parser.generateElementList();
-					parsePlayers(elements);
-					
-					parser.setQualifiedNodeName("teams");
-					elements = parser.generateElementList();
-					parseTeams(elements);
-					
-					parser.setQualifiedNodeName("prizes");
-					elements = parser.generateElementList();
-					parsePrizes(elements);
-					
-					parser.setQualifiedNodeName("weeks");
-					elements = parser.generateElementList();
-					parseWeeks(elements);
-					
-					if (insert) {
-						seasonFactory.insert(season);
-					}
-					else {
-						seasonFactory.update(season);
-					}
+		files.add(event.getFile());
+	}
+	
+	@Override
+	public void submit() {
+		for (UploadedFile file : files) {
+			if (file != null) {
+				//	Get the inputStream from the uploaded file
+				InputStream iStream = null;
+				try {
+					iStream = file.getInputstream();
+				} catch (IOException e) {
+					log.severe("IOException getting input stream: " + e.getMessage());
+					e.printStackTrace();
 				}
-			}	
+				
+				if (iStream != null) {
+					//	Parse the file for Players, Teams, Prizes and Weeks
+					parser = DOMParser.newInstance(iStream);
+					
+					Integer seasonNum = parseSeason(parser.getRootElement());
+					if (seasonNum != null) {
+						boolean insert = false;
+						season = seasonFactory.selectById(seasonNum);
+						//	If the season does not exist, create a new season
+						if (season == null) {
+							season = new Season();
+							insert = true;
+						}
+						
+						parser.setQualifiedNodeName("subseasons");
+						List<Element> elements = parser.generateElementList();
+						parseSubseasons(elements);
+						
+						parser.setQualifiedNodeName("players");
+						elements = parser.generateElementList();
+						parsePlayers(elements);
+						
+						parser.setQualifiedNodeName("teams");
+						elements = parser.generateElementList();
+						parseTeams(elements);
+						
+						parser.setQualifiedNodeName("prizes");
+						elements = parser.generateElementList();
+						parsePrizes(elements);
+						
+						parser.setQualifiedNodeName("weeks");
+						elements = parser.generateElementList();
+						parseWeeks(elements);
+						
+						if (insert) {
+							seasonFactory.insert(season);
+						}
+						else {
+							seasonFactory.update(season);
+						}
+					}
+				}	
+			}
 		}
 	}
 	

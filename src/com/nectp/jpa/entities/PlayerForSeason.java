@@ -33,6 +33,11 @@ import java.util.List;
 				query="SELECT DISTINCT p FROM PlayerForSeason p "
 					+ "INNER JOIN FETCH p.season s "
 					+ "WHERE p.excelColumn = :excelCol "
+					+ "AND s.seasonNumber = :seasonNumber"),
+	@NamedQuery(name="PlayerForSeason.selectCommishBySeason",
+				query="SELECT DISTINCT p FROM PlayerForSeason p "
+					+ "INNER JOIN FETCH p.season s "
+					+ "WHERE p.commish = true "
 					+ "AND s.seasonNumber = :seasonNumber")
 })
 public class PlayerForSeason extends AbstractTeamForSeason implements Serializable {

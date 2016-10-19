@@ -1,24 +1,46 @@
 package com.nectp.beans.ejb.email;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
 import java.io.Serializable;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.ServletContext;
+import javax.swing.JEditorPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.EditorKit;
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.FlowEvent;
+import org.primefaces.model.UploadedFile;
 
 import com.nectp.beans.ejb.daos.RecordAggregator;
+import com.nectp.beans.named.upload.FileUploadImpl;
 import com.nectp.beans.remote.daos.RecordService;
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.jpa.constants.NEC;
@@ -26,18 +48,19 @@ import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.Email;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.Season;
+import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
 import com.nectp.webtools.RomanNumeral;
 
 @Named(value="emailWizardBean")
 @ViewScoped
-public class EmailWizardBean implements Serializable {
+public class EmailWizardBean extends FileUploadImpl implements Serializable {
 	private static final long serialVersionUID = -3807332246735823521L;
 	
 	private final String REPLACE_SEASON_NUMERAL = "#SeasonNumeral";
 	private final String REPLACE_TITLE = "#Title";
 	private final String REPLACE_SUBTITLE = "#Subtitle";
-	private final String REPLACE_LEAD = "#TheLead";
+	private final String REPLACE_HEADLINE = "#TheLead";
 	private final String REPLACE_CAPTION = "#ImgCaption";
 	private final String REPLACE_CAPTION_LINK = "#CaptionLink";
 	private final String REPLACE_CAPTION_LINK_TEXT = "#LinkText";
@@ -54,26 +77,36 @@ public class EmailWizardBean implements Serializable {
 	private String seasonNumeral;
 	private String title;
 	private String subtitle;
-	private String lead;
+	private String headline;
 	private String imgCaption;
-	private String imgUrl;
 	private String imgUrlText;
 	
-	private String summary;
 	private String downloadExcel;
 	private String downloadPdf;
 	
 	private String leaderTitle;
 	private String leaders;
 	
-	private String documentText = null;
 	private String altText = null;
+	private String messageText;
+	
+	private String mainImgUrl;
+	
+	private boolean useDefaultImage = true;
+	
+	private String destination;
+	private List<SelectItem> destinations;
+	private Map<String, String> labelMap;
+	
+	private String documentText;
 	
 	private TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rankMap;
 	
 	private Season currentSeason;
 	
 	private Week currentWeek;
+	
+	private Logger log = Logger.getLogger(EmailWizardBean.class.getName());
 	
 	@EJB
 	private SeasonService seasonService;
@@ -84,6 +117,9 @@ public class EmailWizardBean implements Serializable {
 	@EJB
 	private EmailService emailService;
 	
+	@EJB
+	private com.nectp.beans.remote.daos.EmailService emailRetrieval;
+	
 	@PostConstruct
 	public void init() {
 		//	Get the current season, and current week information
@@ -93,6 +129,31 @@ public class EmailWizardBean implements Serializable {
 			RomanNumeral roman = new RomanNumeral(seasonNum);
 			seasonNumeral = roman.toString();
 			
+			labelMap = new HashMap<String, String>();
+			SelectItemGroup players = new SelectItemGroup("Players:");
+			ArrayList<SelectItem> playerItems = new ArrayList<SelectItem>();
+			for (PlayerForSeason player : currentSeason.getPlayers()) {
+				String playerPath = "/nec" + seasonNum + "/players/" + player.getNickname();
+				SelectItem playerItem = new SelectItem(player.getNickname(), playerPath);
+				playerItems.add(playerItem);
+				labelMap.put(playerPath, player.getNickname());
+			}
+			players.setSelectItems(playerItems.toArray(new SelectItem[playerItems.size()]));
+			
+			SelectItemGroup teams = new SelectItemGroup("Teams:");
+			ArrayList<SelectItem> teamItems = new ArrayList<SelectItem>();
+			for (TeamForSeason team : currentSeason.getTeams()) {
+				String teamPath = "/nec" + seasonNum + "/teams/" + team.getTeamAbbr();
+				SelectItem teamItem = new SelectItem(team.getTeamCity(), teamPath);
+				teamItems.add(teamItem);
+				labelMap.put(teamPath, team.getTeamCity());
+			}
+			teams.setSelectItems(teamItems.toArray(new SelectItem[teamItems.size()]));
+			
+			destinations = new ArrayList<SelectItem>();
+			destinations.add(players);
+			destinations.add(teams);
+			
 			currentWeek = currentSeason.getCurrentWeek();
 			if (currentWeek != null) {
 				NEC subseasonType = currentWeek.getSubseason().getSubseasonType();
@@ -100,103 +161,176 @@ public class EmailWizardBean implements Serializable {
 				
 				rankMap = recordService.getPlayerRankedScoresForType(subseasonType, currentSeason, true);
 				setLeaders();
+				
+				downloadExcel = "/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
+				downloadPdf = "/download/pdf/" + seasonNum + "/" + currentWeek.getWeekNumber();
 			}
 		}
+	}
+	
+	@Override
+	public void upload(FileUploadEvent event) {
+		UploadedFile file = event.getFile();
+		if (file != null) {
+			try {
+				InputStream iStream = file.getInputstream();
+				String filename = file.getFileName();
+				
+				String destination = System.getProperty("user.home") + File.separator + "NECTrackerResources" + 
+									 File.separator + "Uploads" + File.separator + "Images" + File.separator;
+				File newFile = new File(destination + filename);
+			    OutputStream copyStream = new FileOutputStream(newFile);
+			    
+			    int read = 0;
+			    byte[] bytes = new byte[1024];
+			    while ((read = iStream.read(bytes)) != -1) {
+			    	copyStream.write(bytes, 0, read);
+			    }
+			    iStream.close();
+			    copyStream.flush();
+			    copyStream.close();
+			    
+			    mainImgUrl = newFile.getAbsolutePath();
+			} catch (IOException e) {
+				log.warning("Upload failed: reverting to default image.");
+				log.warning(e.getMessage());
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Upload Error:", e.getMessage());
+		        FacesContext.getCurrentInstance().addMessage(null, message);
+				e.printStackTrace();
+				mainImgUrl = null;
+				useDefaultImage = true;
+			}
+		}
+		else {
+			log.warning("No file uploaded! Using default image.");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Upload Error:", "File not found!");
+	        FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+	}
+	
+	@Override
+	public void submit() { /* Not used for implementation purposes... */ }
+
+	
+	/* Getters & Setters for Wizard */
+	
+	public String getSubject() {
+		return subject;
 	}
 	
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
 	
-	public void setSeasonNumeral(String seasonNumeral) {
-		this.seasonNumeral = seasonNumeral;
+	public String getTitle() {
+		return title;
 	}
 	
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
+	public String getSubtitle() {
+		return subtitle;
+	}
+	
 	public void setSubtitle(String subtitle) {
 		this.subtitle = subtitle == null ? "" : subtitle;
 	}
 	
-	public void setLead(String lead) {
-		this.lead = lead == null ? "" : lead;
+	public String getHeadline() {
+		return headline;
+	}
+	
+	public void setHeadline(String headline) {
+		this.headline = headline == null ? "" : headline;
+	}
+	
+	public boolean getUseDefaultImage() {
+		return useDefaultImage;
+	}
+	
+	public void setUseDefaultImage(boolean useDefaultImage) {
+		this.useDefaultImage = useDefaultImage;
+	}
+	
+	public String getImgCaption() {
+		return imgCaption;
 	}
 	
 	public void setImgCaption(String imgCaption) {
 		this.imgCaption = imgCaption;
 	}
 	
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl == null ? "" : imgUrl;
+	public String getDestination() {
+		return destination;
 	}
 	
-	public void setImgUrlText(String imgUrlText) {
-		this.imgUrlText = imgUrlText == null ? "" : imgUrlText;
+	public void setDestination(String destination) {
+		this.destination = destination;
+		this.imgUrlText = labelMap.get(destination) + " &raquo;";
 	}
 	
-	/** Replaces the '#Summary' tag in the html template with the input text, wrapped in paragraph tags
-	 * 
-	 * @param summary the HTML-wrapped concatenation of the user input, wrapped around each newline
-	 */
-	public void setSummary(String summary) {
-		//	Get the wizard input, splitting on input newlines
-		String[] paragraphs = summary.split("\n");
-		//	Create a stringbuilder & wrap each newline segment in a paragraph style tag & closing tag
-		StringBuilder summaryBuilder = new StringBuilder();
-		for (String s : paragraphs) {
-			if (s != null && !s.isEmpty()) {
-				summaryBuilder.append(summaryPTag);
-				summaryBuilder.append(s);
-				summaryBuilder.append("</p>");
-			}
-		}
-		this.summary = summaryBuilder.toString();
+	public String getMessageText() {
+		return messageText;
 	}
 	
-	public void setDownloadExcel(String downloadExcel) {
-		this.downloadExcel = downloadExcel;
+	public void setMessageText(String messageText) {
+		this.altText = messageText;
+		StringBuilder paragraph = new StringBuilder();
+		paragraph.append(summaryPTag);
+		String rftHtml = rtfToHtml(new StringReader(messageText));
+		paragraph.append(rftHtml);
+		paragraph.append("</p>");
+//		this.messageText = rtfToHtml(new StringReader(messageText));
+		this.messageText = paragraph.toString();
 	}
 	
-	public void setDownloadPdf(String downloadPdf) {
-		this.downloadPdf = downloadPdf;
-	}
+//	/** Replaces the '#Summary' tag in the html template with the input text, wrapped in paragraph tags
+//	 * 
+//	 * @param summary the HTML-wrapped concatenation of the user input, wrapped around each newline
+//	 */
+//	public void setMessageText(String summary) {
+//		//	Get the wizard input, splitting on input newlines
+//		String[] paragraphs = summary.split("\n");
+//		//	Create a stringbuilder & wrap each newline segment in a paragraph style tag & closing tag
+//		StringBuilder summaryBuilder = new StringBuilder();
+//		for (String s : paragraphs) {
+//			if (s != null && !s.isEmpty()) {
+//				summaryBuilder.append(summaryPTag);
+//				summaryBuilder.append(s);
+//				summaryBuilder.append("</p>");
+//			}
+//		}
+//		this.summary = summaryBuilder.toString();
+//	}
 	
-	public void setLeaderTitle(String leaderTitle) {
-		this.leaderTitle = leaderTitle;
-	}
-	
-	public void setLeaders() {
-		List<String> leaders = new ArrayList<String>();
+	private void setLeaders() {
+		StringBuilder leadersBuilder = new StringBuilder();
 		for (Entry<RecordAggregator, List<AbstractTeamForSeason>> rankEntry : rankMap.entrySet()) {
 			List<AbstractTeamForSeason> leaderList = rankEntry.getValue();
 			Collections.sort(leaderList);
 			for (AbstractTeamForSeason player : leaderList) {
-				leaders.add(player.getNickname());
+				Integer seasonNum = player.getSeason().getSeasonNumber();
+				String leaderLink = "/nec" + seasonNum + "/players/" + player.getNickname();
+				Integer leaderScore = rankEntry.getKey().getTotalScore();
+				leadersBuilder.append(leaderPTag);
+				leadersBuilder.append(leaderLink);
+				leadersBuilder.append("\">");
+				leadersBuilder.append(player.getNickname());
+				leadersBuilder.append(": ");
+				if (leaderScore > 0) {
+					leadersBuilder.append("+");
+				}
+				leadersBuilder.append(leaderScore.toString());
+				leadersBuilder.append(" &raquo;</a></p>");
 			}
-		}
-		
-		StringBuilder leadersBuilder = new StringBuilder();
-		for (String leader : leaders) {
-			String leaderLink = "";
-			Integer leaderScore = 7;
-			leadersBuilder.append(leaderPTag);
-			leadersBuilder.append(leaderLink);
-			leadersBuilder.append("\">");
-			leadersBuilder.append(leader);
-			leadersBuilder.append(": ");
-			if (leaderScore > 0) {
-				leadersBuilder.append("+");
-			}
-			leadersBuilder.append(leaderScore.toString());
-			leadersBuilder.append(" »</a></p>");
 		}
 		
 		this.leaders = leadersBuilder.toString();
 	}
 	
-	public void setDocumentText() {
+	private String getDocumentText() {
 		//	Get the document template 
 		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 	    String relativeTemplatePath = "/inlinedEmail.html";
@@ -211,8 +345,9 @@ public class EmailWizardBean implements Serializable {
 		    }
 		    br.close();
 	    } catch (IOException e) {
-	    	//	TODO update growl that document write failed
-	    	return;
+	    	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Inline DocRead Error:", e.getMessage());
+	        FacesContext.getCurrentInstance().addMessage(null, message);
+	    	return null;
 	    }
 	    //	Get the read document as a single string
 	    String inline = document.toString();
@@ -221,50 +356,63 @@ public class EmailWizardBean implements Serializable {
 	    inline = inline.replace(REPLACE_SEASON_NUMERAL, seasonNumeral);
 	    inline = inline.replace(REPLACE_TITLE, title);
 	    inline = inline.replace(REPLACE_SUBTITLE, subtitle);
-	    inline = inline.replace(REPLACE_LEAD, lead);
+	    inline = inline.replace(REPLACE_HEADLINE, headline);
 	    inline = inline.replace(REPLACE_CAPTION, imgCaption);
-	    inline = inline.replace(REPLACE_CAPTION_LINK, imgUrl);
+	    inline = inline.replace(REPLACE_CAPTION_LINK, destination);
 	    inline = inline.replace(REPLACE_CAPTION_LINK_TEXT, imgUrlText);
-	    inline = inline.replace(REPLACE_SUMMARY, summary);
+	    inline = inline.replace(REPLACE_SUMMARY, messageText);
 	    inline = inline.replace(REPLACE_LEADER_TITLE, leaderTitle);
 	    inline = inline.replace(REPLACE_LEADERS, leaders);
 	    inline = inline.replace(REPLACE_EXCEL_DOWNLOAD_LINK, downloadExcel);
 	    inline = inline.replace(REPLACE_PDF_DOWNLOAD_LINK, downloadPdf);
 	    
-	    this.documentText = inline;
-	}
-	
-	public String getDocumentText() {
-		return documentText;
-	}
-	
-	public void setAltText(String altText) {
-		this.altText = altText;
-	}
-	
-	public String getAltText() {
-		return altText;
+	    return inline;
 	}
 	
 	public void send() {
 		if (currentSeason == null) {
-			//	TODO: update growl
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Send Error:", "Current season not defined!");
+	        FacesContext.getCurrentInstance().addMessage(null, message);
 			return;
 		}
 		
-		List<PlayerForSeason> players = currentSeason.getPlayers();
-		List<Email> addresses = new ArrayList<Email>();
-		//	TODO: replace with query
-		for (PlayerForSeason player : players) {
-			List<Email> emails = player.getPlayer().getEmails();
-			for (Email email : emails) {
-				if (email.isEmailsRequested()) {
-					addresses.add(email);
-				}
-			}
+		List<Email> addresses = emailRetrieval.selectAllRecipientsBySeason(currentSeason);
+	
+		documentText = getDocumentText();
+		if (documentText == null) {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Document Error:", "Failed to get inline document!");
+	        FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 		
-		boolean sent = emailService.sendEmail(addresses, subject, altText, documentText);
-		//	TODO: update growl
+		boolean sent = emailService.sendEmail(addresses, subject, altText, documentText, null, mainImgUrl);
+		if (sent) {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success!", "Email sent successfully.");
+	        FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+		else {
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Email failed to send.");
+	        FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+	}
+	
+	public String onFlowProcess(FlowEvent event) {
+		return event.getNewStep();
+	}
+	
+	
+	public static String rtfToHtml(Reader rtf) {
+		JEditorPane p = new JEditorPane();
+		Document doc = p.getDocument();
+		p.setContentType("text/rtf");
+		EditorKit kitRtf = p.getEditorKitForContentType("text/rtf");
+		try {
+			kitRtf.read(rtf, doc, 0);
+			EditorKit kitHtml = p.getEditorKitForContentType("text/html");
+			Writer writer = new StringWriter();
+			kitHtml.write(writer, doc, 0, doc.getLength());
+			return writer.toString();
+		} catch (BadLocationException | IOException e) {
+			return null;
+		}
 	}
 }

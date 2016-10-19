@@ -11,5 +11,6 @@ public interface TeamForSeasonService extends DataService<TeamForSeason> {
 	
 	public TeamForSeason selectTfsByAbbrSeason(String abbr, Season season);
 	
+	public TeamForSeason selectTfsByCitySeason(String city, Season season);
 }
 

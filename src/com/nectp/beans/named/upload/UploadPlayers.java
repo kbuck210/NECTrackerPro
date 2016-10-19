@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.w3c.dom.Element;
 
 import com.nectp.beans.ejb.daos.xml.XmlPlayerUpdater;
@@ -23,7 +24,7 @@ import com.nectp.webtools.DOMParser;
 /** Upload Players is a standalone implementation of the FileUpload interface to specifically 
  *  create/update Player & PFS entities based on the selected XML file
  * 
- *  USAGE: the provided XML file should have a root element with an 'nec' attribute specifying the 
+ *  USAGE: the provided XML file(s) should have a root element with an 'nec' attribute specifying the 
  *  	   season to which the PFS objects belong.  Within the document should be elements with the
  *  	   qualified node name 'player' which designates a Player & PFS entity.  Within the 'player' element
  *  	   should be the following sub-elements, defining the entity attributes:
@@ -40,7 +41,7 @@ import com.nectp.webtools.DOMParser;
  * @since  1.0
  */
 @Named(value="uploadPlayers")
-@RequestScoped
+@ViewScoped
 public class UploadPlayers extends FileUploadImpl {
 	private static final long serialVersionUID = 1464890360533394179L;
 
@@ -64,14 +65,20 @@ public class UploadPlayers extends FileUploadImpl {
 	
 	@Override
 	public void upload(FileUploadEvent event) {
-		file = event.getFile();
-		if (file != null) {
-			try {
-				InputStream iStream = file.getInputstream();
-				parsePlayers(iStream);
-			} catch (IOException e) {
-				log.severe("Exception retrieving input stream from uploaded file, can not update players: " + e.getMessage());
-				e.printStackTrace();
+		files.add(event.getFile());
+	}
+	
+	@Override
+	public void submit() {
+		for (UploadedFile file : files) {
+			if (file != null) {
+				try {
+					InputStream iStream = file.getInputstream();
+					parsePlayers(iStream);
+				} catch (IOException e) {
+					log.severe("Exception retrieving input stream from uploaded file, can not update players: " + e.getMessage());
+					e.printStackTrace();
+				}
 			}
 		}
 	}

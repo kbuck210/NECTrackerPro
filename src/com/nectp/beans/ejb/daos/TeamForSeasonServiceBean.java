@@ -79,6 +79,40 @@ public class TeamForSeasonServiceBean extends DataServiceBean<TeamForSeason> imp
 		
 		return tfs;
 	}
+	
+	/** NOTE: if available, should use the ABBR query for performance. 
+	 * 	City query performs a scan for UPPER command to work, whereas abbrs are stored in upper-case
+	 * 
+	 */
+	@Override
+	public TeamForSeason selectTfsByCitySeason(String city, Season season) {
+		Logger log = Logger.getLogger(TeamForSeasonServiceBean.class.getName());
+		TeamForSeason tfs = null;
+		
+		if (city == null || season == null) {
+			log.severe("Abbreviation or season not specified, can not select TeamForSeason!");
+		}
+		else {
+			TypedQuery<TeamForSeason> tq = em.createNamedQuery("TeamForSeason.selectTfsByAbbrSeason", TeamForSeason.class);
+			tq.setParameter("teamCity", city.toUpperCase());
+			tq.setParameter("seasonNumber", season.getSeasonNumber());
+			try {
+				tfs = tq.getSingleResult();
+			} catch (NonUniqueResultException e) {
+				log.severe("Multiple TFS found for city: " + city + " in season " + season.getSeasonNumber());
+				log.severe(e.getMessage());
+				e.printStackTrace();
+			} catch (NoResultException e) {
+				log.warning("No TFS found for for city: " + city + " in season " + season.getSeasonNumber());
+				log.warning(e.getMessage());
+			} catch (Exception e) {
+				log.severe("Exception caught while retrieving TFS: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+		return tfs;
+	}
 
 }
 

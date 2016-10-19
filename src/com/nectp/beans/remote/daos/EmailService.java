@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nectp.jpa.entities.Email;
 import com.nectp.jpa.entities.Player;
+import com.nectp.jpa.entities.Season;
 
 public interface EmailService extends DataService<Email> {
 
@@ -13,4 +14,5 @@ public interface EmailService extends DataService<Email> {
 	
 	public Email selectEmailForPlayer(String emailAddress, Player player);
 	
+	public List<Email> selectAllRecipientsBySeason(Season season);
 }

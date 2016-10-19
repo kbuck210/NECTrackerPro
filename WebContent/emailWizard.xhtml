@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:gc="http://java.sun.com/jsf/composite/components"
+      xmlns:p="http://primefaces.org/ui" >
+
+	<ui:decorate template="homeTemplate.xhtml">
+		<ui:define name="header">
+			<ui:include src="/header.xhtml" />
+		</ui:define>
+		<ui:define name="content">
+			<p:growl id="growl" showDetail="true" life="2000" />
+			<!-- Center content update area -->
+			<div class="blog-post shadow">
+				<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+ 
+				<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+				    <p:graphicImage name="img/emailSending.gif" />
+				</p:dialog>
+				
+				<h:form id="weeklyEmailForm" enctype="multipart/form-data">
+					<h3>Submit Weekly Summary Email:</h3>
+					<hr/>
+					<p:wizard flowListener="#{emailWizardBean.onFlowProcess}">
+						<!-- Message Details Tab -->
+						<p:tab id="details" title="Details" >
+							<p:panel header="Email Send Details" >
+								<p:messages />
+								<h:panelGrid columns="2" columnClasses="label, value" >
+									<h:outputText value="Subject: *" />
+									<p:inputText value="#{emailWizardBean.subject}" required="true" label="Subject" />
+									
+									<h:outputText value="Message Title: *" />
+									<p:inputText value="#{emailWizardBean.title}" required="true" label="Title" />
+									
+									<h:outputText value="Message Subtitle: " />
+									<p:inputText value="#{emailWizardBean.subtitle}" label="Subtitle" />
+									
+									<h:outputText value="Message Headline: *" />
+									<p:inputText value="#{emailWizardBean.headline}" label="Headline" />
+								</h:panelGrid>
+							</p:panel>
+						</p:tab>
+						<!-- Image Details Tab -->
+						<p:tab id="image" title="Image">
+							<p:panel header="Email Image Details" >
+								<p:messages />
+								<h:panelGrid columns="2" columnClasses="label, value" >
+									<h:outputText value="Use Default Image: " />
+									<h:selectBooleanCheckbox value="#{emailWizardBean.useDefaultImage}" />
+									
+									<h:outputText value="Upload Content Image: " />
+									<p:fileUpload value="#{emailWizardBean.file}" mode="advanced" 
+										  skinSimple="true" update="growl" 
+										  disabled="#{emailWizardBean.useDefaultImage}"
+										  fileUploadListener="#{emailWizardBean.upload}" />
+										  
+									<h:outputText value="Image Caption: " />
+									<p:inputText value="#{emailWizardBean.imgCaption}" label="Caption" />
+									
+									<h:outputText value="Link Destination: " />
+							        <p:selectOneMenu value="#{emailWizardBean.destination}">
+							            <f:selectItem itemLabel="Select One" itemValue="" />
+							            <f:selectItems value="#{emailWizardBean.destinations}" />
+							        </p:selectOneMenu>
+								</h:panelGrid>
+							</p:panel>
+						</p:tab>
+						<!-- Message Text Tab -->
+						<p:tab id="messageText" title="Message" >
+							<h3 style="margin-top:0">Edit Message Text:</h3>
+							<p:messages />
+							<p:textEditor widgetVar="editor1" value="#{emailWizardBean.messageText}" height="300" style="margin-bottom:10px"/>
+							<h:panelGrid columns="2" columnClasses="label, value" >
+								<h:outputText value="Submit: " />
+								<p:commandButton value="Submit" actionListener="#{emailWizardBean.send}" update="growl" process="@this"/>
+							</h:panelGrid>
+						</p:tab>
+					</p:wizard>
+				</h:form>
+			</div>
+		</ui:define>
+		<ui:define name="footer">
+			<ui:include src="/footer.xhtml" />
+		</ui:define>
+	</ui:decorate>
+</html>
