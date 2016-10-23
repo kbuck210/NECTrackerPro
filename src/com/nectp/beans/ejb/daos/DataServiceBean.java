@@ -26,10 +26,6 @@ public class DataServiceBean<T> implements Serializable, DataService<T> {
 	//	Generic class implementation for the service, allows for common access for any entity type
 	private Class<T> type;
 	
-	public DataServiceBean() {
-		
-	}
-	
 	//	Required unchecked cast, Class<T> not known until runtime...
 	@SuppressWarnings("unchecked")
 	@PostConstruct

@@ -17,7 +17,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	private static final long serialVersionUID = 3227697810038205133L;
 
 	@Override
-	public PlayerForSeason selectPlayerInSeason(Player player, Season season) {
+	public PlayerForSeason selectPlayerInSeason(Player player, Season season) throws NoResultException {
 		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
 		PlayerForSeason pfs = null;
 		if (player == null || season == null) {
@@ -36,7 +36,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 			} catch (NoResultException e) {
 				log.warning("No result found for " + player.getName() + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
 				e.printStackTrace();
@@ -47,7 +47,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	}
 
 	@Override
-	public PlayerForSeason selectPlayerByExcelName(String excelName, Season season) {
+	public PlayerForSeason selectPlayerByExcelName(String excelName, Season season) throws NoResultException {
 		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
 		PlayerForSeason pfs = null;
 		if (excelName == null || season == null) {
@@ -66,7 +66,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 			} catch (NoResultException e) {
 				log.warning("No result found for " + excelName + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
 				e.printStackTrace();
@@ -77,7 +77,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	}
 
 	@Override
-	public PlayerForSeason selectPlayerByExcelCol(int excelCol, Season season) {
+	public PlayerForSeason selectPlayerByExcelCol(int excelCol, Season season) throws NoResultException {
 		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
 		PlayerForSeason pfs = null;
 		if (season == null) {
@@ -96,7 +96,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 			} catch (NoResultException e) {
 				log.warning("No result found for column " + excelCol + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
 				e.printStackTrace();
@@ -107,7 +107,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	}
 
 	@Override
-	public PlayerForSeason selectCommishBySeason(Season season) {
+	public PlayerForSeason selectCommishBySeason(Season season) throws NoResultException {
 		Logger log = Logger.getLogger(PlayerForSeasonService.class.getName());
 		PlayerForSeason commish = null;
 		if (season == null) {
@@ -133,6 +133,36 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 		} 
 		
 		return commish;
+	}
+
+	@Override
+	public PlayerForSeason selectPlayerByNickname(String nickname, Season season) throws NoResultException {
+		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
+		PlayerForSeason pfs = null;
+		if (nickname == null || season == null) {
+			log.severe("Nickname or season not defined, can not select PlayerForSeason");
+		}
+		else {
+			TypedQuery<PlayerForSeason> pq = em.createNamedQuery("PlayerForSeason.selectByNickname", PlayerForSeason.class);
+			pq.setParameter("nickname", nickname);
+			pq.setParameter("seasonNumber", season.getSeasonNumber());
+			try {
+				pfs = pq.getSingleResult();
+			} catch (NonUniqueResultException e) {
+				log.severe("Multiple PFS found for " + nickname + " in season " + season.getSeasonNumber());
+				log.severe(e.getMessage());
+				e.printStackTrace();
+			} catch (NoResultException e) {
+				log.warning("No result found for " + nickname + " in season " + season.getSeasonNumber());
+				log.warning(e.getMessage());
+				throw e;
+			} catch (Exception e) {
+				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+		return pfs;
 	}
 }
 

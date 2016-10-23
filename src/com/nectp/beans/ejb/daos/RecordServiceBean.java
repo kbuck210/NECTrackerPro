@@ -18,6 +18,7 @@ import com.nectp.beans.remote.daos.SubseasonService;
 import com.nectp.beans.remote.daos.WeekService;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.AbstractTeamForSeason;
+import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.Pick.PickType;
 import com.nectp.jpa.entities.PlayerForSeason;
@@ -26,6 +27,7 @@ import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
+import com.nectp.jpa.entities.Game.GameStatus;
 
 @Stateless
 public class RecordServiceBean extends DataServiceBean<Record> implements RecordService {
@@ -44,7 +46,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 	}
 	
 	@Override
-	public Record selectWeekRecordForAtfs(Week week, AbstractTeamForSeason atfs, NEC recordType) {
+	public Record selectWeekRecordForAtfs(Week week, AbstractTeamForSeason atfs, NEC recordType) throws NoResultException {
 		Record record = null;
 		if (week == null || atfs == null || recordType == null) {
 			log.severe("Parameters not specified, can not select Record.");
@@ -69,7 +71,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 				log.warning("No records found for " + atfs.getNickname() + " in week " 
 						+ week.getWeekNumber() + " for " + recordType.name());
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving record: " + e.getMessage());
 				e.printStackTrace();
@@ -91,45 +93,6 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 			
 			//	Create a list to store all of the weeks corresponding to the specified record (using default ranges)
 			List<Week> weeksForRecord = getWeekRangeList(season, recordType, null, null);
-			
-//			Week currentWeek = null;
-//			try {
-//				currentWeek = weekService.selectCurrentWeekInSeason(season);
-//			} catch (NoResultException e) {
-//				log.severe("Could not get the current week in the season! Can not get the current record.");
-//				return agg;
-//			}
-//			//	Create a list to store all of the weeks corresponding to the specified record
-//			ArrayList<Week> weeksForRecord = new ArrayList<Week>();
-//			Subseason subseason = currentWeek.getSubseason();
-//			
-//			//	Based on the specified record type, get the correct amount of weeks for the record
-//			//	If the current subseason is the specified record type, 
-//			//	get the weeks in the subseason leading up to this week
-//			if (subseason.getSubseasonType().equals(recordType.ordinal())) {
-//				for (Week w : subseason.getWeeks()) {
-//					if (w.getWeekNumber() <= currentWeek.getWeekNumber()) {
-//						weeksForRecord.add(w);
-//					}
-//				}
-//			}
-//			//	If the record type is not this subseason, but is related to a subseason, 
-//			//	get all of the weeks in the specified subseason
-//			else if (recordType == NEC.FIRST_HALF || recordType == NEC.SECOND_HALF || 
-//					 recordType == NEC.PLAYOFFS || recordType == NEC.SUPER_BOWL) {
-//				try {
-//					subseason = subseasonService.selectSubseasonInSeason(recordType, season);
-//				} catch (NoResultException e) {
-//					log.severe("Failed to retrieve specified subseason! can not get record for weeks.");
-//					return agg;
-//				}
-//				
-//				weeksForRecord.addAll(subseason.getWeeks());
-//			}
-//			else {
-//				//	If the record type is a season-long record (other than season) type, get all weeks up until current week
-//				weeksForRecord.addAll(weekService.selectWeeksThroughCurrentWeekInSeason(season));
-//			}
 			
 			for (Week week : weeksForRecord) {
 				Record record = null;
@@ -160,7 +123,6 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 			Season season = atfs.getSeason();
 			
 			//	Create a list to store all of the weeks corresponding to the specified record
-//			List<Week> weeksForRecord = weekService.selectConcurrentWeeksInRangeInSeason(season, startWeek.getWeekNumber(), endWeek.getWeekNumber());
 			List<Week> weeksForRecord = getWeekRangeList(season, recordType, startWeek, endWeek);
 			
 			for (Week w : weeksForRecord) {
@@ -191,8 +153,15 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 			//	Get the current week in the season
 			Season season = atfs.getSeason();
 			
-			//	Create a list to store all of the weeks corresponding to the specified record
-			List<Week> weeksForRecord = weekService.selectConcurrentWeeksInRangeInSeason(season, 1, week.getWeekNumber());
+			//	Create a list to store all of the weeks corresponding to the specified record - if in playoffs, and season record type, get only regular season weeks
+			int endWeek = week.getWeekNumber();
+			if (recordType == NEC.SEASON) {
+				NEC subseasonType = week.getSubseason().getSubseasonType();
+				if (subseasonType == NEC.PLAYOFFS || subseasonType == NEC.SUPER_BOWL) {
+					endWeek = season.getPlayoffStartWeek() - 1;
+				}
+			}
+			List<Week> weeksForRecord = weekService.selectConcurrentWeeksInRangeInSeason(season, 1, endWeek);
 			
 			for (Week w : weeksForRecord) {
 				Record record = null;
@@ -373,46 +342,67 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 	}
 	
 	@Override
-	public void updateRecordForPlayerPick(Pick p, TeamForSeason winningTeam, TeamForSeason losingTeam) {
+	public void updateRecordForPlayerPick(Pick p) {
 		Logger log = Logger.getLogger(PickServiceBean.class.getName());
 		if (p == null) {
 			log.warning("No pick specified! can not update player records.");
 		}
 		else {
+			Game game = p.getGame();
+			if (game == null || game.getGameStatus() != GameStatus.FINAL) {
+				log.severe("Game either not defined or not complete. Skipping update.");
+				return;
+			}
 			Record applicableRecord = p.getApplicableRecord();
 			TeamForSeason pickedTeam = p.getPickedTeam();
 			
 			boolean recordUpdated = false;
 			
 			//	If the pick is independent of the spread, add a raw win/loss based on the pick
+			TeamForSeason winner;
 			if (p.getPickType().equals(PickType.STRAIGHT_UP)) {
-				if (pickedTeam.equals(winningTeam)) {
+				winner = game.getWinner();
+				if (winner == null) {
+					applicableRecord.addTie();
+					recordUpdated = true;
+				}
+				else if (pickedTeam.equals(winner)) {
 					applicableRecord.addWin();
 					recordUpdated = true;
 				}
-				else if (pickedTeam.equals(losingTeam)) {
+				else {
 					applicableRecord.addLoss();
 					recordUpdated = true;
 				}
 			}
 			//	If the pick is dependent on spread2, add a win/loss ATS based on the pick
 			else if (p.getPickType().equals(PickType.SPREAD2)) {
-				if (pickedTeam.equals(winningTeam)) {
+				winner = game.getWinnerATS2();
+				if (winner == null) {
+					applicableRecord.addTie();
+					recordUpdated = true;
+				}
+				else if (pickedTeam.equals(winner)) {
 					applicableRecord.addWinATS2();
 					recordUpdated = true;
 				}
-				else if (pickedTeam.equals(losingTeam)) {
+				else {
 					applicableRecord.addLossATS2();
 					recordUpdated = true;
 				}
 			}
 			//	If the pick is dependent on spread1, add a win/loss ATS based on the pick	
 			else {
-				if (pickedTeam.equals(winningTeam)) {
+				winner = game.getWinnerATS1();
+				if (winner == null) {
+					applicableRecord.addTie();
+					recordUpdated = true;
+				}
+				else if (pickedTeam.equals(winner)) {
 					applicableRecord.addWinATS1();
 					recordUpdated = true;
 				}
-				else if (pickedTeam.equals(losingTeam)) {
+				else {
 					applicableRecord.addLossATS1();
 					recordUpdated = true;
 				}

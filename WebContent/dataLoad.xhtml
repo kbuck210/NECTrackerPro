@@ -12,13 +12,14 @@
 			<ui:include src="/header.xhtml" />
 		</ui:define>
 		<ui:define name="content">
-			<p:growl id="growl" showDetail="true" life="2000" sticky="true" />
+			<p:growl id="growl" showDetail="true" life="2000" />
 			<!-- Center content update area -->
 			<h:panelGrid columns="2">
 				<h:form id="stadiumUploadForm" enctype="multipart/form-data">
 					<p:fieldset legend="Upload Stadiums:">
 						<h:outputText value="Select the Stadiums.xml file to upload: " />
-						<p:fileUpload value="#{uploadStadiums.file}" mode="advanced" 
+						<p:fileUpload mode="advanced" 
+									  multiple="false"
 									  dragDropSupport="true"
 									  skinSimple="true"
 									  allowTypes="/(\.|\/)(xml)$/"

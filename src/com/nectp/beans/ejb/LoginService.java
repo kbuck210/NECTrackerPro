@@ -68,7 +68,7 @@ public class LoginService implements Serializable {
 				if (player.getPassword().equals(password)) {
 					//	Sets the found user as the currently logged in user
 					appState.setUser(player);
-					
+					log.info("User: " + player.getName() + " set in appState");
 					//	Save a persistent cookie to keep the player logged in until log out selected (or max age - 30 weeks - reached)
 					int seconds30weeks = 30 * 7 * 24 * 60 * 60;
 					String cookieVal = "username:" + email + " password:" + password;

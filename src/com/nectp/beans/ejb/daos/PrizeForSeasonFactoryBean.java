@@ -40,8 +40,13 @@ public class PrizeForSeasonFactoryBean extends PrizeForSeasonServiceBean impleme
 					pfs.setPrizeAmount(amount);
 					update = true;
 				}
-				if (!pfs.getSubseason().equals(subseason)) {
+				if (pfs.getSubseason() != null && !pfs.getSubseason().equals(subseason)) {
 					pfs.getSubseason().removePrizeForSubseason(pfs);
+					pfs.setSubseason(subseason);
+					subseason.addPrizeForSubseason(pfs);
+					update = true;
+				}
+				else if (pfs.getSubseason() == null && subseason != null) {
 					pfs.setSubseason(subseason);
 					subseason.addPrizeForSubseason(pfs);
 					update = true;
@@ -49,6 +54,7 @@ public class PrizeForSeasonFactoryBean extends PrizeForSeasonServiceBean impleme
 				if (winner != null) {
 					if (pfs.getWinner() == null) {
 						pfs.setWinner(winner);
+						winner.addPrizeforseason(pfs);
 						update = true;
 					}
 					else if (!pfs.getWinner().equals(winner)) {
@@ -79,6 +85,11 @@ public class PrizeForSeasonFactoryBean extends PrizeForSeasonServiceBean impleme
 					
 					pfs.setSeason(season);
 					season.addPrize(pfs);
+					
+					if (winner != null) {
+						pfs.setWinner(winner);
+						winner.addPrizeforseason(pfs);
+					}
 					
 					if (subseason != null) {
 						pfs.setSubseason(subseason);

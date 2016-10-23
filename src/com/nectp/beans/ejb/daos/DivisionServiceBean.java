@@ -17,7 +17,7 @@ public class DivisionServiceBean extends DataServiceBean<Division> implements Di
 	private static final long serialVersionUID = 3965068494859132010L;
 
 	@Override
-	public Division selectDivisionInConference(Region region, Conference conference) {
+	public Division selectDivisionInConference(Region region, Conference conference) throws NoResultException {
 		Logger log = Logger.getLogger(DivisionServiceBean.class.getName());
 		Division division = null;
 		if (region == null || conference == null) {
@@ -36,7 +36,7 @@ public class DivisionServiceBean extends DataServiceBean<Division> implements Di
 			} catch (NoResultException e) {
 				log.warning("No division found for region: " + region.name() + " in conference: " + conference.getConferenceType().name());
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving division: " + e.getMessage());
 				e.printStackTrace();

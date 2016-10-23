@@ -48,7 +48,7 @@ public class XmlGameUpdater {
 			String spread1Str = parser.getTextSubElementByTagName(g, "spread1");
 			String spread2Str = parser.getTextSubElementByTagName(g, "spread2");
 			String awayTeam = parser.getTextSubElementByTagName(g, "awayTeam");
-			String awayScoreStr = parser.getTextSubElementByTagName(g, "awayScoreStr");
+			String awayScoreStr = parser.getTextSubElementByTagName(g, "awayScore");
 			String gameDate = parser.getTextSubElementByTagName(g, "date");
 			String kickoff = parser.getTextSubElementByTagName(g, "time");
 			String status = parser.getTextSubElementByTagName(g, "status");

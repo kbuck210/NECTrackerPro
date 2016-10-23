@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.nectp.jpa.constants.NEC;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -120,6 +121,15 @@ public class Subseason implements Serializable {
 		week.setSubseason(null);
 
 		return week;
+	}
+	
+	public Week getFirstWeek() {
+		Week firstWeek = null;
+		if (!weeks.isEmpty()) {
+			Collections.sort(weeks);
+			firstWeek = weeks.get(0);
+		}
+		return firstWeek;
 	}
 
 	@Override

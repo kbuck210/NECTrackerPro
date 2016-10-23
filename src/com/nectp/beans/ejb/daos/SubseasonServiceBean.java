@@ -27,7 +27,7 @@ public class SubseasonServiceBean extends DataServiceBean<Subseason> implements 
 	private PrizeForSeasonService pzfsService;
 	
 	@Override
-	public Subseason selectSubseasonInSeason(NEC subseasonType, Season season) {
+	public Subseason selectSubseasonInSeason(NEC subseasonType, Season season) throws NoResultException {
 		Logger log = Logger.getLogger(SubseasonService.class.getName());
 		Subseason subseason = null;
 		TypedQuery<Subseason> sq = em.createNamedQuery("Subseason.selectSubseasonByTypeInSeason", Subseason.class);
@@ -42,7 +42,7 @@ public class SubseasonServiceBean extends DataServiceBean<Subseason> implements 
 		} catch (NoResultException e) {
 			log.log(Level.WARNING, "No subseason found for type: " + subseasonType + " in season " + season.getSeasonNumber());
 			log.log(Level.WARNING, e.getMessage());
-			throw new NoResultException();
+			throw e;
 		} catch (Exception e) {
 			log.log(Level.SEVERE, "Exception caught retrieving subseason: " + e.getMessage());
 			e.printStackTrace();

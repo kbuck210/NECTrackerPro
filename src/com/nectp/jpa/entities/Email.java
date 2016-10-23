@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 				query="SELECT e FROM Email e "
 					+ "INNER JOIN FETCH e.player p "
 					+ "WHERE p.abstractTeamId = :playerId"),
-	@NamedQuery(name="Email.selectUserForPrimaryEmail",
+	@NamedQuery(name="Email.selectUserByPrimaryEmail",
 				query="SELECT DISTINCT e.player FROM Email e "
 					+ "WHERE e.emailAddress = :emailAddress "
 					+ "AND e.primaryAddress = true"),

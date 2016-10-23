@@ -3,9 +3,14 @@ package com.nectp.beans.named;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.context.RequestContext;
 
 import com.nectp.beans.ejb.ApplicationState;
 import com.nectp.beans.ejb.LoginService;
@@ -32,6 +37,9 @@ public class HeaderBean implements Serializable {
 	
 	@Inject
 	private ApplicationState appState;
+	
+	public HeaderBean() {
+	}
 	
 	@PostConstruct
 	public void init() {
@@ -116,8 +124,27 @@ public class HeaderBean implements Serializable {
 		return seasonTitle;
 	}
 
-	public void login() {
-		loginService.login(emailAddress, password);
+	public void login(ActionEvent event) {
+		RequestContext context = RequestContext.getCurrentInstance();
+        FacesMessage message = null;
+        boolean loggedIn = false;
+        
+        Player user = loginService.login(emailAddress, password);
+        if(user != null) {
+        	String name = user.getName();
+			String[] nameParts = name.split(" ");
+			String firstName = nameParts[0];
+			buttonText = "Hi " + firstName + "!";
+			buttonDisabled = true;
+            loggedIn = true;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Welcome", user.getName());
+        } else {
+            loggedIn = false;
+            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
+        }
+         
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        context.addCallbackParam("loggedIn", loggedIn);
 	}
 	
 	public void logout() {

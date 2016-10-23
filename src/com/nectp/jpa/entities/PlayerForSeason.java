@@ -24,6 +24,11 @@ import java.util.List;
 					+ "INNER JOIN FETCH p.season s "
 					+ "WHERE pl.abstractTeamId = :playerId "
 					+ "AND s.seasonNumber = :seasonNumber"),
+	@NamedQuery(name="PlayerForSeason.selectByNickname",
+				query="SELECT DISTINCT p FROM PlayerForSeason p "
+					+ "INNER JOIN FETCH p.season s "
+					+ "WHERE s.seasonNumber = :seasonNumber "
+					+ "AND p.nickname = :nickname"),
 	@NamedQuery(name="PlayerForSeason.selectByExcelName",
 				query="SELECT DISTINCT p FROM PlayerForSeason p "
 					+ "INNER JOIN FETCH p.season s "

@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.GameFactory;
+import com.nectp.beans.remote.daos.RecordFactory;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Game.GameStatus;
 import com.nectp.jpa.entities.Stadium;
@@ -18,6 +20,9 @@ import com.nectp.jpa.entities.Week;
 public class GameFactoryBean extends GameServiceBean implements GameFactory {
 	private static final long serialVersionUID = -6326641654266855469L;
 
+	@EJB
+	private RecordFactory recordFactory;
+	
 	@Override
 	public Game createGameInWeek(Week week, TeamForSeason homeTeam, TeamForSeason awayTeam, Integer homeScore,
 			Integer awayScore, BigDecimal spread1, BigDecimal spread2, Calendar gameDate, GameStatus gameStatus,
@@ -120,6 +125,9 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 					update = true;
 				}
 				
+				recordFactory.createWeekRecordForGame(game, homeTeam);
+				recordFactory.createWeekRecordForGame(game, awayTeam);
+				
 				if (update) {
 					boolean updateSuccess = update(game);
 					return updateSuccess ? game : null;
@@ -129,7 +137,7 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 				game = new Game();
 				game.setHomeTeam(homeTeam);
 				homeTeam.addHomeGame(game);
-				
+
 				game.setAwayTeam(awayTeam);
 				awayTeam.addAwayGame(game);
 				
@@ -148,6 +156,9 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 				game.setHomeFavoredSpread1(homeFavoredSpread1);
 				game.setHomeFavoredSpread2(homeFavoredSpread2);
 				game.setTimeRemaining(timeRemaining);
+				
+				recordFactory.createWeekRecordForGame(game, homeTeam);
+				recordFactory.createWeekRecordForGame(game, awayTeam);
 				
 				boolean success = insert(game);
 				if (!success) {

@@ -5,24 +5,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import com.nectp.beans.ejb.ApplicationState;
 import com.nectp.beans.ejb.daos.RecordAggregator;
-import com.nectp.beans.remote.daos.RecordService;
-import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.Season;
 
-@Named(value="leaderBean")
-@ViewScoped
 public class LeaderBean implements Serializable {
 	private static final long serialVersionUID = -7238092389506995239L;
 	
@@ -59,28 +49,13 @@ public class LeaderBean implements Serializable {
 	private String record;
 	private String positionImg;
 	private ArrayList<PrizeBean> prizeCategories;
-	private NEC displayedCategory;
 	
 	private PlayerForSeason leader;
 	
-	private Season currentSeason;
-	
 	private TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rankMap;
 	
-	@Inject
-	private ApplicationState appState;
-	
-	@EJB
-	private RecordService recordService;
-	
-	public LeaderBean() {
-	}
-	
-	@PostConstruct
-	public void init() {
-		currentSeason = appState.getCurrentSeason();
-		displayedCategory = currentSeason.getCurrentWeek().getSubseason().getSubseasonType();
-		rankMap = recordService.getPlayerRankedScoresForType(displayedCategory, currentSeason, true);
+	public LeaderBean(Season currentSeason, TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rankMap) {
+		this.rankMap = rankMap;
 	}
 	
 	public void setPlayer(PlayerForSeason player) {
@@ -90,7 +65,7 @@ public class LeaderBean implements Serializable {
 		this.nickname = player.getNickname();
 		
 		int posCount = 1;
-		for (Map.Entry<RecordAggregator, List<AbstractTeamForSeason>> leaderEntry : rankMap.entrySet()) {
+		for (Entry<RecordAggregator, List<AbstractTeamForSeason>> leaderEntry : rankMap.entrySet()) {
 			if (leaderEntry.getValue().contains(player)) {
 				RecordAggregator ragg = leaderEntry.getKey();
 				record = "(" + ragg.getRawWins() + "-" + ragg.getRawLosses();
@@ -141,13 +116,5 @@ public class LeaderBean implements Serializable {
 	
 	public int getPrizeCount() {
 		return prizeCategories.size();
-	}
-	
-	public void setDisplayedCategory(NEC category) {
-		this.displayedCategory = category;
-	}
-	
-	public void setCurrentSeason(Season season) {
-		this.currentSeason = season;
 	}
 }

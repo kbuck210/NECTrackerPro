@@ -269,6 +269,14 @@ public class Record implements Serializable {
 	public void removePickInRecord(Pick pick) {
 		picksInRecord.remove(pick);
 	}
+	
+	public Integer getTotalScore() {
+		int winTotal = (wins + winsATS1 + winsATS2) * winModifier;
+		int lossTotal = (losses + lossesATS1 + lossesATS2) * lossModifier;
+		int tieTotal = (ties + tiesATS1 + tiesATS2) * tieModifier;
+		
+		return new Integer(winTotal + tieTotal - lossTotal);
+	}
 
 	@Override
     public int hashCode() {

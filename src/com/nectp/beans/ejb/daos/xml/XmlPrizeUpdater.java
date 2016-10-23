@@ -13,7 +13,6 @@ import com.nectp.beans.remote.daos.PrizeFactory;
 import com.nectp.beans.remote.daos.PrizeForSeasonFactory;
 import com.nectp.beans.remote.daos.SubseasonService;
 import com.nectp.jpa.constants.NEC;
-import com.nectp.jpa.entities.Player;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.Subseason;
@@ -34,9 +33,9 @@ public class XmlPrizeUpdater {
 		for (Element pz : prizes) {
 			String prizeName = parser.getTextSubElementByTagName(pz, "name");
 			String amount = parser.getTextSubElementByTagName(pz, "amount");
-			String winnerName = parser.getTextSubElementByTagName(pz, "winner");
+			String winnerNickname = parser.getTextSubElementByTagName(pz, "winner");
 			
-			NEC prizeType = NEC.getNECForString(prizeName);
+			NEC prizeType = NEC.getNECForName(prizeName);
 			if (prizeType == null) {
 				log.severe("Invalid prize name: " + prizeName + " could not create/update Prize!");
 				continue;
@@ -68,13 +67,15 @@ public class XmlPrizeUpdater {
 				}
 				
 				PlayerForSeason winner = null;
-				if (winnerName != null) {
+				if (winnerNickname != null) {
 					try {
-						Player player = playerService.selectPlayerByName(winnerName);
-						winner = pfsService.selectPlayerInSeason(player, season);
+						winner = pfsService.selectPlayerByNickname(winnerNickname, season);
 					} catch (NoResultException e) {
-						log.warning("Winner name not found! will not assign winner!");
+						log.warning("Winner nickname not found! will not assign winner!");
 					}
+				}
+				else {
+					log.info("No winner specified for " + prizeType.name());
 				}
 				
 				pzfsFactory.createPrizeInSeason(prizeType, season, subseason, prizeAmount, winner);

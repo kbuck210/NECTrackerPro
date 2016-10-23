@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -29,7 +29,7 @@ import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.Week;
 
 @Named(value="homeContentBean")
-@ViewScoped
+@RequestScoped
 public class HomeContentBean implements Serializable {
 	private static final long serialVersionUID = 8380054229801489568L;
 
@@ -88,25 +88,25 @@ public class HomeContentBean implements Serializable {
 		
 		updateDisplayedWeek(displayWeek);
 		
-//		if (user != null) {
-//			userInstance = pfsService.selectPlayerInSeason(user, currentSeason);
-//			userPicks = pickService.selectPlayerPicksForWeek(userInstance, displayWeek);
-//			//	If the user has any picks for the week, make sure the picks area is displayed
-//			if (!userPicks.isEmpty()) {
-//				renderPlayerPicks = true;
-//				//	If the user has selected all games, do not render the 'other games' section
-//				if (userPicks.size() == displayWeek.getGames().size()) {
-//					renderOtherGames = false;
-//				}
-//				else renderOtherGames = true;
-//			}
-//			else renderPlayerPicks = false;
-//			
-//			setPlayerPickHeadline();
-//			setPlayerRecord();
-//		}
-//		setOtherGamesHeadline();
-//		setDisplayedWeekHeadline();
+		if (user != null) {
+			userInstance = pfsService.selectPlayerInSeason(user, currentSeason);
+			userPicks = pickService.selectPlayerPicksForWeekForType(userInstance, displayWeek, displayWeek.getSubseason().getSubseasonType());
+			//	If the user has any picks for the week, make sure the picks area is displayed
+			if (!userPicks.isEmpty()) {
+				renderPlayerPicks = true;
+				//	If the user has selected all games, do not render the 'other games' section
+				if (userPicks.size() == displayWeek.getGames().size()) {
+					renderOtherGames = false;
+				}
+				else renderOtherGames = true;
+			}
+			else renderPlayerPicks = false;
+			
+			setPlayerPickHeadline();
+			setPlayerRecord();
+		}
+		setOtherGamesHeadline();
+		setDisplayedWeekHeadline();
 	}
 	
 	public void updateDisplayedWeek(Week newDisplayedWeek) {

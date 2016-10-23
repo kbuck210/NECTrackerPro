@@ -21,7 +21,7 @@ public class PickServiceBean extends DataServiceBean<Pick> implements PickServic
 	private static final long serialVersionUID = -8057607122514555934L;
 
 	@Override
-	public Pick selectPlayerPickForGameForType(PlayerForSeason player, Game game, NEC pickFor) {
+	public Pick selectPlayerPickForGameForType(PlayerForSeason player, Game game, NEC pickFor) throws NoResultException {
 		Logger log = Logger.getLogger(PickServiceBean.class.getName());
 		Pick pick = null;
 		if (player == null || game == null) {
@@ -41,7 +41,7 @@ public class PickServiceBean extends DataServiceBean<Pick> implements PickServic
 			} catch (NoResultException e) {
 				log.warning("No picks found for " + player.getNickname() + " for gameId: " + game.getGameId());
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving pick: " + e.getMessage());
 				e.printStackTrace();

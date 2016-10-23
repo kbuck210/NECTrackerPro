@@ -60,7 +60,7 @@ public class XmlWeekUpdater {
 			
 			Boolean isCurrent = Boolean.parseBoolean(current);
 			
-			NEC subseasonType = NEC.getNECForString(ss);
+			NEC subseasonType = NEC.getNECForName(ss);
 			Subseason subseason = null;
 			try {
 				subseason = subseasonService.selectSubseasonInSeason(subseasonType, season);

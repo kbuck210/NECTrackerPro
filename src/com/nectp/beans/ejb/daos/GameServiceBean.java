@@ -16,7 +16,6 @@ import com.nectp.beans.remote.daos.WeekFactory;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Game.GameStatus;
 import com.nectp.jpa.entities.Pick;
-import com.nectp.jpa.entities.Pick.PickType;
 import com.nectp.jpa.entities.Record;
 import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.TeamForSeason;
@@ -36,7 +35,7 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 	private PickService pickService;
 
 	@Override
-	public Game selectGameByTeamsWeek(TeamForSeason homeTeam, TeamForSeason awayTeam, Week week) {
+	public Game selectGameByTeamsWeek(TeamForSeason homeTeam, TeamForSeason awayTeam, Week week) throws NoResultException {
 		Logger log = Logger.getLogger(GameServiceBean.class.getName());
 		Game game = null;
 		
@@ -60,7 +59,7 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 				log.warning("No games found for " + awayTeam.getTeamAbbr() + 
 						" at: " + homeTeam.getTeamAbbr() + " in week: " + week.getWeekNumber());
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving game: " + e.getMessage());
 				e.printStackTrace();
@@ -71,7 +70,7 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 	}
 
 	@Override
-	public Game selectGameByTeamWeek(TeamForSeason team, Week week) {
+	public Game selectGameByTeamWeek(TeamForSeason team, Week week) throws NoResultException {
 		Logger log = Logger.getLogger(GameServiceBean.class.getName());
 		Game game = null;
 		
@@ -132,13 +131,6 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 			
 			//	Update the records for the raw win/loss for each team
 			TeamForSeason rawWinner = game.getWinner();
-			TeamForSeason rawLoser = game.getLoser();
-			
-			TeamForSeason winnerAts1 = game.getWinnerATS1();
-			TeamForSeason loserAts1 = game.getLoserATS1();
-			
-			TeamForSeason winnerAts2 = game.getWinnerATS2();
-			TeamForSeason loserAts2 = game.getLoserATS2();
 			
 			if (rawWinner == null) {
 				homeRecordForWeek.addTie();
@@ -188,18 +180,9 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 			recordFactory.update(homeRecordForWeek);
 			recordFactory.update(awayRecordForWeek);
 			
-			//	Update player picks based on pick type
+			//	Update player picks
 			for (Pick p : picksForGame) {
-				PickType type = p.getPickType();
-				if (PickType.STRAIGHT_UP.equals(type)) {
-					recordFactory.updateRecordForPlayerPick(p, rawWinner, rawLoser);
-				}
-				else if (PickType.SPREAD1.equals(type)) {
-					recordFactory.updateRecordForPlayerPick(p, winnerAts1, loserAts1);
-				}
-				else if (PickType.SPREAD2.equals(type)) {
-					recordFactory.updateRecordForPlayerPick(p, winnerAts2, loserAts2);
-				}
+				recordFactory.updateRecordForPlayerPick(p);
 			}
 			
 			//	Update the game

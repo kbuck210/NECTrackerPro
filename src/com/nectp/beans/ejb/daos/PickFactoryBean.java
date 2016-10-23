@@ -11,6 +11,7 @@ import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.PickFactory;
 import com.nectp.beans.remote.daos.RecordFactory;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.Pick.PickType;
@@ -61,6 +62,9 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				pick.setPlayer(player);
 				player.addPick(pick);
 				
+				pick.setGame(gameForPick);
+				gameForPick.addPick(pick);
+				
 				Record applicableRecord = null;
 				try {
 					//	If the record doesn't already exist, creates one
@@ -77,6 +81,62 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				
 				//	If the specified pick type is spread2, but no spread2 exists, use spread1
 				if (pickType == PickType.SPREAD2 && gameForPick.getSpread2() == null) {
+					pickType = PickType.SPREAD1;
+				}
+				pick.setPickType(pickType);
+				
+				boolean success = insert(pick);
+				if (!success) {
+					pick = null;
+				}
+			}
+		}
+		
+		return pick;
+	}
+	
+	@Override
+	public Pick createPlayerPickForRecord(Record record, Game game, TeamForSeason pickedTeam, PickType pickType) {
+		Pick pick = null;
+		if (record == null) {
+			log.severe("Record not set, can not create pick for player!");
+		}
+		else {
+			AbstractTeamForSeason team = record.getTeam();
+			PlayerForSeason player = null;
+			NEC pickFor = record.getRecordType();
+			if (team instanceof PlayerForSeason) {
+				player = (PlayerForSeason) team;
+			}
+			else {
+				log.severe("The specified record is not for a PlayerForSeason entity, can not create a pick!");
+				return null;
+			}
+			try {
+				pick = selectPlayerPickForGameForType(player, game, pickFor);
+			} catch (NoResultException e) {
+				if (!checkPickEligibility(player, pickedTeam, pickFor)) {
+					log.severe("The selected pick is ineligible, can not create pick of "
+							+ pickedTeam.getTeamCity() + " for " + player.getNickname());
+					return null;
+				}
+				
+				pick = new Pick();
+				
+				pick.setPlayer(player);
+				player.addPick(pick);
+				
+				pick.setPickedTeam(pickedTeam);
+				pickedTeam.addPickForTeam(pick);
+				
+				pick.setGame(game);
+				game.addPick(pick);
+				
+				pick.setApplicableRecord(record);
+				record.addPickInRecord(pick);
+				
+				//	If the specified pick type is spread2, but no spread2 exists, use spread1
+				if (pickType == PickType.SPREAD2 && game.getSpread2() == null) {
 					pickType = PickType.SPREAD1;
 				}
 				pick.setPickType(pickType);

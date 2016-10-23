@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 					+ "WHERE pl.abstractTeamForSeasonId = :atfsId "
 					+ "AND r.recordType = :recordType")
 })
-public class Pick implements Serializable {
+public class Pick implements Serializable, Comparable<Pick> {
 	private static final long serialVersionUID = 1L;
 
 	public enum PickType {
@@ -200,5 +200,10 @@ public class Pick implements Serializable {
     public String toString() {
         return "com.nectp.jpa.entities.Pick[ pickId=" + pickId + " ]";
     }
+    
+    @Override
+	public int compareTo(Pick otherPick) {
+		return pickedTeam.getExcelPrintName().compareTo(otherPick.getPickedTeam().getExcelPrintName());
+	}
 }
 

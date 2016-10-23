@@ -53,6 +53,18 @@ public enum NEC {
 		}
 	}
 	
+	public static NEC getNECForName(final String necString) {
+		if (necString == null || necString.trim().isEmpty()) return null;
+		
+		for (NEC nec : NEC.values()) {
+			if (nec.name().toLowerCase().trim().equals(necString.toLowerCase().trim())) {
+				return nec;
+			}
+		}
+		
+		return null;
+	}
+	
 	public static NEC getNECForString(final String necString) {
 		if (necString == null || necString.trim().isEmpty()) return null;
 		

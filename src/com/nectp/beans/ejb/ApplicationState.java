@@ -74,6 +74,7 @@ public class ApplicationState implements Serializable {
 	 */
 	public void setUser(Player user) {
 		this.user = user;
+		System.out.println("In appstate, user set to: " + user.getName());
 	}
 
 	public Season getCurrentSeason() {

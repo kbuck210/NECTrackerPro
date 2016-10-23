@@ -42,7 +42,7 @@ public class SeasonServiceBean extends DataServiceBean<Season> implements Season
 	}
 	
 	@Override
-	public Season selectSeasonByYear(String year) {
+	public Season selectSeasonByYear(String year) throws NoResultException {
 		Logger log = Logger.getLogger(SeasonServiceBean.class.getName());
 		Season selectedSeason = null;
 		TypedQuery<Season> sq = em.createNamedQuery("Season.selectByYear", Season.class);
@@ -56,7 +56,7 @@ public class SeasonServiceBean extends DataServiceBean<Season> implements Season
 		} catch (NoResultException e) {
 			log.log(Level.WARNING, "No Seasons found for year: " + year);
 			log.log(Level.WARNING, e.getMessage());
-			throw new NoResultException();
+			throw e;
 		} catch (Exception e) {
 			log.log(Level.SEVERE, "Exception retrieving season: " + e.getMessage());
 			e.printStackTrace();

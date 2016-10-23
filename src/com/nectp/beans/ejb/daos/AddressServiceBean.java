@@ -15,7 +15,7 @@ public class AddressServiceBean extends DataServiceBean<Address> implements Addr
 	private static final long serialVersionUID = 7816644381265595880L;
 
 	@Override
-	public Address selectByLatLon(long latitude, long longitude) {
+	public Address selectByLatLon(long latitude, long longitude) throws NoResultException {
 		Logger log = Logger.getLogger(AddressServiceBean.class.getName());
 		Address address = null;
 		TypedQuery<Address> aq = em.createNamedQuery("Address.selectByLatLon", Address.class);
@@ -30,7 +30,7 @@ public class AddressServiceBean extends DataServiceBean<Address> implements Addr
 		} catch (NoResultException e) {
 			log.warning("No results found for lat: " + latitude + " long: " + longitude);
 			log.warning(e.getMessage());
-			throw new NoResultException();
+			throw e;
 		} catch (Exception e) {
 			log.severe("Exception caught retrieving address: " + e.getMessage());
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class AddressServiceBean extends DataServiceBean<Address> implements Addr
 	}
 
 	@Override
-	public Address selectByStreetCity(String street, String city) {
+	public Address selectByStreetCity(String street, String city) throws NoResultException {
 		Logger log = Logger.getLogger(AddressServiceBean.class.getName());
 		Address address = null;
 		if (street == null || city == null) {
@@ -59,7 +59,7 @@ public class AddressServiceBean extends DataServiceBean<Address> implements Addr
 			} catch (NoResultException e) {
 				log.warning("No results found for street: " + street + " city: " + city);
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving address: " + e.getMessage());
 				e.printStackTrace();

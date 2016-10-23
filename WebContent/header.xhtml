@@ -18,7 +18,7 @@
 	  </div>
 	  <div class="top-bar-right">
 	    <p:commandButton value="#{headerBean.buttonText}" disabled="#{headerBean.buttonDisabled}" type="button" onclick="PF('loginModal').show();" />
-	    <p:commandLink rendered="#{headerBean.buttonDisabled}" actionListener="#{headerBean.logout}">
+	    <p:commandLink rendered="#{headerBean.buttonDisabled}" actionListener="#{headerBean.logout}" style="padding-left: 0.5rem;">
 	    	<h:outputText value="Sign Out:" />
 	    </p:commandLink>
 	    <!-- Foundation implementation
@@ -31,17 +31,19 @@
 	<!-- End Top Bar -->
 	
 	<!-- Modal Dialog for Login Button -->
-	<p:dialog header="Please Log In:" widgetVar="loginModal" modal="true">
-		<p:messages />
-  			<h:panelGrid columns="2" columnClasses="label, value">
-  				<h:outputText value="Email: *" />
-  				<p:inputText value="#{headerBean.emailAddress}" required="true" label="Email" />
-  				
-  				<h:outputText value="Password: *" />
-  				<p:password value="#{headerBean.password}" required="true" label="Password" />
-  			</h:panelGrid>
-  			
-  			<p:commandButton value="Login:" id="login" actionListener="#{headerBean.login}" />
+	<p:dialog header="Please Log In:" widgetVar="loginModal" modal="true" resizable="false">
+		<h:form>
+			<p:growl id="header_growl" life="2000" />
+			<h:panelGrid columns="2" columnClasses="label, value">
+				<h:outputText value="Email: *" />
+				<p:inputText id="email" value="#{headerBean.emailAddress}" required="true" label="Email" />
+				
+				<h:outputText value="Password: *" />
+				<p:password id="password" value="#{headerBean.password}" required="true" label="Password" />
+			</h:panelGrid>
+			<p:commandButton value="Login" update="header_growl" actionListener="#{headerBean.login}" ajax="false" />
+			
+        </h:form>
 	</p:dialog>
 	
 	<!-- Main Header -->
@@ -57,5 +59,17 @@
 	<!-- End Main Header -->
 	
 	<br />
+	
+	<script type="text/javascript">
+	    function handleLoginRequest(xhr, status, args) {
+	        if(args.validationFailed || !args.loggedIn) {
+	            PF('loginModal').jq.effect("shake", {times:5}, 100);
+	        }
+	        else {
+	            PF('loginModal').hide();
+	            $('#loginLink').fadeOut();
+	        }
+	    }
+	</script>
 </h:body>	
 </html>

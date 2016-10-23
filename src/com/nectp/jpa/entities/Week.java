@@ -48,7 +48,8 @@ import java.util.List;
 				query="SELECT w FROM Week w "
 					+ "WHERE w.subseason.season.seasonNumber = :seasonNumber "
 					+ "AND w.weekNumber >= :lowerBound "
-					+ "AND w.weekNumber <= :upperBound"),
+					+ "AND w.weekNumber <= :upperBound "
+					+ "ORDER BY w.weekNumber ASC"),
 	@NamedQuery(name="Week.selectWeeksInSubseason",
 				query="SELECT w FROM Week w "
 					+ "INNER JOIN FETCH w.subseason ss "
@@ -243,6 +244,6 @@ public class Week implements Serializable, Comparable<Week> {
 
     @Override
     public String toString() {
-        return "com.nectp.jpa.entities.Stadium[ stadiumId=" + weekId + " ]";
+        return "com.nectp.jpa.entities.Week[ weekId=" + weekId + " ]";
     }
 }

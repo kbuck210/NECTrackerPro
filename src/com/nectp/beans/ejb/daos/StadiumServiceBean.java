@@ -15,7 +15,7 @@ public class StadiumServiceBean extends DataServiceBean<Stadium> implements Stad
 	private static final long serialVersionUID = -6093819600438060287L;
 
 	@Override
-	public Stadium selectStadiumByName(String stadiumName) {
+	public Stadium selectStadiumByName(String stadiumName) throws NoResultException {
 		Logger log = Logger.getLogger(StadiumServiceBean.class.getName());
 		Stadium stadium = null;
 		if (stadiumName == null) {
@@ -33,7 +33,7 @@ public class StadiumServiceBean extends DataServiceBean<Stadium> implements Stad
 			} catch (NoResultException e) {
 				log.warning("No stadium found for name: " + stadiumName);
 				log.warning(e.getMessage());
-				throw new NoResultException();
+				throw e;
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving stadium: " + e.getMessage());
 				e.printStackTrace();

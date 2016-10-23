@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE xml>
-<season nec="29" current="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<season nec="29" year="2015" current="true" minPicks="5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	
 	<!-- Define Subseasons -->
 	<subseasons>
@@ -15,112 +15,124 @@
 		<player>
 			<name>Kevin Buckley</name>
 			<nickname>The Terp</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>2004</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/terps_logo.png</avatar>
 			<excelCol>2</excelCol>
-			<excelName>Terp</excelName>
+			<excelName>TERP</excelName>
 			<email>kbuck210@gmail.com</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>Brian Buckley</name>
 			<nickname>The Tracker</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
-			<avatar>img/avatars/tracker.png</avatar>
+			<avatar>img/avatars/tracker_logo.png</avatar>
 			<excelCol>1</excelCol>
-			<excelName>Tracker</excelName>
+			<excelName>TRACKER</excelName>
 			<email>bbuckley20@comcast.net</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>John Thompson</name>
 			<nickname>Iceman</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>2013</sinceYear>
 			<commish>N</commish>
-			<avatar>img/avatars/iceman.png</avatar>
-			<excelCol>1</excelCol>
-			<excelName>Iceman</excelName>
-			<email>bbuckley20@comcast.net</email>
+			<avatar>img/avatars/iceman_logo.png</avatar>
+			<excelCol>3</excelCol>
+			<excelName>ICEMAN</excelName>
+			<email>johnjthompson5@gmail.com</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>Joe Buckley</name>
 			<nickname>The Senator</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
-			<avatar>img/avatars/pogie.png</avatar>
-			<excelCol>1</excelCol>
-			<excelName>Senator</excelName>
-			<email>bbuckley20@comcast.net</email>
+			<avatar>img/avatars/porgy.jpg</avatar>
+			<excelCol>4</excelCol>
+			<excelName>SENATOR</excelName>
+			<email>jeb@edclectics-llc.org</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>David Buckley</name>
 			<nickname>Vegas Varmint</nickname>
-			<sinceYear>2005</sinceYear>
-			<commish>N</commish>
-			<avatar>img/avatars/varmint.png</avatar>
-			<excelCol>1</excelCol>
-			<excelName>Varmint</excelName>
-			<email>bbuckley20@comcast.net</email>
+			<sinceYear>1987</sinceYear>
+			<commish>Y</commish>
+			<avatar>img/avatars/vegas.png</avatar>
+			<excelCol>5</excelCol>
+			<excelName>COMMISH</excelName>
+			<email>thebuck@cox.net</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>Pete Peterson</name>
 			<nickname>Kingfish</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
-			<avatar>img/avatars/tracker.png</avatar>
-			<excelCol>1</excelCol>
-			<excelName>Kingfish</excelName>
-			<email>bbuckley20@comcast.net</email>
+			<avatar>img/avatars/Kingfish_logo.png</avatar>
+			<excelCol>6</excelCol>
+			<excelName>KINGFISH</excelName>
+			<email>pvpeterson@comcast.net</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>Derek Peterson</name>
 			<nickname>The Big Cat</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1997</sinceYear>
 			<commish>N</commish>
-			<avatar>img/avatars/tracker.png</avatar>
-			<excelCol>1</excelCol>
-			<excelName>Big Cat</excelName>
-			<email>bbuckley20@comcast.net</email>
+			<avatar>img/avatars/big_cat_logo.png</avatar>
+			<excelCol>7</excelCol>
+			<excelName>BIG CAT</excelName>
+			<email>dbp@hartadvisers.com</email>
+			<email>dpete13@comcast.net</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>Paul Buckley</name>
 			<nickname>The Clam Man</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
-			<avatar>img/avatars/tracker.png</avatar>
-			<excelCol>1</excelCol>
-			<excelName>Clam Man</excelName>
-			<email>bbuckley20@comcast.net</email>
+			<avatar>img/avatars/clam_man_logo.png</avatar>
+			<excelCol>8</excelCol>
+			<excelName>CLAM MAN</excelName>
+			<email>buckleypa@aol.com</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>Daniel Buckley</name>
 			<nickname>The Chief</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1997</sinceYear>
 			<commish>N</commish>
-			<avatar>img/avatars/tracker.png</avatar>
-			<excelCol>1</excelCol>
-			<excelName>Chief</excelName>
-			<email>bbuckley20@comcast.net</email>
+			<avatar>img/avatars/chief_logo.png</avatar>
+			<excelCol>9</excelCol>
+			<excelName>CHIEF</excelName>
+			<email>danielbuckley003@hotmail.com</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>Will Buckley</name>
 			<nickname>Willy B</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1998</sinceYear>
 			<commish>N</commish>
-			<avatar>img/avatars/tracker.png</avatar>
-			<excelCol>1</excelCol>
-			<excelName>Willy B</excelName>
-			<email>bbuckley20@comcast.net</email>
+			<avatar>img/avatars/honduras-flag.gif</avatar>
+			<excelCol>10</excelCol>
+			<excelName>WILLY B</excelName>
+			<email>bi11ybux81@yahoo.com</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 		<player>
 			<name>Javier Vargas</name>
 			<nickname>Po' Boy</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>2007</sinceYear>
 			<commish>N</commish>
-			<avatar>img/avatars/tracker.png</avatar>
-			<excelCol>1</excelCol>
-			<excelName>Po' Boy</excelName>
+			<avatar>img/avatars/shrimp_poboy.jpg</avatar>
+			<excelCol>11</excelCol>
+			<excelName>PO' BOY</excelName>
 			<email>bbuckley20@comcast.net</email>
+			<receiveUpdates>Y</receiveUpdates>
 		</player>
 	</players>
 	
@@ -258,7 +270,7 @@
 		</team>
 		<team>
 			<franchiseId>11</franchiseId>
-			<abbr>JAC</abbr>
+			<abbr>JAX</abbr>
 			<name>Jaguars</name>
 			<city>Jacksonville</city>
 			<nickname>The Jags</nickname>		
@@ -530,7 +542,7 @@
 			<excelName>Seattle</excelName>
 		</team>
 		<team>
-			<franchiseId>3</franchiseId>
+			<franchiseId>32</franchiseId>
 			<abbr>SF</abbr>
 			<name>49ers</name>
 			<city>San Francisco</city>
@@ -549,37 +561,37 @@
 		<prize>
 			<name>FIRST_HALF</name>
 			<amount>175</amount>
-			<winner></winner>
+			<winner>The Big Cat</winner>
 		</prize>
 		<prize>
 			<name>SECOND_HALF</name>
 			<amount>175</amount>
-			<winner></winner>
+			<winner>Willy B</winner>
 		</prize>
 		<prize>
 			<name>PLAYOFFS</name>
 			<amount>125</amount>
-			<winner></winner>
+			<winner>The Tracker</winner>
 		</prize>
 		<prize>
 			<name>SUPER_BOWL</name>
 			<amount>300</amount>
-			<winner></winner>
+			<winner>Willy B</winner>
 		</prize>
 		<prize>
 			<name>MNF_TNT</name>
 			<amount>125</amount>
-			<winner></winner>
+			<winner>The Big Cat</winner>
 		</prize>
 		<prize>
 			<name>TWO_AND_OUT</name>
 			<amount>100</amount>
-			<winner></winner>
+			<winner>Vegas Varmint</winner>
 		</prize>
 		<prize>
 			<name>MONEY_BACK</name>
 			<amount>100</amount>
-			<winner></winner>
+			<winner>The Terp</winner>
 		</prize>
 	</prizes>
 	
@@ -589,7 +601,7 @@
 			<game>
 				<homeTeam>NE</homeTeam>
 				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>21</awayScore>
 				<awayTeam>PIT</awayTeam>
@@ -601,7 +613,7 @@
 			<game>
 				<homeTeam>CHI</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>6.5</spread1>
 				<awayScore>31</awayScore>
 				<awayTeam>GB</awayTeam>
@@ -613,7 +625,7 @@
 			<game>
 				<homeTeam>HOU</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>KC</awayTeam>
@@ -625,7 +637,7 @@
 			<game>
 				<homeTeam>NYJ</homeTeam>
 				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>CLE</awayTeam>
@@ -637,7 +649,7 @@
 			<game>
 				<homeTeam>BUF</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>14</awayScore>
 				<awayTeam>IND</awayTeam>
@@ -649,7 +661,7 @@
 			<game>
 				<homeTeam>WAS</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>MIA</awayTeam>
@@ -659,9 +671,9 @@
 				<stadium>FedEx Field</stadium>
 			</game>
 			<game>
-				<homeTeam>JAC</homeTeam>
+				<homeTeam>JAX</homeTeam>
 				<homeScore>9</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>CAR</awayTeam>
@@ -673,7 +685,7 @@
 			<game>
 				<homeTeam>STL</homeTeam>
 				<homeScore>34</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>31</awayScore>
 				<awayTeam>SEA</awayTeam>
@@ -685,7 +697,7 @@
 			<game>
 				<homeTeam>ARI</homeTeam>
 				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>19</awayScore>
 				<awayTeam>NO</awayTeam>
@@ -697,7 +709,7 @@
 			<game>
 				<homeTeam>SD</homeTeam>
 				<homeScore>33</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>28</awayScore>
 				<awayTeam>DET</awayTeam>
@@ -709,7 +721,7 @@
 			<game>
 				<homeTeam>TB</homeTeam>
 				<homeScore>14</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>42</awayScore>
 				<awayTeam>TEN</awayTeam>
@@ -721,7 +733,7 @@
 			<game>
 				<homeTeam>OAK</homeTeam>
 				<homeScore>13</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>33</awayScore>
 				<awayTeam>CIN</awayTeam>
@@ -733,7 +745,7 @@
 			<game>
 				<homeTeam>DEN</homeTeam>
 				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>BAL</awayTeam>
@@ -745,7 +757,7 @@
 			<game>
 				<homeTeam>DAL</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>26</awayScore>
 				<awayTeam>NYG</awayTeam>
@@ -757,7 +769,7 @@
 			<game>
 				<homeTeam>ATL</homeTeam>
 				<homeScore>26</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>PHI</awayTeam>
@@ -769,7 +781,7 @@
 			<game>
 				<homeTeam>SF</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>3</awayScore>
 				<awayTeam>MIN</awayTeam>
@@ -783,7 +795,7 @@
 			<game>
 				<homeTeam>KC</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>31</awayScore>
 				<awayTeam>DEN</awayTeam>
@@ -795,7 +807,7 @@
 			<game>
 				<homeTeam>BUF</homeTeam>
 				<homeScore>32</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>40</awayScore>
 				<awayTeam>NE</awayTeam>
@@ -807,7 +819,7 @@
 			<game>
 				<homeTeam>CAR</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>HOU</awayTeam>
@@ -819,7 +831,7 @@
 			<game>
 				<homeTeam>PIT</homeTeam>
 				<homeScore>43</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>18</awayScore>
 				<awayTeam>SF</awayTeam>
@@ -831,7 +843,7 @@
 			<game>
 				<homeTeam>NO</homeTeam>
 				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>10</spread1>
 				<awayScore>26</awayScore>
 				<awayTeam>TB</awayTeam>
@@ -843,7 +855,7 @@
 			<game>
 				<homeTeam>MIN</homeTeam>
 				<homeScore>26</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>16</awayScore>
 				<awayTeam>DET</awayTeam>
@@ -855,7 +867,7 @@
 			<game>
 				<homeTeam>CHI</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>48</awayScore>
 				<awayTeam>ARI</awayTeam>
@@ -867,7 +879,7 @@
 			<game>
 				<homeTeam>CIN</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>19</awayScore>
 				<awayTeam>SD</awayTeam>
@@ -879,7 +891,7 @@
 			<game>
 				<homeTeam>CLE</homeTeam>
 				<homeScore>28</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>14</awayScore>
 				<awayTeam>TEN</awayTeam>
@@ -891,7 +903,7 @@
 			<game>
 				<homeTeam>NYG</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>ATL</awayTeam>
@@ -903,7 +915,7 @@
 			<game>
 				<homeTeam>WAS</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>STL</awayTeam>
@@ -913,9 +925,9 @@
 				<stadium>FedEx Field</stadium>
 			</game>
 			<game>
-				<homeTeam>JAC</homeTeam>
+				<homeTeam>JAX</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>MIA</awayTeam>
@@ -927,7 +939,7 @@
 			<game>
 				<homeTeam>OAK</homeTeam>
 				<homeScore>37</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>33</awayScore>
 				<awayTeam>BAL</awayTeam>
@@ -939,7 +951,7 @@
 			<game>
 				<homeTeam>PHI</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>DAL</awayTeam>
@@ -951,7 +963,7 @@
 			<game>
 				<homeTeam>GB</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>SEA</awayTeam>
@@ -963,7 +975,7 @@
 			<game>
 				<homeTeam>IND</homeTeam>
 				<homeScore>7</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>NYJ</awayTeam>
@@ -977,7 +989,7 @@
 			<game>
 				<homeTeam>NYG</homeTeam>
 				<homeScore>32</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>21</awayScore>
 				<awayTeam>WAS</awayTeam>
@@ -989,10 +1001,10 @@
 			<game>
 				<homeTeam>NE</homeTeam>
 				<homeScore>51</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>13.5</spread1>
 				<awayScore>17</awayScore>
-				<awayTeam>JAC</awayTeam>
+				<awayTeam>JAX</awayTeam>
 				<date>9.27.2015</date>
 				<time>1:00:PM</time>
 				<status>FINAL</status>
@@ -1001,7 +1013,7 @@
 			<game>
 				<homeTeam>DAL</homeTeam>
 				<homeScore>28</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>39</awayScore>
 				<awayTeam>ATL</awayTeam>
@@ -1013,7 +1025,7 @@
 			<game>
 				<homeTeam>TEN</homeTeam>
 				<homeScore>33</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>35</awayScore>
 				<awayTeam>IND</awayTeam>
@@ -1025,7 +1037,7 @@
 			<game>
 				<homeTeam>CLE</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>OAK</awayTeam>
@@ -1037,7 +1049,7 @@
 			<game>
 				<homeTeam>BAL</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>28</awayScore>
 				<awayTeam>CIN</awayTeam>
@@ -1049,7 +1061,7 @@
 			<game>
 				<homeTeam>CAR</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>22</awayScore>
 				<awayTeam>NO</awayTeam>
@@ -1061,7 +1073,7 @@
 			<game>
 				<homeTeam>NYJ</homeTeam>
 				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>PHI</awayTeam>
@@ -1073,7 +1085,7 @@
 			<game>
 				<homeTeam>HOU</homeTeam>
 				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6.5</spread1>
 				<awayScore>9</awayScore>
 				<awayTeam>TB</awayTeam>
@@ -1085,7 +1097,7 @@
 			<game>
 				<homeTeam>MIN</homeTeam>
 				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>14</awayScore>
 				<awayTeam>SD</awayTeam>
@@ -1097,7 +1109,7 @@
 			<game>
 				<homeTeam>STL</homeTeam>
 				<homeScore>6</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>12</awayScore>
 				<awayTeam>PIT</awayTeam>
@@ -1109,7 +1121,7 @@
 			<game>
 				<homeTeam>ARI</homeTeam>
 				<homeScore>47</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6.5</spread1>
 				<awayScore>7</awayScore>
 				<awayTeam>SF</awayTeam>
@@ -1121,7 +1133,7 @@
 			<game>
 				<homeTeam>MIA</homeTeam>
 				<homeScore>14</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>41</awayScore>
 				<awayTeam>BUF</awayTeam>
@@ -1133,7 +1145,7 @@
 			<game>
 				<homeTeam>SEA</homeTeam>
 				<homeScore>26</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>14.5</spread1>
 				<awayScore>0</awayScore>
 				<awayTeam>CHI</awayTeam>
@@ -1145,7 +1157,7 @@
 			<game>
 				<homeTeam>DET</homeTeam>
 				<homeScore>12</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>DEN</awayTeam>
@@ -1157,7 +1169,7 @@
 			<game>
 				<homeTeam>GB</homeTeam>
 				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6.5</spread1>
 				<awayScore>28</awayScore>
 				<awayTeam>KC</awayTeam>
@@ -1171,7 +1183,7 @@
 			<game>
 				<homeTeam>PIT</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>23</awayScore>
 				<awayTeam>BAL</awayTeam>
@@ -1183,7 +1195,7 @@
 			<game>
 				<homeTeam>MIA</homeTeam>
 				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1.5</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>NYJ</awayTeam>
@@ -1195,7 +1207,7 @@
 			<game>
 				<homeTeam>ATL</homeTeam>
 				<homeScore>48</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6.5</spread1>
 				<awayScore>21</awayScore>
 				<awayTeam>HOU</awayTeam>
@@ -1207,7 +1219,7 @@
 			<game>
 				<homeTeam>BUF</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5.5</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>NYG</awayTeam>
@@ -1219,7 +1231,7 @@
 			<game>
 				<homeTeam>CHI</homeTeam>
 				<homeScore>22</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>OAK</awayTeam>
@@ -1231,7 +1243,7 @@
 			<game>
 				<homeTeam>CIN</homeTeam>
 				<homeScore>36</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>21</awayScore>
 				<awayTeam>KC</awayTeam>
@@ -1243,10 +1255,10 @@
 			<game>
 				<homeTeam>IND</homeTeam>
 				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>9</spread1>
 				<awayScore>13</awayScore>
-				<awayTeam>JAC</awayTeam>
+				<awayTeam>JAX</awayTeam>
 				<date>10.4.2015</date>
 				<time>1:00:PM</time>
 				<status>FINAL</status>
@@ -1255,7 +1267,7 @@
 			<game>
 				<homeTeam>TB</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>37</awayScore>
 				<awayTeam>CAR</awayTeam>
@@ -1267,7 +1279,7 @@
 			<game>
 				<homeTeam>WAS</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>PHI</awayTeam>
@@ -1279,7 +1291,7 @@
 			<game>
 				<homeTeam>SD</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7.5</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>CLE</awayTeam>
@@ -1291,7 +1303,7 @@
 			<game>
 				<homeTeam>ARI</homeTeam>
 				<homeScore>22</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>STL</awayTeam>
@@ -1303,7 +1315,7 @@
 			<game>
 				<homeTeam>DEN</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6.5</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>MIN</awayTeam>
@@ -1315,7 +1327,7 @@
 			<game>
 				<homeTeam>SF</homeTeam>
 				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>8</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>GB</awayTeam>
@@ -1327,7 +1339,7 @@
 			<game>
 				<homeTeam>NO</homeTeam>
 				<homeScore>26</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>DAL</awayTeam>
@@ -1339,7 +1351,7 @@
 			<game>
 				<homeTeam>SEA</homeTeam>
 				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>9.5</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>DET</awayTeam>
@@ -1353,7 +1365,7 @@
 			<game>
 				<homeTeam>HOU</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>IND</awayTeam>
@@ -1365,7 +1377,7 @@
 			<game>
 				<homeTeam>ATL</homeTeam>
 				<homeScore>25</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>19</awayScore>
 				<awayTeam>WAS</awayTeam>
@@ -1377,7 +1389,7 @@
 			<game>
 				<homeTeam>BAL</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>33</awayScore>
 				<awayTeam>CLE</awayTeam>
@@ -1389,7 +1401,7 @@
 			<game>
 				<homeTeam>CIN</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>SEA</awayTeam>
@@ -1401,7 +1413,7 @@
 			<game>
 				<homeTeam>GB</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>8.5</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>STL</awayTeam>
@@ -1413,7 +1425,7 @@
 			<game>
 				<homeTeam>KC</homeTeam>
 				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>9</spread1>
 				<awayScore>18</awayScore>
 				<awayTeam>CHI</awayTeam>
@@ -1425,7 +1437,7 @@
 			<game>
 				<homeTeam>PHI</homeTeam>
 				<homeScore>39</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4.5</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>NO</awayTeam>
@@ -1437,10 +1449,10 @@
 			<game>
 				<homeTeam>TB</homeTeam>
 				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>31</awayScore>
-				<awayTeam>JAC</awayTeam>
+				<awayTeam>JAX</awayTeam>
 				<date>10.11.2015</date>
 				<time>1:00:PM</time>
 				<status>FINAL</status>
@@ -1449,7 +1461,7 @@
 			<game>
 				<homeTeam>TEN</homeTeam>
 				<homeScore>13</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>14</awayScore>
 				<awayTeam>BUF</awayTeam>
@@ -1461,7 +1473,7 @@
 			<game>
 				<homeTeam>DET</homeTeam>
 				<homeScore>17</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>42</awayScore>
 				<awayTeam>ARI</awayTeam>
@@ -1473,7 +1485,7 @@
 			<game>
 				<homeTeam>DAL</homeTeam>
 				<homeScore>6</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>8.5</spread1>
 				<awayScore>30</awayScore>
 				<awayTeam>NE</awayTeam>
@@ -1485,7 +1497,7 @@
 			<game>
 				<homeTeam>OAK</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>4.5</spread1>
 				<awayScore>16</awayScore>
 				<awayTeam>DEN</awayTeam>
@@ -1497,7 +1509,7 @@
 			<game>
 				<homeTeam>NYG</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>SF</awayTeam>
@@ -1509,7 +1521,7 @@
 			<game>
 				<homeTeam>SD</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>PIT</awayTeam>
@@ -1523,7 +1535,7 @@
 			<game>
 				<homeTeam>NO</homeTeam>
 				<homeScore>31</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>21</awayScore>
 				<awayTeam>ATL</awayTeam>
@@ -1535,7 +1547,7 @@
 			<game>
 				<homeTeam>BUF</homeTeam>
 				<homeScore>21</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>34</awayScore>
 				<awayTeam>CIN</awayTeam>
@@ -1547,7 +1559,7 @@
 			<game>
 				<homeTeam>CLE</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>4.5</spread1>
 				<awayScore>26</awayScore>
 				<awayTeam>DEN</awayTeam>
@@ -1559,7 +1571,7 @@
 			<game>
 				<homeTeam>DET</homeTeam>
 				<homeScore>37</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>34</awayScore>
 				<awayTeam>CHI</awayTeam>
@@ -1569,9 +1581,9 @@
 				<stadium>Ford Field</stadium>
 			</game>
 			<game>
-				<homeTeam>JAC</homeTeam>
+				<homeTeam>JAX</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>0</spread1>
 				<awayScore>31</awayScore>
 				<awayTeam>HOU</awayTeam>
@@ -1583,7 +1595,7 @@
 			<game>
 				<homeTeam>MIN</homeTeam>
 				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>KC</awayTeam>
@@ -1595,7 +1607,7 @@
 			<game>
 				<homeTeam>NYJ</homeTeam>
 				<homeScore>34</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>WAS</awayTeam>
@@ -1607,7 +1619,7 @@
 			<game>
 				<homeTeam>PIT</homeTeam>
 				<homeScore>25</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>ARI</awayTeam>
@@ -1619,7 +1631,7 @@
 			<game>
 				<homeTeam>TEN</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>38</awayScore>
 				<awayTeam>MIA</awayTeam>
@@ -1631,7 +1643,7 @@
 			<game>
 				<homeTeam>SEA</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>CAR</awayTeam>
@@ -1643,7 +1655,7 @@
 			<game>
 				<homeTeam>GB</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>10.5</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>SD</awayTeam>
@@ -1655,7 +1667,7 @@
 			<game>
 				<homeTeam>SF</homeTeam>
 				<homeScore>25</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>BAL</awayTeam>
@@ -1667,7 +1679,7 @@
 			<game>
 				<homeTeam>IND</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>7.5</spread1>
 				<awayScore>34</awayScore>
 				<awayTeam>NE</awayTeam>
@@ -1679,7 +1691,7 @@
 			<game>
 				<homeTeam>PHI</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>7</awayScore>
 				<awayTeam>NYG</awayTeam>
@@ -1693,7 +1705,7 @@
 			<game>
 				<homeTeam>SF</homeTeam>
 				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>6.5</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>SEA</awayTeam>
@@ -1703,9 +1715,9 @@
 				<stadium>Levi's Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>JAC</homeTeam>
+				<homeTeam>JAX</homeTeam>
 				<homeScore>34</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>31</awayScore>
 				<awayTeam>BUF</awayTeam>
@@ -1717,7 +1729,7 @@
 			<game>
 				<homeTeam>DET</homeTeam>
 				<homeScore>19</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>28</awayScore>
 				<awayTeam>MIN</awayTeam>
@@ -1729,7 +1741,7 @@
 			<game>
 				<homeTeam>IND</homeTeam>
 				<homeScore>21</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>NO</awayTeam>
@@ -1741,7 +1753,7 @@
 			<game>
 				<homeTeam>KC</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>PIT</awayTeam>
@@ -1753,7 +1765,7 @@
 			<game>
 				<homeTeam>MIA</homeTeam>
 				<homeScore>44</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>26</awayScore>
 				<awayTeam>HOU</awayTeam>
@@ -1765,7 +1777,7 @@
 			<game>
 				<homeTeam>NE</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>8.5</spread1>
 				<awayScore>23</awayScore>
 				<awayTeam>NYJ</awayTeam>
@@ -1777,7 +1789,7 @@
 			<game>
 				<homeTeam>STL</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>6</awayScore>
 				<awayTeam>CLE</awayTeam>
@@ -1789,7 +1801,7 @@
 			<game>
 				<homeTeam>TEN</homeTeam>
 				<homeScore>7</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>4.5</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>ATL</awayTeam>
@@ -1801,7 +1813,7 @@
 			<game>
 				<homeTeam>WAS</homeTeam>
 				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>30</awayScore>
 				<awayTeam>TB</awayTeam>
@@ -1813,7 +1825,7 @@
 			<game>
 				<homeTeam>SD</homeTeam>
 				<homeScore>29</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>37</awayScore>
 				<awayTeam>OAK</awayTeam>
@@ -1825,7 +1837,7 @@
 			<game>
 				<homeTeam>NYG</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>DAL</awayTeam>
@@ -1837,7 +1849,7 @@
 			<game>
 				<homeTeam>CAR</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>16</awayScore>
 				<awayTeam>PHI</awayTeam>
@@ -1849,7 +1861,7 @@
 			<game>
 				<homeTeam>ARI</homeTeam>
 				<homeScore>26</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>8</spread1>
 				<awayScore>18</awayScore>
 				<awayTeam>BAL</awayTeam>
@@ -1863,7 +1875,7 @@
 			<game>
 				<homeTeam>NE</homeTeam>
 				<homeScore>36</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>8</spread1>
 				<awayScore>7</awayScore>
 				<awayTeam>MIA</awayTeam>
@@ -1875,7 +1887,7 @@
 			<game>
 				<homeTeam>KC</homeTeam>
 				<homeScore>45</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>DET</awayTeam>
@@ -1887,7 +1899,7 @@
 			<game>
 				<homeTeam>ATL</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>23</awayScore>
 				<awayTeam>TB</awayTeam>
@@ -1899,7 +1911,7 @@
 			<game>
 				<homeTeam>BAL</homeTeam>
 				<homeScore>29</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>26</awayScore>
 				<awayTeam>SD</awayTeam>
@@ -1911,7 +1923,7 @@
 			<game>
 				<homeTeam>CHI</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>23</awayScore>
 				<awayTeam>MIN</awayTeam>
@@ -1923,7 +1935,7 @@
 			<game>
 				<homeTeam>CLE</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>4.5</spread1>
 				<awayScore>34</awayScore>
 				<awayTeam>ARI</awayTeam>
@@ -1935,7 +1947,7 @@
 			<game>
 				<homeTeam>HOU</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>6</awayScore>
 				<awayTeam>TEN</awayTeam>
@@ -1947,7 +1959,7 @@
 			<game>
 				<homeTeam>NO</homeTeam>
 				<homeScore>52</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>49</awayScore>
 				<awayTeam>NYG</awayTeam>
@@ -1959,7 +1971,7 @@
 			<game>
 				<homeTeam>PIT</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>0</spread1>
 				<awayScore>16</awayScore>
 				<awayTeam>CIN</awayTeam>
@@ -1971,7 +1983,7 @@
 			<game>
 				<homeTeam>STL</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>8.5</spread1>
 				<awayScore>6</awayScore>
 				<awayTeam>SF</awayTeam>
@@ -1983,7 +1995,7 @@
 			<game>
 				<homeTeam>OAK</homeTeam>
 				<homeScore>34</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>NYJ</awayTeam>
@@ -1995,7 +2007,7 @@
 			<game>
 				<homeTeam>DAL</homeTeam>
 				<homeScore>12</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>SEA</awayTeam>
@@ -2007,7 +2019,7 @@
 			<game>
 				<homeTeam>DEN</homeTeam>
 				<homeScore>29</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>GB</awayTeam>
@@ -2019,7 +2031,7 @@
 			<game>
 				<homeTeam>CAR</homeTeam>
 				<homeScore>29</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>26</awayScore>
 				<awayTeam>IND</awayTeam>
@@ -2033,7 +2045,7 @@
 			<game>
 				<homeTeam>CIN</homeTeam>
 				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>11</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>CLE</awayTeam>
@@ -2045,7 +2057,7 @@
 			<game>
 				<homeTeam>BUF</homeTeam>
 				<homeScore>33</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>MIA</awayTeam>
@@ -2057,7 +2069,7 @@
 			<game>
 				<homeTeam>CAR</homeTeam>
 				<homeScore>37</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>29</awayScore>
 				<awayTeam>GB</awayTeam>
@@ -2069,7 +2081,7 @@
 			<game>
 				<homeTeam>MIN</homeTeam>
 				<homeScore>21</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>18</awayScore>
 				<awayTeam>STL</awayTeam>
@@ -2081,7 +2093,7 @@
 			<game>
 				<homeTeam>NE</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>14</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>WAS</awayTeam>
@@ -2093,7 +2105,7 @@
 			<game>
 				<homeTeam>NO</homeTeam>
 				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>8</spread1>
 				<awayScore>34</awayScore>
 				<awayTeam>TEN</awayTeam>
@@ -2105,10 +2117,10 @@
 			<game>
 				<homeTeam>NYJ</homeTeam>
 				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6.5</spread1>
 				<awayScore>23</awayScore>
-				<awayTeam>JAC</awayTeam>
+				<awayTeam>JAX</awayTeam>
 				<date>11.8.2015</date>
 				<time>1:00:PM</time>
 				<status>FINAL</status>
@@ -2117,7 +2129,7 @@
 			<game>
 				<homeTeam>PIT</homeTeam>
 				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>35</awayScore>
 				<awayTeam>OAK</awayTeam>
@@ -2129,7 +2141,7 @@
 			<game>
 				<homeTeam>SF</homeTeam>
 				<homeScore>17</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>16</awayScore>
 				<awayTeam>ATL</awayTeam>
@@ -2141,7 +2153,7 @@
 			<game>
 				<homeTeam>TB</homeTeam>
 				<homeScore>18</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>32</awayScore>
 				<awayTeam>NYG</awayTeam>
@@ -2153,7 +2165,7 @@
 			<game>
 				<homeTeam>IND</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>4.5</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>DEN</awayTeam>
@@ -2165,7 +2177,7 @@
 			<game>
 				<homeTeam>DAL</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>33</awayScore>
 				<awayTeam>PHI</awayTeam>
@@ -2177,7 +2189,7 @@
 			<game>
 				<homeTeam>SD</homeTeam>
 				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>22</awayScore>
 				<awayTeam>CHI</awayTeam>
@@ -2191,7 +2203,7 @@
 			<game>
 				<homeTeam>NYJ</homeTeam>
 				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>22</awayScore>
 				<awayTeam>BUF</awayTeam>
@@ -2203,10 +2215,10 @@
 			<game>
 				<homeTeam>BAL</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>22</awayScore>
-				<awayTeam>JAC</awayTeam>
+				<awayTeam>JAX</awayTeam>
 				<date>11.15.2015</date>
 				<time>1:00:PM</time>
 				<status>FINAL</status>
@@ -2215,7 +2227,7 @@
 			<game>
 				<homeTeam>GB</homeTeam>
 				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>11</spread1>
 				<awayScore>18</awayScore>
 				<awayTeam>DET</awayTeam>
@@ -2227,7 +2239,7 @@
 			<game>
 				<homeTeam>PHI</homeTeam>
 				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>MIA</awayTeam>
@@ -2239,7 +2251,7 @@
 			<game>
 				<homeTeam>PIT</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>9</awayScore>
 				<awayTeam>CLE</awayTeam>
@@ -2251,7 +2263,7 @@
 			<game>
 				<homeTeam>STL</homeTeam>
 				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>37</awayScore>
 				<awayTeam>CHI</awayTeam>
@@ -2263,7 +2275,7 @@
 			<game>
 				<homeTeam>TB</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>6</awayScore>
 				<awayTeam>DAL</awayTeam>
@@ -2275,7 +2287,7 @@
 			<game>
 				<homeTeam>TEN</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>CAR</awayTeam>
@@ -2287,7 +2299,7 @@
 			<game>
 				<homeTeam>WAS</homeTeam>
 				<homeScore>47</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>14</awayScore>
 				<awayTeam>NO</awayTeam>
@@ -2299,7 +2311,7 @@
 			<game>
 				<homeTeam>OAK</homeTeam>
 				<homeScore>14</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>30</awayScore>
 				<awayTeam>MIN</awayTeam>
@@ -2311,7 +2323,7 @@
 			<game>
 				<homeTeam>DEN</homeTeam>
 				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>29</awayScore>
 				<awayTeam>KC</awayTeam>
@@ -2323,7 +2335,7 @@
 			<game>
 				<homeTeam>NYG</homeTeam>
 				<homeScore>26</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>NE</awayTeam>
@@ -2335,7 +2347,7 @@
 			<game>
 				<homeTeam>SEA</homeTeam>
 				<homeScore>32</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>39</awayScore>
 				<awayTeam>ARI</awayTeam>
@@ -2347,7 +2359,7 @@
 			<game>
 				<homeTeam>CIN</homeTeam>
 				<homeScore>6</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>10</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>HOU</awayTeam>
@@ -2359,9 +2371,9 @@
 		</week>
 		<week number="11" current="false" ss="SECOND_HALF" status="completed" >
 			<game>
-				<homeTeam>JAC</homeTeam>
+				<homeTeam>JAX</homeTeam>
 				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>TEN</awayTeam>
@@ -2373,7 +2385,7 @@
 			<game>
 				<homeTeam>ATL</homeTeam>
 				<homeScore>21</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>IND</awayTeam>
@@ -2385,7 +2397,7 @@
 			<game>
 				<homeTeam>BAL</homeTeam>
 				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>STL</awayTeam>
@@ -2397,7 +2409,7 @@
 			<game>
 				<homeTeam>CAR</homeTeam>
 				<homeScore>44</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>16</awayScore>
 				<awayTeam>WAS</awayTeam>
@@ -2409,7 +2421,7 @@
 			<game>
 				<homeTeam>CHI</homeTeam>
 				<homeScore>15</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>DEN</awayTeam>
@@ -2421,7 +2433,7 @@
 			<game>
 				<homeTeam>DET</homeTeam>
 				<homeScore>18</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1.5</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>OAK</awayTeam>
@@ -2433,7 +2445,7 @@
 			<game>
 				<homeTeam>HOU</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>NYJ</awayTeam>
@@ -2445,7 +2457,7 @@
 			<game>
 				<homeTeam>MIA</homeTeam>
 				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>0</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>DAL</awayTeam>
@@ -2457,7 +2469,7 @@
 			<game>
 				<homeTeam>MIN</homeTeam>
 				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>30</awayScore>
 				<awayTeam>GB</awayTeam>
@@ -2469,7 +2481,7 @@
 			<game>
 				<homeTeam>PHI</homeTeam>
 				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5.5</spread1>
 				<awayScore>45</awayScore>
 				<awayTeam>TB</awayTeam>
@@ -2481,7 +2493,7 @@
 			<game>
 				<homeTeam>ARI</homeTeam>
 				<homeScore>34</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>31</awayScore>
 				<awayTeam>CIN</awayTeam>
@@ -2493,7 +2505,7 @@
 			<game>
 				<homeTeam>SEA</homeTeam>
 				<homeScore>29</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>12.5</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>SF</awayTeam>
@@ -2505,7 +2517,7 @@
 			<game>
 				<homeTeam>SD</homeTeam>
 				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>33</awayScore>
 				<awayTeam>KC</awayTeam>
@@ -2517,7 +2529,7 @@
 			<game>
 				<homeTeam>NE</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>BUF</awayTeam>
@@ -2531,7 +2543,7 @@
 			<game>
 				<homeTeam>DET</homeTeam>
 				<homeScore>45</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>0</spread1>
 				<awayScore>14</awayScore>
 				<awayTeam>PHI</awayTeam>
@@ -2543,7 +2555,7 @@
 			<game>
 				<homeTeam>DAL</homeTeam>
 				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>0</spread1>
 				<awayScore>33</awayScore>
 				<awayTeam>CAR</awayTeam>
@@ -2555,7 +2567,7 @@
 			<game>
 				<homeTeam>GB</homeTeam>
 				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>8</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>CHI</awayTeam>
@@ -2567,7 +2579,7 @@
 			<game>
 				<homeTeam>ATL</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>MIN</awayTeam>
@@ -2579,7 +2591,7 @@
 			<game>
 				<homeTeam>CIN</homeTeam>
 				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>9</spread1>
 				<awayScore>7</awayScore>
 				<awayTeam>STL</awayTeam>
@@ -2591,7 +2603,7 @@
 			<game>
 				<homeTeam>HOU</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>6</awayScore>
 				<awayTeam>NO</awayTeam>
@@ -2603,7 +2615,7 @@
 			<game>
 				<homeTeam>IND</homeTeam>
 				<homeScore>25</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>12</awayScore>
 				<awayTeam>TB</awayTeam>
@@ -2613,9 +2625,9 @@
 				<stadium>Lucas Oil Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>JAC</homeTeam>
+				<homeTeam>JAX</homeTeam>
 				<homeScore>25</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>31</awayScore>
 				<awayTeam>SD</awayTeam>
@@ -2627,7 +2639,7 @@
 			<game>
 				<homeTeam>KC</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>22</awayScore>
 				<awayTeam>BUF</awayTeam>
@@ -2639,7 +2651,7 @@
 			<game>
 				<homeTeam>NYJ</homeTeam>
 				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>MIA</awayTeam>
@@ -2651,7 +2663,7 @@
 			<game>
 				<homeTeam>TEN</homeTeam>
 				<homeScore>21</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1.5</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>OAK</awayTeam>
@@ -2663,7 +2675,7 @@
 			<game>
 				<homeTeam>WAS</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>14</awayScore>
 				<awayTeam>NYG</awayTeam>
@@ -2675,7 +2687,7 @@
 			<game>
 				<homeTeam>SF</homeTeam>
 				<homeScore>13</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>10</spread1>
 				<awayScore>19</awayScore>
 				<awayTeam>ARI</awayTeam>
@@ -2687,7 +2699,7 @@
 			<game>
 				<homeTeam>SEA</homeTeam>
 				<homeScore>39</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>30</awayScore>
 				<awayTeam>PIT</awayTeam>
@@ -2699,7 +2711,7 @@
 			<game>
 				<homeTeam>DEN</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>NE</awayTeam>
@@ -2711,7 +2723,7 @@
 			<game>
 				<homeTeam>CLE</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>33</awayScore>
 				<awayTeam>BAL</awayTeam>
@@ -2725,7 +2737,7 @@
 			<game>
 				<homeTeam>DET</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>GB</awayTeam>
@@ -2737,7 +2749,7 @@
 			<game>
 				<homeTeam>BUF</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>21</awayScore>
 				<awayTeam>HOU</awayTeam>
@@ -2749,7 +2761,7 @@
 			<game>
 				<homeTeam>CHI</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>26</awayScore>
 				<awayTeam>SF</awayTeam>
@@ -2761,7 +2773,7 @@
 			<game>
 				<homeTeam>CLE</homeTeam>
 				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>10</spread1>
 				<awayScore>37</awayScore>
 				<awayTeam>CIN</awayTeam>
@@ -2773,7 +2785,7 @@
 			<game>
 				<homeTeam>MIA</homeTeam>
 				<homeScore>15</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>BAL</awayTeam>
@@ -2785,7 +2797,7 @@
 			<game>
 				<homeTeam>MIN</homeTeam>
 				<homeScore>7</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>0</spread1>
 				<awayScore>38</awayScore>
 				<awayTeam>SEA</awayTeam>
@@ -2797,7 +2809,7 @@
 			<game>
 				<homeTeam>NO</homeTeam>
 				<homeScore>38</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>41</awayScore>
 				<awayTeam>CAR</awayTeam>
@@ -2809,7 +2821,7 @@
 			<game>
 				<homeTeam>NYG</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>23</awayScore>
 				<awayTeam>NYJ</awayTeam>
@@ -2821,7 +2833,7 @@
 			<game>
 				<homeTeam>STL</homeTeam>
 				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>5.5</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>ARI</awayTeam>
@@ -2833,7 +2845,7 @@
 			<game>
 				<homeTeam>TB</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>19</awayScore>
 				<awayTeam>ATL</awayTeam>
@@ -2845,10 +2857,10 @@
 			<game>
 				<homeTeam>TEN</homeTeam>
 				<homeScore>42</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>39</awayScore>
-				<awayTeam>JAC</awayTeam>
+				<awayTeam>JAX</awayTeam>
 				<date>12.6.2015</date>
 				<time>1:00:PM</time>
 				<status>FINAL</status>
@@ -2857,7 +2869,7 @@
 			<game>
 				<homeTeam>OAK</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>34</awayScore>
 				<awayTeam>KC</awayTeam>
@@ -2869,7 +2881,7 @@
 			<game>
 				<homeTeam>SD</homeTeam>
 				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>DEN</awayTeam>
@@ -2881,7 +2893,7 @@
 			<game>
 				<homeTeam>NE</homeTeam>
 				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>10</spread1>
 				<awayScore>35</awayScore>
 				<awayTeam>PHI</awayTeam>
@@ -2893,7 +2905,7 @@
 			<game>
 				<homeTeam>PIT</homeTeam>
 				<homeScore>45</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>IND</awayTeam>
@@ -2905,7 +2917,7 @@
 			<game>
 				<homeTeam>WAS</homeTeam>
 				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>19</awayScore>
 				<awayTeam>DAL</awayTeam>
@@ -2919,7 +2931,7 @@
 			<game>
 				<homeTeam>ARI</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>8</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>MIN</awayTeam>
@@ -2931,7 +2943,7 @@
 			<game>
 				<homeTeam>CAR</homeTeam>
 				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>0</awayScore>
 				<awayTeam>ATL</awayTeam>
@@ -2943,7 +2955,7 @@
 			<game>
 				<homeTeam>CHI</homeTeam>
 				<homeScore>21</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>WAS</awayTeam>
@@ -2955,7 +2967,7 @@
 			<game>
 				<homeTeam>CIN</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>33</awayScore>
 				<awayTeam>PIT</awayTeam>
@@ -2967,7 +2979,7 @@
 			<game>
 				<homeTeam>CLE</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1.5</spread1>
 				<awayScore>10</awayScore>
 				<awayTeam>SF</awayTeam>
@@ -2979,7 +2991,7 @@
 			<game>
 				<homeTeam>HOU</homeTeam>
 				<homeScore>6</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>NE</awayTeam>
@@ -2989,9 +3001,9 @@
 				<stadium>NRG Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>JAC</homeTeam>
+				<homeTeam>JAX</homeTeam>
 				<homeScore>51</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>0</spread1>
 				<awayScore>16</awayScore>
 				<awayTeam>IND</awayTeam>
@@ -3003,7 +3015,7 @@
 			<game>
 				<homeTeam>KC</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>10</spread1>
 				<awayScore>3</awayScore>
 				<awayTeam>SD</awayTeam>
@@ -3015,7 +3027,7 @@
 			<game>
 				<homeTeam>NYJ</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>8</awayScore>
 				<awayTeam>TEN</awayTeam>
@@ -3027,7 +3039,7 @@
 			<game>
 				<homeTeam>PHI</homeTeam>
 				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1.5</spread1>
 				<awayScore>20</awayScore>
 				<awayTeam>BUF</awayTeam>
@@ -3039,7 +3051,7 @@
 			<game>
 				<homeTeam>STL</homeTeam>
 				<homeScore>21</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>0</spread1>
 				<awayScore>14</awayScore>
 				<awayTeam>DET</awayTeam>
@@ -3051,7 +3063,7 @@
 			<game>
 				<homeTeam>TB</homeTeam>
 				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>NO</awayTeam>
@@ -3063,7 +3075,7 @@
 			<game>
 				<homeTeam>DEN</homeTeam>
 				<homeScore>12</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>15</awayScore>
 				<awayTeam>OAK</awayTeam>
@@ -3075,7 +3087,7 @@
 			<game>
 				<homeTeam>GB</homeTeam>
 				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>7</awayScore>
 				<awayTeam>DAL</awayTeam>
@@ -3087,7 +3099,7 @@
 			<game>
 				<homeTeam>BAL</homeTeam>
 				<homeScore>6</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>8.5</spread1>
 				<awayScore>35</awayScore>
 				<awayTeam>SEA</awayTeam>
@@ -3099,7 +3111,7 @@
 			<game>
 				<homeTeam>MIA</homeTeam>
 				<homeScore>24</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1.5</spread1>
 				<awayScore>31</awayScore>
 				<awayTeam>NYG</awayTeam>
@@ -3113,7 +3125,7 @@
 			<game>
 				<homeTeam>STL</homeTeam>
 				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2.5</spread1>
 				<awayScore>23</awayScore>
 				<awayTeam>TB</awayTeam>
@@ -3125,7 +3137,7 @@
 			<game>
 				<homeTeam>DAL</homeTeam>
 				<homeScore>16</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3.5</spread1>
 				<awayScore>19</awayScore>
 				<awayTeam>NYJ</awayTeam>
@@ -3137,7 +3149,7 @@
 			<game>
 				<homeTeam>BAL</homeTeam>
 				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>7</spread1>
 				<awayScore>34</awayScore>
 				<awayTeam>KC</awayTeam>
@@ -3149,7 +3161,7 @@
 			<game>
 				<homeTeam>IND</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>16</awayScore>
 				<awayTeam>HOU</awayTeam>
@@ -3159,9 +3171,9 @@
 				<stadium>Lucas Oil Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>JAC</homeTeam>
+				<homeTeam>JAX</homeTeam>
 				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>23</awayScore>
 				<awayTeam>ATL</awayTeam>
@@ -3173,7 +3185,7 @@
 			<game>
 				<homeTeam>MIN</homeTeam>
 				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>17</awayScore>
 				<awayTeam>CHI</awayTeam>
@@ -3185,7 +3197,7 @@
 			<game>
 				<homeTeam>NE</homeTeam>
 				<homeScore>33</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>14</spread1>
 				<awayScore>16</awayScore>
 				<awayTeam>TEN</awayTeam>
@@ -3197,7 +3209,7 @@
 			<game>
 				<homeTeam>NYG</homeTeam>
 				<homeScore>35</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>5</spread1>
 				<awayScore>38</awayScore>
 				<awayTeam>CAR</awayTeam>
@@ -3209,7 +3221,7 @@
 			<game>
 				<homeTeam>PHI</homeTeam>
 				<homeScore>17</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>37</awayScore>
 				<awayTeam>ARI</awayTeam>
@@ -3221,7 +3233,7 @@
 			<game>
 				<homeTeam>WAS</homeTeam>
 				<homeScore>35</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1</spread1>
 				<awayScore>25</awayScore>
 				<awayTeam>BUF</awayTeam>
@@ -3233,7 +3245,7 @@
 			<game>
 				<homeTeam>OAK</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>30</awayScore>
 				<awayTeam>GB</awayTeam>
@@ -3245,7 +3257,7 @@
 			<game>
 				<homeTeam>SEA</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>14</spread1>
 				<awayScore>13</awayScore>
 				<awayTeam>CLE</awayTeam>
@@ -3257,7 +3269,7 @@
 			<game>
 				<homeTeam>PIT</homeTeam>
 				<homeScore>34</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
 				<awayScore>27</awayScore>
 				<awayTeam>DEN</awayTeam>
@@ -3269,7 +3281,7 @@
 			<game>
 				<homeTeam>SD</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>2</spread1>
 				<awayScore>14</awayScore>
 				<awayTeam>MIA</awayTeam>
@@ -3281,7 +3293,7 @@
 			<game>
 				<homeTeam>SF</homeTeam>
 				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>N</homeFavored1>
 				<spread1>4.5</spread1>
 				<awayScore>24</awayScore>
 				<awayTeam>CIN</awayTeam>
@@ -3293,7 +3305,7 @@
 			<game>
 				<homeTeam>NO</homeTeam>
 				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>35</awayScore>
 				<awayTeam>DET</awayTeam>
@@ -3306,10 +3318,10 @@
 		<week number="16" current="false" ss="SECOND_HALF" status="completed" >
 			<game>
 				<homeTeam>OAK</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>20</awayScore>
 				<awayTeam>SD</awayTeam>
 				<date>12.24.2015</date>
 				<time>8:25:PM</time>
@@ -3318,10 +3330,10 @@
 			</game>
 			<game>
 				<homeTeam>PHI</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>38</awayScore>
 				<awayTeam>WAS</awayTeam>
 				<date>12.26.2015</date>
 				<time>8:25:PM</time>
@@ -3330,10 +3342,10 @@
 			</game>
 			<game>
 				<homeTeam>ATL</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeScore>20</homeScore>
+				<homeFavored1>N</homeFavored1>
 				<spread1>7</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>13</awayScore>
 				<awayTeam>CAR</awayTeam>
 				<date>12.27.2015</date>
 				<time>1:00:PM</time>
@@ -3342,10 +3354,10 @@
 			</game>
 			<game>
 				<homeTeam>BUF</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>16</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>6</awayScore>
 				<awayTeam>DAL</awayTeam>
 				<date>12.27.2015</date>
 				<time>1:00:PM</time>
@@ -3354,10 +3366,10 @@
 			</game>
 			<game>
 				<homeTeam>DET</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>32</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>9.5</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>17</awayScore>
 				<awayTeam>SF</awayTeam>
 				<date>12.27.2015</date>
 				<time>1:00:PM</time>
@@ -3366,10 +3378,10 @@
 			</game>
 			<game>
 				<homeTeam>KC</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>12</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>13</awayScore>
 				<awayTeam>CLE</awayTeam>
 				<date>12.27.2015</date>
 				<time>1:00:PM</time>
@@ -3378,10 +3390,10 @@
 			</game>
 			<game>
 				<homeTeam>MIA</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>12</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>18</awayScore>
 				<awayTeam>IND</awayTeam>
 				<date>12.27.2015</date>
 				<time>1:00:PM</time>
@@ -3390,10 +3402,10 @@
 			</game>
 			<game>
 				<homeTeam>MIN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>49</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>5.5</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>17</awayScore>
 				<awayTeam>NYG</awayTeam>
 				<date>12.27.2015</date>
 				<time>8:30:PM</time>
@@ -3402,11 +3414,11 @@
 			</game>
 			<game>
 				<homeTeam>NO</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>38</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3.5</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>JAC</awayTeam>
+				<awayScore>27</awayScore>
+				<awayTeam>JAX</awayTeam>
 				<date>12.27.2015</date>
 				<time>4:05:PM</time>
 				<status>FINAL</status>
@@ -3414,10 +3426,10 @@
 			</game>
 			<game>
 				<homeTeam>NYJ</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeScore>26</homeScore>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>20</awayScore>
 				<awayTeam>NE</awayTeam>
 				<date>12.27.2015</date>
 				<time>1:00:PM</time>
@@ -3426,10 +3438,10 @@
 			</game>
 			<game>
 				<homeTeam>TB</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>21</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>26</awayScore>
 				<awayTeam>CHI</awayTeam>
 				<date>12.27.2015</date>
 				<time>1:00:PM</time>
@@ -3438,10 +3450,10 @@
 			</game>
 			<game>
 				<homeTeam>TEN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeScore>6</homeScore>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3.5</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>34</awayScore>
 				<awayTeam>HOU</awayTeam>
 				<date>12.27.2015</date>
 				<time>1:00:PM</time>
@@ -3450,10 +3462,10 @@
 			</game>
 			<game>
 				<homeTeam>ARI</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>38</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>8</awayScore>
 				<awayTeam>GB</awayTeam>
 				<date>12.27.2015</date>
 				<time>4:25:PM</time>
@@ -3462,10 +3474,10 @@
 			</game>
 			<game>
 				<homeTeam>SEA</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>13</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>23</awayScore>
 				<awayTeam>STL</awayTeam>
 				<date>12.27.2015</date>
 				<time>4:25:PM</time>
@@ -3474,10 +3486,10 @@
 			</game>
 			<game>
 				<homeTeam>BAL</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeScore>20</homeScore>
+				<homeFavored1>N</homeFavored1>
 				<spread1>10</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>17</awayScore>
 				<awayTeam>PIT</awayTeam>
 				<date>12.27.2015</date>
 				<time>1:00:PM</time>
@@ -3486,10 +3498,10 @@
 			</game>
 			<game>
 				<homeTeam>DEN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
-				<awayScore>-</awayScore>
+				<awayScore>17</awayScore>
 				<awayTeam>CIN</awayTeam>
 				<date>12.28.2015</date>
 				<time>8:30:PM</time>
@@ -3500,10 +3512,10 @@
 		<week number="17" current="false" ss="SECOND_HALF" status="completed" >
 			<game>
 				<homeTeam>ATL</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>20</awayScore>
 				<awayTeam>NO</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3512,10 +3524,10 @@
 			</game>
 			<game>
 				<homeTeam>BUF</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>22</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>17</awayScore>
 				<awayTeam>NYJ</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3524,10 +3536,10 @@
 			</game>
 			<game>
 				<homeTeam>CAR</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>38</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10.5</spread1>
+				<awayScore>10</awayScore>
 				<awayTeam>TB</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3536,10 +3548,10 @@
 			</game>
 			<game>
 				<homeTeam>CHI</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>24</awayScore>
 				<awayTeam>DET</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3548,10 +3560,10 @@
 			</game>
 			<game>
 				<homeTeam>CIN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9</spread1>
+				<awayScore>16</awayScore>
 				<awayTeam>BAL</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3560,10 +3572,10 @@
 			</game>
 			<game>
 				<homeTeam>CLE</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>12</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>11</spread1>
+				<awayScore>28</awayScore>
 				<awayTeam>PIT</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3572,10 +3584,10 @@
 			</game>
 			<game>
 				<homeTeam>DAL</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>34</awayScore>
 				<awayTeam>WAS</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3584,10 +3596,10 @@
 			</game>
 			<game>
 				<homeTeam>GB</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>20</awayScore>
 				<awayTeam>MIN</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3596,10 +3608,10 @@
 			</game>
 			<game>
 				<homeTeam>HOU</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>30</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>6</awayScore>
 				<awayTeam>JAX</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3608,10 +3620,10 @@
 			</game>
 			<game>
 				<homeTeam>IND</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>30</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>24</awayScore>
 				<awayTeam>TEN</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3620,10 +3632,10 @@
 			</game>
 			<game>
 				<homeTeam>KC</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>17</awayScore>
 				<awayTeam>OAK</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3632,10 +3644,10 @@
 			</game>
 			<game>
 				<homeTeam>MIA</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>20</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>10</awayScore>
 				<awayTeam>NE</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3644,10 +3656,10 @@
 			</game>
 			<game>
 				<homeTeam>NYG</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>30</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>35</awayScore>
 				<awayTeam>PHI</awayTeam>
 				<date>1.3.2016</date>
 				<time>1:00:PM</time>
@@ -3656,10 +3668,10 @@
 			</game>
 			<game>
 				<homeTeam>ARI</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>6</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>36</awayScore>
 				<awayTeam>SEA</awayTeam>
 				<date>1.3.2016</date>
 				<time>4:25:PM</time>
@@ -3668,10 +3680,10 @@
 			</game>
 			<game>
 				<homeTeam>DEN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9</spread1>
+				<awayScore>20</awayScore>
 				<awayTeam>SD</awayTeam>
 				<date>1.3.2016</date>
 				<time>4:25:PM</time>
@@ -3680,10 +3692,10 @@
 			</game>
 			<game>
 				<homeTeam>SF</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>19</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>16</awayScore>
 				<awayTeam>STL</awayTeam>
 				<date>1.3.2016</date>
 				<time>4:25:PM</time>
@@ -3692,12 +3704,144 @@
 			</game>		
 		</week>
 		<week number="18" current="false" ss="PLAYOFFS" status="completed" >
+			<game>
+				<homeTeam>HOU</homeTeam>
+				<homeScore>0</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>1.9.2016</date>
+				<time>4:35:PM</time>
+				<status>FINAL</status>
+				<stadium>NRG Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CIN</homeTeam>
+				<homeScore>16</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>18</awayScore>
+				<awayTeam>PIT</awayTeam>
+				<date>1.9.2016</date>
+				<time>8:15:PM</time>
+				<status>FINAL</status>
+				<stadium>Paul Brown Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>MIN</homeTeam>
+				<homeScore>9</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>SEA</awayTeam>
+				<date>1.10.2016</date>
+				<time>1:05:PM</time>
+				<status>FINAL</status>
+				<stadium>TCF Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>WAS</homeTeam>
+				<homeScore>18</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>0</spread1>
+				<awayScore>35</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>1.10.2016</date>
+				<time>4:40:PM</time>
+				<status>FINAL</status>
+				<stadium>FedEx Field</stadium>
+			</game>
 		</week>
-		<week number="19" current="false" ss="PLAYOFFS" status="completed" >
+		<week number="19" current="true" ss="PLAYOFFS" status="completed" >
+			<game>
+				<homeTeam>NE</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>1.16.2016</date>
+				<time>4:35:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>ARI</homeTeam>
+				<homeScore>26</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>1.16.2016</date>
+				<time>8:15:PM</time>
+				<status>FINAL</status>
+				<stadium>University of Phoenix Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CAR</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>SEA</awayTeam>
+				<date>1.17.2016</date>
+				<time>1:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Bank of America Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DEN</homeTeam>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>16</awayScore>
+				<awayTeam>PIT</awayTeam>
+				<date>1.17.2016</date>
+				<time>4:40:PM</time>
+				<status>FINAL</status>
+				<stadium>Mile High Stadium</stadium>
+			</game>
 		</week>
 		<week number="20" current="false" ss="PLAYOFFS" status="completed" >
+			<game>
+				<homeTeam>DEN</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>18</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>1.24.2016</date>
+				<time>3:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Mile High Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CAR</homeTeam>
+				<homeScore>49</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>15</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>1.24.2016</date>
+				<time>6:40:PM</time>
+				<status>FINAL</status>
+				<stadium>Bank of America Stadium</stadium>
+			</game>
 		</week>
 		<week number="22" current="false" ss="SUPER_BOWL" status="completed" >
+			<game>
+				<homeTeam>DEN</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>8.5</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>2.7.2016</date>
+				<time>6:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Levi's Stadium</stadium>
+			</game>
 		</week>
 	</weeks>
 

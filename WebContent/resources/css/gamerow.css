@@ -47,10 +47,10 @@
 	border-radius:50%;
 } 
 .selected-badge.home {
-	right:15%;
+	right:10%;
 }
 .selected-badge.away {
-	left: -15%;
+	left: 10%;
 }
 .selected-badge.selected {
 	opacity:1;

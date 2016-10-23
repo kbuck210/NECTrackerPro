@@ -21,7 +21,7 @@ public class XmlSubseasonUpdater {
 	public static void updateSubseasons(SubseasonFactory subseasonFactory, List<Element> subseasons, Season season) {
 		for (Element ss : subseasons) {
 			String subseasonName = ss.getAttribute("name");
-			NEC ssType = NEC.getNECForString(subseasonName);
+			NEC ssType = NEC.getNECForName(subseasonName);
 			if (ssType == null) {
 				log.severe("Invalid subseason name: " + subseasonName + " Can not create subseason!");
 				continue;

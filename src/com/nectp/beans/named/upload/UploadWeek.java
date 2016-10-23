@@ -151,7 +151,7 @@ public class UploadWeek extends FileUploadImpl {
 	 */
 	private Subseason parseSubseason(Element root, Season season) {
 		String ss = root.getAttribute("ss");
-		NEC subseasonType = NEC.getNECForString(ss);
+		NEC subseasonType = NEC.getNECForName(ss);
 		Subseason subseason = null;
 		try {
 			subseason = subseasonService.selectSubseasonInSeason(subseasonType, season);

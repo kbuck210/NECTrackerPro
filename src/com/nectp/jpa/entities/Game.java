@@ -43,8 +43,8 @@ import java.util.List;
 					+ "INNER JOIN FETCH g.awayTeam at "
 					+ "INNER JOIN FETCH g.week w "
 					+ "WHERE w.weekId = :weekId "
-					+ "AND ht.abstractTeamForSeasonId = :atfsId "
-					+ "OR at.abstractTeamForSeasonId = :atfsId"),
+					+ "AND (ht.abstractTeamForSeasonId = :atfsId "
+					+ "OR at.abstractTeamForSeasonId = :atfsId)"),
 	@NamedQuery(name="Game.selectDivisionalGamesForTFS",
 				query="SELECT g FROM Game g "
 					+ "INNER JOIN FETCH g.homeTeam ht "

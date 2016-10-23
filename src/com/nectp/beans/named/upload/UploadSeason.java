@@ -35,7 +35,7 @@ import com.nectp.beans.remote.daos.WeekFactory;
 import com.nectp.jpa.entities.Season;
 import com.nectp.webtools.DOMParser;
 
-@Named(value="seasonUpload")
+@Named(value="uploadSeasons")
 @ViewScoped
 public class UploadSeason extends FileUploadImpl {
 	private static final long serialVersionUID = -6846892764373561471L;
@@ -113,15 +113,13 @@ public class UploadSeason extends FileUploadImpl {
 				if (iStream != null) {
 					//	Parse the file for Players, Teams, Prizes and Weeks
 					parser = DOMParser.newInstance(iStream);
-					
-					Integer seasonNum = parseSeason(parser.getRootElement());
+					Element seasonRoot = parser.getRootElement();
+					Integer seasonNum = parseSeason(seasonRoot);
 					if (seasonNum != null) {
-						boolean insert = false;
 						season = seasonFactory.selectById(seasonNum);
 						//	If the season does not exist, create a new season
 						if (season == null) {
-							season = new Season();
-							insert = true;
+							season = createSeasonFromAttributes(seasonNum, seasonRoot);
 						}
 						
 						parser.setQualifiedNodeName("subseasons");
@@ -144,12 +142,7 @@ public class UploadSeason extends FileUploadImpl {
 						elements = parser.generateElementList();
 						parseWeeks(elements);
 						
-						if (insert) {
-							seasonFactory.insert(season);
-						}
-						else {
-							seasonFactory.update(season);
-						}
+						seasonFactory.update(season);
 					}
 				}	
 			}
@@ -172,6 +165,111 @@ public class UploadSeason extends FileUploadImpl {
 		}
 		
 		return seasonNum;
+	}
+	
+	/** Parses the other attributes on the season root element to set the new season info
+	 * 
+	 * @param seasonNum the integer season number of the season to create
+	 * @param seasonRoot the root XML element in this document
+	 */
+	private Season createSeasonFromAttributes(Integer seasonNum, Element seasonRoot) {
+		String seasonYear = seasonRoot.getAttribute("year");
+		String currentStr = seasonRoot.getAttribute("current");
+		String minPicksStr = seasonRoot.getAttribute("minPicks");
+		String maxPicksStr = seasonRoot.getAttribute("maxPicks");
+		String playoffStart = seasonRoot.getAttribute("playoffStart");
+		String secondStart = seasonRoot.getAttribute("secondHalfStart");
+		String superbowlWk = seasonRoot.getAttribute("superbowlWeek");
+		String winValStr = seasonRoot.getAttribute("winValue");
+		String lossValStr = seasonRoot.getAttribute("lossValue");
+		String tieValStr = seasonRoot.getAttribute("tieValue");
+		String tnoLosses = seasonRoot.getAttribute("tnoLosses");
+		
+		boolean current = Boolean.parseBoolean(currentStr);
+		Integer minPicks = null;
+		if (minPicksStr != null) {
+			try {
+				minPicks = Integer.parseInt(minPicksStr);
+			} catch(NumberFormatException e) {
+				log.warning("Invalid format for minimum picks! Needs to be manually set.");
+				log.warning(e.getMessage());
+			}
+		}
+		Integer maxPicks = null;
+		if (maxPicksStr != null) {
+			try {
+				maxPicks = Integer.parseInt(maxPicksStr);
+			} catch (NumberFormatException e) {
+				log.warning("Invalid format for maximum picks! Needs to be manually set.");
+				log.warning(e.getMessage());
+			}
+		}
+		Integer secondHalfStart = null;
+		if (secondStart != null) {
+			try {
+				secondHalfStart = Integer.parseInt(secondStart);
+			} catch (NumberFormatException e) {
+				log.warning("Invalid format for second half start week! Needs to be manually set.");
+				log.warning(e.getMessage());
+			}
+		}
+		Integer playoffStartWeek = null;
+		if (playoffStart != null) {
+			try {
+				playoffStartWeek = Integer.parseInt(playoffStart);
+			} catch (NumberFormatException e) {
+				log.warning("Invalid format for playoff start week! Needs to be manually set.");
+				log.warning(e.getMessage());
+			}
+		}
+		Integer superbowlWeek = null;
+		if (superbowlWk != null) {
+			try {
+				superbowlWeek = Integer.parseInt(superbowlWk);
+			} catch (NumberFormatException e) {
+				log.warning("Invalid format for superbowl week! Needs to be manually set.");
+				log.warning(e.getMessage());
+			}
+		}
+		Integer winValue = null;
+		if (winValStr != null) {
+			try {
+				winValue = Integer.parseInt(winValStr);
+			} catch (NumberFormatException e) {
+				log.warning("Invalid format for win value! Needs to be manually set.");
+				log.warning(e.getMessage());
+			}
+		}
+		Integer lossValue = null;
+		if (lossValStr != null) {
+			try {
+				lossValue = Integer.parseInt(lossValStr);
+			} catch (NumberFormatException e) {
+				log.warning("Invalid format for loss value! Needs to be manually set.");
+				log.warning(e.getMessage());
+			}
+		}
+		Integer tieValue = null;
+		if (tieValStr != null) {
+			try {
+				tieValue = Integer.parseInt(tieValStr);
+			} catch (NumberFormatException e) {
+				log.warning("Invalid format for tie value! Needs to be manually set.");
+				log.warning(e.getMessage());
+			}
+		}
+		Integer tnoAcceptableLosses = null;
+		if (tnoLosses != null) {
+			try {
+				tnoAcceptableLosses = Integer.parseInt(tnoLosses);
+			} catch (NumberFormatException e) {
+				log.warning("Invalid format for tno losses value! Needs to be manually set.");
+				log.warning(e.getMessage());
+			}
+		}
+		
+		return seasonFactory.generateSeason(seasonNum, seasonYear, current, winValue, lossValue, tieValue, 
+				secondHalfStart, playoffStartWeek, superbowlWeek, minPicks, maxPicks, tnoAcceptableLosses);
 	}
 	
 	/** From the 'subseasons' XML root, get the 'subseason' elements and update Subseasons for this season
@@ -236,7 +334,7 @@ public class UploadSeason extends FileUploadImpl {
 		//	NOTE: typically only 1 'weeks' element - so not usually O(n^2) time
 		for (Element t : elements) {
 			//	Get the sub-element list for individual weeks
-			List<Element> weeks = parser.getSubElementsByTagName(t, "prize");
+			List<Element> weeks = parser.getSubElementsByTagName(t, "week");
 			XmlWeekUpdater.updateWeeks(parser, weeks, weekFactory, gameFactory,
 					stadiumService, tfsFactory, subseasonFactory, season);
 		}

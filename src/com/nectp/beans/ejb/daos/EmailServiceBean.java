@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -32,18 +31,14 @@ public class EmailServiceBean extends DataServiceBean<Email> implements EmailSer
 		if (emailAddress != null) {
 			TypedQuery<Email> eq = em.createNamedQuery("Email.selectByAddress", Email.class);
 			eq.setParameter("emailAddress", emailAddress);
-			try {
-				emailAddresses.addAll(eq.getResultList());
-			} catch (NoResultException e) {
-				log.log(Level.WARNING, "No Results found: " + e.getMessage());
-			}
+			emailAddresses.addAll(eq.getResultList());
 		}
 		
 		return emailAddresses;
 	}
 
 	@Override
-	public Email selectEmailForPlayer(String emailAddress, Player player) {
+	public Email selectEmailForPlayer(String emailAddress, Player player) throws NoResultException {
 		Email email = null;
 		if (player != null) {
 			TypedQuery<Email> eq = em.createNamedQuery("Email.selectByAddressName", Email.class);
@@ -52,13 +47,16 @@ public class EmailServiceBean extends DataServiceBean<Email> implements EmailSer
 			try {
 				email = eq.getSingleResult();
 			} catch (NonUniqueResultException e) {
-				log.log(Level.SEVERE, "Multiple results found for: " + emailAddress + " - " + player.getName());
-				log.log(Level.SEVERE, e.getMessage());
+				log.severe("Multiple results found for: " + emailAddress + " - " + player.getName());
+				log.severe(e.getMessage());
 				e.printStackTrace();
 			} catch (NoResultException e) {
-				log.log(Level.WARNING, "No Results found for: " + emailAddress + " - " + player.getName());
-				log.log(Level.WARNING, e.getMessage());
-				throw new NoResultException();
+				log.warning("No Results found for: " + emailAddress + " - " + player.getName());
+				log.warning(e.getMessage());
+				throw e;
+			} catch (Exception e) {
+				log.severe("Exception caught retrieving email: " + e.getMessage());
+				e.printStackTrace();
 			}
 		}
 		return email;
@@ -70,12 +68,7 @@ public class EmailServiceBean extends DataServiceBean<Email> implements EmailSer
 		if (player != null) {
 			TypedQuery<Email> eq = em.createNamedQuery("Email.selectAllByPlayer", Email.class);
 			eq.setParameter("playerId", player.getAbstractTeamId());
-			try {
-				allAddresses = eq.getResultList();
-			} catch (NoResultException e) {
-				log.log(Level.WARNING, "No Results found for: " + player.getName());
-				log.log(Level.WARNING, e.getMessage());
-			}
+			allAddresses = eq.getResultList();
 		}
 		
 		return allAddresses;

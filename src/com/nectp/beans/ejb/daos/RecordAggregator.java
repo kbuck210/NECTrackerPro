@@ -264,6 +264,14 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 	public void setWinsATS2(int winsATS) {
 		this.winsATS2 = winsATS;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getTotalWinCount() {
+		return this.rawWins + this.winsATS1 + this.winsATS2;
+	}
 
 	/**
 	 * @return the rawLosses
@@ -312,6 +320,14 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 	}
 
 	/**
+	 * 
+	 * @return
+	 */
+	public int getTotalLossCount() {
+		return this.rawLosses + this.lossATS1 + this.lossATS2;
+	}
+	
+	/**
 	 * @return the rawTies
 	 */
 	public int getRawTies() {
@@ -357,6 +373,14 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 		this.tiesATS2 = tiesATS;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	public int getTotalTieCount() {
+		return this.rawTies + this.tiesATS1 + this.tiesATS2;
+	}
+	
 	/**
 	 * @return the winScore
 	 */

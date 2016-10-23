@@ -3,6 +3,7 @@ package com.nectp.beans.named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -11,9 +12,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.nectp.beans.ejb.ApplicationState;
+import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
 import com.nectp.beans.remote.daos.PrizeForSeasonService;
+import com.nectp.beans.remote.daos.RecordService;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.PrizeForSeason;
 import com.nectp.jpa.entities.Season;
@@ -37,6 +41,9 @@ public class LeaderListBean implements Serializable {
 	
 	@EJB
 	private PlayerForSeasonService pfsService;
+	
+	@EJB
+	private RecordService recordService;
 	
 	@Inject
 	private ApplicationState appState;
@@ -66,11 +73,12 @@ public class LeaderListBean implements Serializable {
 			prizeCategories.add(pb);
 		}
 		
+		boolean againstSpread = displayedCategory != NEC.TWO_AND_OUT;
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rankMap = recordService.getPlayerRankedScoresForType(displayedCategory, currentSeason, againstSpread);
+		
 		List<PlayerForSeason> players = currentSeason.getPlayers();
 		for (PlayerForSeason pfs : players) {
-			LeaderBean lb = new LeaderBean();
-			lb.setCurrentSeason(currentSeason);
-			lb.setDisplayedCategory(displayedCategory);
+			LeaderBean lb = new LeaderBean(currentSeason, rankMap);
 			lb.setPlayer(pfs);
 		}
 	}

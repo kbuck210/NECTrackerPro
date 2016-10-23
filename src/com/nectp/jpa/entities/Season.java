@@ -55,8 +55,8 @@ public class Season implements Serializable {
 	@Basic(optional = false)
 	private int tieValue = 0;
 	
-	@Basic(optional = false)
-	private Integer minPicks = 16;
+	@Basic(optional = true)
+	private Integer minPicks = null;
 	
 	@Basic(optional = true)
 	private Integer maxPicks = null;
@@ -164,7 +164,7 @@ public class Season implements Serializable {
 		this.winValue = winValue;
 	}
 	
-	public int getMinPicks() {
+	public Integer getMinPicks() {
 		return minPicks;
 	}
 	

@@ -16,7 +16,7 @@
 		<player>
 			<name>Kevin Buckley</name>
 			<nickname>The Terp</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>2004</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/terps_logo.png</avatar>
 			<excelCol>2</excelCol>
@@ -27,7 +27,7 @@
 		<player>
 			<name>Brian Buckley</name>
 			<nickname>The Tracker</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/tracker_logo.png</avatar>
 			<excelCol>1</excelCol>
@@ -38,7 +38,7 @@
 		<player>
 			<name>John Thompson</name>
 			<nickname>Iceman</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>2013</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/iceman_logo.png</avatar>
 			<excelCol>3</excelCol>
@@ -49,7 +49,7 @@
 		<player>
 			<name>Joe Buckley</name>
 			<nickname>The Senator</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/porgy.jpg</avatar>
 			<excelCol>4</excelCol>
@@ -60,7 +60,7 @@
 		<player>
 			<name>David Buckley</name>
 			<nickname>Vegas Varmint</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/vegas.png</avatar>
 			<excelCol>5</excelCol>
@@ -71,7 +71,7 @@
 		<player>
 			<name>Pete Peterson</name>
 			<nickname>Kingfish</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/Kingfish_logo.png</avatar>
 			<excelCol>6</excelCol>
@@ -82,11 +82,11 @@
 		<player>
 			<name>Derek Peterson</name>
 			<nickname>The Big Cat</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1997</sinceYear>
 			<commish>Y</commish>
 			<avatar>img/avatars/big_cat_logo.png</avatar>
 			<excelCol>7</excelCol>
-			<excelName>BIG CAT</excelName>
+			<excelName>COMMISH</excelName>
 			<email>dbp@hartadvisers.com</email>
 			<email>dpete13@comcast.net</email>
 			<receiveUpdates>Y</receiveUpdates>
@@ -94,7 +94,7 @@
 		<player>
 			<name>Paul Buckley</name>
 			<nickname>The Clam Man</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/clam_man_logo.png</avatar>
 			<excelCol>8</excelCol>
@@ -105,7 +105,7 @@
 		<player>
 			<name>Daniel Buckley</name>
 			<nickname>The Chief</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1997</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/chief_logo.png</avatar>
 			<excelCol>9</excelCol>
@@ -116,7 +116,7 @@
 		<player>
 			<name>Will Buckley</name>
 			<nickname>Willy B</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>1998</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/honduras-flag.gif</avatar>
 			<excelCol>10</excelCol>
@@ -127,7 +127,7 @@
 		<player>
 			<name>Javier Vargas</name>
 			<nickname>Po' Boy</nickname>
-			<sinceYear>2005</sinceYear>
+			<sinceYear>2007</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/shrimp_poboy.jpg</avatar>
 			<excelCol>11</excelCol>
@@ -271,7 +271,7 @@
 		</team>
 		<team>
 			<franchiseId>11</franchiseId>
-			<abbr>JAC</abbr>
+			<abbr>JAX</abbr>
 			<name>Jaguars</name>
 			<city>Jacksonville</city>
 			<nickname>The Jags</nickname>		
@@ -543,7 +543,7 @@
 			<excelName>Seattle</excelName>
 		</team>
 		<team>
-			<franchiseId>3</franchiseId>
+			<franchiseId>32</franchiseId>
 			<abbr>SF</abbr>
 			<name>49ers</name>
 			<city>San Francisco</city>
@@ -562,37 +562,37 @@
 		<prize>
 			<name>FIRST_HALF</name>
 			<amount>175</amount>
-			<winner></winner>
+			<winner>Vegas Varmint</winner>
 		</prize>
 		<prize>
 			<name>SECOND_HALF</name>
 			<amount>175</amount>
-			<winner></winner>
+			<winner>Vegas Varmint</winner>
 		</prize>
 		<prize>
 			<name>PLAYOFFS</name>
 			<amount>125</amount>
-			<winner></winner>
+			<winner>The Terp</winner>
 		</prize>
 		<prize>
 			<name>SUPER_BOWL</name>
 			<amount>300</amount>
-			<winner></winner>
+			<winner>Vegas Varmint</winner>
 		</prize>
 		<prize>
 			<name>MNF_TNT</name>
 			<amount>125</amount>
-			<winner></winner>
+			<winner>The Terp</winner>
 		</prize>
 		<prize>
 			<name>TWO_AND_OUT</name>
 			<amount>100</amount>
-			<winner></winner>
+			<winner>The Terp</winner>
 		</prize>
 		<prize>
 			<name>MONEY_BACK</name>
 			<amount>100</amount>
-			<winner></winner>
+			<winner>The Senator</winner>
 		</prize>
 	</prizes>
 	
@@ -600,3117 +600,3267 @@
 	<weeks>
 		<week number="1" current="false" ss="FIRST_HALF" status="completed" >
 			<game>
-				<homeTeam>NE</homeTeam>
-				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>21</awayScore>
-				<awayTeam>PIT</awayTeam>
-				<date>9.10.2015</date>
-				<time>8:30:PM</time>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>36</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>16</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>9.4.2014</date>
+				<time>8:42:PM</time>
 				<status>FINAL</status>
-				<stadium>Gillette Stadium</stadium>
+				<stadium>CenturyLink Field</stadium>
+			</game>
+			<game>
+				<homeTeam>ATL</homeTeam>
+				<homeScore>37</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>34</awayScore>
+				<awayTeam>NO</awayTeam>
+				<date>9.7.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Georgia Dome</stadium>
+			</game>
+			<game>
+				<homeTeam>STL</homeTeam>
+				<homeScore>6</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>34</awayScore>
+				<awayTeam>MIN</awayTeam>
+				<date>9.7.2014</date>
+				<time>1:00:PM</time>
+				<status>FINAL</status>
+				<stadium>Edward Jones Dome</stadium>
+			</game>
+			<game>
+				<homeTeam>PIT</homeTeam>
+				<homeScore>30</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>CLE</awayTeam>
+				<date>9.7.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Heinz Field</stadium>
+			</game>
+			<game>
+				<homeTeam>PHI</homeTeam>
+				<homeScore>34</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>JAX</awayTeam>
+				<date>9.7.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Lincoln Financial Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NYJ</homeTeam>
+				<homeScore>19</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>OAK</awayTeam>
+				<date>9.7.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>BAL</homeTeam>
+				<homeScore>16</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>CIN</awayTeam>
+				<date>9.7.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>M&amp;T Bank Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>CHI</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>6.5</spread1>
-				<awayScore>31</awayScore>
-				<awayTeam>GB</awayTeam>
-				<date>9.13.2015</date>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>BUF</awayTeam>
+				<date>9.7.2014</date>
 				<time>1:00:PM</time>
 				<status>FINAL</status>
 				<stadium>Soldier Field</stadium>
 			</game>
 			<game>
 				<homeTeam>HOU</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>KC</awayTeam>
-				<date>9.13.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>6</awayScore>
+				<awayTeam>WAS</awayTeam>
+				<date>9.7.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
 				<stadium>NRG Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>NYJ</homeTeam>
-				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>CLE</awayTeam>
-				<date>9.13.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>BUF</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>14</awayScore>
-				<awayTeam>IND</awayTeam>
-				<date>9.13.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ralph Wilson Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>WAS</homeTeam>
+				<homeTeam>KC</homeTeam>
 				<homeScore>10</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>MIA</awayTeam>
-				<date>9.13.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FedEx Field</stadium>
-			</game>
-			<game>
-				<homeTeam>JAC</homeTeam>
-				<homeScore>9</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>CAR</awayTeam>
-				<date>9.13.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>EverBank Field</stadium>
-			</game>
-			<game>
-				<homeTeam>STL</homeTeam>
-				<homeScore>34</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>4</spread1>
-				<awayScore>31</awayScore>
-				<awayTeam>SEA</awayTeam>
-				<date>9.13.2015</date>
-				<time>1:00:PM</time>
+				<awayScore>26</awayScore>
+				<awayTeam>TEN</awayTeam>
+				<date>9.7.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>Edward Jones Dome</stadium>
+				<stadium>Arrowhead Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>ARI</homeTeam>
-				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>19</awayScore>
-				<awayTeam>NO</awayTeam>
-				<date>9.13.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>University of Phoenix Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>SD</homeTeam>
+				<homeTeam>MIA</homeTeam>
 				<homeScore>33</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>28</awayScore>
-				<awayTeam>DET</awayTeam>
-				<date>9.13.2015</date>
-				<time>4:05:PM</time>
+				<homeFavored1>N</homeFavored1>
+				<spread1>4.5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>9.7.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
-				<stadium>Qualcomm Stadium</stadium>
+				<stadium>Sun Life Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>TB</homeTeam>
 				<homeScore>14</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>42</awayScore>
-				<awayTeam>TEN</awayTeam>
-				<date>9.13.2015</date>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>9.7.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>Raymond James Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>OAK</homeTeam>
-				<homeScore>13</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeTeam>DAL</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>28</awayScore>
+				<awayTeam>SF</awayTeam>
+				<date>9.7.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>AT&amp;T Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DEN</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>9.7.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Mile High Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DET</homeTeam>
+				<homeScore>35</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>NYG</awayTeam>
+				<date>9.8.2014</date>
+				<time>7:11:PM</time>
+				<status>FINAL</status>
+				<stadium>Ford Field</stadium>
+			</game>
+			<game>
+				<homeTeam>ARI</homeTeam>
+				<homeScore>18</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>SD</awayTeam>
+				<date>9.8.2014</date>
+				<time>9:20:PM</time>
+				<status>FINAL</status>
+				<stadium>University of Phoenix Stadium</stadium>
+			</game>
+		</week>
+		<week number="2" current="false" ss="FIRST_HALF" status="completed" >
+			<game>
+				<homeTeam>BAL</homeTeam>
+				<homeScore>26</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>6</awayScore>
+				<awayTeam>PIT</awayTeam>
+				<date>9.11.2014</date>
+				<time>8:28:PM</time>
+				<status>FINAL</status>
+				<stadium>M&amp;T Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>BUF</homeTeam>
+				<homeScore>29</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>MIA</awayTeam>
+				<date>9.14.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Ralph Wilson Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>WAS</homeTeam>
+				<homeScore>41</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>JAX</awayTeam>
+				<date>9.14.2014</date>
+				<time>1:05:PM</time>
+				<status>FINAL</status>
+				<stadium>FedEx Field</stadium>
+			</game>
+			<game>
+				<homeTeam>TEN</homeTeam>
+				<homeScore>10</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3.5</spread1>
-				<awayScore>33</awayScore>
-				<awayTeam>CIN</awayTeam>
-				<date>9.13.2015</date>
+				<awayScore>26</awayScore>
+				<awayTeam>DAL</awayTeam>
+				<date>9.14.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Nissan Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NYG</homeTeam>
+				<homeScore>14</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>25</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>9.14.2014</date>
+				<time>1:04:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>MIN</homeTeam>
+				<homeScore>7</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>9.14.2014</date>
+				<time>1:05:PM</time>
+				<status>FINAL</status>
+				<stadium>TCF Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CLE</homeTeam>
+				<homeScore>26</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>NO</awayTeam>
+				<date>9.14.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>FirstEnergy Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CIN</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>ATL</awayTeam>
+				<date>9.14.2014</date>
+				<time>1:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Paul Brown Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CAR</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>DET</awayTeam>
+				<date>9.14.2014</date>
+				<time>1:04:PM</time>
+				<status>FINAL</status>
+				<stadium>Bank of America Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>TB</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>19</awayScore>
+				<awayTeam>STL</awayTeam>
+				<date>9.14.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Raymond James Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>SD</homeTeam>
+				<homeScore>21</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>SEA</awayTeam>
+				<date>9.14.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Qualcomm Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>OAK</homeTeam>
+				<homeScore>14</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>HOU</awayTeam>
+				<date>9.14.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>O.co Coliseum</stadium>
 			</game>
 			<game>
+				<homeTeam>GB</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>8.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>NYJ</awayTeam>
+				<date>9.14.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Lambeau Field</stadium>
+			</game>
+			<game>
 				<homeTeam>DEN</homeTeam>
-				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>BAL</awayTeam>
-				<date>9.13.2015</date>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>12.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>9.14.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>Mile High Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>DAL</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>26</awayScore>
-				<awayTeam>NYG</awayTeam>
-				<date>9.13.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>AT&amp;T Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>ATL</homeTeam>
-				<homeScore>26</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>PHI</awayTeam>
-				<date>9.14.2015</date>
-				<time>6:55:PM</time>
-				<status>FINAL</status>
-				<stadium>Georgia Dome</stadium>
-			</game>
-			<game>
 				<homeTeam>SF</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>3</awayScore>
-				<awayTeam>MIN</awayTeam>
-				<date>9.14.2015</date>
-				<time>10:15:PM</time>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>28</awayScore>
+				<awayTeam>CHI</awayTeam>
+				<date>9.14.2014</date>
+				<time>8:31:PM</time>
 				<status>FINAL</status>
 				<stadium>Levi's Stadium</stadium>
 			</game>
-		</week>
-		<week number="2" current="false" ss="FIRST_HALF" status="completed" >
-			<game>
-				<homeTeam>KC</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>31</awayScore>
-				<awayTeam>DEN</awayTeam>
-				<date>9.17.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Arrowhead Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>BUF</homeTeam>
-				<homeScore>32</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>40</awayScore>
-				<awayTeam>NE</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ralph Wilson Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CAR</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>HOU</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Bank of America Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>PIT</homeTeam>
-				<homeScore>43</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>18</awayScore>
-				<awayTeam>SF</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Heinz Field</stadium>
-			</game>
-			<game>
-				<homeTeam>NO</homeTeam>
-				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>10</spread1>
-				<awayScore>26</awayScore>
-				<awayTeam>TB</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>The Superdome</stadium>
-			</game>
-			<game>
-				<homeTeam>MIN</homeTeam>
-				<homeScore>26</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>16</awayScore>
-				<awayTeam>DET</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>TCF Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CHI</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>48</awayScore>
-				<awayTeam>ARI</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Soldier Field</stadium>
-			</game>
-			<game>
-				<homeTeam>CIN</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>19</awayScore>
-				<awayTeam>SD</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Paul Brown Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CLE</homeTeam>
-				<homeScore>28</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>14</awayScore>
-				<awayTeam>TEN</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FirstEnergy Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NYG</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>ATL</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>WAS</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>STL</awayTeam>
-				<date>9.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FedEx Field</stadium>
-			</game>
-			<game>
-				<homeTeam>JAC</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>MIA</awayTeam>
-				<date>9.20.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>EverBank Field</stadium>
-			</game>
-			<game>
-				<homeTeam>OAK</homeTeam>
-				<homeScore>37</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>33</awayScore>
-				<awayTeam>BAL</awayTeam>
-				<date>9.20.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>O.co Coliseum</stadium>
-			</game>
-			<game>
-				<homeTeam>PHI</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>DAL</awayTeam>
-				<date>9.20.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Lincoln Financial Field</stadium>
-			</game>
-			<game>
-				<homeTeam>GB</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>SEA</awayTeam>
-				<date>9.20.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Lambeau Field</stadium>
-			</game>
 			<game>
 				<homeTeam>IND</homeTeam>
-				<homeScore>7</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>NYJ</awayTeam>
-				<date>9.21.2015</date>
-				<time>8:30:PM</time>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>PHI</awayTeam>
+				<date>9.15.2014</date>
+				<time>8:31:PM</time>
 				<status>FINAL</status>
 				<stadium>Lucas Oil Stadium</stadium>
 			</game>
 		</week>
 		<week number="3" current="false" ss="FIRST_HALF" status="completed" >
 			<game>
-				<homeTeam>NYG</homeTeam>
-				<homeScore>32</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>21</awayScore>
-				<awayTeam>WAS</awayTeam>
-				<date>9.24.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NE</homeTeam>
-				<homeScore>51</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>13.5</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>JAC</awayTeam>
-				<date>9.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Gillette Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>DAL</homeTeam>
-				<homeScore>28</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>39</awayScore>
-				<awayTeam>ATL</awayTeam>
-				<date>9.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>AT&amp;T Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>TEN</homeTeam>
-				<homeScore>33</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>35</awayScore>
-				<awayTeam>IND</awayTeam>
-				<date>9.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Nissan Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CLE</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>OAK</awayTeam>
-				<date>9.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FirstEnergy Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>BAL</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>28</awayScore>
-				<awayTeam>CIN</awayTeam>
-				<date>9.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>M&amp;T Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CAR</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>22</awayScore>
-				<awayTeam>NO</awayTeam>
-				<date>9.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Bank of America Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NYJ</homeTeam>
-				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>PHI</awayTeam>
-				<date>9.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>HOU</homeTeam>
-				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeTeam>ATL</homeTeam>
+				<homeScore>56</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6.5</spread1>
-				<awayScore>9</awayScore>
+				<awayScore>14</awayScore>
 				<awayTeam>TB</awayTeam>
-				<date>9.27.2015</date>
-				<time>1:00:PM</time>
+				<date>9.18.2014</date>
+				<time>8:26:PM</time>
 				<status>FINAL</status>
-				<stadium>NRG Stadium</stadium>
+				<stadium>Georgia Dome</stadium>
 			</game>
 			<game>
-				<homeTeam>MIN</homeTeam>
-				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>14</awayScore>
+				<homeTeam>BUF</homeTeam>
+				<homeScore>10</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2</spread1>
+				<awayScore>22</awayScore>
 				<awayTeam>SD</awayTeam>
-				<date>9.27.2015</date>
-				<time>1:00:PM</time>
+				<date>9.21.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>TCF Bank Stadium</stadium>
+				<stadium>Ralph Wilson Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>STL</homeTeam>
-				<homeScore>6</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeScore>31</homeScore>
+				<homeFavored1>N</homeFavored1>
 				<spread1>1</spread1>
-				<awayScore>12</awayScore>
-				<awayTeam>PIT</awayTeam>
-				<date>9.27.2015</date>
+				<awayScore>34</awayScore>
+				<awayTeam>DAL</awayTeam>
+				<date>9.21.2014</date>
 				<time>1:00:PM</time>
 				<status>FINAL</status>
 				<stadium>Edward Jones Dome</stadium>
 			</game>
 			<game>
-				<homeTeam>ARI</homeTeam>
-				<homeScore>47</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeTeam>PHI</homeTeam>
+				<homeScore>37</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6.5</spread1>
+				<awayScore>34</awayScore>
+				<awayTeam>WAS</awayTeam>
+				<date>9.21.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Lincoln Financial Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NYG</homeTeam>
+				<homeScore>30</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>HOU</awayTeam>
+				<date>9.21.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NO</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>9</awayScore>
+				<awayTeam>MIN</awayTeam>
+				<date>9.21.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>The Superdome</stadium>
+			</game>
+			<game>
+				<homeTeam>CIN</homeTeam>
+				<homeScore>33</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
 				<awayScore>7</awayScore>
+				<awayTeam>TEN</awayTeam>
+				<date>9.21.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Paul Brown Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CLE</homeTeam>
+				<homeScore>21</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>1.5</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>9.21.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>FirstEnergy Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DET</homeTeam>
+				<homeScore>19</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>9.21.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Ford Field</stadium>
+			</game>
+			<game>
+				<homeTeam>JAX</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>44</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>9.21.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>EverBank Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NE</homeTeam>
+				<homeScore>16</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>14</spread1>
+				<awayScore>9</awayScore>
+				<awayTeam>OAK</awayTeam>
+				<date>9.21.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>ARI</homeTeam>
+				<homeScore>23</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>14</awayScore>
 				<awayTeam>SF</awayTeam>
-				<date>9.27.2015</date>
-				<time>4:05:PM</time>
+				<date>9.21.2014</date>
+				<time>3:05:PM</time>
 				<status>FINAL</status>
 				<stadium>University of Phoenix Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>MIA</homeTeam>
-				<homeScore>14</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>41</awayScore>
-				<awayTeam>BUF</awayTeam>
-				<date>9.27.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Sun Life Stadium</stadium>
-			</game>
-			<game>
 				<homeTeam>SEA</homeTeam>
 				<homeScore>26</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>14.5</spread1>
-				<awayScore>0</awayScore>
-				<awayTeam>CHI</awayTeam>
-				<date>9.27.2015</date>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>DEN</awayTeam>
+				<date>9.21.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>CenturyLink Field</stadium>
 			</game>
 			<game>
-				<homeTeam>DET</homeTeam>
-				<homeScore>12</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>DEN</awayTeam>
-				<date>9.27.2015</date>
-				<time>8:30:PM</time>
+				<homeTeam>MIA</homeTeam>
+				<homeScore>15</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>34</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>9.21.2014</date>
+				<time>4:25:PM</time>
 				<status>FINAL</status>
-				<stadium>Ford Field</stadium>
+				<stadium>Sun Life Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>GB</homeTeam>
-				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6.5</spread1>
-				<awayScore>28</awayScore>
-				<awayTeam>KC</awayTeam>
-				<date>9.28.2015</date>
+				<homeTeam>CAR</homeTeam>
+				<homeScore>19</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>37</awayScore>
+				<awayTeam>PIT</awayTeam>
+				<date>9.21.2014</date>
+				<time>8:31:PM</time>
+				<status>FINAL</status>
+				<stadium>Bank of America Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NYJ</homeTeam>
+				<homeScore>19</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>CHI</awayTeam>
+				<date>9.22.2014</date>
 				<time>8:30:PM</time>
 				<status>FINAL</status>
-				<stadium>Lambeau Field</stadium>
+				<stadium>MetLife Stadium</stadium>
 			</game>
 		</week>
 		<week number="4" current="false" ss="FIRST_HALF" status="completed" >
 			<game>
-				<homeTeam>PIT</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>23</awayScore>
-				<awayTeam>BAL</awayTeam>
-				<date>10.1.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Heinz Field</stadium>
-			</game>
-			<game>
-				<homeTeam>MIA</homeTeam>
-				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1.5</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>NYJ</awayTeam>
-				<date>10.4.2015</date>
-				<time>9:30:AM</time>
-				<status>FINAL</status>
-				<stadium>Wembley Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>ATL</homeTeam>
-				<homeScore>48</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6.5</spread1>
-				<awayScore>21</awayScore>
-				<awayTeam>HOU</awayTeam>
-				<date>10.4.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Georgia Dome</stadium>
-			</game>
-			<game>
-				<homeTeam>BUF</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5.5</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>NYG</awayTeam>
-				<date>10.4.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ralph Wilson Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CHI</homeTeam>
-				<homeScore>22</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>OAK</awayTeam>
-				<date>10.4.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Soldier Field</stadium>
-			</game>
-			<game>
-				<homeTeam>CIN</homeTeam>
-				<homeScore>36</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>21</awayScore>
-				<awayTeam>KC</awayTeam>
-				<date>10.4.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Paul Brown Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>IND</homeTeam>
-				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>9</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>JAC</awayTeam>
-				<date>10.4.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Lucas Oil Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>TB</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>37</awayScore>
-				<awayTeam>CAR</awayTeam>
-				<date>10.4.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Raymond James Stadium</stadium>
-			</game>
-			<game>
 				<homeTeam>WAS</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>PHI</awayTeam>
-				<date>10.4.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>14</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>45</awayScore>
+				<awayTeam>NYG</awayTeam>
+				<date>9.25.2014</date>
+				<time>8:26:PM</time>
 				<status>FINAL</status>
 				<stadium>FedEx Field</stadium>
 			</game>
 			<game>
-				<homeTeam>SD</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeTeam>CHI</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>1.5</spread1>
+				<awayScore>38</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>9.28.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Soldier Field</stadium>
+			</game>
+			<game>
+				<homeTeam>HOU</homeTeam>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>BUF</awayTeam>
+				<date>9.28.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>NRG Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>IND</homeTeam>
+				<homeScore>41</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>TEN</awayTeam>
+				<date>9.28.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Lucas Oil Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>BAL</homeTeam>
+				<homeScore>38</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>9.28.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>M&amp;T Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NYJ</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>1.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>DET</awayTeam>
+				<date>9.28.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>PIT</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>7.5</spread1>
 				<awayScore>27</awayScore>
-				<awayTeam>CLE</awayTeam>
-				<date>10.4.2015</date>
+				<awayTeam>TB</awayTeam>
+				<date>9.28.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Heinz Field</stadium>
+			</game>
+			<game>
+				<homeTeam>OAK</homeTeam>
+				<homeScore>14</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>38</awayScore>
+				<awayTeam>MIA</awayTeam>
+				<date>9.28.2014</date>
+				<time>1:06:PM</time>
+				<status>FINAL</status>
+				<stadium>Wembley Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>SD</homeTeam>
+				<homeScore>33</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>13</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>JAX</awayTeam>
+				<date>9.28.2014</date>
 				<time>4:05:PM</time>
 				<status>FINAL</status>
 				<stadium>Qualcomm Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>ARI</homeTeam>
-				<homeScore>22</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>STL</awayTeam>
-				<date>10.4.2015</date>
+				<homeTeam>MIN</homeTeam>
+				<homeScore>41</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>28</awayScore>
+				<awayTeam>ATL</awayTeam>
+				<date>9.28.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
-				<stadium>University of Phoenix Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>DEN</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6.5</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>MIN</awayTeam>
-				<date>10.4.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Mile High Stadium</stadium>
+				<stadium>TCF Bank Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>SF</homeTeam>
-				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>8</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>GB</awayTeam>
-				<date>10.4.2015</date>
+				<homeScore>26</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>21</awayScore>
+				<awayTeam>PHI</awayTeam>
+				<date>9.28.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>Levi's Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>NO</homeTeam>
-				<homeScore>26</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>DAL</awayTeam>
-				<date>10.4.2015</date>
-				<time>8:30:PM</time>
+				<homeTeam>DAL</homeTeam>
+				<homeScore>38</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>NO</awayTeam>
+				<date>9.28.2014</date>
+				<time>8:31:PM</time>
 				<status>FINAL</status>
-				<stadium>The Superdome</stadium>
+				<stadium>AT&amp;T Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>SEA</homeTeam>
-				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>9.5</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>DET</awayTeam>
-				<date>10.5.2015</date>
-				<time>8:30:PM</time>
+				<homeTeam>KC</homeTeam>
+				<homeScore>41</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>9.29.2014</date>
+				<time>8:31:PM</time>
 				<status>FINAL</status>
-				<stadium>CenturyLink Field</stadium>
+				<stadium>Arrowhead Stadium</stadium>
 			</game>
 		</week>
 		<week number="5" current="false" ss="FIRST_HALF" status="completed" >
 			<game>
-				<homeTeam>HOU</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>IND</awayTeam>
-				<date>10.8.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>NRG Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>ATL</homeTeam>
-				<homeScore>25</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>19</awayScore>
-				<awayTeam>WAS</awayTeam>
-				<date>10.11.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Georgia Dome</stadium>
-			</game>
-			<game>
-				<homeTeam>BAL</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>33</awayScore>
-				<awayTeam>CLE</awayTeam>
-				<date>10.11.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>M&amp;T Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CIN</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>SEA</awayTeam>
-				<date>10.11.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Paul Brown Stadium</stadium>
-			</game>
-			<game>
 				<homeTeam>GB</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>8.5</spread1>
+				<homeScore>42</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7.5</spread1>
 				<awayScore>10</awayScore>
-				<awayTeam>STL</awayTeam>
-				<date>10.11.2015</date>
-				<time>1:00:PM</time>
+				<awayTeam>MIN</awayTeam>
+				<date>10.2.2014</date>
+				<time>8:26:PM</time>
 				<status>FINAL</status>
 				<stadium>Lambeau Field</stadium>
 			</game>
 			<game>
-				<homeTeam>KC</homeTeam>
-				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>9</spread1>
-				<awayScore>18</awayScore>
+				<homeTeam>CAR</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>24</awayScore>
 				<awayTeam>CHI</awayTeam>
-				<date>10.11.2015</date>
-				<time>1:00:PM</time>
+				<date>10.5.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
-				<stadium>Arrowhead Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>PHI</homeTeam>
-				<homeScore>39</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4.5</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>NO</awayTeam>
-				<date>10.11.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Lincoln Financial Field</stadium>
-			</game>
-			<game>
-				<homeTeam>TB</homeTeam>
-				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>31</awayScore>
-				<awayTeam>JAC</awayTeam>
-				<date>10.11.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Raymond James Stadium</stadium>
+				<stadium>Bank of America Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>TEN</homeTeam>
-				<homeScore>13</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>14</awayScore>
-				<awayTeam>BUF</awayTeam>
-				<date>10.11.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>28</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2</spread1>
+				<awayScore>29</awayScore>
+				<awayTeam>CLE</awayTeam>
+				<date>10.5.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>Nissan Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>DET</homeTeam>
-				<homeScore>17</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>42</awayScore>
-				<awayTeam>ARI</awayTeam>
-				<date>10.11.2015</date>
-				<time>4:05:PM</time>
+				<homeTeam>PHI</homeTeam>
+				<homeScore>34</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>28</awayScore>
+				<awayTeam>STL</awayTeam>
+				<date>10.5.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>Ford Field</stadium>
-			</game>
-			<game>
-				<homeTeam>DAL</homeTeam>
-				<homeScore>6</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>8.5</spread1>
-				<awayScore>30</awayScore>
-				<awayTeam>NE</awayTeam>
-				<date>10.11.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>AT&amp;T Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>OAK</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>4.5</spread1>
-				<awayScore>16</awayScore>
-				<awayTeam>DEN</awayTeam>
-				<date>10.11.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>O.co Coliseum</stadium>
+				<stadium>Lincoln Financial Field</stadium>
 			</game>
 			<game>
 				<homeTeam>NYG</homeTeam>
 				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>SF</awayTeam>
-				<date>10.11.2015</date>
-				<time>8:30:PM</time>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>ATL</awayTeam>
+				<date>10.5.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
 				<stadium>MetLife Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>SD</homeTeam>
+				<homeTeam>NO</homeTeam>
+				<homeScore>37</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>31</awayScore>
+				<awayTeam>TB</awayTeam>
+				<date>10.5.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>The Superdome</stadium>
+			</game>
+			<game>
+				<homeTeam>DAL</homeTeam>
 				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>24</awayScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>HOU</awayTeam>
+				<date>10.5.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>AT&amp;T Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DET</homeTeam>
+				<homeScore>14</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>BUF</awayTeam>
+				<date>10.5.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Ford Field</stadium>
+			</game>
+			<game>
+				<homeTeam>IND</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>10.5.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Lucas Oil Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>JAX</homeTeam>
+				<homeScore>9</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>17</awayScore>
 				<awayTeam>PIT</awayTeam>
-				<date>10.12.2015</date>
-				<time>8:30:PM</time>
+				<date>10.5.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>EverBank Field</stadium>
+			</game>
+			<game>
+				<homeTeam>DEN</homeTeam>
+				<homeScore>41</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7.5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>10.5.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Mile High Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>SF</homeTeam>
+				<homeScore>22</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>10.5.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Levi's Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>SD</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>0</awayScore>
+				<awayTeam>NYJ</awayTeam>
+				<date>10.5.2014</date>
+				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>Qualcomm Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NE</homeTeam>
+				<homeScore>43</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>CIN</awayTeam>
+				<date>10.5.2014</date>
+				<time>8:43:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>WAS</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>SEA</awayTeam>
+				<date>10.6.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>FedEx Field</stadium>
 			</game>
 		</week>
 		<week number="6" current="false" ss="FIRST_HALF" status="completed" >
 			<game>
-				<homeTeam>NO</homeTeam>
-				<homeScore>31</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>21</awayScore>
-				<awayTeam>ATL</awayTeam>
-				<date>10.15.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>The Superdome</stadium>
-			</game>
-			<game>
-				<homeTeam>BUF</homeTeam>
-				<homeScore>21</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>34</awayScore>
-				<awayTeam>CIN</awayTeam>
-				<date>10.18.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ralph Wilson Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CLE</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>4.5</spread1>
-				<awayScore>26</awayScore>
-				<awayTeam>DEN</awayTeam>
-				<date>10.18.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FirstEnergy Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>DET</homeTeam>
-				<homeScore>37</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>34</awayScore>
-				<awayTeam>CHI</awayTeam>
-				<date>10.18.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ford Field</stadium>
-			</game>
-			<game>
-				<homeTeam>JAC</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>0</spread1>
-				<awayScore>31</awayScore>
-				<awayTeam>HOU</awayTeam>
-				<date>10.18.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>EverBank Field</stadium>
-			</game>
-			<game>
-				<homeTeam>MIN</homeTeam>
-				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>KC</awayTeam>
-				<date>10.18.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>TCF Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NYJ</homeTeam>
-				<homeScore>34</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>WAS</awayTeam>
-				<date>10.18.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>PIT</homeTeam>
-				<homeScore>25</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>ARI</awayTeam>
-				<date>10.18.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Heinz Field</stadium>
-			</game>
-			<game>
-				<homeTeam>TEN</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>38</awayScore>
-				<awayTeam>MIA</awayTeam>
-				<date>10.18.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Nissan Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>SEA</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>CAR</awayTeam>
-				<date>10.18.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>CenturyLink Field</stadium>
-			</game>
-			<game>
-				<homeTeam>GB</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>10.5</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>SD</awayTeam>
-				<date>10.18.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Lambeau Field</stadium>
-			</game>
-			<game>
-				<homeTeam>SF</homeTeam>
-				<homeScore>25</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>BAL</awayTeam>
-				<date>10.18.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Levi's Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>IND</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>7.5</spread1>
-				<awayScore>34</awayScore>
-				<awayTeam>NE</awayTeam>
-				<date>10.18.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Lucas Oil Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>PHI</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>7</awayScore>
-				<awayTeam>NYG</awayTeam>
-				<date>10.19.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Lincoln Financial Field</stadium>
-			</game>		
-		</week>
-		<week number="7" current="false" ss="FIRST_HALF" status="completed" >
-			<game>
-				<homeTeam>SF</homeTeam>
-				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>6.5</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>SEA</awayTeam>
-				<date>10.22.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Levi's Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>JAC</homeTeam>
-				<homeScore>34</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>31</awayScore>
-				<awayTeam>BUF</awayTeam>
-				<date>10.25.2015</date>
-				<time>9:30:AM</time>
-				<status>FINAL</status>
-				<stadium>Wembley Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>DET</homeTeam>
-				<homeScore>19</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>28</awayScore>
-				<awayTeam>MIN</awayTeam>
-				<date>10.25.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ford Field</stadium>
-			</game>
-			<game>
-				<homeTeam>IND</homeTeam>
-				<homeScore>21</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>NO</awayTeam>
-				<date>10.25.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Lucas Oil Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>KC</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>PIT</awayTeam>
-				<date>10.25.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Arrowhead Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>MIA</homeTeam>
-				<homeScore>44</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>26</awayScore>
-				<awayTeam>HOU</awayTeam>
-				<date>10.25.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Sun Life Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NE</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>8.5</spread1>
-				<awayScore>23</awayScore>
-				<awayTeam>NYJ</awayTeam>
-				<date>10.25.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Gillette Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>STL</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>6</awayScore>
-				<awayTeam>CLE</awayTeam>
-				<date>10.25.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Edward Jones Dome</stadium>
-			</game>
-			<game>
-				<homeTeam>TEN</homeTeam>
-				<homeScore>7</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>4.5</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>ATL</awayTeam>
-				<date>10.25.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Nissan Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>WAS</homeTeam>
-				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>30</awayScore>
-				<awayTeam>TB</awayTeam>
-				<date>10.25.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FedEx Field</stadium>
-			</game>
-			<game>
-				<homeTeam>SD</homeTeam>
-				<homeScore>29</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>37</awayScore>
-				<awayTeam>OAK</awayTeam>
-				<date>10.25.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>Qualcomm Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NYG</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>DAL</awayTeam>
-				<date>10.25.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CAR</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>16</awayScore>
-				<awayTeam>PHI</awayTeam>
-				<date>10.25.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Bank of America Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>ARI</homeTeam>
-				<homeScore>26</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>8</spread1>
-				<awayScore>18</awayScore>
-				<awayTeam>BAL</awayTeam>
-				<date>10.26.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>University of Phoenix Stadium</stadium>
-			</game>		
-		</week>
-		<week number="8" current="false" ss="FIRST_HALF" status="completed" >
-			<game>
-				<homeTeam>NE</homeTeam>
-				<homeScore>36</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>8</spread1>
-				<awayScore>7</awayScore>
-				<awayTeam>MIA</awayTeam>
-				<date>10.29.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Gillette Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>KC</homeTeam>
-				<homeScore>45</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>DET</awayTeam>
-				<date>11.1.2015</date>
-				<time>9:30:AM</time>
-				<status>FINAL</status>
-				<stadium>Wembley Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>ATL</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>23</awayScore>
-				<awayTeam>TB</awayTeam>
-				<date>11.1.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Georgia Dome</stadium>
-			</game>
-			<game>
-				<homeTeam>BAL</homeTeam>
-				<homeScore>29</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>26</awayScore>
-				<awayTeam>SD</awayTeam>
-				<date>11.1.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>M&amp;T Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CHI</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>23</awayScore>
-				<awayTeam>MIN</awayTeam>
-				<date>11.1.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Soldier Field</stadium>
-			</game>
-			<game>
-				<homeTeam>CLE</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>4.5</spread1>
-				<awayScore>34</awayScore>
-				<awayTeam>ARI</awayTeam>
-				<date>11.1.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FirstEnergy Stadium</stadium>
-			</game>
-			<game>
 				<homeTeam>HOU</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>6</awayScore>
-				<awayTeam>TEN</awayTeam>
-				<date>11.1.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>28</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>33</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>10.9.2014</date>
+				<time>8:26:PM</time>
 				<status>FINAL</status>
 				<stadium>NRG Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>NO</homeTeam>
-				<homeScore>52</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeTeam>TEN</homeTeam>
+				<homeScore>16</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>JAX</awayTeam>
+				<date>10.12.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Nissan Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>TB</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
 				<spread1>3</spread1>
-				<awayScore>49</awayScore>
-				<awayTeam>NYG</awayTeam>
-				<date>11.1.2015</date>
-				<time>1:00:PM</time>
+				<awayScore>48</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>10.12.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>The Superdome</stadium>
+				<stadium>Raymond James Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>PIT</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>0</spread1>
-				<awayScore>16</awayScore>
-				<awayTeam>CIN</awayTeam>
-				<date>11.1.2015</date>
-				<time>1:00:PM</time>
+				<homeTeam>NYJ</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>9.5</spread1>
+				<awayScore>31</awayScore>
+				<awayTeam>DEN</awayTeam>
+				<date>10.12.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>Heinz Field</stadium>
+				<stadium>MetLife Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>STL</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>8.5</spread1>
-				<awayScore>6</awayScore>
-				<awayTeam>SF</awayTeam>
-				<date>11.1.2015</date>
-				<time>1:00:PM</time>
+				<homeTeam>MIN</homeTeam>
+				<homeScore>3</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>1.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>DET</awayTeam>
+				<date>10.12.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>Edward Jones Dome</stadium>
+				<stadium>TCF Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>BUF</homeTeam>
+				<homeScore>22</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>37</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>10.12.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Ralph Wilson Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CIN</homeTeam>
+				<homeScore>37</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>37</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>10.12.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Paul Brown Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CLE</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1.5</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>PIT</awayTeam>
+				<date>10.12.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>FirstEnergy Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>MIA</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>10.12.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Sun Life Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>OAK</homeTeam>
-				<homeScore>34</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>NYJ</awayTeam>
-				<date>11.1.2015</date>
+				<homeScore>28</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>31</awayScore>
+				<awayTeam>SD</awayTeam>
+				<date>10.12.2014</date>
 				<time>4:05:PM</time>
 				<status>FINAL</status>
 				<stadium>O.co Coliseum</stadium>
 			</game>
 			<game>
-				<homeTeam>DAL</homeTeam>
-				<homeScore>12</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>13</awayScore>
+				<homeTeam>ATL</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>CHI</awayTeam>
+				<date>10.12.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Georgia Dome</stadium>
+			</game>
+			<game>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>8</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>DAL</awayTeam>
+				<date>10.12.2014</date>
+				<time>4:26:PM</time>
+				<status>FINAL</status>
+				<stadium>CenturyLink Field</stadium>
+			</game>
+			<game>
+				<homeTeam>ARI</homeTeam>
+				<homeScore>30</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>WAS</awayTeam>
+				<date>10.12.2014</date>
+				<time>3:25:PM</time>
+				<status>FINAL</status>
+				<stadium>University of Phoenix Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>PHI</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>0</awayScore>
+				<awayTeam>NYG</awayTeam>
+				<date>10.12.2014</date>
+				<time>8:41:PM</time>
+				<status>FINAL</status>
+				<stadium>Lincoln Financial Field</stadium>
+			</game>
+			<game>
+				<homeTeam>STL</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>31</awayScore>
+				<awayTeam>SF</awayTeam>
+				<date>10.13.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Edward Jones Dome</stadium>
+			</game>	
+		</week>
+		<week number="7" current="false" ss="FIRST_HALF" status="completed" >
+			<game>
+				<homeTeam>NE</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9.5</spread1>
+				<awayScore>25</awayScore>
+				<awayTeam>NYJ</awayTeam>
+				<date>10.16.2014</date>
+				<time>8:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>BAL</homeTeam>
+				<homeScore>29</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>ATL</awayTeam>
+				<date>10.19.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>M&amp;T Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>WAS</homeTeam>
+				<homeScore>19</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>TEN</awayTeam>
+				<date>10.19.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>FedEx Field</stadium>
+			</game>
+			<game>
+				<homeTeam>STL</homeTeam>
+				<homeScore>28</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>26</awayScore>
 				<awayTeam>SEA</awayTeam>
-				<date>11.1.2015</date>
+				<date>10.19.2014</date>
+				<time>1:00:PM</time>
+				<status>FINAL</status>
+				<stadium>Edward Jones Dome</stadium>
+			</game>
+			<game>
+				<homeTeam>JAX</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>6</awayScore>
+				<awayTeam>CLE</awayTeam>
+				<date>10.19.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>EverBank Field</stadium>
+			</game>
+			<game>
+				<homeTeam>IND</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>0</awayScore>
+				<awayTeam>CIN</awayTeam>
+				<date>10.19.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Lucas Oil Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>BUF</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>16</awayScore>
+				<awayTeam>MIN</awayTeam>
+				<date>10.19.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Ralph Wilson Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CHI</homeTeam>
+				<homeScore>14</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>MIA</awayTeam>
+				<date>10.19.2014</date>
+				<time>1:00:PM</time>
+				<status>FINAL</status>
+				<stadium>Soldier Field</stadium>
+			</game>
+			<game>
+				<homeTeam>DET</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>NO</awayTeam>
+				<date>10.19.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Ford Field</stadium>
+			</game>
+			<game>
+				<homeTeam>GB</homeTeam>
+				<homeScore>38</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>10.19.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Lambeau Field</stadium>
+			</game>
+			<game>
+				<homeTeam>SD</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>10.19.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Qualcomm Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>OAK</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>10.19.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>O.co Coliseum</stadium>
+			</game>
+			<game>
+				<homeTeam>DAL</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>21</awayScore>
+				<awayTeam>NYG</awayTeam>
+				<date>10.19.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>AT&amp;T Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>DEN</homeTeam>
-				<homeScore>29</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>GB</awayTeam>
-				<date>11.1.2015</date>
+				<homeScore>42</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>SF</awayTeam>
+				<date>10.19.2014</date>
 				<time>8:30:PM</time>
 				<status>FINAL</status>
 				<stadium>Mile High Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>CAR</homeTeam>
-				<homeScore>29</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>26</awayScore>
-				<awayTeam>IND</awayTeam>
-				<date>11.2.2015</date>
+				<homeTeam>PIT</homeTeam>
+				<homeScore>30</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>HOU</awayTeam>
+				<date>10.20.2014</date>
 				<time>8:30:PM</time>
 				<status>FINAL</status>
+				<stadium>Heinz Field</stadium>
+			</game>	
+		</week>
+		<week number="8" current="false" ss="FIRST_HALF" status="completed" >
+			<game>
+				<homeTeam>DEN</homeTeam>
+				<homeScore>35</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9</spread1>
+				<awayScore>21</awayScore>
+				<awayTeam>SD</awayTeam>
+				<date>10.23.2014</date>
+				<time>8:26:PM</time>
+				<status>FINAL</status>
+				<stadium>Mile High Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>ATL</homeTeam>
+				<homeScore>21</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>22</awayScore>
+				<awayTeam>DET</awayTeam>
+				<date>10.26.2014</date>
+				<time>9:37:AM</time>
+				<status>FINAL</status>
+				<stadium>Wembley Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>KC</homeTeam>
+				<homeScore>34</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>STL</awayTeam>
+				<date>10.26.2014</date>
+				<time>1:04:PM</time>
+				<status>FINAL</status>
+				<stadium>Arrowhead Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>TEN</homeTeam>
+				<homeScore>16</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>HOU</awayTeam>
+				<date>10.26.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Nissan Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>TB</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>19</awayScore>
+				<awayTeam>MIN</awayTeam>
+				<date>10.26.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Raymond James Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CAR</homeTeam>
+				<homeScore>9</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>SEA</awayTeam>
+				<date>10.26.2014</date>
+				<time>1:04:PM</time>
+				<status>FINAL</status>
 				<stadium>Bank of America Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CIN</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>10.26.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Paul Brown Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>JAX</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>MIA</awayTeam>
+				<date>10.26.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>EverBank Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NE</homeTeam>
+				<homeScore>51</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>CHI</awayTeam>
+				<date>10.26.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NYJ</homeTeam>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>43</awayScore>
+				<awayTeam>BUF</awayTeam>
+				<date>10.26.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>ARI</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>PHI</awayTeam>
+				<date>10.26.2014</date>
+				<time>3:05:PM</time>
+				<status>FINAL</status>
+				<stadium>University of Phoenix Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CLE</homeTeam>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>OAK</awayTeam>
+				<date>10.26.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>FirstEnergy Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>PIT</homeTeam>
+				<homeScore>51</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>34</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>10.26.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Heinz Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NO</homeTeam>
+				<homeScore>44</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1.5</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>10.26.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>The Superdome</stadium>
+			</game>
+			<game>
+				<homeTeam>DAL</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9.5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>WAS</awayTeam>
+				<date>10.26.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>AT&amp;T Stadium</stadium>
 			</game>		
 		</week>
 		<week number="9" current="false" ss="FIRST_HALF" status="completed" >
 			<game>
-				<homeTeam>CIN</homeTeam>
-				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>11</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>CLE</awayTeam>
-				<date>11.5.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Paul Brown Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>BUF</homeTeam>
-				<homeScore>33</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>MIA</awayTeam>
-				<date>11.8.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ralph Wilson Stadium</stadium>
-			</game>
-			<game>
 				<homeTeam>CAR</homeTeam>
-				<homeScore>37</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>29</awayScore>
-				<awayTeam>GB</awayTeam>
-				<date>11.8.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>10</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2</spread1>
+				<awayScore>28</awayScore>
+				<awayTeam>NO</awayTeam>
+				<date>10.30.2014</date>
+				<time>8:30:PM</time>
 				<status>FINAL</status>
 				<stadium>Bank of America Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>MIN</homeTeam>
-				<homeScore>21</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>18</awayScore>
-				<awayTeam>STL</awayTeam>
-				<date>11.8.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>TCF Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NE</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>14</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>WAS</awayTeam>
-				<date>11.8.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Gillette Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NO</homeTeam>
-				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>8</spread1>
-				<awayScore>34</awayScore>
-				<awayTeam>TEN</awayTeam>
-				<date>11.8.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>The Superdome</stadium>
-			</game>
-			<game>
-				<homeTeam>NYJ</homeTeam>
-				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeTeam>CLE</homeTeam>
+				<homeScore>22</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>6.5</spread1>
-				<awayScore>23</awayScore>
-				<awayTeam>JAC</awayTeam>
-				<date>11.8.2015</date>
-				<time>1:00:PM</time>
+				<awayScore>17</awayScore>
+				<awayTeam>TB</awayTeam>
+				<date>11.2.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>PIT</homeTeam>
-				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>35</awayScore>
-				<awayTeam>OAK</awayTeam>
-				<date>11.8.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Heinz Field</stadium>
-			</game>
-			<game>
-				<homeTeam>SF</homeTeam>
-				<homeScore>17</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>16</awayScore>
-				<awayTeam>ATL</awayTeam>
-				<date>11.8.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>Levi's Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>TB</homeTeam>
-				<homeScore>18</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>32</awayScore>
-				<awayTeam>NYG</awayTeam>
-				<date>11.8.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>Raymond James Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>IND</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>4.5</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>DEN</awayTeam>
-				<date>11.8.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Lucas Oil Stadium</stadium>
+				<stadium>FirstEnergy Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>DAL</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>33</awayScore>
-				<awayTeam>PHI</awayTeam>
-				<date>11.8.2015</date>
-				<time>8:30:PM</time>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>28</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>11.2.2014</date>
+				<time>1:04:PM</time>
 				<status>FINAL</status>
 				<stadium>AT&amp;T Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>SD</homeTeam>
-				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>22</awayScore>
-				<awayTeam>CHI</awayTeam>
-				<date>11.9.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Qualcomm Stadium</stadium>
-			</game>		
-		</week>
-		<week number="10" current="false" ss="SECOND_HALF" status="completed" >
-			<game>
-				<homeTeam>NYJ</homeTeam>
-				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>22</awayScore>
-				<awayTeam>BUF</awayTeam>
-				<date>11.12.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>BAL</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>22</awayScore>
-				<awayTeam>JAC</awayTeam>
-				<date>11.15.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>M&amp;T Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>GB</homeTeam>
-				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>11</spread1>
-				<awayScore>18</awayScore>
-				<awayTeam>DET</awayTeam>
-				<date>11.15.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Lambeau Field</stadium>
-			</game>
-			<game>
-				<homeTeam>PHI</homeTeam>
-				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>MIA</awayTeam>
-				<date>11.15.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Lincoln Financial Field</stadium>
-			</game>
-			<game>
-				<homeTeam>PIT</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>9</awayScore>
-				<awayTeam>CLE</awayTeam>
-				<date>11.15.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Heinz Field</stadium>
-			</game>
-			<game>
-				<homeTeam>STL</homeTeam>
-				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>37</awayScore>
-				<awayTeam>CHI</awayTeam>
-				<date>11.15.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Edward Jones Dome</stadium>
-			</game>
-			<game>
-				<homeTeam>TB</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>6</awayScore>
-				<awayTeam>DAL</awayTeam>
-				<date>11.15.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Raymond James Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>TEN</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>CAR</awayTeam>
-				<date>11.15.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Nissan Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>WAS</homeTeam>
-				<homeScore>47</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>14</awayScore>
-				<awayTeam>NO</awayTeam>
-				<date>11.15.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FedEx Field</stadium>
-			</game>
-			<game>
-				<homeTeam>OAK</homeTeam>
-				<homeScore>14</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>30</awayScore>
-				<awayTeam>MIN</awayTeam>
-				<date>11.15.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>O.co Coliseum</stadium>
-			</game>
-			<game>
-				<homeTeam>DEN</homeTeam>
-				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>29</awayScore>
-				<awayTeam>KC</awayTeam>
-				<date>11.15.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Mile High Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NYG</homeTeam>
-				<homeScore>26</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>NE</awayTeam>
-				<date>11.15.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>SEA</homeTeam>
-				<homeScore>32</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>39</awayScore>
-				<awayTeam>ARI</awayTeam>
-				<date>11.15.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>CenturyLink Field</stadium>
-			</game>
-			<game>
-				<homeTeam>CIN</homeTeam>
-				<homeScore>6</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>10</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>HOU</awayTeam>
-				<date>11.16.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Soldier Field</stadium>
-			</game>
-		</week>
-		<week number="11" current="false" ss="SECOND_HALF" status="completed" >
-			<game>
-				<homeTeam>JAC</homeTeam>
-				<homeScore>19</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>TEN</awayTeam>
-				<date>11.19.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>EverBank Field</stadium>
-			</game>
-			<game>
-				<homeTeam>ATL</homeTeam>
-				<homeScore>21</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>IND</awayTeam>
-				<date>11.22.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Georgia Dome</stadium>
-			</game>
-			<game>
-				<homeTeam>BAL</homeTeam>
-				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>STL</awayTeam>
-				<date>11.22.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>M&amp;T Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CAR</homeTeam>
-				<homeScore>44</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>16</awayScore>
-				<awayTeam>WAS</awayTeam>
-				<date>11.22.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Bank of America Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CHI</homeTeam>
-				<homeScore>15</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>DEN</awayTeam>
-				<date>11.22.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Soldier Field</stadium>
-			</game>
-			<game>
-				<homeTeam>DET</homeTeam>
-				<homeScore>18</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1.5</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>OAK</awayTeam>
-				<date>11.22.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ford Field</stadium>
-			</game>
-			<game>
 				<homeTeam>HOU</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>NYJ</awayTeam>
-				<date>11.22.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>21</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2</spread1>
+				<awayScore>31</awayScore>
+				<awayTeam>PHI</awayTeam>
+				<date>11.2.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
 				<stadium>NRG Stadium</stadium>
 			</game>
 			<game>
+				<homeTeam>KC</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9.5</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>NYJ</awayTeam>
+				<date>11.2.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Arrowhead Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CIN</homeTeam>
+				<homeScore>33</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>11</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>JAX</awayTeam>
+				<date>11.2.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Paul Brown Stadium</stadium>
+			</game>
+			<game>
 				<homeTeam>MIA</homeTeam>
-				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>0</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>DAL</awayTeam>
-				<date>11.22.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>37</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>0</awayScore>
+				<awayTeam>SD</awayTeam>
+				<date>11.2.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>Sun Life Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>MIN</homeTeam>
-				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeScore>29</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
-				<awayScore>30</awayScore>
-				<awayTeam>GB</awayTeam>
-				<date>11.22.2015</date>
-				<time>4:25:PM</time>
+				<awayScore>26</awayScore>
+				<awayTeam>WAS</awayTeam>
+				<date>11.2.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
 				<stadium>TCF Bank Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>PHI</homeTeam>
-				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5.5</spread1>
-				<awayScore>45</awayScore>
-				<awayTeam>TB</awayTeam>
-				<date>11.22.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Lincoln Financial Field</stadium>
-			</game>
-			<game>
-				<homeTeam>ARI</homeTeam>
-				<homeScore>34</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>31</awayScore>
-				<awayTeam>CIN</awayTeam>
-				<date>11.22.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>University of Phoenix Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>SEA</homeTeam>
-				<homeScore>29</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>12.5</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>SF</awayTeam>
-				<date>11.22.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>CenturyLink Field</stadium>
-			</game>
-			<game>
-				<homeTeam>SD</homeTeam>
-				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>33</awayScore>
-				<awayTeam>KC</awayTeam>
-				<date>11.22.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>Qualcomm Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NE</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>BUF</awayTeam>
-				<date>11.23.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Gillette Stadium</stadium>
-			</game>	
-		</week>
-		<week number="12" current="false" ss="SECOND_HALF" status="completed" >
-			<game>
-				<homeTeam>DET</homeTeam>
-				<homeScore>45</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>0</spread1>
-				<awayScore>14</awayScore>
-				<awayTeam>PHI</awayTeam>
-				<date>11.26.2015</date>
-				<time>12:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Ford Field</stadium>
-			</game>
-			<game>
-				<homeTeam>DAL</homeTeam>
-				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>0</spread1>
-				<awayScore>33</awayScore>
-				<awayTeam>CAR</awayTeam>
-				<date>11.26.2015</date>
-				<time>4:30:PM</time>
-				<status>FINAL</status>
-				<stadium>AT&amp;T Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>GB</homeTeam>
-				<homeScore>13</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>8</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>CHI</awayTeam>
-				<date>11.26.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Lambeau Field</stadium>
-			</game>
-			<game>
-				<homeTeam>ATL</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>MIN</awayTeam>
-				<date>11.29.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Georgia Dome</stadium>
-			</game>
-			<game>
-				<homeTeam>CIN</homeTeam>
-				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>9</spread1>
-				<awayScore>7</awayScore>
-				<awayTeam>STL</awayTeam>
-				<date>11.29.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Paul Brown Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>HOU</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>6</awayScore>
-				<awayTeam>NO</awayTeam>
-				<date>11.29.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>NRG Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>IND</homeTeam>
-				<homeScore>25</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>12</awayScore>
-				<awayTeam>TB</awayTeam>
-				<date>11.29.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Lucas Oil Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>JAC</homeTeam>
-				<homeScore>25</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>31</awayScore>
-				<awayTeam>SD</awayTeam>
-				<date>11.29.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>EverBank Field</stadium>
-			</game>
-			<game>
-				<homeTeam>KC</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>22</awayScore>
-				<awayTeam>BUF</awayTeam>
-				<date>11.29.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Arrowhead Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NYJ</homeTeam>
-				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>MIA</awayTeam>
-				<date>11.29.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>TEN</homeTeam>
-				<homeScore>21</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1.5</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>OAK</awayTeam>
-				<date>11.29.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Nissan Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>WAS</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>14</awayScore>
-				<awayTeam>NYG</awayTeam>
-				<date>11.29.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FedEx Field</stadium>
-			</game>
-			<game>
 				<homeTeam>SF</homeTeam>
-				<homeScore>13</homeScore>
-				<homeFavored>N</homeFavored>
+				<homeScore>10</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>10</spread1>
-				<awayScore>19</awayScore>
-				<awayTeam>ARI</awayTeam>
-				<date>11.29.2015</date>
+				<awayScore>13</awayScore>
+				<awayTeam>STL</awayTeam>
+				<date>11.2.2014</date>
 				<time>4:05:PM</time>
 				<status>FINAL</status>
 				<stadium>Levi's Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>SEA</homeTeam>
-				<homeScore>39</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>30</awayScore>
-				<awayTeam>PIT</awayTeam>
-				<date>11.29.2015</date>
+				<homeTeam>NE</homeTeam>
+				<homeScore>43</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>21</awayScore>
+				<awayTeam>DEN</awayTeam>
+				<date>11.2.2014</date>
 				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>30</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>15</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>OAK</awayTeam>
+				<date>11.2.2014</date>
+				<time>4:26:PM</time>
 				<status>FINAL</status>
 				<stadium>CenturyLink Field</stadium>
 			</game>
 			<game>
-				<homeTeam>DEN</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>NE</awayTeam>
-				<date>11.29.2015</date>
+				<homeTeam>PIT</homeTeam>
+				<homeScore>43</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>11.2.2014</date>
 				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Heinz Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NYG</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>40</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>11.3.2014</date>
+				<time>8:31:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>	
+		</week>
+		<week number="10" current="false" ss="SECOND_HALF" status="completed" >
+			<game>
+				<homeTeam>CIN</homeTeam>
+				<homeScore>3</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>CLE</awayTeam>
+				<date>11.6.2014</date>
+				<time>8:29:pm</time>
+				<status>FINAL</status>
+				<stadium>Paul Brown Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>BUF</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>11.9.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Ralph Wilson Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DET</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>16</awayScore>
+				<awayTeam>MIA</awayTeam>
+				<date>11.9.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Ford Field</stadium>
+			</game>
+			<game>
+				<homeTeam>JAX</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>31</awayScore>
+				<awayTeam>DAL</awayTeam>
+				<date>11.9.2014</date>
+				<time>1:06:PM</time>
+				<status>FINAL</status>
+				<stadium>Wembley Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NO</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>SF</awayTeam>
+				<date>11.9.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>The Superdome</stadium>
+			</game>
+			<game>
+				<homeTeam>BAL</homeTeam>
+				<homeScore>21</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9.5</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>TEN</awayTeam>
+				<date>11.9.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>M&amp;T Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NYJ</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>PIT</awayTeam>
+				<date>11.9.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>TB</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>ATL</awayTeam>
+				<date>11.9.2014</date>
+				<time>1:04:PM</time>
+				<status>FINAL</status>
+				<stadium>Raymond James Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>OAK</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>11.5</spread1>
+				<awayScore>41</awayScore>
+				<awayTeam>DEN</awayTeam>
+				<date>11.9.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>O.co Coliseum</stadium>
+			</game>
+			<game>
+				<homeTeam>ARI</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>STL</awayTeam>
+				<date>11.9.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>University of Phoenix Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>38</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>NYG</awayTeam>
+				<date>11.9.2014</date>
+				<time>4:26:PM</time>
+				<status>FINAL</status>
+				<stadium>CenturyLink Field</stadium>
+			</game>
+			<game>
+				<homeTeam>GB</homeTeam>
+				<homeScore>55</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>CHI</awayTeam>
+				<date>11.9.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Lambeau Field</stadium>
+			</game>
+			<game>
+				<homeTeam>PHI</homeTeam>
+				<homeScore>45</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>21</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>11.10.2014</date>
+				<time>8:32:PM</time>
+				<status>FINAL</status>
+				<stadium>Lincoln Financial Field</stadium>
+			</game>
+		</week>
+		<week number="11" current="false" ss="SECOND_HALF" status="completed" >
+			<game>
+				<homeTeam>MIA</homeTeam>
+				<homeScore>22</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4.5</spread1>
+				<awayScore>9</awayScore>
+				<awayTeam>BUF</awayTeam>
+				<date>11.13.2014</date>
+				<time>8:26:PM</time>
+				<status>FINAL</status>
+				<stadium>Sun Life Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CHI</homeTeam>
+				<homeScore>21</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>MIN</awayTeam>
+				<date>11.16.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Soldier Field</stadium>
+			</game>
+			<game>
+				<homeTeam>CLE</homeTeam>
+				<homeScore>7</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>HOU</awayTeam>
+				<date>11.16.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>FirstEnergy Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>KC</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>SEA</awayTeam>
+				<date>11.16.2014</date>
+				<time>1:04:PM</time>
+				<status>FINAL</status>
+				<stadium>Arrowhead Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CAR</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1></homeFavored1>
+				<spread1>0</spread1>
+				<awayScore>19</awayScore>
+				<awayTeam>ATL</awayTeam>
+				<date>11.16.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Bank of America Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NO</homeTeam>
+				<homeScore>10</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>CIN</awayTeam>
+				<date>11.16.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>The Superdome</stadium>
+			</game>
+			<game>
+				<homeTeam>WAS</homeTeam>
+				<homeScore>7</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>TB</awayTeam>
+				<date>11.16.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>FedEx Field</stadium>
+			</game>
+			<game>
+				<homeTeam>STL</homeTeam>
+				<homeScore>22</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>9.5</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>DEN</awayTeam>
+				<date>11.16.2014</date>
+				<time>1:00:PM</time>
+				<status>FINAL</status>
+				<stadium>Edward Jones Dome</stadium>
+			</game>
+			<game>
+				<homeTeam>NYG</homeTeam>
+				<homeScore>10</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>16</awayScore>
+				<awayTeam>SF</awayTeam>
+				<date>11.16.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>SD</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>6</awayScore>
+				<awayTeam>OAK</awayTeam>
+				<date>11.16.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Qualcomm Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>GB</homeTeam>
+				<homeScore>53</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>PHI</awayTeam>
+				<date>11.16.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Lambeau Field</stadium>
+			</game>
+			<game>
+				<homeTeam>ARI</homeTeam>
+				<homeScore>14</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1.5</spread1>
+				<awayScore>6</awayScore>
+				<awayTeam>DET</awayTeam>
+				<date>11.16.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>University of Phoenix Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>IND</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>42</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>11.16.2014</date>
+				<time>8:31:PM</time>
+				<status>FINAL</status>
+				<stadium>Lucas Oil Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>TEN</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>PIT</awayTeam>
+				<date>11.17.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Nissan Stadium</stadium>
+			</game>
+		</week>
+		<week number="12" current="false" ss="SECOND_HALF" status="completed" >
+			<game>
+				<homeTeam>OAK</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>11.20.2014</date>
+				<time>8:26:PM</time>
+				<status>FINAL</status>
+				<stadium>O.co Coliseum</stadium>
+			</game>
+			<game>
+				<homeTeam>ATL</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>26</awayScore>
+				<awayTeam>CLE</awayTeam>
+				<date>11.23.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Georgia Dome</stadium>
+			</game>
+			<game>
+				<homeTeam>PHI</homeTeam>
+				<homeScore>43</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>11</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>TEN</awayTeam>
+				<date>11.23.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Lincoln Financial Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NE</homeTeam>
+				<homeScore>34</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>9</awayScore>
+				<awayTeam>DET</awayTeam>
+				<date>11.23.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>MIN</homeTeam>
+				<homeScore>21</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>9.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>11.23.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>TCF Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>IND</homeTeam>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>14</spread1>
+				<awayScore>3</awayScore>
+				<awayTeam>JAX</awayTeam>
+				<date>11.23.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Lucas Oil Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>HOU</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1.5</spread1>
+				<awayScore>22</awayScore>
+				<awayTeam>CIN</awayTeam>
+				<date>11.23.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>NRG Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CHI</homeTeam>
+				<homeScore>21</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>TB</awayTeam>
+				<date>11.23.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Soldier Field</stadium>
+			</game>
+			<game>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>19</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>3</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>11.23.2014</date>
+				<time>4:06:PM</time>
+				<status>FINAL</status>
+				<stadium>CenturyLink Field</stadium>
+			</game>
+			<game>
+				<homeTeam>SD</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>STL</awayTeam>
+				<date>11.23.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Qualcomm Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DEN</homeTeam>
+				<homeScore>39</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>36</awayScore>
+				<awayTeam>MIA</awayTeam>
+				<date>11.23.2014</date>
+				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>Mile High Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>CLE</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>33</awayScore>
-				<awayTeam>BAL</awayTeam>
-				<date>11.30.2015</date>
+				<homeTeam>SF</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>WAS</awayTeam>
+				<date>11.23.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Levi's Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NYG</homeTeam>
+				<homeScore>28</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>31</awayScore>
+				<awayTeam>DAL</awayTeam>
+				<date>11.23.2014</date>
 				<time>8:30:PM</time>
 				<status>FINAL</status>
-				<stadium>FirstEnergy Stadium</stadium>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>BUF</homeTeam>
+				<homeScore>38</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>3</awayScore>
+				<awayTeam>NYJ</awayTeam>
+				<date>11.24.2014</date>
+				<time>7:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Ford Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NO</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>34</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>11.24.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>The Superdome</stadium>
 			</game>
 		</week>
 		<week number="13" current="false" ss="SECOND_HALF" status="completed" >
 			<game>
 				<homeTeam>DET</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>GB</awayTeam>
-				<date>12.3.2015</date>
-				<time>8:25:PM</time>
+				<homeScore>34</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>CHI</awayTeam>
+				<date>11.27.2014</date>
+				<time>12:39:PM</time>
 				<status>FINAL</status>
 				<stadium>Ford Field</stadium>
 			</game>
 			<game>
-				<homeTeam>BUF</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>21</awayScore>
-				<awayTeam>HOU</awayTeam>
-				<date>12.6.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ralph Wilson Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CHI</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>26</awayScore>
-				<awayTeam>SF</awayTeam>
-				<date>12.6.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Soldier Field</stadium>
-			</game>
-			<game>
-				<homeTeam>CLE</homeTeam>
-				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>10</spread1>
-				<awayScore>37</awayScore>
-				<awayTeam>CIN</awayTeam>
-				<date>12.6.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FirstEnergy Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>MIA</homeTeam>
-				<homeScore>15</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>BAL</awayTeam>
-				<date>12.6.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Sun Life Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>MIN</homeTeam>
-				<homeScore>7</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>0</spread1>
-				<awayScore>38</awayScore>
-				<awayTeam>SEA</awayTeam>
-				<date>12.6.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>TCF Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NO</homeTeam>
-				<homeScore>38</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>41</awayScore>
-				<awayTeam>CAR</awayTeam>
-				<date>12.6.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>The Superdome</stadium>
-			</game>
-			<game>
-				<homeTeam>NYG</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>23</awayScore>
-				<awayTeam>NYJ</awayTeam>
-				<date>12.6.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>STL</homeTeam>
-				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>5.5</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>ARI</awayTeam>
-				<date>12.6.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Edward Jones Dome</stadium>
-			</game>
-			<game>
-				<homeTeam>TB</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>19</awayScore>
-				<awayTeam>ATL</awayTeam>
-				<date>12.6.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Raymond James Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>TEN</homeTeam>
-				<homeScore>42</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>39</awayScore>
-				<awayTeam>JAC</awayTeam>
-				<date>12.6.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Nissan Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>OAK</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>34</awayScore>
-				<awayTeam>KC</awayTeam>
-				<date>12.6.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>O.co Coliseum</stadium>
-			</game>
-			<game>
-				<homeTeam>SD</homeTeam>
-				<homeScore>3</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>DEN</awayTeam>
-				<date>12.6.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>Qualcomm Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NE</homeTeam>
-				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>10</spread1>
-				<awayScore>35</awayScore>
-				<awayTeam>PHI</awayTeam>
-				<date>12.6.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Gillette Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>PIT</homeTeam>
-				<homeScore>45</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>IND</awayTeam>
-				<date>12.6.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Heinz Field</stadium>
-			</game>
-			<game>
-				<homeTeam>WAS</homeTeam>
-				<homeScore>16</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>19</awayScore>
-				<awayTeam>DAL</awayTeam>
-				<date>12.7.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>FedEx Field</stadium>
-			</game>		
-		</week>
-		<week number="14" current="false" ss="SECOND_HALF" status="completed" >
-			<game>
-				<homeTeam>ARI</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>8</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>MIN</awayTeam>
-				<date>12.10.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>University of Phoenix Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CAR</homeTeam>
-				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>0</awayScore>
-				<awayTeam>ATL</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Bank of America Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>CHI</homeTeam>
-				<homeScore>21</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>WAS</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Soldier Field</stadium>
-			</game>
-			<game>
-				<homeTeam>CIN</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>Y</homeFavored>
+				<homeTeam>DAL</homeTeam>
+				<homeScore>10</homeScore>
+				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
 				<awayScore>33</awayScore>
-				<awayTeam>PIT</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
+				<awayTeam>PHI</awayTeam>
+				<date>11.27.2014</date>
+				<time>4:36:PM</time>
 				<status>FINAL</status>
-				<stadium>Paul Brown Stadium</stadium>
+				<stadium>AT&amp;T Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>CLE</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>1.5</spread1>
-				<awayScore>10</awayScore>
-				<awayTeam>SF</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
+				<homeTeam>SF</homeTeam>
+				<homeScore>3</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>19</awayScore>
+				<awayTeam>SEA</awayTeam>
+				<date>11.27.2014</date>
+				<time>8:31:PM</time>
 				<status>FINAL</status>
-				<stadium>FirstEnergy Stadium</stadium>
+				<stadium>Levi's Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>IND</homeTeam>
+				<homeScore>49</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>WAS</awayTeam>
+				<date>11.30.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Lucas Oil Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>HOU</homeTeam>
-				<homeScore>6</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>NE</awayTeam>
-				<date>12.13.2015</date>
-				<time>8:30:PM</time>
+				<homeScore>45</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<homeFavored2>Y</homeFavored2>
+				<spread2>6.5</spread2>
+				<awayScore>21</awayScore>
+				<awayTeam>TEN</awayTeam>
+				<date>11.30.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>NRG Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>JAC</homeTeam>
-				<homeScore>51</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>0</spread1>
-				<awayScore>16</awayScore>
-				<awayTeam>IND</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
+				<homeTeam>BUF</homeTeam>
+				<homeScore>26</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<homeFavored2>Y</homeFavored2>
+				<spread2>2.5</spread2>
+				<awayScore>10</awayScore>
+				<awayTeam>CLE</awayTeam>
+				<date>11.30.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Ralph Wilson Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>BAL</homeTeam>
+				<homeScore>33</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<homeFavored2>Y</homeFavored2>
+				<spread2>5.5</spread2>
+				<awayScore>34</awayScore>
+				<awayTeam>SD</awayTeam>
+				<date>11.30.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>M&amp;T Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>JAX</homeTeam>
+				<homeScore>25</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<homeFavored2>N</homeFavored2>
+				<spread2>2.5</spread2>
+				<awayScore>24</awayScore>
+				<awayTeam>NYG</awayTeam>
+				<date>11.30.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
 				<stadium>EverBank Field</stadium>
 			</game>
 			<game>
-				<homeTeam>KC</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>10</spread1>
-				<awayScore>3</awayScore>
-				<awayTeam>SD</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
+				<homeTeam>TB</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<homeFavored2>N</homeFavored2>
+				<spread2>4</spread2>
+				<awayScore>14</awayScore>
+				<awayTeam>CIN</awayTeam>
+				<date>11.30.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>Arrowhead Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NYJ</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>8</awayScore>
-				<awayTeam>TEN</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>PHI</homeTeam>
-				<homeScore>23</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1.5</spread1>
-				<awayScore>20</awayScore>
-				<awayTeam>BUF</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Lincoln Financial Field</stadium>
+				<stadium>Raymond James Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>STL</homeTeam>
-				<homeScore>21</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>0</spread1>
-				<awayScore>14</awayScore>
-				<awayTeam>DET</awayTeam>
-				<date>12.13.2015</date>
+				<homeScore>52</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>0</awayScore>
+				<awayTeam>OAK</awayTeam>
+				<date>11.30.2014</date>
 				<time>1:00:PM</time>
 				<status>FINAL</status>
 				<stadium>Edward Jones Dome</stadium>
 			</game>
 			<game>
-				<homeTeam>TB</homeTeam>
-				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>24</awayScore>
+				<homeTeam>PIT</homeTeam>
+				<homeScore>32</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4.5</spread1>
+				<homeFavored2>Y</homeFavored2>
+				<spread2>3.5</spread2>
+				<awayScore>35</awayScore>
 				<awayTeam>NO</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
+				<date>11.30.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>Raymond James Stadium</stadium>
+				<stadium>Heinz Field</stadium>
 			</game>
 			<game>
-				<homeTeam>DEN</homeTeam>
-				<homeScore>12</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>15</awayScore>
-				<awayTeam>OAK</awayTeam>
-				<date>12.13.2015</date>
+				<homeTeam>MIN</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<homeFavored2>Y</homeFavored2>
+				<spread2>3</spread2>
+				<awayScore>13</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>11.30.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>TCF Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>ATL</homeTeam>
+				<homeScore>29</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>18</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>11.30.2014</date>
 				<time>4:05:PM</time>
 				<status>FINAL</status>
-				<stadium>Mile High Stadium</stadium>
+				<stadium>Georgia Dome</stadium>
 			</game>
 			<game>
 				<homeTeam>GB</homeTeam>
-				<homeScore>28</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>7</awayScore>
-				<awayTeam>DAL</awayTeam>
-				<date>12.13.2015</date>
+				<homeScore>26</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>21</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>11.30.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>Lambeau Field</stadium>
 			</game>
 			<game>
-				<homeTeam>BAL</homeTeam>
-				<homeScore>6</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>8.5</spread1>
-				<awayScore>35</awayScore>
-				<awayTeam>SEA</awayTeam>
-				<date>12.13.2015</date>
-				<time>1:00:PM</time>
+				<homeTeam>KC</homeTeam>
+				<homeScore>16</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2</spread1>
+				<homeFavored2>N</homeFavored2>
+				<spread2>1.5</spread2>
+				<awayScore>29</awayScore>
+				<awayTeam>DEN</awayTeam>
+				<date>11.30.2014</date>
+				<time>8:32:PM</time>
 				<status>FINAL</status>
-				<stadium>M&amp;T Bank Stadium</stadium>
+				<stadium>Arrowhead Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NYJ</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7</spread1>
+				<homeFavored2>N</homeFavored2>
+				<spread2>5.5</spread2>
+				<awayScore>16</awayScore>
+				<awayTeam>MIA</awayTeam>
+				<date>12.1.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+		</week>
+		<week number="14" current="false" ss="SECOND_HALF" status="completed" >
+			<game>
+				<homeTeam>CHI</homeTeam>
+				<homeScore>28</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>41</awayScore>
+				<awayTeam>DAL</awayTeam>
+				<date>12.4.2014</date>
+				<time>8:26:PM</time>
+				<status>FINAL</status>
+				<stadium>Soldier Field</stadium>
+			</game>
+			<game>
+				<homeTeam>CIN</homeTeam>
+				<homeScore>21</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>42</awayScore>
+				<awayTeam>PIT</awayTeam>
+				<date>12.7.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Paul Brown Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>WAS</homeTeam>
+				<homeScore>0</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>STL</awayTeam>
+				<date>12.7.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>FedEx Field</stadium>
+			</game>
+			<game>
+				<homeTeam>TEN</homeTeam>
+				<homeScore>7</homeScore>
+				<homeFavored1></homeFavored1>
+				<spread1>0</spread1>
+				<awayScore>36</awayScore>
+				<awayTeam>NYG</awayTeam>
+				<date>12.7.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Nissan Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NO</homeTeam>
+				<homeScore>10</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>41</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>12.7.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>The Superdome</stadium>
+			</game>
+			<game>
+				<homeTeam>MIN</homeTeam>
+				<homeScore>30</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>NYJ</awayTeam>
+				<date>12.7.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>TCF Bank Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>MIA</homeTeam>
-				<homeScore>24</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1.5</spread1>
-				<awayScore>31</awayScore>
-				<awayTeam>NYG</awayTeam>
-				<date>12.14.2015</date>
-				<time>8:30:PM</time>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>28</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>12.7.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>Sun Life Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CLE</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>25</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>12.7.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>FirstEnergy Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DET</homeTeam>
+				<homeScore>34</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>TB</awayTeam>
+				<date>12.7.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Ford Field</stadium>
+			</game>
+			<game>
+				<homeTeam>JAX</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>HOU</awayTeam>
+				<date>12.7.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>EverBank Field</stadium>
+			</game>
+			<game>
+				<homeTeam>DEN</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>BUF</awayTeam>
+				<date>12.7.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Mile High Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>ARI</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>12.7.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>University of Phoenix Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>PHI</homeTeam>
+				<homeScore>14</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>SEA</awayTeam>
+				<date>12.7.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Lincoln Financial Field</stadium>
+			</game>
+			<game>
+				<homeTeam>OAK</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>8</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>SF</awayTeam>
+				<date>12.7.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>O.co Coliseum</stadium>
+			</game>
+			<game>
+				<homeTeam>SD</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>12.7.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Qualcomm Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>GB</homeTeam>
+				<homeScore>43</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>12.5</spread1>
+				<awayScore>37</awayScore>
+				<awayTeam>ATL</awayTeam>
+				<date>12.8.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Lambeau Field</stadium>
 			</game>		
 		</week>
 		<week number="15" current="false" ss="SECOND_HALF" status="completed" >
 			<game>
 				<homeTeam>STL</homeTeam>
-				<homeScore>31</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2.5</spread1>
-				<awayScore>23</awayScore>
-				<awayTeam>TB</awayTeam>
-				<date>12.17.2015</date>
+				<homeScore>6</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>12</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>12.11.2014</date>
 				<time>8:25:PM</time>
 				<status>FINAL</status>
 				<stadium>Edward Jones Dome</stadium>
 			</game>
 			<game>
-				<homeTeam>DAL</homeTeam>
-				<homeScore>16</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>19</awayScore>
-				<awayTeam>NYJ</awayTeam>
-				<date>12.19.2015</date>
-				<time>8:25:PM</time>
+				<homeTeam>ATL</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>PIT</awayTeam>
+				<date>12.14.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>AT&amp;T Stadium</stadium>
+				<stadium>Georgia Dome</stadium>
 			</game>
 			<game>
-				<homeTeam>BAL</homeTeam>
-				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>34</awayScore>
-				<awayTeam>KC</awayTeam>
-				<date>12.20.2015</date>
-				<time>1:00:PM</time>
+				<homeTeam>NYG</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>WAS</awayTeam>
+				<date>12.14.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>M&amp;T Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>IND</homeTeam>
-				<homeScore>10</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>16</awayScore>
-				<awayTeam>HOU</awayTeam>
-				<date>12.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Lucas Oil Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>JAC</homeTeam>
-				<homeScore>17</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>23</awayScore>
-				<awayTeam>ATL</awayTeam>
-				<date>12.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>EverBank Field</stadium>
-			</game>
-			<game>
-				<homeTeam>MIN</homeTeam>
-				<homeScore>38</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>17</awayScore>
-				<awayTeam>CHI</awayTeam>
-				<date>12.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>TCF Bank Stadium</stadium>
+				<stadium>MetLife Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>NE</homeTeam>
-				<homeScore>33</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>14</spread1>
-				<awayScore>16</awayScore>
-				<awayTeam>TEN</awayTeam>
-				<date>12.20.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>41</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7.5</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>MIA</awayTeam>
+				<date>12.14.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>Gillette Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>NYG</homeTeam>
-				<homeScore>35</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>5</spread1>
-				<awayScore>38</awayScore>
-				<awayTeam>CAR</awayTeam>
-				<date>12.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>PHI</homeTeam>
-				<homeScore>17</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>37</awayScore>
-				<awayTeam>ARI</awayTeam>
-				<date>12.20.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Lincoln Financial Field</stadium>
-			</game>
-			<game>
-				<homeTeam>WAS</homeTeam>
-				<homeScore>35</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>25</awayScore>
-				<awayTeam>BUF</awayTeam>
-				<date>12.20.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>FedEx Field</stadium>
-			</game>
-			<game>
-				<homeTeam>OAK</homeTeam>
-				<homeScore>20</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>30</awayScore>
-				<awayTeam>GB</awayTeam>
-				<date>12.20.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>O.co Coliseum</stadium>
-			</game>
-			<game>
-				<homeTeam>SEA</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>14</spread1>
-				<awayScore>13</awayScore>
-				<awayTeam>CLE</awayTeam>
-				<date>12.20.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>CenturyLink Field</stadium>
-			</game>
-			<game>
-				<homeTeam>PIT</homeTeam>
-				<homeScore>34</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>27</awayScore>
-				<awayTeam>DEN</awayTeam>
-				<date>12.20.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Heinz Field</stadium>
-			</game>
-			<game>
-				<homeTeam>SD</homeTeam>
-				<homeScore>30</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>2</spread1>
-				<awayScore>14</awayScore>
-				<awayTeam>MIA</awayTeam>
-				<date>12.20.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Qualcomm Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>SF</homeTeam>
-				<homeScore>14</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>4.5</spread1>
-				<awayScore>24</awayScore>
-				<awayTeam>CIN</awayTeam>
-				<date>12.20.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Levi's Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NO</homeTeam>
-				<homeScore>27</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>35</awayScore>
-				<awayTeam>DET</awayTeam>
-				<date>12.21.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>The Superdome</stadium>
-			</game>		
-		</week>
-		<week number="16" current="false" ss="SECOND_HALF" status="completed" >
-			<game>
-				<homeTeam>OAK</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>SD</awayTeam>
-				<date>12.24.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>O.co Coliseum</stadium>
-			</game>
-			<game>
-				<homeTeam>PHI</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>WAS</awayTeam>
-				<date>12.26.2015</date>
-				<time>8:25:PM</time>
-				<status>FINAL</status>
-				<stadium>Lincoln Financial Field</stadium>
-			</game>
-			<game>
-				<homeTeam>ATL</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>7</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>CAR</awayTeam>
-				<date>12.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Georgia Dome</stadium>
-			</game>
-			<game>
-				<homeTeam>BUF</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>6</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>DAL</awayTeam>
-				<date>12.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ralph Wilson Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>DET</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>9.5</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>SF</awayTeam>
-				<date>12.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Ford Field</stadium>
-			</game>
-			<game>
 				<homeTeam>KC</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>12</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>CLE</awayTeam>
-				<date>12.27.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>OAK</awayTeam>
+				<date>12.14.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
 				<stadium>Arrowhead Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>MIA</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>1</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>IND</awayTeam>
-				<date>12.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Sun Life Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>MIN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>5.5</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>NYG</awayTeam>
-				<date>12.27.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>TCF Bank Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>NO</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>JAC</awayTeam>
-				<date>12.27.2015</date>
-				<time>4:05:PM</time>
-				<status>FINAL</status>
-				<stadium>The Superdome</stadium>
-			</game>
-			<game>
-				<homeTeam>NYJ</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>NE</awayTeam>
-				<date>12.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>MetLife Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>TB</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>CHI</awayTeam>
-				<date>12.27.2015</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Raymond James Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>TEN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>3.5</spread1>
-				<awayScore>-</awayScore>
+				<homeTeam>IND</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>10</awayScore>
 				<awayTeam>HOU</awayTeam>
-				<date>12.27.2015</date>
-				<time>1:00:PM</time>
+				<date>12.14.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
-				<stadium>Nissan Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>ARI</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>4</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>GB</awayTeam>
-				<date>12.27.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>University of Phoenix Stadium</stadium>
-			</game>
-			<game>
-				<homeTeam>SEA</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>13</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>STL</awayTeam>
-				<date>12.27.2015</date>
-				<time>4:25:PM</time>
-				<status>FINAL</status>
-				<stadium>CenturyLink Field</stadium>
+				<stadium>Lucas Oil Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>BAL</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>N</homeFavored>
-				<spread1>10</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>PIT</awayTeam>
-				<date>12.27.2015</date>
-				<time>1:00:PM</time>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>14</spread1>
+				<awayScore>12</awayScore>
+				<awayTeam>JAX</awayTeam>
+				<date>12.14.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>M&amp;T Bank Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>DEN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>Y</homeFavored>
-				<spread1>3</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>CIN</awayTeam>
-				<date>12.28.2015</date>
-				<time>8:30:PM</time>
-				<status>FINAL</status>
-				<stadium>Mile High Stadium</stadium>
-			</game>		
-		</week>
-		<week number="17" current="false" ss="SECOND_HALF" status="completed" >
-			<game>
-				<homeTeam>ATL</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>NO</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Georgia Dome</stadium>
-			</game>
-			<game>
 				<homeTeam>BUF</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>NYJ</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<homeScore>21</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>4.5</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>12.14.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>Ralph Wilson Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>CAR</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>19</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>17</awayScore>
 				<awayTeam>TB</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<date>12.14.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
 				<stadium>Bank of America Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>CHI</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>DET</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Soldier Field</stadium>
-			</game>
-			<game>
-				<homeTeam>CIN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>BAL</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
-				<status>FINAL</status>
-				<stadium>Paul Brown Stadium</stadium>
-			</game>
-			<game>
 				<homeTeam>CLE</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>PIT</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<homeScore>0</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>CIN</awayTeam>
+				<date>12.14.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>FirstEnergy Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>DAL</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>WAS</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<homeTeam>TEN</homeTeam>
+				<homeScore>11</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>2.5</spread1>
+				<awayScore>16</awayScore>
+				<awayTeam>NYJ</awayTeam>
+				<date>12.14.2014</date>
+				<time>4:05:PM</time>
 				<status>FINAL</status>
-				<stadium>AT&amp;T Stadium</stadium>
+				<stadium>Nissan Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>GB</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>MIN</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<homeTeam>SD</homeTeam>
+				<homeScore>10</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>22</awayScore>
+				<awayTeam>DEN</awayTeam>
+				<date>12.14.2014</date>
+				<time>4:05:PM</time>
 				<status>FINAL</status>
-				<stadium>Lambeau Field</stadium>
+				<stadium>Qualcomm Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DET</homeTeam>
+				<homeScore>16</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7.5</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>MIN</awayTeam>
+				<date>12.14.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Ford Field</stadium>
+			</game>
+			<game>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>SF</awayTeam>
+				<date>12.14.2014</date>
+				<time>4:26:PM</time>
+				<status>FINAL</status>
+				<stadium>CenturyLink Field</stadium>
+			</game>
+			<game>
+				<homeTeam>PHI</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>38</awayScore>
+				<awayTeam>DAL</awayTeam>
+				<date>12.14.2014</date>
+				<time>8:35:PM</time>
+				<status>FINAL</status>
+				<stadium>Lincoln Financial Field</stadium>
+			</game>
+			<game>
+				<homeTeam>CHI</homeTeam>
+				<homeScore>15</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>31</awayScore>
+				<awayTeam>NO</awayTeam>
+				<date>12.15.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Soldier Field</stadium>
+			</game>	
+		</week>
+		<week number="16" current="false" ss="SECOND_HALF" status="completed" >
+			<game>
+				<homeTeam>JAX</homeTeam>
+				<homeScore>21</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>TEN</awayTeam>
+				<date>12.18.2014</date>
+				<time>8:26:PM</time>
+				<status>FINAL</status>
+				<stadium>EverBank Field</stadium>
+			</game>
+			<game>
+				<homeTeam>WAS</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>PHI</awayTeam>
+				<date>12.20.2014</date>
+				<time>4:30:PM</time>
+				<status>FINAL</status>
+				<stadium>FedEx Field</stadium>
+			</game>
+			<game>
+				<homeTeam>SF</homeTeam>
+				<homeScore>35</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>38</awayScore>
+				<awayTeam>SD</awayTeam>
+				<date>12.20.2014</date>
+				<time>8:26:PM</time>
+				<status>FINAL</status>
+				<stadium>Levi's Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>MIA</homeTeam>
+				<homeScore>37</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>35</awayScore>
+				<awayTeam>MIN</awayTeam>
+				<date>12.21.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Sun Life Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>HOU</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>JAX</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<homeScore>25</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>12.21.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>NRG Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>IND</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>TEN</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<homeTeam>CHI</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>9</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>DET</awayTeam>
+				<date>12.21.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
-				<stadium>Lucas Oil Stadium</stadium>
+				<stadium>Soldier Field</stadium>
+			</game>
+			<game>
+				<homeTeam>CAR</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>13</awayScore>
+				<awayTeam>CLE</awayTeam>
+				<date>12.21.2014</date>
+				<time>1:04:PM</time>
+				<status>FINAL</status>
+				<stadium>Bank of America Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NO</homeTeam>
+				<homeScore>14</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>ATL</awayTeam>
+				<date>12.21.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>The Superdome</stadium>
+			</game>
+			<game>
+				<homeTeam>TB</homeTeam>
+				<homeScore>3</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>10.5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>12.21.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Raymond James Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>PIT</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>12</awayScore>
+				<awayTeam>KC</awayTeam>
+				<date>12.21.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Heinz Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NYJ</homeTeam>
+				<homeScore>16</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>12.21.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>MetLife Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>STL</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>37</awayScore>
+				<awayTeam>NYG</awayTeam>
+				<date>12.21.2014</date>
+				<time>4:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Edward Jones Dome</stadium>
+			</game>
+			<game>
+				<homeTeam>OAK</homeTeam>
+				<homeScore>26</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>BUF</awayTeam>
+				<date>12.21.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>O.co Coliseum</stadium>
+			</game>
+			<game>
+				<homeTeam>DAL</homeTeam>
+				<homeScore>42</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>12.21.2014</date>
+				<time>4:26:PM</time>
+				<status>FINAL</status>
+				<stadium>AT&amp;T Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>ARI</homeTeam>
+				<homeScore>6</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>8</spread1>
+				<awayScore>35</awayScore>
+				<awayTeam>SEA</awayTeam>
+				<date>12.21.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>University of Phoenix Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>CIN</homeTeam>
+				<homeScore>37</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>28</awayScore>
+				<awayTeam>DEN</awayTeam>
+				<date>12.22.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Paul Brown Stadium</stadium>
+			</game>	
+		</week>
+		<week number="17" current="false" ss="SECOND_HALF" status="completed" >
+			<game>
+				<homeTeam>BAL</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>CLE</awayTeam>
+				<date>12.28.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>M&amp;T Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>WAS</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>44</awayScore>
+				<awayTeam>DAL</awayTeam>
+				<date>12.28.2014</date>
+				<time>1:05:PM</time>
+				<status>FINAL</status>
+				<stadium>FedEx Field</stadium>
+			</game>
+			<game>
+				<homeTeam>TEN</homeTeam>
+				<homeScore>10</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>27</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>12.28.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Nissan Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>HOU</homeTeam>
+				<homeScore>23</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>9.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>JAX</awayTeam>
+				<date>12.28.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>NRG Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>KC</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>OAK</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<homeScore>19</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>SD</awayTeam>
+				<date>12.28.2014</date>
+				<time>1:03:PM</time>
 				<status>FINAL</status>
 				<stadium>Arrowhead Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>MIA</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>NE</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>37</awayScore>
+				<awayTeam>NYJ</awayTeam>
+				<date>12.28.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>Sun Life Stadium</stadium>
 			</game>
 			<game>
+				<homeTeam>MIN</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>9</awayScore>
+				<awayTeam>CHI</awayTeam>
+				<date>12.28.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>TCF Bank Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>NE</homeTeam>
+				<homeScore>9</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>BUF</awayTeam>
+				<date>12.28.2014</date>
+				<time>1:02:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
+			<game>
 				<homeTeam>NYG</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
+				<homeScore>26</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>34</awayScore>
 				<awayTeam>PHI</awayTeam>
-				<date>1.3.2016</date>
-				<time>1:00:PM</time>
+				<date>12.28.2014</date>
+				<time>1:02:PM</time>
 				<status>FINAL</status>
 				<stadium>MetLife Stadium</stadium>
 			</game>
 			<game>
-				<homeTeam>ARI</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>SEA</awayTeam>
-				<date>1.3.2016</date>
+				<homeTeam>TB</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>23</awayScore>
+				<awayTeam>NO</awayTeam>
+				<date>12.28.2014</date>
+				<time>1:03:PM</time>
+				<status>FINAL</status>
+				<stadium>Raymond James Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>ATL</homeTeam>
+				<homeScore>3</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>34</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>12.28.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
-				<stadium>University of Phoenix Stadium</stadium>
+				<stadium>Georgia Dome</stadium>
+			</game>
+			<game>
+				<homeTeam>GB</homeTeam>
+				<homeScore>30</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7.5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>DET</awayTeam>
+				<date>12.28.2014</date>
+				<time>4:25:PM</time>
+				<status>FINAL</status>
+				<stadium>Lambeau Field</stadium>
 			</game>
 			<game>
 				<homeTeam>DEN</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>SD</awayTeam>
-				<date>1.3.2016</date>
+				<homeScore>47</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>14</spread1>
+				<awayScore>14</awayScore>
+				<awayTeam>OAK</awayTeam>
+				<date>12.28.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>Mile High Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>SF</homeTeam>
-				<homeScore>-</homeScore>
-				<homeFavored>-</homeFavored>
-				<spread1>-</spread1>
-				<awayScore>-</awayScore>
-				<awayTeam>STL</awayTeam>
-				<date>1.3.2016</date>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>12.28.2014</date>
 				<time>4:25:PM</time>
 				<status>FINAL</status>
 				<stadium>Levi's Stadium</stadium>
-			</game>		
+			</game>
+			<game>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>20</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>12.5</spread1>
+				<awayScore>6</awayScore>
+				<awayTeam>STL</awayTeam>
+				<date>12.28.2014</date>
+				<time>4:27:PM</time>
+				<status>FINAL</status>
+				<stadium>CenturyLink Field</stadium>
+			</game>
+			<game>
+				<homeTeam>PIT</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>CIN</awayTeam>
+				<date>12.28.2014</date>
+				<time>8:30:PM</time>
+				<status>FINAL</status>
+				<stadium>Heinz Field</stadium>
+			</game>	
 		</week>
 		<week number="18" current="false" ss="PLAYOFFS" status="completed" >
+			<game>
+				<homeTeam>CAR</homeTeam>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>16</awayScore>
+				<awayTeam>ARI</awayTeam>
+				<date>1.3.2015</date>
+				<time>4:20:PM</time>
+				<status>FINAL</status>
+				<stadium>Bank of America Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>PIT</homeTeam>
+				<homeScore>17</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>30</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>1.3.2015</date>
+				<time>8:15:PM</time>
+				<status>FINAL</status>
+				<stadium>Heinz Field</stadium>
+			</game>
+			<game>
+				<homeTeam>IND</homeTeam>
+				<homeScore>26</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>10</awayScore>
+				<awayTeam>CIN</awayTeam>
+				<date>1.4.2015</date>
+				<time>1:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Lucas Oil Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>DAL</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>20</awayScore>
+				<awayTeam>DET</awayTeam>
+				<date>1.4.2015</date>
+				<time>4:41:PM</time>
+				<status>FINAL</status>
+				<stadium>AT&amp;T Stadium</stadium>
+			</game>	
 		</week>
 		<week number="19" current="false" ss="PLAYOFFS" status="completed" >
+			<game>
+				<homeTeam>NE</homeTeam>
+				<homeScore>35</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>31</awayScore>
+				<awayTeam>BAL</awayTeam>
+				<date>1.10.2015</date>
+				<time>4:35:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>10.5</spread1>
+				<awayScore>17</awayScore>
+				<awayTeam>CAR</awayTeam>
+				<date>1.10.2015</date>
+				<time>8:21:PM</time>
+				<status>FINAL</status>
+				<stadium>CenturyLink Field</stadium>
+			</game>
+			<game>
+				<homeTeam>DEN</homeTeam>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>24</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>1.11.2015</date>
+				<time>4:40:PM</time>
+				<status>FINAL</status>
+				<stadium>Mile High Stadium</stadium>
+			</game>
+			<game>
+				<homeTeam>GB</homeTeam>
+				<homeScore>26</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
+				<awayScore>21</awayScore>
+				<awayTeam>DAL</awayTeam>
+				<date>1.11.2015</date>
+				<time>1:05:PM</time>
+				<status>FINAL</status>
+				<stadium>Lambeau Field</stadium>
+			</game>
 		</week>
 		<week number="20" current="false" ss="PLAYOFFS" status="completed" >
+			<game>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>28</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7.5</spread1>
+				<awayScore>22</awayScore>
+				<awayTeam>GB</awayTeam>
+				<date>1.18.2015</date>
+				<time>3:06:PM</time>
+				<status>FINAL</status>
+				<stadium>CenturyLink Field</stadium>
+			</game>
+			<game>
+				<homeTeam>NE</homeTeam>
+				<homeScore>45</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6.5</spread1>
+				<awayScore>7</awayScore>
+				<awayTeam>IND</awayTeam>
+				<date>1.18.2015</date>
+				<time>6:50:PM</time>
+				<status>FINAL</status>
+				<stadium>Gillette Stadium</stadium>
+			</game>
 		</week>
-		<week number="22" current="false" ss="SUPER_BOWL" status="completed" >
+		<week number="22" current="true" ss="SUPER_BOWL" status="completed" >
+			<game>
+				<homeTeam>SEA</homeTeam>
+				<homeScore>24</homeScore>
+				<homeFavored1></homeFavored1>
+				<spread1>0</spread1>
+				<awayScore>28</awayScore>
+				<awayTeam>NE</awayTeam>
+				<date>2.1.2015</date>
+				<time>6:30:PM</time>
+				<status>FINAL</status>
+				<stadium>University of Phoenix Stadium</stadium>
+			</game>
 		</week>
 	</weeks>
 

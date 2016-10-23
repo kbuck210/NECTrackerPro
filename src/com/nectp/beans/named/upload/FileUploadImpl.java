@@ -13,6 +13,10 @@ public abstract class FileUploadImpl implements Serializable, FileUpload {
 	
 	protected List<UploadedFile> files = new ArrayList<UploadedFile>();
 	
+	protected void empty() {
+		files = new ArrayList<UploadedFile>();
+	}
+	
 	@Override
 	public List<UploadedFile> getFiles() {
 		return files;

@@ -42,7 +42,11 @@ public class WeekFactoryBean extends WeekServiceBean implements WeekFactory {
 				week.setWeekStatus(status);
 				update = true;
 			}
-			if (!season.getCurrentWeek().equals(week)) {
+			if (current && season.getCurrentWeek() != null && !season.getCurrentWeek().equals(week)) {
+				season.setCurrentWeek(week);
+				update = true;
+			}
+			else if (current && season.getCurrentWeek() == null && week != null) {
 				season.setCurrentWeek(week);
 				update = true;
 			}
