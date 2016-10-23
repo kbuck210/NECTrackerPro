@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,7 +21,7 @@ import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
 
 @Named(value="otherGamesBean")
-@ViewScoped
+@RequestScoped
 public class OtherGamesBean implements Serializable, GameContainer {
 	private static final long serialVersionUID = -3248718572270932215L;
 
@@ -47,6 +48,8 @@ public class OtherGamesBean implements Serializable, GameContainer {
 	public void init() {
 		gameBeans = new ArrayList<GameBean>();
 		displayWeek = pageBean.getDisplayWeek();
+		
+		System.out.println("got week: " + displayWeek + " with " + displayWeek.getGames().size() + " games.");
 		
 		if (displayWeek != null) {
 			log.info("Got displayed week: " + displayWeek.getWeekNumber());

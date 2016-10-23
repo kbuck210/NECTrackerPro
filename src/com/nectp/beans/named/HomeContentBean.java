@@ -76,6 +76,10 @@ public class HomeContentBean implements Serializable {
 	
 	private String displayedWeekHeadline;
 	
+	private List<GameBean> playerPickBeans;
+	
+	private List<GameBean> otherGameBeans;
+	
 	public HomeContentBean() {
 	}
 	
@@ -88,25 +92,25 @@ public class HomeContentBean implements Serializable {
 		
 		updateDisplayedWeek(displayWeek);
 		
-		if (user != null) {
-			userInstance = pfsService.selectPlayerInSeason(user, currentSeason);
-			userPicks = pickService.selectPlayerPicksForWeekForType(userInstance, displayWeek, displayWeek.getSubseason().getSubseasonType());
-			//	If the user has any picks for the week, make sure the picks area is displayed
-			if (!userPicks.isEmpty()) {
-				renderPlayerPicks = true;
-				//	If the user has selected all games, do not render the 'other games' section
-				if (userPicks.size() == displayWeek.getGames().size()) {
-					renderOtherGames = false;
-				}
-				else renderOtherGames = true;
-			}
-			else renderPlayerPicks = false;
-			
-			setPlayerPickHeadline();
-			setPlayerRecord();
-		}
-		setOtherGamesHeadline();
-		setDisplayedWeekHeadline();
+//		if (user != null) {
+//			userInstance = pfsService.selectPlayerInSeason(user, currentSeason);
+//			userPicks = pickService.selectPlayerPicksForWeekForType(userInstance, displayWeek, displayWeek.getSubseason().getSubseasonType());
+//			//	If the user has any picks for the week, make sure the picks area is displayed
+//			if (!userPicks.isEmpty()) {
+//				renderPlayerPicks = true;
+//				//	If the user has selected all games, do not render the 'other games' section
+//				if (userPicks.size() == displayWeek.getGames().size()) {
+//					renderOtherGames = false;
+//				}
+//				else renderOtherGames = true;
+//			}
+//			else renderPlayerPicks = false;
+//			
+//			setPlayerPickHeadline();
+//			setPlayerRecord();
+//		}
+//		setOtherGamesHeadline();
+//		setDisplayedWeekHeadline();
 	}
 	
 	public void updateDisplayedWeek(Week newDisplayedWeek) {

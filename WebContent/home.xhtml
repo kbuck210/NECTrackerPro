@@ -18,8 +18,7 @@
 	
 				<!-- Player Picks blog post area - display only if player logged in with picks -->
 				<ui:fragment rendered="#{homeContentBean.renderPlayerPicks}">
-					<gc:gameContainer formId="homePlayerPicks" 
-									  gcBean="#{playerPicksBean}" 
+					<gc:gameContainer gcBean="#{playerPicksBean}" 
 									  headline="#{homeContentBean.playerPickHeadline}" 
 									  subheadline="#{homeContentBean.playerRecord}" 
 									  blogstyle="player-picks" />
@@ -27,8 +26,7 @@
 	       
 		        <!-- Other games blog post - displayed if there are no picks or player registered - or if not all games picked -->
 		        <ui:fragment rendered="#{homeContentBean.renderOtherGames}">
-		        	<gc:gameContainer formId="homeOtherGames" 
-		        					  gcBean="#{otherGamesBean}" 
+		        	<gc:gameContainer gcBean="#{otherGamesBean}" 
 		        					  headline="#{homeContentBean.otherGamesHeadline}" 
 		        					  subheadline="#{homeContentBean.displayedWeekHeadline}" 
 		        					  blogstyle="other-games" />
