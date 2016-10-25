@@ -2,7 +2,6 @@ package com.nectp.beans.ejb.daos;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.beans.remote.daos.SubseasonFactory;
@@ -55,7 +54,7 @@ public class WeekFactoryBean extends WeekServiceBean implements WeekFactory {
 				update(week);
 			}
 			
-		} catch (NoResultException e) {
+		} catch (NoExistingEntityException e) {
 			week = new Week();
 			week.setWeekNumber(weekNumber);
 			week.setWeekStatus(status);

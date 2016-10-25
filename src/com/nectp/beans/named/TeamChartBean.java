@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
@@ -21,6 +23,7 @@ import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.RecordService;
@@ -36,7 +39,7 @@ import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
 
 @Named(value="teamChartBean")
-@RequestScoped
+@ViewScoped
 public class TeamChartBean implements Serializable {
 	private static final long serialVersionUID = -3539268203660128108L;
 
@@ -67,6 +70,9 @@ public class TeamChartBean implements Serializable {
 	@EJB
 	private GameService gameService;
 	
+	@EJB
+	private TeamProfileBean profile;
+	
 	private Logger log;
 	
 	//	TODO: delete this & replace with parameter
@@ -79,18 +85,29 @@ public class TeamChartBean implements Serializable {
 	
 	@PostConstruct
 	public void init() {
-		teamAbbr = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("teamAbbr");
-		currentSeason = seasonService.selectCurrentSeason();	//	TODO: delete
-		try {
-			displayedTeam = tfsService.selectTfsByAbbrSeason(teamAbbr, currentSeason);
-		} catch (NoResultException e) {
-			//	Catch
-		}
-		if (displayedTeam != null) {
-			currentSeason = displayedTeam.getSeason();
-			this.chartTitle = "NEC " + currentSeason.getSeasonNumber() + " - " + displayedTeam.getTeamCity();
-			seasonChartModel = createAnimatedModel(NEC.SEASON);
-		}
+		setDisplayedTeam(profile.getDisplayTeam());
+//		Map<String, String> paramMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+//		teamAbbr = paramMap.get("teamAbbr");
+//		String seasonNum = paramMap.get("nec");
+//		Integer seasonNumber = null;
+//		try {
+//			seasonNumber = Integer.parseInt(seasonNum);
+//			currentSeason = seasonService.selectById(seasonNumber);
+//		} catch (NumberFormatException e) {
+//			log.warning("Invalid season number parameter, returning the current season.");
+//			log.warning(e.getMessage());
+//			currentSeason = seasonService.selectCurrentSeason();
+//		}
+//		try {
+//			displayedTeam = tfsService.selectTfsByAbbrSeason(teamAbbr, currentSeason);
+//		} catch (NoExistingEntityException e) {
+//			//	Catch
+//		}
+//		if (displayedTeam != null) {
+//			currentSeason = displayedTeam.getSeason();
+//			this.chartTitle = "NEC " + currentSeason.getSeasonNumber() + " - " + displayedTeam.getTeamCity();
+//			seasonChartModel = createAnimatedModel(NEC.SEASON);
+//		}
 	}
 	
 	public LineChartModel getSeasonChartModel() {
@@ -360,7 +377,7 @@ public class TeamChartBean implements Serializable {
 			Game game = null; 
 			try {
 				game = gameService.selectGameByTeamWeek(displayedTeam, w);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.warning("No game found for week " + w.getWeekNumber() + " for " + displayedTeam.getTeamAbbr() + " - skipping spread score");
 			}
 			if (game != null) {
@@ -428,6 +445,11 @@ public class TeamChartBean implements Serializable {
 	
 	public void setDisplayedTeam(TeamForSeason displayedTeam) {
 		this.displayedTeam = displayedTeam;
+		if (displayedTeam != null) {
+			currentSeason = displayedTeam.getSeason();
+			this.chartTitle = "NEC " + currentSeason.getSeasonNumber() + " - " + displayedTeam.getTeamCity();
+			seasonChartModel = createAnimatedModel(NEC.SEASON);
+		}
 	}
 	
 	public TeamForSeason getDisplayedTeam() {

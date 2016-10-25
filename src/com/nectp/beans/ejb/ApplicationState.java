@@ -5,9 +5,9 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 import javax.servlet.http.Cookie;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.jpa.entities.Player;
@@ -62,7 +62,7 @@ public class ApplicationState implements Serializable {
 		if (user != null && currentSeason != null) {
 			try {
 				userInstance = pfsService.selectPlayerInSeason(user, currentSeason);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				/* eat the exception */
 			}
 		}

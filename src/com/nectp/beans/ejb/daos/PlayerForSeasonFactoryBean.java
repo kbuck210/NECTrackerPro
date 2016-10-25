@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.PlayerForSeasonFactory;
 import com.nectp.jpa.entities.Player;
@@ -50,7 +49,7 @@ public class PlayerForSeasonFactoryBean extends PlayerForSeasonServiceBean imple
 				}
 			}
 			//	If no PlayerForSeason exists, create one
-			catch (NoResultException e) {
+			catch (NoExistingEntityException e) {
 				pfs = new PlayerForSeason();
 				pfs.setNickname(nickname);
 				pfs.setExcelPrintName(excelPrintName);

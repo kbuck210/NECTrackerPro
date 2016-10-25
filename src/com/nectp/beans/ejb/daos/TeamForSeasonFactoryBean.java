@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.TeamForSeasonFactory;
 import com.nectp.jpa.entities.Division;
@@ -79,7 +78,7 @@ public class TeamForSeasonFactoryBean extends TeamForSeasonServiceBean implement
 					update(tfs);
 				}
 				
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				tfs = new TeamForSeason();
 				
 				tfs.setTeamAbbr(teamAbbr);

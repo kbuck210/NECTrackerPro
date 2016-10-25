@@ -5,13 +5,12 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.persistence.NoResultException;
-
 import org.w3c.dom.Element;
 
 import com.nectp.jpa.entities.Stadium;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.remote.daos.GameFactory;
 import com.nectp.beans.remote.daos.StadiumService;
 import com.nectp.beans.remote.daos.TeamForSeasonService;
@@ -123,7 +122,7 @@ public class XmlGameUpdater {
 			Stadium stadium = null;
 			try {
 				stadium = stadiumService.selectStadiumByName(stadiumName);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.warning("Stadium not found!");
 			}
 			

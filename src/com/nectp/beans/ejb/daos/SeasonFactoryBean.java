@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.SeasonFactory;
 import com.nectp.jpa.entities.Season;
@@ -34,7 +33,7 @@ public class SeasonFactoryBean extends SeasonServiceBean implements SeasonFactor
 				if (!success) {
 					season = null;
 				}
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				season = new Season();
 
 				season.setSeasonNumber(seasonNumber);

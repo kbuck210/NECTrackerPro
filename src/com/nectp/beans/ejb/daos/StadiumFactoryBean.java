@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.StadiumFactory;
 import com.nectp.jpa.constants.Timezone;
@@ -49,7 +48,7 @@ public class StadiumFactoryBean extends StadiumServiceBean implements StadiumFac
 				}
 			} 
 			//	If no stadium found, create one
-			catch (NoResultException e) {
+			catch (NoExistingEntityException e) {
 				stadium = new Stadium();
 				stadium.setAddress(address);
 				stadium.setCapacity(capacity);

@@ -3,10 +3,9 @@ package com.nectp.beans.ejb.daos.xml;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.persistence.NoResultException;
-
 import org.w3c.dom.Element;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
 import com.nectp.beans.remote.daos.PlayerService;
 import com.nectp.beans.remote.daos.PrizeFactory;
@@ -50,7 +49,7 @@ public class XmlPrizeUpdater {
 						prizeType == NEC.PLAYOFFS || prizeType == NEC.SUPER_BOWL) {
 					try {
 						subseason = subseasonService.selectSubseasonInSeason(prizeType, season);
-					} catch (NoResultException e) {
+					} catch (NoExistingEntityException e) {
 						log.severe("Subseason for: " + prizeName + " not found! can not create prize.");
 						continue;
 					}
@@ -70,7 +69,7 @@ public class XmlPrizeUpdater {
 				if (winnerNickname != null) {
 					try {
 						winner = pfsService.selectPlayerByNickname(winnerNickname, season);
-					} catch (NoResultException e) {
+					} catch (NoExistingEntityException e) {
 						log.warning("Winner nickname not found! will not assign winner!");
 					}
 				}

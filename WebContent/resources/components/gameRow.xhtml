@@ -9,6 +9,7 @@
 	   xmlns:p="http://primefaces.org/ui">
 
 	<composite:interface>
+		<composite:attribute name="season" required="true" />
 		<composite:attribute name="rowId" required="true" />
 		<composite:attribute name="homeCity" default="Home Team" />
 		<composite:attribute name="homeRecord" default="(0-0)" />
@@ -62,13 +63,9 @@
 			  					</span>
 			  					<h:link outcome="teamPage">
 			  						<f:param name="teamAbbr" value="#{cc.attrs.homeTeamUrl}" />
+			  						<f:param name="nec" value="#{cc.attrs.season}" />
 			  						<figure><img id="#{cc.attrs.homeHelmetId}" class="helmet #{cc.attrs.homeSelectable} #{cc.attrs.homeGrayed} #{cc.attrs.singlePick}" src="#{cc.attrs.homeHelmet}" /></figure>
 			  					</h:link>
-			  					<!--  
-			  					<a class="helmet-link" href="#{cc.attrs.homeTeamUrl}">
-			  						<figure><img id="#{cc.attrs.homeHelmetId}" class="helmet #{cc.attrs.selectable}" src="#{cc.attrs.homeHelmet}" /></figure>
-			  					</a>
-			  					-->
 			  					<h6>Home Team:</h6>
 			  				</div>
 			  			</div>
@@ -117,9 +114,11 @@
 								<span id="#{cc.attrs.awayBadgeId}" class="selected-badge away #{cc.attrs.awaySelected}" >
 									<img src="#{cc.attrs.awayPickImage}" />
 								</span>
-								<a class="helmet-link" href="#{cc.attrs.awayTeamUrl}">
-									<figure><img id="#{cc.attrs.awayHelmetId}" class="helmet #{cc.attrs.awaySelectable} #{cc.attrs.awayGrayed} #{cc.attrs.singlePick}" src="#{cc.attrs.awayHelmet}" /></figure>
-								</a>
+								<h:link outcome="teamPage">
+			  						<f:param name="teamAbbr" value="#{cc.attrs.awayTeamUrl}" />
+			  						<f:param name="nec" value="#{cc.attrs.season}" />
+			  						<figure><img id="#{cc.attrs.awayHelmetId}" class="helmet #{cc.attrs.awaySelectable} #{cc.attrs.awayGrayed} #{cc.attrs.singlePick}" src="#{cc.attrs.awayHelmet}" /></figure>
+			  					</h:link>
 								<h6>Away Team:</h6>
 							</div>
 						</div>

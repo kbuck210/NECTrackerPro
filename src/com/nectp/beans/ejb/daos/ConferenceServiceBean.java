@@ -16,7 +16,7 @@ public class ConferenceServiceBean extends DataServiceBean<Conference> implement
 	private static final long serialVersionUID = -4384443912640043470L;
 
 	@Override
-	public Conference selectConferenceByType(ConferenceType confType) throws NoResultException {
+	public Conference selectConferenceByType(ConferenceType confType) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(ConferenceServiceBean.class.getName());
 		Conference conference = null;
 		if (confType == null) {
@@ -28,13 +28,13 @@ public class ConferenceServiceBean extends DataServiceBean<Conference> implement
 			try {
 				conference = cq.getSingleResult();
 			} catch (NonUniqueResultException e) {
-				log.severe("Multiple conferences found for type: " + confType.name());
+				log.severe("Multiple conferences found for type: " + confType.name() + " - invalid results");
 				log.severe(e.getMessage());
 				e.printStackTrace();
 			} catch (NoResultException e) {
 				log.warning("No results found for type: " + confType.name());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving conference: " + e.getMessage());
 				e.printStackTrace();

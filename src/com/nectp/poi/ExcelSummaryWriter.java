@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
-import javax.persistence.NoResultException;
 
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -29,6 +28,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.PickService;
@@ -129,7 +129,7 @@ public class ExcelSummaryWriter {
 			
 			try {
 				week = weekService.selectWeekByNumberInSeason(weekNumber, season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("No week found for week " + weekNum + " in season " + seasonNum + " can not write totals.");
 				log.severe(e.getMessage());
 				return;
@@ -320,7 +320,7 @@ public class ExcelSummaryWriter {
 					Pick pick;
 					try {
 						pick = pickService.selectPlayerPickForGameForType(player, game, subseasonType);
-					} catch (NoResultException e) {
+					} catch (NoExistingEntityException e) {
 						//	Player has no pick for this team, continue to next player
 						continue;
 					}
@@ -490,7 +490,7 @@ public class ExcelSummaryWriter {
 			Record weekRecord;
 			try {
 				weekRecord = recordService.selectWeekRecordForAtfs(week, player, subseasonType);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("No record found for " + player.getNickname() + " in week " + week.getWeekNumber() + " can not create sheet!");
 				log.severe(e.getMessage());
 				return false;
@@ -542,7 +542,7 @@ public class ExcelSummaryWriter {
 				if (tnoRecord.getWins() > 0) tnoCell.setCellStyle(winStyle);
 				else if (tnoRecord.getLosses() > 0) tnoCell.setCellStyle(lossStyle);
 				else tnoCell.setCellStyle(pushStyle);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				tnoCell.setCellValue("'-");
 				tnoCell.setCellStyle(totalsStyle);
 			}
@@ -582,7 +582,7 @@ public class ExcelSummaryWriter {
 							mnfCell.setCellStyle(totalsStyle);
 						}
 					}
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.warning("No MNF picks for " + player.getNickname() + " in week " + week.getWeekNumber() + "!");
 					for (int j = 0; i < mnfRows.length; ++j) {
 						Cell mnfCell = mnfRows[j].createCell(i);
@@ -627,7 +627,7 @@ public class ExcelSummaryWriter {
 							tntCell.setCellStyle(totalsStyle);
 						}
 					}
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.info("No TNT picks for " + player.getNickname() + " in week " + week.getWeekNumber());
 					for (int j = 0; i < tntRows.length; ++j) {
 						Cell tntCell = tntRows[j].createCell(i);
@@ -759,7 +759,7 @@ public class ExcelSummaryWriter {
 		try {
 			tno = pzfsService.selectPrizeForSeason(NEC.TWO_AND_OUT, season);
 			winner = tno.getWinner() != null ? tno.getWinner().getNickname() : "?????";
-		} catch (NoResultException e) {
+		} catch (NoExistingEntityException e) {
 			log.warning("No prize created for Two and Out in season " + season.getSeasonNumber());
 			log.warning("Can't display winner: " + e.getMessage());
 			winner = "?????";
@@ -946,7 +946,7 @@ public class ExcelSummaryWriter {
 		boolean useTnt = true;
 		try {
 			pzfsService.selectPrizeForSeason(NEC.MNF_TNT, season);
-		}catch (NoResultException e) {
+		}catch (NoExistingEntityException e) {
 			useTnt = false;
 		}
 		
@@ -1070,7 +1070,7 @@ public class ExcelSummaryWriter {
 				winner = mnfTnt.getWinner() != null ? mnfTnt.getWinner().getNickname() : "?????";
 			}
 			else winner = "?????";
-		} catch (NoResultException e) {
+		} catch (NoExistingEntityException e) {
 			log.warning("No prize found for MNF/TNT for season: " + season.getSeasonNumber());
 			winner = "?????";
 		}

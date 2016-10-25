@@ -19,7 +19,7 @@ public class TeamForSeasonServiceBean extends DataServiceBean<TeamForSeason> imp
 
 	
 	@Override
-	public TeamForSeason selectTfsByTeamSeason(Team team, Season season) throws NoResultException {
+	public TeamForSeason selectTfsByTeamSeason(Team team, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(TeamForSeasonServiceBean.class.getName());
 		TeamForSeason tfs = null;
 		
@@ -39,7 +39,7 @@ public class TeamForSeasonServiceBean extends DataServiceBean<TeamForSeason> imp
 			} catch (NoResultException e) {
 				log.warning("No TFS found for for franchise: " + team.getFranchiseId() + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught while retrieving TFS: " + e.getMessage());
 				e.printStackTrace();
@@ -51,7 +51,7 @@ public class TeamForSeasonServiceBean extends DataServiceBean<TeamForSeason> imp
 
 
 	@Override
-	public TeamForSeason selectTfsByAbbrSeason(String abbr, Season season) throws NoResultException {
+	public TeamForSeason selectTfsByAbbrSeason(String abbr, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(TeamForSeasonServiceBean.class.getName());
 		TeamForSeason tfs = null;
 		
@@ -71,7 +71,7 @@ public class TeamForSeasonServiceBean extends DataServiceBean<TeamForSeason> imp
 			} catch (NoResultException e) {
 				log.warning("No TFS found for for franchise: " + abbr + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught while retrieving TFS: " + e.getMessage());
 				e.printStackTrace();
@@ -86,7 +86,7 @@ public class TeamForSeasonServiceBean extends DataServiceBean<TeamForSeason> imp
 	 * 
 	 */
 	@Override
-	public TeamForSeason selectTfsByCitySeason(String city, Season season) throws NoResultException {
+	public TeamForSeason selectTfsByCitySeason(String city, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(TeamForSeasonServiceBean.class.getName());
 		TeamForSeason tfs = null;
 		
@@ -106,7 +106,7 @@ public class TeamForSeasonServiceBean extends DataServiceBean<TeamForSeason> imp
 			} catch (NoResultException e) {
 				log.warning("No TFS found for for city: " + city + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught while retrieving TFS: " + e.getMessage());
 				e.printStackTrace();

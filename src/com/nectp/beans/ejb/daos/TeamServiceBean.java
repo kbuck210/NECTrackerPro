@@ -15,7 +15,7 @@ public class TeamServiceBean extends DataServiceBean<Team> implements TeamServic
 	private static final long serialVersionUID = 7381216334640961056L;
 
 	@Override
-	public Team selectTeamByFranchiseId(int franchiseId) throws NoResultException {
+	public Team selectTeamByFranchiseId(int franchiseId) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(TeamServiceBean.class.getName());
 		Team team = null;
 		TypedQuery<Team> tq = em.createNamedQuery("Team.selectByFranchiseId", Team.class);
@@ -29,7 +29,7 @@ public class TeamServiceBean extends DataServiceBean<Team> implements TeamServic
 		} catch (NoResultException e) {
 			log.warning("No franchise found for ID: " + franchiseId);
 			log.warning(e.getMessage());
-			throw e;
+			throw new NoExistingEntityException(e);
 		} catch (Exception e) {
 			log.severe("Exception caught retrieving franchise: " + e.getMessage());
 			e.printStackTrace();

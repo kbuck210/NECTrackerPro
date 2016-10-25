@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.PickFactory;
@@ -50,7 +49,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 			//	First check to determine whether the pick already exists, creating it if not
 			try {
 				pick = selectPlayerPickForGameForType(player, gameForPick, pickFor);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				if (!checkPickEligibility(player, pickedTeam, pickFor)) {
 					log.severe("The selected pick is ineligible, can not create pick of "
 							+ pickedTeam.getTeamCity() + " for " + player.getNickname());
@@ -71,7 +70,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 					applicableRecord = recordFactory.createWeekRecordForAtfs(week, pickedTeam, pickFor);
 					pick.setApplicableRecord(applicableRecord);
 					applicableRecord.addPickInRecord(pick);
-				} catch (NoResultException ex) {
+				} catch (NoExistingEntityException ex) {
 					log.warning("Applicable record not set for " + player.getNickname() + "'s pick of " 
 						+ pickedTeam.getNickname() + " for " + pickFor.name() + " in week " + week.getWeekNumber());
 				}
@@ -114,7 +113,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 			}
 			try {
 				pick = selectPlayerPickForGameForType(player, game, pickFor);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				if (!checkPickEligibility(player, pickedTeam, pickFor)) {
 					log.severe("The selected pick is ineligible, can not create pick of "
 							+ pickedTeam.getTeamCity() + " for " + player.getNickname());

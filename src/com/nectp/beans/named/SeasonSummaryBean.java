@@ -10,8 +10,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
 import com.nectp.beans.remote.daos.PrizeForSeasonService;
@@ -181,7 +181,7 @@ public class SeasonSummaryBean implements Serializable {
 				secondHalfWinner = pzfsService.selectPrizeForSeason(NEC.SECOND_HALF, season);
 				playoffsWinner = pzfsService.selectPrizeForSeason(NEC.PLAYOFFS, season);
 				superBowlWinner = pzfsService.selectPrizeForSeason(NEC.SUPER_BOWL, season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.warning("Failed to get prizes for subseasons.  Winners may not be set.");
 			}
 			
@@ -190,17 +190,17 @@ public class SeasonSummaryBean implements Serializable {
 			moneyBackWinner = null;
 			try {
 				mnfTntWinner = pzfsService.selectPrizeForSeason(NEC.MNF_TNT, season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				
 			}
 			try {
 				tnoWinner = pzfsService.selectPrizeForSeason(NEC.TWO_AND_OUT, season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				
 			}
 			try {
 				moneyBackWinner = pzfsService.selectPrizeForSeason(NEC.MONEY_BACK, season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				
 			}
 		}
@@ -214,7 +214,7 @@ public class SeasonSummaryBean implements Serializable {
 		PlayerForSeason commish = null;
 		try {
 			commish = pfsService.selectCommishBySeason(season);
-		} catch (NoResultException e) {
+		} catch (NoExistingEntityException e) {
 			log.warning("No commish found for season " + season.getSeasonNumber());
 		}
 		return commish != null ? commish.getNickname() : "";

@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.PlayerFactory;
 import com.nectp.jpa.entities.Player;
@@ -38,7 +37,7 @@ public class PlayerFactoryBean extends PlayerServiceBean implements PlayerFactor
 					update(player);
 				}
 				
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				player = new Player();
 				player.setName(playerName);
 				player.setSinceYear(sinceYear);

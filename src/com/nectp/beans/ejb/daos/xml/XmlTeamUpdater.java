@@ -3,10 +3,9 @@ package com.nectp.beans.ejb.daos.xml;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.persistence.NoResultException;
-
 import org.w3c.dom.Element;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.remote.daos.ConferenceFactory;
 import com.nectp.beans.remote.daos.DivisionFactory;
 import com.nectp.beans.remote.daos.StadiumService;
@@ -70,7 +69,7 @@ public class XmlTeamUpdater {
 			Stadium stadium = null;
 			try {
 				stadium = stadiumService.selectStadiumByName(stadiumName);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.warning("Stadium not found!");
 			}
 			

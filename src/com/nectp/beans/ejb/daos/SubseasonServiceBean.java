@@ -27,7 +27,7 @@ public class SubseasonServiceBean extends DataServiceBean<Subseason> implements 
 	private PrizeForSeasonService pzfsService;
 	
 	@Override
-	public Subseason selectSubseasonInSeason(NEC subseasonType, Season season) throws NoResultException {
+	public Subseason selectSubseasonInSeason(NEC subseasonType, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(SubseasonService.class.getName());
 		Subseason subseason = null;
 		TypedQuery<Subseason> sq = em.createNamedQuery("Subseason.selectSubseasonByTypeInSeason", Subseason.class);
@@ -42,7 +42,7 @@ public class SubseasonServiceBean extends DataServiceBean<Subseason> implements 
 		} catch (NoResultException e) {
 			log.log(Level.WARNING, "No subseason found for type: " + subseasonType + " in season " + season.getSeasonNumber());
 			log.log(Level.WARNING, e.getMessage());
-			throw e;
+			throw new NoExistingEntityException(e);
 		} catch (Exception e) {
 			log.log(Level.SEVERE, "Exception caught retrieving subseason: " + e.getMessage());
 			e.printStackTrace();
@@ -78,7 +78,7 @@ public class SubseasonServiceBean extends DataServiceBean<Subseason> implements 
 				try {
 					PrizeForSeason mnfTnt = pzfsService.selectPrizeForSeason(NEC.MNF_TNT, season);
 					pzfsService.calculateWinner(mnfTnt);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.severe("No prize found for MNF_TNT! Must create & allocate manually.");
 				}
 			}
@@ -86,7 +86,7 @@ public class SubseasonServiceBean extends DataServiceBean<Subseason> implements 
 				try {
 					PrizeForSeason playoffs = pzfsService.selectPrizeForSeason(NEC.PLAYOFFS, season);
 					pzfsService.calculateWinner(playoffs);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.severe("No prize found for playoffs! Must create & allocate manually.");
 				}
 			}
@@ -94,14 +94,14 @@ public class SubseasonServiceBean extends DataServiceBean<Subseason> implements 
 				try {
 					PrizeForSeason superbowl = pzfsService.selectPrizeForSeason(NEC.SUPER_BOWL, season);
 					pzfsService.calculateWinner(superbowl);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.severe("No prize found for superbowl! Must create & allocate manually.");
 				}
 				
 				try {
 					PrizeForSeason moneyback = pzfsService.selectPrizeForSeason(NEC.MONEY_BACK, season);
 					pzfsService.calculateWinner(moneyback);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.severe("No prize found for moneyback bowl! Must create & allocate manually.");
 				}
 			}

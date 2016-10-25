@@ -34,6 +34,7 @@ public class RecordDisplay {
 	
 	public RecordDisplay(RecordAggregator ragg, boolean againstSpread) {
 		this.ragg = ragg;
+		format = new DecimalFormat(".##");
 		setWLT(againstSpread);
 	}
 	

@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.GameFactory;
 import com.nectp.beans.remote.daos.RecordFactory;
@@ -133,7 +132,7 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 					return updateSuccess ? game : null;
 				}
 				
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				game = new Game();
 				game.setHomeTeam(homeTeam);
 				homeTeam.addHomeGame(game);

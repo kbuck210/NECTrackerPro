@@ -5,17 +5,24 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.daos.GameService;
+import com.nectp.beans.remote.daos.SeasonService;
+import com.nectp.beans.remote.daos.TeamForSeasonService;
 import com.nectp.beans.remote.daos.TeamStatisticService;
 import com.nectp.beans.remote.daos.WeekService;
 import com.nectp.jpa.constants.NEC;
@@ -34,7 +41,7 @@ import com.nectp.jpa.entities.Week;
 import com.nectp.jpa.entities.Week.WeekStatus;
 
 @Named(value="teamStatsViewBean")
-@RequestScoped
+@ViewScoped
 public class TeamStatsViewBean implements Serializable {
 	private static final long serialVersionUID = 7685890247822202869L;
 	
@@ -93,189 +100,226 @@ public class TeamStatsViewBean implements Serializable {
 	@EJB 
 	private GameService gameService;
 	
+	@EJB
+	private SeasonService seasonService;
+	
+	@EJB
+	private TeamForSeasonService tfsService;
+	
+	@EJB
+	private TeamProfileBean profile;
+	
+	private Logger log;
+	
 	public TeamStatsViewBean() {
+		log = Logger.getLogger(TeamStatsViewBean.class.getName());
 	}
 	
 	@PostConstruct
 	public void init() {
-		//	TODO: get team from request & load stat models
-		if (displayTeam != null) {
-			currentSeason = displayTeam.getSeason();
-			currentWeek = currentSeason.getCurrentWeek();
-			if (WeekStatus.COMPLETED.equals(currentWeek.getWeekStatus())) {
-				try {
-					Week nextWeek = weekService.selectWeekByNumberInSeason((currentWeek.getWeekNumber() + 1), currentSeason);
-					nextGame = gameService.selectGameByTeamWeek(displayTeam, nextWeek);
-				} catch (NoResultException e) {
-					//	Eat the exception
-				}
+		setDisplayedTeam(profile.getDisplayTeam());
+//		Map<String, String> paramMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+//		String teamAbbr = paramMap.get("teamAbbr");
+//		String seasonNum = paramMap.get("nec");
+//		Integer seasonNumber = null;
+//		try {
+//			seasonNumber = Integer.parseInt(seasonNum);
+//			currentSeason = seasonService.selectById(seasonNumber);
+//		} catch (NumberFormatException e) {
+//			log.warning("Invalid season number format, using current season instead.");
+//			log.warning(e.getMessage());
+//			currentSeason = seasonService.selectCurrentSeason();
+//		}
+//		try {
+//			displayTeam = tfsService.selectTfsByAbbrSeason(teamAbbr, currentSeason);
+//		} catch (NoExistingEntityException e) {
+//			//	Catch
+//		}
+//		if (displayTeam != null) {
+//			
+//		}
+	}
+	
+	public void setDisplayedTeam(TeamForSeason displayTeam) {
+		this.displayTeam = displayTeam;
+		if (displayTeam == null) {
+			log.severe("Null display team! can not display stats.");
+		}
+		currentSeason = displayTeam.getSeason();
+		currentWeek = currentSeason.getCurrentWeek();
+		if (WeekStatus.COMPLETED.equals(currentWeek.getWeekStatus())) {
+			try {
+				Week nextWeek = weekService.selectWeekByNumberInSeason((currentWeek.getWeekNumber() + 1), currentSeason);
+				nextGame = gameService.selectGameByTeamWeek(displayTeam, nextWeek);
+			} catch (NoExistingEntityException e) {
+				//	Eat the exception
 			}
-			else {
-				nextGame = gameService.selectGameByTeamWeek(displayTeam, currentWeek);
-			}
+		}
+		else {
+			nextGame = gameService.selectGameByTeamWeek(displayTeam, currentWeek);
+		}
+		
+		//	Get the overall record for this season so far for the displayed team (ordering by raw scores for rank)
+		teamOverallRecord = teamStats.getOverallRecordThroughWeekForAtfs(displayTeam, currentWeek, statScope, false);
+		rawRecord = new RecordDisplay(teamOverallRecord, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rawRecordRanks = teamStats.getTeamRankedScoresForType(statScope, currentSeason, false);
+		rawRecord.setRank(rawRecordRanks);
+		
+		recordAts = new RecordDisplay(teamOverallRecord, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> recordAtsRanks = teamStats.getTeamRankedScoresForType(statScope, currentSeason, true);
+		recordAts.setRank(recordAtsRanks);
+		
+		//	Get the home record for this season for the displayed team (ordering by spread scores for rank)
+		RecordAggregator homeAgg = teamStats.getHomeAwayRecord(displayTeam, statScope, true, true);
+		homeRecord = new RecordDisplay(homeAgg, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> homeRecordRanks = teamStats.getHomeAwayRank(displayTeam, statScope, true, false);
+		homeRecord.setRank(homeRecordRanks);
+		
+		homeAts = new RecordDisplay(homeAgg, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> homeAtsRanks = teamStats.getHomeAwayRank(displayTeam, statScope, true, true);
+		homeAts.setRank(homeAtsRanks);
+		
+		//	Get the road record for this season for the displayed team (ordering by spread scores for rank)
+		RecordAggregator roadAgg = teamStats.getHomeAwayRecord(displayTeam, statScope, false, true);
+		roadRecord = new RecordDisplay(roadAgg, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> roadRecordRanks = teamStats.getHomeAwayRank(displayTeam, statScope, false, false);
+		roadRecord.setRank(roadRecordRanks);
+		
+		roadAts = new RecordDisplay(roadAgg, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> roadAtsRanks = teamStats.getHomeAwayRank(displayTeam, statScope, false, true);
+		roadAts.setRank(roadAtsRanks);
+		
+		//	Get the primetime record for this season for the displayed team (ordering by spread scores for rank)
+		RecordAggregator primetimeAgg = teamStats.getPrimetimeRecord(displayTeam, statScope, true);
+		primetimeRecord = new RecordDisplay(primetimeAgg, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> primetimeRanks = teamStats.getPrimetimeRank(displayTeam, statScope, false);
+		primetimeRecord.setRank(primetimeRanks);
+		
+		primetimeAts = new RecordDisplay(primetimeAgg, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> primtimeAtsRanks = teamStats.getPrimetimeRank(displayTeam, statScope, true);
+		primetimeAts.setRank(primtimeAtsRanks);
+		
+		//	Get the MNF record for this season for the displayed team (ordering by spread scores for rank)
+		RecordAggregator mnfAgg = teamStats.getRecordByDateTime(displayTeam, null, GregorianCalendar.MONDAY, null, statScope, true);
+		mnfRecord = new RecordDisplay(mnfAgg, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfRanks = teamStats.getDateTimeRank(displayTeam, null, GregorianCalendar.MONDAY, null, statScope, false);
+		mnfRecord.setRank(mnfRanks);
+		
+		mnfAts = new RecordDisplay(mnfAgg, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfAtsRanks = teamStats.getDateTimeRank(displayTeam, null, GregorianCalendar.MONDAY, null, statScope, true);
+		mnfAts.setRank(mnfAtsRanks);
+		
+		//	Get the TNT record for this season for the displayed team (ordering by spread scores for rank)
+		RecordAggregator tntAgg = teamStats.getRecordByDateTime(displayTeam, null, GregorianCalendar.THURSDAY, null, statScope, true);
+		tntRecord = new RecordDisplay(tntAgg, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntRanks = teamStats.getDateTimeRank(displayTeam, null, GregorianCalendar.THURSDAY, null, statScope, false);
+		tntRecord.setRank(tntRanks);
+		
+		tntAts = new RecordDisplay(tntAgg, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntAtsRanks = teamStats.getDateTimeRank(displayTeam, null, GregorianCalendar.THURSDAY, null, statScope, true);
+		tntAts.setRank(tntAtsRanks);
+		
+		//	Get the combined mnf/tnt record for this season for the displayed team (ordering by spread scores for rank)
+		RecordAggregator mnfTntAgg = RecordAggregator.combine(mnfAgg, tntAgg);
+		mnfTntCombined = new RecordDisplay(mnfTntAgg, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfTntRanks = teamStats.getMnfTntRank(displayTeam, statScope, false);
+		mnfTntCombined.setRank(mnfTntRanks);
+		
+		mnfTntAts = new RecordDisplay(mnfTntAgg, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfTntAtsRanks = teamStats.getMnfTntRank(displayTeam, statScope, true);
+		mnfTntAts.setRank(mnfTntAtsRanks);
+		
+		//	Get the displayed teams own divisional record for this season (ordering by raw scores for rank)
+		RecordAggregator divAgg = teamStats.getDivisionRecord(displayTeam, displayTeam.getDivision(), statScope, false);
+		divisionRecord = new RecordDisplay(divAgg, false);
+		divisionRanks = teamStats.getDivisionRank(displayTeam, displayTeam.getDivision(), statScope, false);
+		divisionRecord.setRank(divisionRanks);
+		
+		divisionAts = new RecordDisplay(divAgg, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> divisionAtsRanks = teamStats.getDivisionRank(displayTeam, displayTeam.getDivision(), statScope, true);
+		divisionAts.setRank(divisionAtsRanks);
+		
+		//	Get the displayed teams own conference record for this season (ordering by raw scores for rank)
+		RecordAggregator confAgg = teamStats.getConferenceRecord(displayTeam, displayTeam.getDivision().getConference(), statScope, false);
+		conferenceRecord = new RecordDisplay(confAgg, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> conferenceRanks = teamStats.getConferenceRank(displayTeam, displayTeam.getDivision().getConference(), statScope, false);
+		conferenceRecord.setRank(conferenceRanks);
+		
+		conferenceAts = new RecordDisplay(confAgg, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> conferenceAtsRanks = teamStats.getConferenceRank(displayTeam, displayTeam.getDivision().getConference(), statScope, true);
+		conferenceAts.setRank(conferenceAtsRanks);
+		
+		//	If an opponent found for the next week, get the following stats
+		if (nextGame != null) {
+			//	Get the opponent from the game, and get the last 5 records against the specified opponent (no ranks, not really applicable)
+			TeamForSeason opponent = nextGame.getOtherTeam(displayTeam);
+			RecordAggregator oppRawAgg = teamStats.getOverallRecordThroughWeekForAtfs(opponent, currentWeek, statScope, false);
+			oppRawRecord = new RecordDisplay(oppRawAgg, false);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppRank = teamStats.getTeamRankedScoresForType(statScope, currentSeason, false);
+			oppRawRecord.setRank(oppRank);
 			
-			//	Get the overall record for this season so far for the displayed team (ordering by raw scores for rank)
-			teamOverallRecord = teamStats.getOverallRecordThroughWeekForAtfs(displayTeam, currentWeek, statScope, false);
-			rawRecord = new RecordDisplay(teamOverallRecord, false);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rawRecordRanks = teamStats.getTeamRankedScoresForType(statScope, currentSeason, false);
-			rawRecord.setRank(rawRecordRanks);
+			oppRecordAts = new RecordDisplay(oppRawAgg, true);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppAtsRank = teamStats.getTeamRankedScoresForType(statScope, currentSeason, true);
+			oppRecordAts.setRank(oppAtsRank);
 			
-			recordAts = new RecordDisplay(teamOverallRecord, true);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> recordAtsRanks = teamStats.getTeamRankedScoresForType(statScope, currentSeason, true);
-			recordAts.setRank(recordAtsRanks);
+			RecordAggregator last5Agg = teamStats.getRecentRecordAgainstOpponent(displayTeam, opponent, statScope, false);
+			last5Record = new RecordDisplay(last5Agg, false);
+			last5Ats = new RecordDisplay(last5Agg, true);
 			
-			//	Get the home record for this season for the displayed team (ordering by spread scores for rank)
-			RecordAggregator homeAgg = teamStats.getHomeAwayRecord(displayTeam, statScope, true, true);
-			homeRecord = new RecordDisplay(homeAgg, false);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> homeRecordRanks = teamStats.getHomeAwayRank(displayTeam, statScope, true, false);
-			homeRecord.setRank(homeRecordRanks);
+			//	Get the opponent's divisional record
+			Division oppDivision = opponent.getDivision();
+			RecordAggregator oppDivAgg = teamStats.getDivisionRecord(opponent, opponent.getDivision(), statScope, false);
+			divOppRecord = new RecordDisplay(oppDivAgg, false);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppDivRanks = teamStats.getDivisionRank(opponent, oppDivision, statScope, false);
+			divOppRecord.setRank(oppDivRanks);
 			
-			homeAts = new RecordDisplay(homeAgg, true);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> homeAtsRanks = teamStats.getHomeAwayRank(displayTeam, statScope, true, true);
-			homeAts.setRank(homeAtsRanks);
+			divOppAts = new RecordDisplay(oppDivAgg, true);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppDivAtsRanks = teamStats.getDivisionRank(opponent, oppDivision, statScope, true);
+			divOppAts.setRank(oppDivAtsRanks);
 			
-			//	Get the road record for this season for the displayed team (ordering by spread scores for rank)
-			RecordAggregator roadAgg = teamStats.getHomeAwayRecord(displayTeam, statScope, false, true);
-			roadRecord = new RecordDisplay(roadAgg, false);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> roadRecordRanks = teamStats.getHomeAwayRank(displayTeam, statScope, false, false);
-			roadRecord.setRank(roadRecordRanks);
+			//	Get the opponent's conference record
+			Conference oppConf = oppDivision.getConference();
+			RecordAggregator oppConfAgg = teamStats.getConferenceRecord(opponent, oppConf, statScope, false);
+			confOppRecord = new RecordDisplay(oppConfAgg, false);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppConfRanks = teamStats.getConferenceRank(opponent, oppConf, statScope, false);
+			confOppRecord.setRank(oppConfRanks);
 			
-			roadAts = new RecordDisplay(roadAgg, true);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> roadAtsRanks = teamStats.getHomeAwayRank(displayTeam, statScope, false, true);
-			roadAts.setRank(roadAtsRanks);
+			confOppAts = new RecordDisplay(oppConfAgg, true);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppConfAtsRanks = teamStats.getConferenceRank(opponent, oppConf, statScope, true);
+			confOppAts.setRank(oppConfAtsRanks);
 			
-			//	Get the primetime record for this season for the displayed team (ordering by spread scores for rank)
-			RecordAggregator primetimeAgg = teamStats.getPrimetimeRecord(displayTeam, statScope, true);
-			primetimeRecord = new RecordDisplay(primetimeAgg, false);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> primetimeRanks = teamStats.getPrimetimeRank(displayTeam, statScope, false);
-			primetimeRecord.setRank(primetimeRanks);
+			//	Get the stadium from the next game & get this team's record in the stadium
+			Stadium stadium = nextGame.getStadium();
+			RecordAggregator stadiumAgg = teamStats.getRecordForStadium(displayTeam, stadium, null, statScope, false);
+			stadiumRecord = new RecordDisplay(stadiumAgg, false);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> stadiumRanks = teamStats.getStadiumRank(displayTeam, stadium, null, statScope, false);
+			stadiumRecord.setRank(stadiumRanks);
 			
-			primetimeAts = new RecordDisplay(primetimeAgg, true);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> primtimeAtsRanks = teamStats.getPrimetimeRank(displayTeam, statScope, true);
-			primetimeAts.setRank(primtimeAtsRanks);
+			stadiumAts = new RecordDisplay(stadiumAgg, true);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> stadiumAtsRanks = teamStats.getStadiumRank(displayTeam, stadium, null, statScope, true);
+			stadiumAts.setRank(stadiumAtsRanks);
 			
-			//	Get the MNF record for this season for the displayed team (ordering by spread scores for rank)
-			RecordAggregator mnfAgg = teamStats.getRecordByDateTime(displayTeam, null, GregorianCalendar.MONDAY, null, statScope, true);
-			mnfRecord = new RecordDisplay(mnfAgg, false);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfRanks = teamStats.getDateTimeRank(displayTeam, null, GregorianCalendar.MONDAY, null, statScope, false);
-			mnfRecord.setRank(mnfRanks);
+			//	Get the timezone from the stadium and get the team's record for the specified timezone
+			TimeZone timezone = stadium.getTimezone();
+			RecordAggregator timezoneAgg = teamStats.getRecordByTimezone(displayTeam, timezone, statScope, false);
+			timezoneRecord = new RecordDisplay(timezoneAgg, false);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> timezoneRanks = teamStats.getTimezoneRank(displayTeam, timezone, statScope, false);
+			timezoneRecord.setRank(timezoneRanks);
 			
-			mnfAts = new RecordDisplay(mnfAgg, true);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfAtsRanks = teamStats.getDateTimeRank(displayTeam, null, GregorianCalendar.MONDAY, null, statScope, true);
-			mnfAts.setRank(mnfAtsRanks);
+			timezoneAts = new RecordDisplay(timezoneAgg, true);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> timezoneAtsRanks = teamStats.getTimezoneRank(displayTeam, timezone, statScope, true);
+			timezoneAts.setRank(timezoneAtsRanks);
 			
-			//	Get the TNT record for this season for the displayed team (ordering by spread scores for rank)
-			RecordAggregator tntAgg = teamStats.getRecordByDateTime(displayTeam, null, GregorianCalendar.THURSDAY, null, statScope, true);
-			tntRecord = new RecordDisplay(tntAgg, false);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntRanks = teamStats.getDateTimeRank(displayTeam, null, GregorianCalendar.THURSDAY, null, statScope, false);
-			tntRecord.setRank(tntRanks);
+			//	Get the roof type from the stadium and get the team's record for the specified roof type
+			RoofType roof = stadium.getRoofType();
+			RecordAggregator roofAgg = teamStats.getRecordForStadium(displayTeam, null, roof, statScope, false);
+			roofTypeRecord = new RecordDisplay(roofAgg, false);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> roofRanks = teamStats.getStadiumRank(displayTeam, null, roof, statScope, false);
+			roofTypeRecord.setRank(roofRanks);
 			
-			tntAts = new RecordDisplay(tntAgg, true);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntAtsRanks = teamStats.getDateTimeRank(displayTeam, null, GregorianCalendar.THURSDAY, null, statScope, true);
-			tntAts.setRank(tntAtsRanks);
-			
-			//	Get the combined mnf/tnt record for this season for the displayed team (ordering by spread scores for rank)
-			RecordAggregator mnfTntAgg = RecordAggregator.combine(mnfAgg, tntAgg);
-			mnfTntCombined = new RecordDisplay(mnfTntAgg, false);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfTntRanks = teamStats.getMnfTntRank(displayTeam, statScope, false);
-			mnfTntCombined.setRank(mnfTntRanks);
-			
-			mnfTntAts = new RecordDisplay(mnfTntAgg, true);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfTntAtsRanks = teamStats.getMnfTntRank(displayTeam, statScope, true);
-			mnfTntAts.setRank(mnfTntAtsRanks);
-			
-			//	Get the displayed teams own divisional record for this season (ordering by raw scores for rank)
-			RecordAggregator divAgg = teamStats.getDivisionRecord(displayTeam, displayTeam.getDivision(), statScope, false);
-			divisionRecord = new RecordDisplay(divAgg, false);
-			divisionRanks = teamStats.getDivisionRank(displayTeam, displayTeam.getDivision(), statScope, false);
-			divisionRecord.setRank(divisionRanks);
-			
-			divisionAts = new RecordDisplay(divAgg, true);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> divisionAtsRanks = teamStats.getDivisionRank(displayTeam, displayTeam.getDivision(), statScope, true);
-			divisionAts.setRank(divisionAtsRanks);
-			
-			//	Get the displayed teams own conference record for this season (ordering by raw scores for rank)
-			RecordAggregator confAgg = teamStats.getConferenceRecord(displayTeam, displayTeam.getDivision().getConference(), statScope, false);
-			conferenceRecord = new RecordDisplay(confAgg, false);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> conferenceRanks = teamStats.getConferenceRank(displayTeam, displayTeam.getDivision().getConference(), statScope, false);
-			conferenceRecord.setRank(conferenceRanks);
-			
-			conferenceAts = new RecordDisplay(confAgg, true);
-			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> conferenceAtsRanks = teamStats.getConferenceRank(displayTeam, displayTeam.getDivision().getConference(), statScope, true);
-			conferenceAts.setRank(conferenceAtsRanks);
-			
-			//	If an opponent found for the next week, get the following stats
-			if (nextGame != null) {
-				//	Get the opponent from the game, and get the last 5 records against the specified opponent (no ranks, not really applicable)
-				TeamForSeason opponent = nextGame.getOtherTeam(displayTeam);
-				RecordAggregator oppRawAgg = teamStats.getOverallRecordThroughWeekForAtfs(opponent, currentWeek, statScope, false);
-				oppRawRecord = new RecordDisplay(oppRawAgg, false);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppRank = teamStats.getTeamRankedScoresForType(statScope, currentSeason, false);
-				oppRawRecord.setRank(oppRank);
-				
-				oppRecordAts = new RecordDisplay(oppRawAgg, true);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppAtsRank = teamStats.getTeamRankedScoresForType(statScope, currentSeason, true);
-				oppRecordAts.setRank(oppAtsRank);
-				
-				RecordAggregator last5Agg = teamStats.getRecentRecordAgainstOpponent(displayTeam, opponent, statScope, false);
-				last5Record = new RecordDisplay(last5Agg, false);
-				last5Ats = new RecordDisplay(last5Agg, true);
-				
-				//	Get the opponent's divisional record
-				Division oppDivision = opponent.getDivision();
-				RecordAggregator oppDivAgg = teamStats.getDivisionRecord(opponent, opponent.getDivision(), statScope, false);
-				divOppRecord = new RecordDisplay(oppDivAgg, false);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppDivRanks = teamStats.getDivisionRank(opponent, oppDivision, statScope, false);
-				divOppRecord.setRank(oppDivRanks);
-				
-				divOppAts = new RecordDisplay(oppDivAgg, true);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppDivAtsRanks = teamStats.getDivisionRank(opponent, oppDivision, statScope, true);
-				divOppAts.setRank(oppDivAtsRanks);
-				
-				//	Get the opponent's conference record
-				Conference oppConf = oppDivision.getConference();
-				RecordAggregator oppConfAgg = teamStats.getConferenceRecord(opponent, oppConf, statScope, false);
-				confOppRecord = new RecordDisplay(oppConfAgg, false);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppConfRanks = teamStats.getConferenceRank(opponent, oppConf, statScope, false);
-				confOppRecord.setRank(oppConfRanks);
-				
-				confOppAts = new RecordDisplay(oppConfAgg, true);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> oppConfAtsRanks = teamStats.getConferenceRank(opponent, oppConf, statScope, true);
-				confOppAts.setRank(oppConfAtsRanks);
-				
-				//	Get the stadium from the next game & get this team's record in the stadium
-				Stadium stadium = nextGame.getStadium();
-				RecordAggregator stadiumAgg = teamStats.getRecordForStadium(displayTeam, stadium, null, statScope, false);
-				stadiumRecord = new RecordDisplay(stadiumAgg, false);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> stadiumRanks = teamStats.getStadiumRank(displayTeam, stadium, null, statScope, false);
-				stadiumRecord.setRank(stadiumRanks);
-				
-				stadiumAts = new RecordDisplay(stadiumAgg, true);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> stadiumAtsRanks = teamStats.getStadiumRank(displayTeam, stadium, null, statScope, true);
-				stadiumAts.setRank(stadiumAtsRanks);
-				
-				//	Get the timezone from the stadium and get the team's record for the specified timezone
-				TimeZone timezone = stadium.getTimezone();
-				RecordAggregator timezoneAgg = teamStats.getRecordByTimezone(displayTeam, timezone, statScope, false);
-				timezoneRecord = new RecordDisplay(timezoneAgg, false);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> timezoneRanks = teamStats.getTimezoneRank(displayTeam, timezone, statScope, false);
-				timezoneRecord.setRank(timezoneRanks);
-				
-				timezoneAts = new RecordDisplay(timezoneAgg, true);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> timezoneAtsRanks = teamStats.getTimezoneRank(displayTeam, timezone, statScope, true);
-				timezoneAts.setRank(timezoneAtsRanks);
-				
-				//	Get the roof type from the stadium and get the team's record for the specified roof type
-				RoofType roof = stadium.getRoofType();
-				RecordAggregator roofAgg = teamStats.getRecordForStadium(displayTeam, null, roof, statScope, false);
-				roofTypeRecord = new RecordDisplay(roofAgg, false);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> roofRanks = teamStats.getStadiumRank(displayTeam, null, roof, statScope, false);
-				roofTypeRecord.setRank(roofRanks);
-				
-				roofTypeAts = new RecordDisplay(roofAgg, true);
-				TreeMap<RecordAggregator, List<AbstractTeamForSeason>> roofAtsRanks = teamStats.getStadiumRank(displayTeam, null, roof, statScope, true);
-				roofTypeAts.setRank(roofAtsRanks);
-			}
+			roofTypeAts = new RecordDisplay(roofAgg, true);
+			TreeMap<RecordAggregator, List<AbstractTeamForSeason>> roofAtsRanks = teamStats.getStadiumRank(displayTeam, null, roof, statScope, true);
+			roofTypeAts.setRank(roofAtsRanks);
 		}
 	}
 	
@@ -409,219 +453,219 @@ public class TeamStatsViewBean implements Serializable {
 	}
 	
 	public String getRawRecord() {
-		return rawRecord.getWltString();
+		return rawRecord != null ? rawRecord.getWltString() : "N/a";
 	}
 	
 	public String getRawWinPct() {
-		return rawRecord.getPctString();
+		return rawRecord != null ? rawRecord.getPctString() : "N/a";
 	}
 	
 	public String getRawRank() {
-		return rawRecord.getRankString();
+		return rawRecord != null ? rawRecord.getRankString() : "N/a";
 	}
 	
 	public String getRecordAts() {
-		return recordAts.getWltString();
+		return recordAts != null ? recordAts.getWltString() : "N/a";
 	}
 	
 	public String getAtsWinPct() {
-		return recordAts.getPctString();
+		return recordAts != null ? recordAts.getPctString() : "N/a";
 	}
 	
 	public String getAtsRank() {
-		return recordAts.getRankString();
+		return recordAts != null ? recordAts.getRankString() : "N/a";
 	}
 	
 	public String getHomeRecord() {
-		return homeRecord.getWltString();
+		return homeRecord != null ? homeRecord.getWltString() : "N/a";
 	}
 	
 	public String getHomeWinPct() {
-		return homeRecord.getPctString();
+		return homeRecord != null ? homeRecord.getPctString() : "N/a";
 	}
 	
 	public String getHomeRank() {
-		return homeRecord.getRankString();
+		return homeRecord != null ? homeRecord.getRankString() : "N/a";
 	}
 	
 	public String getHomeAtsRecord() {
-		return homeAts.getWltString();
+		return homeAts != null ? homeAts.getWltString() : "N/a";
 	}
 	
 	public String getHomeAtsWinPct() {
-		return homeAts.getPctString();
+		return homeAts != null ? homeAts.getPctString() : "N/a";
 	}
 	
 	public String getHomeAtsRank() {
-		return homeAts.getRankString();
+		return homeAts != null ? homeAts.getRankString() : "N/a";
 	}
 	
 	public String getRoadRecord() {
-		return roadRecord.getWltString();
+		return roadRecord != null ? roadRecord.getWltString() : "N/a";
 	}
 	
 	public String getRoadWinPct() {
-		return roadRecord.getPctString();
+		return roadRecord != null ? roadRecord.getPctString() : "N/a";
 	}
 	
 	public String getRoadRank() {
-		return roadRecord.getRankString();
+		return roadRecord != null ? roadRecord.getRankString() : "N/a";
 	}
 	
 	public String getRoadAtsRecord() {
-		return roadAts.getWltString();
+		return roadAts != null ? roadAts.getWltString() : "N/a";
 	}
 	
 	public String getRoadAtsWinPct() {
-		return roadAts.getPctString();
+		return roadAts != null ? roadAts.getPctString() : "N/a";
 	}
 	
 	public String getRoadAtsRank() {
-		return roadAts.getRankString();
+		return roadAts != null ? roadAts.getRankString() : "N/a";
 	}
 	
 	public String getPrimetimeRecord() {
-		return primetimeRecord.getWltString();
+		return primetimeRecord != null ? primetimeRecord.getWltString() : "N/a";
 	}
 	
 	public String getPrimetimeWinPct() {
-		return primetimeRecord.getPctString();
+		return primetimeRecord != null ? primetimeRecord.getPctString() : "N/a";
 	}
 	
 	public String getPrimetimeRank() {
-		return primetimeRecord.getRankString();
+		return primetimeRecord != null ? primetimeRecord.getRankString() : "N/a";
 	}
 	
 	public String getPrimetimeAtsRecord() {
-		return primetimeAts.getWltString();
+		return primetimeAts != null ? primetimeAts.getWltString() : "N/a";
 	}
 	
 	public String getPrimetimeAtsWinPct() {
-		return primetimeAts.getPctString();
+		return primetimeAts != null ? primetimeAts.getPctString() : "N/a";
 	}
 	
 	public String getPrimetimeAtsRank() {
-		return primetimeAts.getRankString();
+		return primetimeAts != null ? primetimeAts.getRankString() : "N/a";
 	}
 	
 	public String getMnfRecord() {
-		return mnfRecord.getWltString();
+		return mnfRecord != null ? mnfRecord.getWltString() : "N/a";
 	}
 	
 	public String getMnfWinPct() {
-		return mnfRecord.getPctString();
+		return mnfRecord != null ? mnfRecord.getPctString() : "N/a";
 	}
 	
 	public String getMnfRank() {
-		return mnfRecord.getRankString();
+		return mnfRecord != null ? mnfRecord.getRankString() : "N/a";
 	}
 	
 	public String getMnfAtsRecord() {
-		return mnfAts.getWltString();
+		return mnfAts != null ? mnfAts.getWltString() : "N/a";
 	}
 	
 	public String getMnfAtsWinPct() {
-		return mnfAts.getPctString();
+		return mnfAts != null ? mnfAts.getPctString() : "N/a";
 	}
 	
 	public String getMnfAtsRank() {
-		return mnfAts.getRankString();
+		return mnfAts != null ? mnfAts.getRankString() : "N/a";
 	}
 	
 	public String getTntRecord() {
-		return tntRecord.getWltString();
+		return tntRecord != null ? tntRecord.getWltString() : "N/a";
 	}
 	
 	public String getTntWinPct() {
-		return tntRecord.getPctString();
+		return tntRecord != null ? tntRecord.getPctString() : "N/a";
 	}
 	
 	public String getTntRank() {
-		return tntRecord.getRankString();
+		return tntRecord != null ? tntRecord.getRankString() : "N/a";
 	}
 	
 	public String getTntAtsRecord() {
-		return tntAts.getWltString();
+		return tntAts != null ? tntAts.getWltString() : "N/a";
 	}
 	
 	public String getTntAtsWinPct() {
-		return tntAts.getPctString();
+		return tntAts != null ? tntAts.getPctString() : "N/a";
 	}
 	
 	public String getTntAtsRank() {
-		return tntAts.getRankString();
+		return tntAts != null ? tntAts.getRankString() : "N/a";
 	}
 	
 	public String getMnfTntCombinedRecord() {
-		return mnfTntCombined.getWltString();
+		return mnfTntCombined != null ? mnfTntCombined.getWltString() : "N/a";
 	}
 	
 	public String getMnfTntCombinedWinPct() {
-		return mnfTntCombined.getPctString();
+		return mnfTntCombined != null ? mnfTntCombined.getPctString() : "N/a";
 	}
 	
 	public String getMnfTntCombinedRank() {
-		return mnfTntCombined.getRankString();
+		return mnfTntCombined != null ? mnfTntCombined.getRankString() : "N/a";
 	}
 	
 	public String getMnfTntAtsRecord() {
-		return mnfTntAts.getWltString();
+		return mnfTntAts != null ? mnfTntAts.getWltString() : "N/a";
 	}
 	
 	public String getMnfTntAtsWinPct() {
-		return mnfTntAts.getPctString();
+		return mnfTntAts != null ? mnfTntAts.getPctString() : "N/a";
 	}
 	
 	public String getMnfTntAtsRank() {
-		return mnfTntAts.getRankString();
+		return mnfTntAts != null ? mnfTntAts.getRankString() : "N/a";
 	}
 	
 	public String getDivisionRecord() {
-		return divisionRecord.getWltString();
+		return divisionRecord != null ? divisionRecord.getWltString() : "N/a";
 	}
 	
 	public String getDivisionWinPct() {
-		return divisionRecord.getPctString();
+		return divisionRecord != null ? divisionRecord.getPctString() : "N/a";
 	}
 	
 	public String getDivisionRank() {
-		return divisionRecord.getRankString();
+		return divisionRecord != null ? divisionRecord.getRankString() : "N/a";
 	}
 	
 	public String getDivisionAtsRecord() {
-		return divisionAts.getWltString();
+		return divisionAts != null ? divisionAts.getWltString() : "N/a";
 	}
 	
 	public String getDivisionAtsWinPct() {
-		return divisionAts.getPctString();
+		return divisionAts != null ? divisionAts.getPctString() : "N/a";
 	}
 	
 	public String getDivisionAtsRank() {
-		return divisionAts.getRankString();
+		return divisionAts != null ? divisionAts.getRankString() : "N/a";
 	}
 	
 	public String getConferenceRecord() {
-		return conferenceRecord.getWltString();
+		return conferenceRecord != null ? conferenceRecord.getWltString() : "N/a";
 	}
 	
 	public String getConferenceWinPct() {
-		return conferenceRecord.getPctString();
+		return conferenceRecord != null ? conferenceRecord.getPctString() : "N/a";
 	}
 	
 	public String getConferenceRank() {
-		return conferenceRecord.getRankString();
+		return conferenceRecord != null ? conferenceRecord.getRankString() : "N/a";
 	}
 	
 	public String getConferenceAtsRecord() {
-		return conferenceAts.getWltString();
+		return conferenceAts != null ? conferenceAts.getWltString() : "N/a";
 	}
 	
 	public String getConferenceAtsWinPct() {
-		return conferenceAts.getPctString();
+		return conferenceAts != null ? conferenceAts.getPctString() : "N/a";
 	}
 	
 	public String getConferenceAtsRank() {
-		return conferenceAts.getRankString();
+		return conferenceAts != null ? conferenceAts.getRankString() : "N/a";
 	}
 	
 	public String getOpponentRecord() {

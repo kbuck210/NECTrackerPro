@@ -1,10 +1,8 @@
 package com.nectp.beans.ejb.daos;
 
-import java.math.BigDecimal;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.AddressFactory;
 import com.nectp.jpa.entities.Address;
@@ -14,8 +12,8 @@ public class AddressFactoryBean extends AddressServiceBean implements AddressFac
 	private static final long serialVersionUID = -4785059687448745372L;
 
 	@Override
-	public Address createAddress(String street, String city, String state, String zip, BigDecimal longitude,
-			BigDecimal latitude, String country) {
+	public Address createAddress(String street, String city, String state, String zip, String longitude,
+			String latitude, String country) {
 		Logger log = Logger.getLogger(AddressFactoryBean.class.getName());
 		Address address = null;
 		
@@ -29,11 +27,11 @@ public class AddressFactoryBean extends AddressServiceBean implements AddressFac
 				
 				//	Check whether other attributes need to be updated
 				boolean update = false;
-				if (!address.getState().equals(state)) {
+				if (address.getState() != null && !address.getState().equals(state)) {
 					address.setState(state);
 					update = true;
 				}
-				if (!address.getZip().equals(zip)) {
+				if (address.getZip() != null && !address.getZip().equals(zip)) {
 					address.setZip(zip);
 					update = true;
 				}
@@ -55,7 +53,7 @@ public class AddressFactoryBean extends AddressServiceBean implements AddressFac
 				}
 			}
 			//	If not already existing, create it
-			catch (NoResultException e) {
+			catch (NoExistingEntityException e) {
 				address = new Address();
 				address.setCity(city);
 				address.setCountry(country);

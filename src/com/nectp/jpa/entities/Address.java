@@ -4,9 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.math.BigDecimal;
-
-
 /**
  * The persistent class for the address database table.
  * 
@@ -40,10 +37,10 @@ public class Address implements Serializable {
 	private String country;
 
 	@Basic(optional=false)
-	private BigDecimal latitude;
+	private String latitude;
 
 	@Basic(optional=false)
-	private BigDecimal longitude;
+	private String longitude;
 
 	@Basic(optional=true)
 	private String state;
@@ -81,19 +78,19 @@ public class Address implements Serializable {
 		this.country = country;
 	}
 
-	public BigDecimal getLatitude() {
-		return this.latitude;
+	public String getLatitude() {
+		return latitude;
 	}
 
-	public void setLatitude(BigDecimal latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
-	public BigDecimal getLongitude() {
-		return this.longitude;
+	public String getLongitude() {
+		return longitude;
 	}
 
-	public void setLongitude(BigDecimal longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 

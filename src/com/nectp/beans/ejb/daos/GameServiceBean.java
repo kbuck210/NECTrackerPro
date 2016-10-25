@@ -35,7 +35,7 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 	private PickService pickService;
 
 	@Override
-	public Game selectGameByTeamsWeek(TeamForSeason homeTeam, TeamForSeason awayTeam, Week week) throws NoResultException {
+	public Game selectGameByTeamsWeek(TeamForSeason homeTeam, TeamForSeason awayTeam, Week week) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(GameServiceBean.class.getName());
 		Game game = null;
 		
@@ -59,7 +59,7 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 				log.warning("No games found for " + awayTeam.getTeamAbbr() + 
 						" at: " + homeTeam.getTeamAbbr() + " in week: " + week.getWeekNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving game: " + e.getMessage());
 				e.printStackTrace();
@@ -70,7 +70,7 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 	}
 
 	@Override
-	public Game selectGameByTeamWeek(TeamForSeason team, Week week) throws NoResultException {
+	public Game selectGameByTeamWeek(TeamForSeason team, Week week) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(GameServiceBean.class.getName());
 		Game game = null;
 		
@@ -93,7 +93,7 @@ public class GameServiceBean extends DataServiceBean<Game> implements GameServic
 				log.warning("No games found for " + team.getTeamAbbr() + 
 						" in week: " + week.getWeekNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving game: " + e.getMessage());
 				e.printStackTrace();

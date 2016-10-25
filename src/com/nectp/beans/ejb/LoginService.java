@@ -6,9 +6,9 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.NoResultException;
 import javax.servlet.http.Cookie;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.remote.daos.PlayerService;
 import com.nectp.jpa.entities.Player;
 import com.nectp.webtools.CookieFactory;
@@ -61,7 +61,7 @@ public class LoginService implements Serializable {
 		else {
 			try {
 				player = playerService.selectUserByPrimaryEmail(email);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				messages = "Invalid Username/Email. Please try again";
 			}
 			if (player != null) {

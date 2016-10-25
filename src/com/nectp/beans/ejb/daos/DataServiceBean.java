@@ -114,7 +114,7 @@ public class DataServiceBean<T> implements Serializable, DataService<T> {
 	public List<T> findAll() {
 		Logger log = Logger.getLogger(type.getName());
 		List<T> results;
-		String className = type.getName();
+		String className = type.getSimpleName();
 		TypedQuery<T> tq = em.createNamedQuery(className + ".findAll", type);
 		try {
 			results = tq.getResultList();

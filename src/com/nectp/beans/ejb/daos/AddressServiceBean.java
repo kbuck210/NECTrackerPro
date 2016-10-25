@@ -15,7 +15,7 @@ public class AddressServiceBean extends DataServiceBean<Address> implements Addr
 	private static final long serialVersionUID = 7816644381265595880L;
 
 	@Override
-	public Address selectByLatLon(long latitude, long longitude) throws NoResultException {
+	public Address selectByLatLon(long latitude, long longitude) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(AddressServiceBean.class.getName());
 		Address address = null;
 		TypedQuery<Address> aq = em.createNamedQuery("Address.selectByLatLon", Address.class);
@@ -24,13 +24,13 @@ public class AddressServiceBean extends DataServiceBean<Address> implements Addr
 		try {
 			address = aq.getSingleResult();
 		} catch (NonUniqueResultException e) {
-			log.severe("Multiple results found for lat: " + latitude + " long: " + longitude);
+			log.severe("Multiple results found for lat: " + latitude + " long: " + longitude + " - invalid address.");
 			log.severe(e.getMessage());
 			e.printStackTrace();
 		} catch (NoResultException e) {
 			log.warning("No results found for lat: " + latitude + " long: " + longitude);
 			log.warning(e.getMessage());
-			throw e;
+			throw new NoExistingEntityException(e);
 		} catch (Exception e) {
 			log.severe("Exception caught retrieving address: " + e.getMessage());
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class AddressServiceBean extends DataServiceBean<Address> implements Addr
 	}
 
 	@Override
-	public Address selectByStreetCity(String street, String city) throws NoResultException {
+	public Address selectByStreetCity(String street, String city) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(AddressServiceBean.class.getName());
 		Address address = null;
 		if (street == null || city == null) {
@@ -53,13 +53,13 @@ public class AddressServiceBean extends DataServiceBean<Address> implements Addr
 			try {
 				address = aq.getSingleResult();
 			} catch (NonUniqueResultException e) {
-				log.severe("Multiple results found for street: " + street + " city: " + city);
+				log.severe("Multiple results found for street: " + street + " city: " + city + " - invalid address.");
 				log.severe(e.getMessage());
 				e.printStackTrace();
 			} catch (NoResultException e) {
 				log.warning("No results found for street: " + street + " city: " + city);
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving address: " + e.getMessage());
 				e.printStackTrace();

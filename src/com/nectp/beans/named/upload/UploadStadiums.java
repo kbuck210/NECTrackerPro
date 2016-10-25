@@ -2,7 +2,6 @@ package com.nectp.beans.named.upload;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -84,9 +83,6 @@ public class UploadStadiums extends FileUploadImpl {
 			String roof = parser.getTextSubElementByTagName(e, "roof");
 			String timezone = parser.getTextSubElementByTagName(e, "timezone");
 			
-			BigDecimal latitude = new BigDecimal(lat);
-			BigDecimal longitude = new BigDecimal(lon);
-			
 			Long capacity = null;
 			try {
 				capacity = Long.parseLong(cap);
@@ -120,7 +116,7 @@ public class UploadStadiums extends FileUploadImpl {
 			}
 			
 			//	Create/update the address as read from the XML file
-			Address address = addressFactory.createAddress(street, city, state, zip, longitude, latitude, country);
+			Address address = addressFactory.createAddress(street, city, state, zip, lon, lat, country);
 			if (address == null) {
 				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Address Failure!",  
 						"Address for " + stadiumName + " could not be created/selected");

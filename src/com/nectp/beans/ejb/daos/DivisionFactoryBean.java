@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.DivisionFactory;
 import com.nectp.jpa.entities.Conference;
@@ -25,7 +24,7 @@ public class DivisionFactoryBean extends DivisionServiceBean implements Division
 			//	Check whether division already exists, if not, create it
 			try {
 				division = selectDivisionInConference(region, conference);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				division = new Division();
 				division.setRegion(region);
 				division.setConference(conference);

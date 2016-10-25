@@ -16,9 +16,9 @@ import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.ejb.ApplicationState;
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.GameContainer;
 import com.nectp.beans.remote.daos.PickFactory;
@@ -84,7 +84,7 @@ public class MakeRegularPicksBean implements Serializable, GameContainer {
 			
 			try {
 				week = weekService.selectWeekByNumberInSeason(weekNum, season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("No week found for: " + weekNumStr + " in the season! Can not load page info");
 				log.severe(e.getMessage());
 				e.printStackTrace();

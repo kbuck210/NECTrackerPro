@@ -46,7 +46,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 	}
 	
 	@Override
-	public Record selectWeekRecordForAtfs(Week week, AbstractTeamForSeason atfs, NEC recordType) throws NoResultException {
+	public Record selectWeekRecordForAtfs(Week week, AbstractTeamForSeason atfs, NEC recordType) throws NoExistingEntityException {
 		Record record = null;
 		if (week == null || atfs == null || recordType == null) {
 			log.severe("Parameters not specified, can not select Record.");
@@ -71,7 +71,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 				log.warning("No records found for " + atfs.getNickname() + " in week " 
 						+ week.getWeekNumber() + " for " + recordType.name());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving record: " + e.getMessage());
 				e.printStackTrace();
@@ -103,7 +103,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 					}
 					record = selectWeekRecordForAtfs(week, atfs, searchType);
 					agg.addRecord(record);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.warning("No Record found for week " + week.getWeekNumber() + " for " + atfs.getNickname());
 				}
 			}
@@ -134,7 +134,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 					}
 					record = selectWeekRecordForAtfs(w, atfs, searchType);
 					agg.addRecord(record);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.warning("No Record found for week " + w.getWeekNumber() + " for " + atfs.getNickname());
 				}
 			}
@@ -172,7 +172,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 					}
 					record = selectWeekRecordForAtfs(w, atfs, searchType);
 					agg.addRecord(record);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.warning("No Record found for week " + w.getWeekNumber() + " for " + atfs.getNickname());
 				}
 			}
@@ -286,7 +286,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 					Subseason firstHalf = subseasonService.selectSubseasonInSeason(NEC.FIRST_HALF, currentSeason);
 					Subseason secondHalf = subseasonService.selectSubseasonInSeason(NEC.SECOND_HALF, currentSeason);
 					endWeek = firstHalf.getWeeks().size() + secondHalf.getWeeks().size();
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.warning("No results found for subseason queries, defaulting to playoff week minus one.");
 					endWeek = currentSeason.getPlayoffStartWeek() - 1;
 				}
@@ -311,7 +311,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 			try {
 				Subseason subseason = subseasonService.selectSubseasonInSeason(ssType, currentSeason);
 				endWeek = subseason.getWeeks().size();
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.warning("No subseason found for " + ssType.toString() + ", can not get the end week!");
 			}
 		}

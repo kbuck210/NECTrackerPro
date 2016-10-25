@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.PrizeForSeasonFactory;
 import com.nectp.beans.remote.daos.PrizeService;
@@ -71,7 +70,7 @@ public class PrizeForSeasonFactoryBean extends PrizeForSeasonServiceBean impleme
 				
 			}
 			//	If no PFS found, create one
-			catch (NoResultException e) {
+			catch (NoExistingEntityException e) {
 				Prize prize = prizeService.selectPrizeByType(prizeType);
 				if (prize == null) {
 					log.severe("Error retrieving prize, can not create PrizeForSeason.");

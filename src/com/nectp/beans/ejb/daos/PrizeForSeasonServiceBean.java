@@ -28,7 +28,7 @@ public class PrizeForSeasonServiceBean extends DataServiceBean<PrizeForSeason> i
 	private RecordService recordService;
 	
 	@Override
-	public PrizeForSeason selectPrizeForSeason(NEC prizeType, Season season) throws NoResultException {
+	public PrizeForSeason selectPrizeForSeason(NEC prizeType, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(PrizeForSeasonServiceBean.class.getName());
 		PrizeForSeason pfs = null;
 		if (prizeType == null || season == null) {
@@ -47,7 +47,7 @@ public class PrizeForSeasonServiceBean extends DataServiceBean<PrizeForSeason> i
 			} catch (NoResultException e) {
 				log.warning("No prizes found for: " + prizeType.name() + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving prize for season: " + e.getMessage());
 				e.printStackTrace();

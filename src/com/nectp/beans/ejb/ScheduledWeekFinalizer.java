@@ -9,10 +9,10 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import org.w3c.dom.Element;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.xml.XmlLiveReader;
 import com.nectp.beans.remote.daos.GameFactory;
 import com.nectp.beans.remote.daos.SeasonService;
@@ -140,7 +140,7 @@ public class ScheduledWeekFinalizer {
 			try {
 				parsedSeason = seasonService.selectSeasonByYear(year);
 				parsedWeek = weekFactory.selectWeekByNumberInSeason(weekNumber, parsedSeason);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				//	TODO: log error
 				success = false;
 			}
@@ -183,7 +183,7 @@ public class ScheduledWeekFinalizer {
 						try {
 							homeTeam = tfsService.selectTfsByAbbrSeason(homeAbbr, parsedSeason);
 							awayTeam = tfsService.selectTfsByAbbrSeason(awayAbbr, parsedSeason);
-						} catch (NoResultException e) {
+						} catch (NoExistingEntityException e) {
 							log.severe("Failed to parse teams for: " + homeAbbr + " and " + awayAbbr);
 							anyErrors = true;
 							continue;
@@ -192,7 +192,7 @@ public class ScheduledWeekFinalizer {
 						Game game = null;
 						try {
 							game = gameFactory.selectGameByTeamsWeek(homeTeam, awayTeam, parsedWeek);
-						} catch (NoResultException e) {
+						} catch (NoExistingEntityException e) {
 							log.severe("Failed to retreive game in week " + parsedWeek.getWeekNumber() + 
 									" for " + homeTeam.getName() + " vs " + awayTeam.getName());
 							anyErrors = true;

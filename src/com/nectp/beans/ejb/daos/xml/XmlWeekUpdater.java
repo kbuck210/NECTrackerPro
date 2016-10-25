@@ -3,10 +3,9 @@ package com.nectp.beans.ejb.daos.xml;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.persistence.NoResultException;
-
 import org.w3c.dom.Element;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.remote.daos.GameFactory;
 import com.nectp.beans.remote.daos.StadiumService;
 import com.nectp.beans.remote.daos.SubseasonService;
@@ -64,7 +63,7 @@ public class XmlWeekUpdater {
 			Subseason subseason = null;
 			try {
 				subseason = subseasonService.selectSubseasonInSeason(subseasonType, season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("No subseason found for: " + ss + " can not add week!");
 				continue;
 			}

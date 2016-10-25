@@ -16,7 +16,7 @@ public class PrizeServiceBean extends DataServiceBean<Prize> implements PrizeSer
 	private static final long serialVersionUID = -8556516531996052943L;
 
 	@Override
-	public Prize selectPrizeByType(NEC prizeType) throws NoResultException {
+	public Prize selectPrizeByType(NEC prizeType) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(PrizeServiceBean.class.getName());
 		Prize prize = null;
 		if (prizeType == null) {
@@ -34,7 +34,7 @@ public class PrizeServiceBean extends DataServiceBean<Prize> implements PrizeSer
 			} catch (NoResultException e) {
 				log.warning("No results found for: " + prizeType.name());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving prize: " + e.getMessage());
 				e.printStackTrace();

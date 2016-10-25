@@ -12,8 +12,8 @@
 			<ui:include src="/header.xhtml" />
 		</ui:define>
 		<ui:define name="content">
-			<div class="ui-g">
-				<div class="ui-g-12 ui-md-12 ui-lg-5">
+			<div class="row">
+				<div class="small-12 medium-12 large-5 columns">
 					<!-- Do Team Profile Card -->
 					<p:panelGrid columns="2">
 						<!-- Avatar Column -->
@@ -39,13 +39,13 @@
 							<div class="row columns">
 								<div class="expanded button-group">
 									<a href="#" class="button trend-left">Division:
-										<p class="no-pad trend">#{teamStatsViewBean.divisionRank} #{teamStatsViewBean.rawRecord}</p>
+										<p class="no-pad">#{teamStatsViewBean.divisionRank} #{teamStatsViewBean.rawRecord}</p>
 									</a>
 									<a href="#" class="button trend-center">Trending:
-										<p class="no-pad trend">#{teamStatsViewBean.trending}</p>
+										<p class="no-pad">#{teamStatsViewBean.trending}</p>
 									</a>
 									<a href="#" class="button trend-right">Games Back:
-										<p class="no-pad trend">#{teamStatsViewBean.gamesBack}</p>
+										<p class="no-pad">#{teamStatsViewBean.gamesBack}</p>
 									</a>
 								</div>
 							</div>
@@ -64,6 +64,7 @@
 					</p:panelGrid>
 					
 					<!-- Team Statistics Column -->
+					<div class="row columns">
 					<p:outputPanel deferred="true">
 						<p:panelGrid>
 							<f:facet name="header">
@@ -317,10 +318,11 @@
 							</p:row>
 						</p:panelGrid>
 					</p:outputPanel>
+					</div>
 				</div>
 				
 				<!-- Team Chart -->
-				<div class="ui-g-12 ui-md-12 ui-lg-7" >
+				<div class="small-12 medium-12 large-7 columns" >
 					<p:tabView orientation="bottom" >
 						<p:tab title="Season" >
 							<div class="row columns">
@@ -361,16 +363,19 @@
 							<p:panelGrid columns="2">
 								<h3>#{nextGameBean.opponentTitle}</h3>
 								<img src="#{nextGameBean.opponentHelmet}" />
-								<p:panelGroup>
+								<h:panelGroup>
 									<h5>Game Time:</h5>
 									<p>#{nextGameBean.gameTime}</p>
 									<br/>
 									<h5>Stadium:</h5>
 									<p>#{nextGameBean.stadiumAddress}</p>
-								</p:panelGroup>
-								<p:panelGroup>
-									<p:gmap center="#{nextGameBean.latLon}" zoom="15" type="ROADMAP" style="width:100%; height:15rem" />
-								</p:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup>
+									<h3>Map:</h3>
+								</h:panelGroup>
+								<h:panelGroup>
+									<p:gmap center="#{nextGameBean.latLon}" zoom="15" type="HYBRID" style="width:100%; height:15rem" />
+								</h:panelGroup>
 							</p:panelGrid>
 						</p:outputPanel>
 					</p:fieldset>

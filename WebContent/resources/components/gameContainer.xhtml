@@ -10,7 +10,7 @@
 	   xmlns:gc="http://java.sun.com/jsf/composite/components">
 
 	<composite:interface>
-		<composite:attribute name="gcBean" type="com.nectp.beans.remote.GameContainer" required="true" />
+		<composite:attribute name="gameBeans" required="true" />
 		<composite:attribute name="headline" required="true" />
 		<composite:attribute name="subheadline" />
 		<composite:attribute name="blogstyle" default="other-games" />
@@ -23,8 +23,9 @@
 			<h3 class="picks-headline">#{cc.attrs.headline}<small class="week-number">#{cc.attrs.subheadline}</small></h3>
           </div>
           
-          <ui:repeat value="#{cc.attrs.gcBean.gameBeans}" var="gameBean">
-          	<gc:gameRow rowId="#{gameBean.rowId}"
+          <ui:repeat value="#{cc.attrs.gameBeans}" var="gameBean">
+          	<gc:gameRow   season="#{gameBean.seasonNumber}"
+          				  rowId="#{gameBean.rowId}"
           				  homeCity="#{gameBean.homeCity}" 
           				  homeRecord="#{gameBean.homeRecord}"
           				  homeScore="#{gameBean.homeScore}" 

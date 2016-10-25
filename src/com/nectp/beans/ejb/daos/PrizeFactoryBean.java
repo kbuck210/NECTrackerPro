@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.PrizeFactory;
 import com.nectp.jpa.constants.NEC;
@@ -27,7 +26,7 @@ public class PrizeFactoryBean extends PrizeServiceBean implements PrizeFactory {
 				prize = selectPrizeByType(prizeType);
 			} 
 			//	If no prize found for the specified type, create a new one
-			catch (NoResultException e) {
+			catch (NoExistingEntityException e) {
 				prize = new Prize();
 				prize.setPrizeType(prizeType);
 				

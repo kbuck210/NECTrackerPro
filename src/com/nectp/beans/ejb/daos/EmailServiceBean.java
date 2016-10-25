@@ -38,7 +38,7 @@ public class EmailServiceBean extends DataServiceBean<Email> implements EmailSer
 	}
 
 	@Override
-	public Email selectEmailForPlayer(String emailAddress, Player player) throws NoResultException {
+	public Email selectEmailForPlayer(String emailAddress, Player player) throws NoExistingEntityException {
 		Email email = null;
 		if (player != null) {
 			TypedQuery<Email> eq = em.createNamedQuery("Email.selectByAddressName", Email.class);
@@ -47,13 +47,13 @@ public class EmailServiceBean extends DataServiceBean<Email> implements EmailSer
 			try {
 				email = eq.getSingleResult();
 			} catch (NonUniqueResultException e) {
-				log.severe("Multiple results found for: " + emailAddress + " - " + player.getName());
+				log.severe("Multiple results found for: " + emailAddress + " - " + player.getName() + " - invalid result.");
 				log.severe(e.getMessage());
 				e.printStackTrace();
 			} catch (NoResultException e) {
 				log.warning("No Results found for: " + emailAddress + " - " + player.getName());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving email: " + e.getMessage());
 				e.printStackTrace();

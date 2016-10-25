@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.EmailFactory;
 import com.nectp.jpa.entities.Email;
@@ -42,7 +41,7 @@ public class EmailFactoryBean extends EmailServiceBean implements EmailFactory {
 				}
 			} 
 			//	If no email already exists, create one
-			catch (NoResultException e) {
+			catch (NoExistingEntityException e) {
 				email = new Email();
 				email.setEmailAddress(emailAddress);
 				email.setEmailsRequested(emailsRequested);

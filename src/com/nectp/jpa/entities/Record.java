@@ -29,7 +29,18 @@ import com.nectp.jpa.constants.NEC;
 					+ "INNER JOIN FETCH w.games g "
 					+ "WHERE r.week.weekId = w.weekId "
 					+ "AND g.week.weekId = w.weekId "
-					+ "AND g.homeTeam.abstractTeamForSeasonId = :atfsId")
+					+ "AND g.homeTeam.abstractTeamForSeasonId = :atfsId"),
+	@NamedQuery(name="Record.selectRecordForGame",
+				query="SELECT DISTINCT r FROM Record r "
+					+ "INNER JOIN FETCH r.week w "
+					+ "INNER JOIN FETCH w.games g "
+					+ "INNER JOIN FETCH r.team atfs "
+					+ "INNER JOIN FETCH g.homeTeam ht "
+					+ "INNER JOIN FETCH g.awayTeam at "
+					+ "WHERE (atfs.abstractTeamForSeasonId = ht.abstractTeamForSeasonId "
+					+ "OR atfs.abstractTeamForSeasonId = at.abstractTeamForSeasonId) "
+					+ "AND atfs.abstractTeamForSeasonId = :atfsId "
+					+ "AND g.gameId = :gameId")
 })
 public class Record implements Serializable {
 	private static final long serialVersionUID = 1L;

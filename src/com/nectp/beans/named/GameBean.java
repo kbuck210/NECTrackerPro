@@ -24,6 +24,7 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	
 	private NEC gameDisplayType = NEC.SEASON;
 	
+	private String seasonNumber;
 	private String rowId;
 	private String homeCity;
 	private String homeRecord;
@@ -84,6 +85,7 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	 */
 	public void setGame(Game game) {
 		this.game = game;
+		this.seasonNumber = game.getWeek().getSubseason().getSeason().getSeasonNumber().toString();
 		TeamForSeason homeTeam = game.getHomeTeam();
 		TeamForSeason awayTeam = game.getAwayTeam();
 		checkPickedTeam(homeTeam, awayTeam);
@@ -112,6 +114,10 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 				this.awaySelected = "selected";
 			}
 		}
+	}
+	
+	public String getSeasonNumber() {
+		return seasonNumber;
 	}
 	
 	public void setSinglePick(boolean singlePick) {

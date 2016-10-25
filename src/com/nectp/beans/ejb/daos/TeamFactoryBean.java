@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.TeamFactory;
 import com.nectp.jpa.entities.Team;
@@ -26,7 +25,7 @@ public class TeamFactoryBean extends TeamServiceBean implements TeamFactory {
 				log.info("Franchise exists for: " + franchiseId.toString());
 			} 
 			//	If no results found, create new team
-			catch (NoResultException e) {
+			catch (NoExistingEntityException e) {
 				team = new Team();
 				team.setFranchiseId(franchiseId);
 				

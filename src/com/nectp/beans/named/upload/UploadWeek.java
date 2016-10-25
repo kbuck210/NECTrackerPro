@@ -8,12 +8,12 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.w3c.dom.Element;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.xml.XmlWeekUpdater;
 import com.nectp.beans.remote.daos.GameFactory;
 import com.nectp.beans.remote.daos.SeasonService;
@@ -155,7 +155,7 @@ public class UploadWeek extends FileUploadImpl {
 		Subseason subseason = null;
 		try {
 			subseason = subseasonService.selectSubseasonInSeason(subseasonType, season);
-		} catch (NoResultException e) {
+		} catch (NoExistingEntityException e) {
 			log.severe("No subseason found for: " + ss + " in NEC " + season.getSeasonNumber());
 			log.severe(e.getMessage());
 		}

@@ -15,7 +15,7 @@ public class PlayerServiceBean extends DataServiceBean<Player> implements Player
 	private static final long serialVersionUID = -366842462668067744L;
 
 	@Override
-	public Player selectUserByPrimaryEmail(String emailAddress) throws NoResultException {
+	public Player selectUserByPrimaryEmail(String emailAddress) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(PlayerServiceBean.class.getName());
 		Player player = null;
 		if (emailAddress == null) {
@@ -33,7 +33,7 @@ public class PlayerServiceBean extends DataServiceBean<Player> implements Player
 			} catch (NoResultException e) {
 				log.warning("No users found for primary email: " + emailAddress);
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving user: " + e.getMessage());
 				e.printStackTrace();
@@ -44,7 +44,7 @@ public class PlayerServiceBean extends DataServiceBean<Player> implements Player
 	}
 
 	@Override
-	public Player selectPlayerByName(String playerName) throws NoResultException {
+	public Player selectPlayerByName(String playerName) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(PlayerServiceBean.class.getName());
 		Player player = null;
 		if (playerName == null) {
@@ -62,7 +62,7 @@ public class PlayerServiceBean extends DataServiceBean<Player> implements Player
 			} catch (NoResultException e) {
 				log.warning("No players found for name: " + playerName);
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception caught retrieving player: " + e.getMessage());
 				e.printStackTrace();

@@ -7,10 +7,10 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import org.w3c.dom.Element;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.xml.XmlLiveReader;
 import com.nectp.beans.remote.daos.GameFactory;
 import com.nectp.beans.remote.daos.SeasonService;
@@ -143,7 +143,7 @@ public class LiveDataService {
 			try {
 				homeTeam = tfsService.selectTfsByAbbrSeason(homeAbbr, currentSeason);
 				awayTeam = tfsService.selectTfsByAbbrSeason(awayAbbr, currentSeason);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("Failed to retrieve home/away teams for: " + homeAbbr + ", " + awayAbbr);
 				log.severe(e.getMessage());
 				anyErrors = true;
@@ -153,7 +153,7 @@ public class LiveDataService {
 			Game game = null;
 			try {
 				game = gameFactory.selectGameByTeamsWeek(homeTeam, awayTeam, currentWeek);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("No game found for " + homeAbbr + " vs " + awayAbbr 
 						+ " in week " + currentWeek.getWeekNumber());
 				log.severe(e.getMessage());

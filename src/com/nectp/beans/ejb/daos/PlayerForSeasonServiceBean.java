@@ -17,7 +17,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	private static final long serialVersionUID = 3227697810038205133L;
 
 	@Override
-	public PlayerForSeason selectPlayerInSeason(Player player, Season season) throws NoResultException {
+	public PlayerForSeason selectPlayerInSeason(Player player, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
 		PlayerForSeason pfs = null;
 		if (player == null || season == null) {
@@ -36,7 +36,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 			} catch (NoResultException e) {
 				log.warning("No result found for " + player.getName() + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
 				e.printStackTrace();
@@ -47,7 +47,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	}
 
 	@Override
-	public PlayerForSeason selectPlayerByExcelName(String excelName, Season season) throws NoResultException {
+	public PlayerForSeason selectPlayerByExcelName(String excelName, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
 		PlayerForSeason pfs = null;
 		if (excelName == null || season == null) {
@@ -66,7 +66,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 			} catch (NoResultException e) {
 				log.warning("No result found for " + excelName + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
 				e.printStackTrace();
@@ -77,7 +77,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	}
 
 	@Override
-	public PlayerForSeason selectPlayerByExcelCol(int excelCol, Season season) throws NoResultException {
+	public PlayerForSeason selectPlayerByExcelCol(int excelCol, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
 		PlayerForSeason pfs = null;
 		if (season == null) {
@@ -96,7 +96,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 			} catch (NoResultException e) {
 				log.warning("No result found for column " + excelCol + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
 				e.printStackTrace();
@@ -107,7 +107,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	}
 
 	@Override
-	public PlayerForSeason selectCommishBySeason(Season season) throws NoResultException {
+	public PlayerForSeason selectCommishBySeason(Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(PlayerForSeasonService.class.getName());
 		PlayerForSeason commish = null;
 		if (season == null) {
@@ -125,7 +125,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 			} catch (NoResultException e) {
 				log.warning("No commisioner found for season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception thrown retrieving commish: " + e.getMessage());
 				e.printStackTrace();
@@ -136,7 +136,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 	}
 
 	@Override
-	public PlayerForSeason selectPlayerByNickname(String nickname, Season season) throws NoResultException {
+	public PlayerForSeason selectPlayerByNickname(String nickname, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(PlayerForSeasonServiceBean.class.getName());
 		PlayerForSeason pfs = null;
 		if (nickname == null || season == null) {
@@ -155,7 +155,7 @@ public class PlayerForSeasonServiceBean extends DataServiceBean<PlayerForSeason>
 			} catch (NoResultException e) {
 				log.warning("No result found for " + nickname + " in season " + season.getSeasonNumber());
 				log.warning(e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.severe("Exception thrown retrieving PFS: " + e.getMessage());
 				e.printStackTrace();

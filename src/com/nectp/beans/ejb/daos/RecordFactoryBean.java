@@ -3,7 +3,6 @@ package com.nectp.beans.ejb.daos;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.RecordFactory;
 import com.nectp.jpa.constants.NEC;
@@ -29,7 +28,7 @@ public class RecordFactoryBean extends RecordServiceBean implements RecordFactor
 			//	Check whether the record already exists, if not, create it
 			try {
 				record = selectWeekRecordForAtfs(week, atfs, recordType);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				record = new Record();
 				record.setRecordType(recordType);
 				
@@ -97,7 +96,7 @@ public class RecordFactoryBean extends RecordServiceBean implements RecordFactor
 					update(record);
 				}
 				
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				record = new Record();
 				record.setRecordType(week.getSubseason().getSubseasonType());
 				

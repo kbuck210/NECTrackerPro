@@ -1,7 +1,6 @@
 package com.nectp.beans.ejb.daos;
 
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import com.nectp.beans.remote.daos.SubseasonFactory;
 import com.nectp.jpa.constants.NEC;
@@ -18,7 +17,7 @@ public class SubseasonFactoryBean extends SubseasonServiceBean implements Subsea
 		//	Check if the specified subseason already exists, if so, return the existing subseason
 		try {
 			subseason = selectSubseasonInSeason(subseasonType, season);
-		} catch (NoResultException e) {
+		} catch (NoExistingEntityException e) {
 			subseason = new Subseason();
 			subseason.setSeason(season);
 			subseason.setSubseasonType(subseasonType);

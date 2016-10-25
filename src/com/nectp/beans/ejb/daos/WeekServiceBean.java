@@ -50,7 +50,7 @@ public class WeekServiceBean extends DataServiceBean<Week> implements WeekServic
 	}
 	
 	@Override
-	public Week selectWeekByNumberInSeason(int weekNumber, Season season) throws NoResultException {
+	public Week selectWeekByNumberInSeason(int weekNumber, Season season) throws NoExistingEntityException {
 		Logger log = Logger.getLogger(WeekServiceBean.class.getName());
 		Week selectedWeek = null;
 		if (season == null) {
@@ -69,7 +69,7 @@ public class WeekServiceBean extends DataServiceBean<Week> implements WeekServic
 			} catch (NoResultException e) {
 				log.log(Level.WARNING, "No weeks found for week: " + weekNumber + " in season " + season.getSeasonNumber());
 				log.log(Level.WARNING, e.getMessage());
-				throw e;
+				throw new NoExistingEntityException(e);
 			} catch (Exception e) {
 				log.log(Level.SEVERE, "Exception caught in retrieving week: " + e.getMessage());
 				e.printStackTrace();
@@ -91,9 +91,6 @@ public class WeekServiceBean extends DataServiceBean<Week> implements WeekServic
 			wq.setParameter("seasonNumber", season.getSeasonNumber());
 			try {
 				weeks = wq.getResultList();
-			} catch (NoResultException e) {
-				log.log(Level.WARNING, "No weeks found in season " + season.getSeasonNumber());
-				log.log(Level.WARNING, e.getMessage());
 			} catch (Exception e) {
 				log.log(Level.SEVERE, "Exception caught in retrieving weeks: " + e.getMessage());
 				e.printStackTrace();

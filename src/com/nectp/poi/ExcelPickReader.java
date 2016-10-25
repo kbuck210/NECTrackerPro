@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -20,6 +19,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.PickFactory;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
@@ -205,7 +205,7 @@ public class ExcelPickReader {
 				if (season != null) {
 					try {
 						currentWeek = weekService.selectWeekByNumberInSeason(weekNum, season);
-					} catch (NoResultException e) {
+					} catch (NoExistingEntityException e) {
 						log.severe("Failed to retrieve week " + weekNum + " in season " + seasonNum + ", can not process picks.");
 						log.severe(e.getMessage());
 						return false;
@@ -225,7 +225,7 @@ public class ExcelPickReader {
 						//	Get the player for the specified nickname
 						try {
 							player = pfsService.selectPlayerByExcelName(playerName, season);
-						} catch (NoResultException e) {
+						} catch (NoExistingEntityException e) {
 							log.severe("Failed to retrieve PFS for " + playerName + " - can not upload picks!");
 							log.severe(e.getMessage());
 							return false;
@@ -347,7 +347,7 @@ public class ExcelPickReader {
 		if (teamCity != null && teamCity.trim().toUpperCase().equals("NY GIANTS")) {
 			try {
 				team = tfsService.selectTfsByAbbrSeason("NYG", season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("Could not select the Giants for season: " + season.getSeasonNumber() + " - can not upload picks!");
 				log.severe(e.getMessage());
 			}
@@ -355,7 +355,7 @@ public class ExcelPickReader {
 		else if (teamCity != null && teamCity.trim().toUpperCase().equals("NY JETS")) {
 			try {
 				team = tfsService.selectTfsByAbbrSeason("NYJ", season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("Could not select the Jets for season: " + season.getSeasonNumber() + " - can not upload picks!");
 				log.severe(e.getMessage());
 			}
@@ -363,7 +363,7 @@ public class ExcelPickReader {
 		else if (teamCity != null) {
 			try {
 				team = tfsService.selectTfsByCitySeason(teamCity, season);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("Could not select " + teamCity + " for season: " + season.getSeasonNumber() + " - can not upload picks!");
 				log.severe(e.getMessage());
 			}
@@ -497,7 +497,7 @@ public class ExcelPickReader {
 				Game game = null;
 				try {
 					game = gameService.selectGameByTeamWeek(pick, currentWeek);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.severe("Failed to get game for the picked team! can not create pick");
 					log.severe(e.getMessage());
 					continue;
@@ -529,7 +529,7 @@ public class ExcelPickReader {
 			Game game = null;
 			try {
 				game = gameService.selectGameByTeamWeek(pickedTeam, currentWeek);
-			} catch (NoResultException e) {
+			} catch (NoExistingEntityException e) {
 				log.severe("Failed to get game for the picked TNO team! can not create pick");
 				log.severe(e.getMessage());
 				continue;
@@ -563,7 +563,7 @@ public class ExcelPickReader {
 				Game game = null;
 				try {
 					game = gameService.selectGameByTeamWeek(pick, currentWeek);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.severe("Failed to get game for the picked MNF team! can not create pick");
 					log.severe(e.getMessage());
 					continue;
@@ -598,7 +598,7 @@ public class ExcelPickReader {
 				Game game = null;
 				try {
 					game = gameService.selectGameByTeamWeek(pick, currentWeek);
-				} catch (NoResultException e) {
+				} catch (NoExistingEntityException e) {
 					log.severe("Failed to get game for the picked TNT team! can not create pick");
 					log.severe(e.getMessage());
 					continue;
