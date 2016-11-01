@@ -4,6 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.nectp.jpa.entities.Division.Region;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -112,6 +114,15 @@ public class Conference implements Serializable {
 		division.setConference(null);
 
 		return division;
+	}
+	
+	public Division getDivisionForRegion(Region region) {
+		for (Division division : divisions) {
+			if (division.getRegion().equals(region)){
+				return division;
+			}
+		}
+		return null;
 	}
 
 	@Override

@@ -39,7 +39,7 @@ public class AbstractTeamForSeason implements Serializable, Comparable<AbstractT
 	//bi-directional many-to-one association to Record
 	@OneToMany(mappedBy="team")
 	private List<Record> records;
-
+	
 	public AbstractTeamForSeason() {
 		records = new LinkedList<Record>();
 	}
@@ -107,13 +107,12 @@ public class AbstractTeamForSeason implements Serializable, Comparable<AbstractT
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof AbstractTeamForSeason)) {
-            return false;
+        	return false;
         }
         AbstractTeamForSeason other = (AbstractTeamForSeason) object;
         if ((this.abstractTeamForSeasonId == null && other.abstractTeamForSeasonId != null) || (this.abstractTeamForSeasonId != null && !this.abstractTeamForSeasonId.equals(other.abstractTeamForSeasonId))) {
-            return false;
+        	return false;
         }
         return true;
     }

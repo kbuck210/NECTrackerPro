@@ -12,13 +12,19 @@
 			<ui:include src="/header.xhtml" />
 		</ui:define>
 		<ui:define name="content">
+			<f:metadata>
+				<f:viewParam id="nec" name="nec" value="#{teamProfileBean.nec}" required="true" />
+				<f:viewParam id="teamAbbr" name="teamAbbr" value="#{teamProfileBean.teamAbbr}" required="true" />
+				<f:event type="preRenderView" listener="#{teamProfileBean.initialize}" /> 
+			</f:metadata>
+			
 			<div class="row">
 				<div class="small-12 medium-12 large-5 columns">
 					<!-- Do Team Profile Card -->
 					<p:panelGrid columns="2">
 						<!-- Avatar Column -->
 						<div class="show-for-medium-up medium-4 columns">
-							<img class="helmet-avatar" src="#{teamChartBean.displayedTeam.homeHelmetUrl}" />
+							<img class="helmet-avatar" src="#{teamProfileBean.profileEntity.homeHelmetUrl}" />
 							<hr/>
 							<a href="#" class="expanded button">Edit Info:</a>
 						</div>
@@ -26,10 +32,10 @@
 						<!-- Team Info Col -->
 						<div class="medium-8 columns">
 							<div class="row columns nickname-col no-pad">
-								<h1 class="nickname no-pad">#{teamChartBean.displayedTeam.teamCity}</h1>
+								<h1 class="nickname no-pad">#{teamProfileBean.profileEntity.teamCity}</h1>
 							</div>
 							<div class="row columns">
-								<h3>#{teamChartBean.displayedTeam.name}</h3>
+								<h3>#{teamChartBean.profileEntity.name}</h3>
 							</div>
 							<div class="row columns">
 								<h5>Active Since 2005</h5>
@@ -39,13 +45,13 @@
 							<div class="row columns">
 								<div class="expanded button-group">
 									<a href="#" class="button trend-left">Division:
-										<p class="no-pad">#{teamStatsViewBean.divisionRank} #{teamStatsViewBean.rawRecord}</p>
+										<p class="no-pad">#{teamStatsBean.divisionRank} #{teamStatsBean.rawRecord}</p>
 									</a>
 									<a href="#" class="button trend-center">Trending:
-										<p class="no-pad">#{teamStatsViewBean.trending}</p>
+										<p class="no-pad">#{teamStatsBean.trending}</p>
 									</a>
 									<a href="#" class="button trend-right">Games Back:
-										<p class="no-pad">#{teamStatsViewBean.gamesBack}</p>
+										<p class="no-pad">#{teamStatsBean.gamesBack}</p>
 									</a>
 								</div>
 							</div>
@@ -69,7 +75,7 @@
 						<p:panelGrid>
 							<f:facet name="header">
 								<p:row>
-									<p:column colspan="4">NEC #{teamStatsViewBean.seasonNumber} Stats:</p:column>
+									<p:column colspan="4">NEC #{teamStatsBean.seasonNumber} Stats:</p:column>
 								</p:row>
 								<p:row>
 									<p:column></p:column>
@@ -81,128 +87,128 @@
 							
 							<p:row>
 								<p:column>Overall Record:</p:column>
-								<p:column>#{teamStatsViewBean.rawRecord}</p:column>
-								<p:column>#{teamStatsViewBean.rawWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.rawRank}</p:column>
+								<p:column>#{teamStatsBean.rawRecord}</p:column>
+								<p:column>#{teamStatsBean.rawWinPct}</p:column>
+								<p:column>#{teamStatsBean.rawRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Overall vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.recordAts}</p:column>
-								<p:column>#{teamStatsViewBean.atsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.atsRank}</p:column>
+								<p:column>#{teamStatsBean.recordAts}</p:column>
+								<p:column>#{teamStatsBean.atsWinPct}</p:column>
+								<p:column>#{teamStatsBean.atsRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Home Record:</p:column>
-								<p:column>#{teamStatsViewBean.homeRecord}</p:column>
-								<p:column>#{teamStatsViewBean.homeWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.homeRank}</p:column>
+								<p:column>#{teamStatsBean.homeRecord}</p:column>
+								<p:column>#{teamStatsBean.homeWinPct}</p:column>
+								<p:column>#{teamStatsBean.homeRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Home vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.homeAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.homeAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.homeAtsRank}</p:column>
+								<p:column>#{teamStatsBean.homeAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.homeAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.homeAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Road Record:</p:column>
-								<p:column>#{teamStatsViewBean.roadRecord}</p:column>
-								<p:column>#{teamStatsViewBean.roadWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.roadRank}</p:column>
+								<p:column>#{teamStatsBean.roadRecord}</p:column>
+								<p:column>#{teamStatsBean.roadWinPct}</p:column>
+								<p:column>#{teamStatsBean.roadRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Road vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.roadAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.roadAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.roadAtsRank}</p:column>
+								<p:column>#{teamStatsBean.roadAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.roadAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.roadAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Primetime Record:</p:column>
-								<p:column>#{teamStatsViewBean.primetimeRecord}</p:column>
-								<p:column>#{teamStatsViewBean.primetimeWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.primetimeRank}</p:column>
+								<p:column>#{teamStatsBean.primetimeRecord}</p:column>
+								<p:column>#{teamStatsBean.primetimeWinPct}</p:column>
+								<p:column>#{teamStatsBean.primetimeRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Primetime vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.primetimeAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.primetimeAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.primetimeAtsRank}</p:column>
+								<p:column>#{teamStatsBean.primetimeAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.primetimeAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.primetimeAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>MNF Record:</p:column>
-								<p:column>#{teamStatsViewBean.mnfRecord}</p:column>
-								<p:column>#{teamStatsViewBean.mnfWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.mnfRank}</p:column>
+								<p:column>#{teamStatsBean.mnfRecord}</p:column>
+								<p:column>#{teamStatsBean.mnfWinPct}</p:column>
+								<p:column>#{teamStatsBean.mnfRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>MNF vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.mnfAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.mnfAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.mnfAtsRank}</p:column>
+								<p:column>#{teamStatsBean.mnfAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.mnfAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.mnfAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>TNT Record:</p:column>
-								<p:column>#{teamStatsViewBean.tntRecord}</p:column>
-								<p:column>#{teamStatsViewBean.tntWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.tntRank}</p:column>
+								<p:column>#{teamStatsBean.tntRecord}</p:column>
+								<p:column>#{teamStatsBean.tntWinPct}</p:column>
+								<p:column>#{teamStatsBean.tntRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>TNT vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.tntAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.tntAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.tntAtsRank}</p:column>
+								<p:column>#{teamStatsBean.tntAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.tntAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.tntAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>MNF/TNT Combined:</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntCombinedRecord}</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntCombinedWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntCombinedRank}</p:column>
+								<p:column>#{teamStatsBean.mnfTntCombinedRecord}</p:column>
+								<p:column>#{teamStatsBean.mnfTntCombinedWinPct}</p:column>
+								<p:column>#{teamStatsBean.mnfTntCombinedRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>MNF/TNT vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntAtsRank}</p:column>
+								<p:column>#{teamStatsBean.mnfTntAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.mnfTntAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.mnfTntAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.divisionName} Record:</p:column>
-								<p:column>#{teamStatsViewBean.divisionRecord}</p:column>
-								<p:column>#{teamStatsViewBean.divisionWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.divisionRank}</p:column>
+								<p:column>#{teamStatsBean.divisionName} Record:</p:column>
+								<p:column>#{teamStatsBean.divisionRecord}</p:column>
+								<p:column>#{teamStatsBean.divisionWinPct}</p:column>
+								<p:column>#{teamStatsBean.divisionRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.divisionName} vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.divisionAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.divisionAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.divisionAtsRank}</p:column>
+								<p:column>#{teamStatsBean.divisionName} vs Spread:</p:column>
+								<p:column>#{teamStatsBean.divisionAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.divisionAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.divisionAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.conferenceName} Record:</p:column>
-								<p:column>#{teamStatsViewBean.conferenceRecord}</p:column>
-								<p:column>#{teamStatsViewBean.conferenceWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.conferenceRank}</p:column>
+								<p:column>#{teamStatsBean.conferenceName} Record:</p:column>
+								<p:column>#{teamStatsBean.conferenceRecord}</p:column>
+								<p:column>#{teamStatsBean.conferenceWinPct}</p:column>
+								<p:column>#{teamStatsBean.conferenceRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.conferenceName} vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.conferenceAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.conferenceAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.conferenceAtsRank}</p:column>
+								<p:column>#{teamStatsBean.conferenceName} vs Spread:</p:column>
+								<p:column>#{teamStatsBean.conferenceAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.conferenceAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.conferenceAtsRank}</p:column>
 							</p:row>
 						</p:panelGrid>
 						<hr/>
@@ -221,100 +227,100 @@
 							
 							<p:row>
 								<p:column>Opponent Record:</p:column>
-								<p:column>#{teamStatsViewBean.opponentRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentRank}</p:column>
+								<p:column>#{teamStatsBean.opponentRecord}</p:column>
+								<p:column>#{teamStatsBean.opponentWinPct}</p:column>
+								<p:column>#{teamStatsBean.opponentRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Opponent vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.opponentAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentAtsRank}</p:column>
+								<p:column>#{teamStatsBean.opponentAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.opponentAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.opponentAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Last 5 Games vs Opponent:</p:column>
-								<p:column>#{teamStatsViewBean.last5Record}</p:column>
-								<p:column>#{teamStatsViewBean.last5WinPct}</p:column>
+								<p:column>#{teamStatsBean.last5Record}</p:column>
+								<p:column>#{teamStatsBean.last5WinPct}</p:column>
 								<p:column></p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Last 5 vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.last5AtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.last5AtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.last5AtsRecord}</p:column>
+								<p:column>#{teamStatsBean.last5AtsWinPct}</p:column>
 								<p:column></p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Opponent Division Record:</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionRank}</p:column>
+								<p:column>#{teamStatsBean.opponentDivisionRecord}</p:column>
+								<p:column>#{teamStatsBean.opponentDivisionWinPct}</p:column>
+								<p:column>#{teamStatsBean.opponentDivisionRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Opponent Division vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionAtsRank}</p:column>
+								<p:column>#{teamStatsBean.opponentDivisionAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.opponentDivisionAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.opponentDivisionAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Opponent Conference Record:</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceRank}</p:column>
+								<p:column>#{teamStatsBean.opponentConferenceRecord}</p:column>
+								<p:column>#{teamStatsBean.opponentConferenceWinPct}</p:column>
+								<p:column>#{teamStatsBean.opponentConferenceRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>Opponent Conference vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceAtsRank}</p:column>
+								<p:column>#{teamStatsBean.opponentConferenceAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.opponentConferenceAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.opponentConferenceAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Record in #{teamStatsViewBean.stadiumName}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumRecord}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumRank}</p:column>
+								<p:column>Record in #{teamStatsBean.stadiumName}</p:column>
+								<p:column>#{teamStatsBean.stadiumRecord}</p:column>
+								<p:column>#{teamStatsBean.stadiumWinPct}</p:column>
+								<p:column>#{teamStatsBean.stadiumRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.stadiumName} vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.stadiumAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumAtsRank}</p:column>
+								<p:column>#{teamStatsBean.stadiumName} vs Spread:</p:column>
+								<p:column>#{teamStatsBean.stadiumAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.stadiumAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.stadiumAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Record in #{teamStatsViewBean.roofType} Roof:</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeRecord}</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeRank}</p:column>
+								<p:column>Record in #{teamStatsBean.roofType} Roof:</p:column>
+								<p:column>#{teamStatsBean.roofTypeRecord}</p:column>
+								<p:column>#{teamStatsBean.roofTypeWinPct}</p:column>
+								<p:column>#{teamStatsBean.roofTypeRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.roofType} Roof vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeAtsRank}</p:column>
+								<p:column>#{teamStatsBean.roofType} Roof vs Spread:</p:column>
+								<p:column>#{teamStatsBean.roofTypeAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.roofTypeAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.roofTypeAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.timezone} Timezone Record:</p:column>
-								<p:column>#{teamStatsViewBean.timezoneRecord}</p:column>
-								<p:column>#{teamStatsViewBean.timezoneWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.timezoneRank}</p:column>
+								<p:column>#{teamStatsBean.timezone} Timezone Record:</p:column>
+								<p:column>#{teamStatsBean.timezoneRecord}</p:column>
+								<p:column>#{teamStatsBean.timezoneWinPct}</p:column>
+								<p:column>#{teamStatsBean.timezoneRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.timezone} Timezone vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.timezoneAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.timezoneAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.timezoneAtsRank}</p:column>
+								<p:column>#{teamStatsBean.timezone} Timezone vs Spread:</p:column>
+								<p:column>#{teamStatsBean.timezoneAtsRecord}</p:column>
+								<p:column>#{teamStatsBean.timezoneAtsWinPct}</p:column>
+								<p:column>#{teamStatsBean.timezoneAtsRank}</p:column>
 							</p:row>
 						</p:panelGrid>
 					</p:outputPanel>
@@ -388,4 +394,5 @@
 		</ui:define>
 	</ui:decorate>
 </html>
+
 

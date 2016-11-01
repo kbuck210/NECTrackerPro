@@ -23,7 +23,7 @@ import com.nectp.jpa.entities.Record;
 import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.Week;
 
-@Named(value="playerProfileBean")
+@Named(value="playerProfileBeanOrig")
 @ViewScoped
 public class PlayerProfileBean implements Serializable {
 	private static final long serialVersionUID = 1810019242255191136L;

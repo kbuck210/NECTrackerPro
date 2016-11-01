@@ -2740,6 +2740,7 @@
 				<homeScore>34</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
+				<spread2>7</spread2>
 				<awayScore>17</awayScore>
 				<awayTeam>CHI</awayTeam>
 				<date>11.27.2014</date>
@@ -2752,6 +2753,7 @@
 				<homeScore>10</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
+				<spread2>3</spread2>
 				<awayScore>33</awayScore>
 				<awayTeam>PHI</awayTeam>
 				<date>11.27.2014</date>
@@ -2764,6 +2766,7 @@
 				<homeScore>3</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>1</spread1>
+				<spread2>1</spread2>
 				<awayScore>19</awayScore>
 				<awayTeam>SEA</awayTeam>
 				<date>11.27.2014</date>
@@ -2776,6 +2779,7 @@
 				<homeScore>49</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>9.5</spread1>
+				<spread2>9.5</spread2>
 				<awayScore>27</awayScore>
 				<awayTeam>WAS</awayTeam>
 				<date>11.30.2014</date>
@@ -2858,6 +2862,7 @@
 				<homeScore>52</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
+				<spread2>7</spread2>
 				<awayScore>0</awayScore>
 				<awayTeam>OAK</awayTeam>
 				<date>11.30.2014</date>
@@ -2898,6 +2903,7 @@
 				<homeScore>29</homeScore>
 				<homeFavored1>N</homeFavored1>
 				<spread1>2.5</spread1>
+				<spread2>2.5</spread2>
 				<awayScore>18</awayScore>
 				<awayTeam>ARI</awayTeam>
 				<date>11.30.2014</date>
@@ -2910,6 +2916,7 @@
 				<homeScore>26</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
+				<spread2>3</spread2>
 				<awayScore>21</awayScore>
 				<awayTeam>NE</awayTeam>
 				<date>11.30.2014</date>

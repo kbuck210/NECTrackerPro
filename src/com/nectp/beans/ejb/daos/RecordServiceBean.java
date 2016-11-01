@@ -20,7 +20,6 @@ import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
-import com.nectp.jpa.entities.Pick.PickType;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.Record;
 import com.nectp.jpa.entities.Season;
@@ -93,7 +92,6 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 			
 			//	Create a list to store all of the weeks corresponding to the specified record (using default ranges)
 			List<Week> weeksForRecord = getWeekRangeList(season, recordType, null, null);
-			
 			for (Week week : weeksForRecord) {
 				Record record = null;
 				try {
@@ -308,11 +306,18 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 			endWeek = currentWeek.getWeekNumber();
 		}
 		else {
-			try {
-				Subseason subseason = subseasonService.selectSubseasonInSeason(ssType, currentSeason);
-				endWeek = subseason.getWeeks().size();
-			} catch (NoExistingEntityException e) {
-				log.warning("No subseason found for " + ssType.toString() + ", can not get the end week!");
+			switch(ssType) {
+			case FIRST_HALF:
+				endWeek = currentSeason.getSecondHalfStartWeek() - 1;
+				break;
+			case SECOND_HALF:
+				endWeek = currentSeason.getPlayoffStartWeek() - 1;
+				break;
+			case PLAYOFFS:
+				endWeek = currentSeason.getSuperbowlWeek() - 2;
+				break;
+			default:
+				endWeek = currentSeason.getSuperbowlWeek();
 			}
 		}
 		return endWeek;
@@ -358,52 +363,49 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 			
 			boolean recordUpdated = false;
 			
-			//	If the pick is independent of the spread, add a raw win/loss based on the pick
-			TeamForSeason winner;
-			if (p.getPickType().equals(PickType.STRAIGHT_UP)) {
-				winner = game.getWinner();
-				if (winner == null) {
-					applicableRecord.addTie();
-					recordUpdated = true;
-				}
-				else if (pickedTeam.equals(winner)) {
-					applicableRecord.addWin();
-					recordUpdated = true;
-				}
-				else {
-					applicableRecord.addLoss();
-					recordUpdated = true;
-				}
+			//	update wins/losses for raw winners & ats1 winners
+			TeamForSeason winner = game.getWinner();
+			TeamForSeason winnerAts1 = game.getWinnerATS1();
+			
+			if (winner == null) {
+				applicableRecord.addTie();
+				recordUpdated = true;
 			}
+			else if (pickedTeam.equals(winner)) {
+				applicableRecord.addWin();
+				recordUpdated = true;
+			}
+			else {
+				applicableRecord.addLoss();
+				recordUpdated = true;
+			}
+			
+			if (winnerAts1 == null) {
+				applicableRecord.addTieATS1();
+				recordUpdated = true;
+			}
+			else if (pickedTeam.equals(winnerAts1)) {
+				applicableRecord.addWinATS1();
+				recordUpdated = true;
+			}
+			else {
+				applicableRecord.addLossATS1();
+				recordUpdated = true;
+			}
+			
 			//	If the pick is dependent on spread2, add a win/loss ATS based on the pick
-			else if (p.getPickType().equals(PickType.SPREAD2)) {
-				winner = game.getWinnerATS2();
-				if (winner == null) {
-					applicableRecord.addTie();
+			if (game.getSpread2() != null) {
+				TeamForSeason winnerAts2 = game.getWinnerATS2();
+				if (winnerAts2 == null) {
+					applicableRecord.addTieATS2();
 					recordUpdated = true;
 				}
-				else if (pickedTeam.equals(winner)) {
+				else if (pickedTeam.equals(winnerAts2)) {
 					applicableRecord.addWinATS2();
 					recordUpdated = true;
 				}
 				else {
 					applicableRecord.addLossATS2();
-					recordUpdated = true;
-				}
-			}
-			//	If the pick is dependent on spread1, add a win/loss ATS based on the pick	
-			else {
-				winner = game.getWinnerATS1();
-				if (winner == null) {
-					applicableRecord.addTie();
-					recordUpdated = true;
-				}
-				else if (pickedTeam.equals(winner)) {
-					applicableRecord.addWinATS1();
-					recordUpdated = true;
-				}
-				else {
-					applicableRecord.addLossATS1();
 					recordUpdated = true;
 				}
 			}

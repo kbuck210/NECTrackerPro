@@ -65,28 +65,62 @@ public class RecordFactoryBean extends RecordServiceBean implements RecordFactor
 				boolean update = false;
 				GameStatus gameStatus = game.getGameStatus();
 				if (gameStatus == GameStatus.FINAL) {
-					//	TODO: look into whether ATS scores also need to be added
-					if (game.getWinner() == null) {
-						if (record.getTies() == 0) {
-							record.addTie();
-							record.setWins(0);
-							record.setLosses(0);
+					//	Set the raw scores for the game
+					if (game.getWinner() == null && record.getTies() != 1) {
+						record.setTies(1);
+						record.setWins(0);
+						record.setLosses(0);
+						update = true;
+					}
+					else if (game.getWinner() != null && game.getWinner().equals(team) && record.getWins() != 1) {
+						record.setWins(1);
+						record.setLosses(0);
+						record.setTies(0);
+						update = true;
+					}
+					else if (record.getLosses() != 1){
+						record.setLosses(1);
+						record.setWins(0);
+						record.setTies(0);
+						update = true;
+					}
+					//	Set the ATS1 scores for the game
+					if (game.getWinnerATS1() == null && record.getTiesATS1() != 1) {
+						record.setTiesATS1(1);
+						record.setWinsATS1(0);
+						record.setLossesATS1(0);
+						update = true;
+					}
+					else if (game.getWinnerATS1() != null && game.getWinnerATS1().equals(team) && record.getWinsATS1() != 1) {
+						record.setWins(1);
+						record.setLosses(0);
+						record.setTies(0);
+						update = true;
+					}
+					else if (record.getLossesATS1() != 1) {
+						record.setLossesATS1(1);
+						record.setWinsATS1(0);
+						record.setTiesATS1(0);
+						update = true;
+					}
+					//	Set the ATS2 scores for the game (if any exist)
+					if (game.getSpread2() != null) {
+						if (game.getWinnerATS2() == null && record.getTiesATS2() != 1) {
+							record.setTiesATS2(1);
+							record.setWinsATS2(0);
+							record.setLossesATS2(0);
 							update = true;
 						}
-					}
-					else if (game.getWinner().equals(team)) {
-						if (record.getWins() == 0) {
-							record.addWin();
-							record.setLosses(0);
-							record.setTies(0);
+						else if (game.getWinnerATS2() != null && game.getWinnerATS2().equals(team) && record.getWinsATS2() != 1) {
+							record.setWinsATS2(1);
+							record.setLossesATS2(0);
+							record.setTiesATS2(0);
 							update = true;
 						}
-					}
-					else {
-						if (record.getLosses() == 0) {
-							record.addLoss();
-							record.setWins(0);
-							record.setTies(0);
+						else if (record.getLossesATS2() != 1) {
+							record.setLossesATS2(1);
+							record.setWinsATS2(0);
+							record.setTiesATS2(0);
 							update = true;
 						}
 					}
@@ -108,14 +142,19 @@ public class RecordFactoryBean extends RecordServiceBean implements RecordFactor
 				
 				GameStatus gameStatus = game.getGameStatus();
 				if (gameStatus != null && gameStatus == GameStatus.FINAL) {
-					if (game.getWinner() == null) {
-						record.addTie();
-					}
-					else if (game.getWinner().equals(team)) {
-						record.addWin();
-					}
-					else {
-						record.addLoss();
+					//	Add W/L/T if the game is final
+					if (game.getWinner() == null) record.addTie();
+					else if (game.getWinner().equals(team)) record.addWin();
+					else record.addLoss();
+					
+					if (game.getWinnerATS1() == null) record.addTieATS1();
+					else if (game.getWinnerATS1().equals(team)) record.addWinATS1();
+					else record.addLossATS1();
+					
+					if (game.getSpread2() != null) {
+						if (game.getWinnerATS2() == null) record.addTieATS2();
+						else if (game.getWinnerATS2().equals(team)) record.addWinATS2();
+						else record.addLossATS2();
 					}
 				}
 				

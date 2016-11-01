@@ -1,6 +1,5 @@
 package com.nectp.beans.ejb.daos.xml;
 
-import java.math.BigDecimal;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Logger;
@@ -44,8 +43,8 @@ public class XmlGameUpdater {
 			String homeScoreStr = parser.getTextSubElementByTagName(g, "homeScore");
 			String homeFavored1 = parser.getTextSubElementByTagName(g, "homeFavored1");
 			String homeFavored2 = parser.getTextSubElementByTagName(g, "homeFavored2");
-			String spread1Str = parser.getTextSubElementByTagName(g, "spread1");
-			String spread2Str = parser.getTextSubElementByTagName(g, "spread2");
+			String spread1 = parser.getTextSubElementByTagName(g, "spread1");
+			String spread2 = parser.getTextSubElementByTagName(g, "spread2");
 			String awayTeam = parser.getTextSubElementByTagName(g, "awayTeam");
 			String awayScoreStr = parser.getTextSubElementByTagName(g, "awayScore");
 			String gameDate = parser.getTextSubElementByTagName(g, "date");
@@ -81,9 +80,6 @@ public class XmlGameUpdater {
 			Boolean isHomeFavored1 = homeFavored1 != null ? homeFavored1.toUpperCase().equals("Y") : null;
 			Boolean isHomeFavored2 = homeFavored2 != null ? homeFavored2.toUpperCase().equals("Y") : null;
 			
-			BigDecimal spread1 = spread1Str != null ? new BigDecimal(spread1Str) : null;
-			BigDecimal spread2 = spread2Str != null ? new BigDecimal(spread2Str) : null;
-			
 			GregorianCalendar gameCal = null;
 			if (gameDate != null && kickoff != null) {
 				String[] dateParts = gameDate.split("\\.");
@@ -94,7 +90,7 @@ public class XmlGameUpdater {
 				boolean pm;
 				if (dateParts.length == 3) {
 					try {
-						month = Integer.parseInt(dateParts[0]);
+						month = Integer.parseInt(dateParts[0]) - 1;	//	Month is zero-based
 						day = Integer.parseInt(dateParts[1]);
 						year = Integer.parseInt(dateParts[2]);
 					} catch (NumberFormatException e) {

@@ -38,7 +38,7 @@ import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
 
-@Named(value="teamChartBean")
+@Named(value="teamChartBeanOrig")
 @ViewScoped
 public class TeamChartBean implements Serializable {
 	private static final long serialVersionUID = -3539268203660128108L;

@@ -199,9 +199,17 @@ public class ScheduledWeekFinalizer {
 							continue;
 						}
 						
+						String spread1 = null, spread2 = null;
+						if (game.getSpread1() != null) {
+							spread1 = game.getSpread1().toPlainString();
+						}
+						if (game.getSpread2() != null) {
+							spread2 = game.getSpread2().toPlainString();
+						}
+						
 						//	Call the create game method to update any attributes for the game that have changed
 						gameFactory.createGameInWeek(parsedWeek, homeTeam, awayTeam, homeScore, awayScore, 
-								game.getSpread1(), game.getSpread2(), gameDate, GameStatus.FINAL, 
+								spread1, spread2, gameDate, GameStatus.FINAL, 
 								game.getHomeFavoredSpread1(), game.getHomeFavoredSpread2(), 
 								"FINAL", null, false, game.getStadium());
 					}

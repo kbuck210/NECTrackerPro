@@ -1,6 +1,5 @@
 package com.nectp.beans.ejb.daos;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.logging.Logger;
 
@@ -24,7 +23,7 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 	
 	@Override
 	public Game createGameInWeek(Week week, TeamForSeason homeTeam, TeamForSeason awayTeam, Integer homeScore,
-			Integer awayScore, BigDecimal spread1, BigDecimal spread2, Calendar gameDate, GameStatus gameStatus,
+			Integer awayScore, String spread1, String spread2, Calendar gameDate, GameStatus gameStatus,
 			Boolean homeFavoredSpread1, Boolean homeFavoredSpread2, String timeRemaining, 
 			String possession, boolean redzone, Stadium stadium) 
 	{

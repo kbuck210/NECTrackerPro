@@ -31,7 +31,7 @@ import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.Week;
 
-@Named(value="playerChartBean")
+@Named(value="playerChartBeanOrig")
 @ViewScoped
 public class PlayerChartBean implements Serializable {
 	private static final long serialVersionUID = -2035195378076290794L;

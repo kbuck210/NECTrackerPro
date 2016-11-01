@@ -12,13 +12,18 @@
 			<ui:include src="/header.xhtml" />
 		</ui:define>
 		<ui:define name="content">
+			<f:metadata>
+				<f:viewParam id="nec" name="nec" value="#{playerProfileBean.nec}" required="true" />
+				<f:viewParam id="pfsId" name="pfsId" value="#{playerProfileBean.pfsId}" required="true" />
+				<f:event type="preRenderView" listener="#{playerProfileBean.initialize}" />
+			</f:metadata>
 			<div class="ui-g">
 				<div class="ui-g-12 ui-md-12 ui-lg-5">
 					<!-- Do Team Profile Card -->
 					<p:panelGrid columns="2">
 						<!-- Avatar Column -->
 						<div class="show-for-medium-up medium-4 columns">
-							<img class="thumbnail avatar" src="#{playerProfileBean.avatarUrl}" />
+							<img class="thumbnail avatar" src="#{playerProfileBean.profileEntity.player.avatarUrl}" />
 							<hr/>
 							<a href="#" class="expanded button">Edit Info:</a>
 						</div>
@@ -26,26 +31,26 @@
 						<!-- Player Info Col -->
 						<div class="medium-8 columns">
 							<div class="row columns nickname-col no-pad">
-								<h1 class="nickname no-pad">#{playerProfileBean.nickname}</h1>
+								<h1 class="nickname no-pad">#{playerProfileBean.profileEntity.nickname}</h1>
 							</div>
 							<div class="row columns">
-								<h3>#{playerProfileBean.playerName}</h3>
+								<h3>#{playerProfileBean.profileEntity.player.name}</h3>
 							</div>
 							<div class="row columns">
-								<h5>Active Since #{playerProfileBean.sinceYear}</h5>
+								<h5>Active Since #{playerProfileBean.profileEntity.player.sinceYear}</h5>
 							</div>
 		
 							<!-- trend button row -->
 							<div class="row columns">
 								<div class="expanded button-group">
 									<a href="#" class="button trend-left">Score:
-										<p class="no-pad trend">#{playerProfileBean.score}</p>
+										<p class="no-pad trend">#{playerStatsBean.score}</p>
 									</a>
 									<a href="#" class="button trend-center">Trending:
-										<p class="no-pad trend">#{playerProfileBean.trending}</p>
+										<p class="no-pad trend">#{playerStatsBean.trending}</p>
 									</a>
 									<a href="#" class="button trend-right">Leader:
-										<p class="no-pad trend">#{playerProfileBean.leaderScore}</p>
+										<p class="no-pad trend">#{playerStatsBean.leaderScore}</p>
 									</a>
 								</div>
 							</div>
@@ -65,10 +70,10 @@
 					
 					<!-- Player Statistics Column -->
 					<p:outputPanel deferred="true">
-						<p:panelGrid>
+						<p:panelGrid responsive="true">
 							<f:facet name="header">
 								<p:row>
-									<p:column colspan="4">NEC #{playerProfileBean.seasonNumber} Stats:</p:column>
+									<p:column colspan="4">NEC #{playerStatsBean.seasonNumber} Stats:</p:column>
 								</p:row>
 								<p:row>
 									<p:column></p:column>
@@ -79,262 +84,320 @@
 							</f:facet>
 							
 							<p:row>
-								<p:column>Overall Record:</p:column>
-								<p:column>#{teamStatsViewBean.rawRecord}</p:column>
-								<p:column>#{teamStatsViewBean.rawWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.rawRank}</p:column>
+								<p:column colspan="4" styleClass="ui-widget-header">Score Statistics: </p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Overall vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.recordAts}</p:column>
-								<p:column>#{teamStatsViewBean.atsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.atsRank}</p:column>
+								<p:column>First Half Straight-Up Wins:</p:column>
+								<p:column>#{playerStatsBean.firstHalfRecord}</p:column>
+								<p:column>#{playerStatsBean.firstHalfWinPct}</p:column>
+								<p:column>#{playerStatsBean.firstHalfRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Home Record:</p:column>
-								<p:column>#{teamStatsViewBean.homeRecord}</p:column>
-								<p:column>#{teamStatsViewBean.homeWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.homeRank}</p:column>
+								<p:column>First Half Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.firstHalfRecordAts}</p:column>
+								<p:column>#{playerStatsBean.firstHalfWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.firstHalfRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Home vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.homeAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.homeAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.homeAtsRank}</p:column>
+								<p:column>Second Half Straight-Up Wins:</p:column>
+								<p:column>#{playerStatsBean.secondHalfRecord}</p:column>
+								<p:column>#{playerStatsBean.secondHalfWinPct}</p:column>
+								<p:column>#{playerStatsBean.secondHalfRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Road Record:</p:column>
-								<p:column>#{teamStatsViewBean.roadRecord}</p:column>
-								<p:column>#{teamStatsViewBean.roadWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.roadRank}</p:column>
+								<p:column>Second Half Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.secondHalfRecordAts}</p:column>
+								<p:column>#{playerStatsBean.secondHalfWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.secondHalfRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Road vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.roadAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.roadAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.roadAtsRank}</p:column>
+								<p:column>Playoffs Straight-Up Wins:</p:column>
+								<p:column>#{playerStatsBean.playoffsRecord}</p:column>
+								<p:column>#{playerStatsBean.playoffsWinPct}</p:column>
+								<p:column>#{playerStatsBean.playoffsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Primetime Record:</p:column>
-								<p:column>#{teamStatsViewBean.primetimeRecord}</p:column>
-								<p:column>#{teamStatsViewBean.primetimeWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.primetimeRank}</p:column>
+								<p:column>Playoffs Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.playoffsRecordAts}</p:column>
+								<p:column>#{playerStatsBean.playoffsWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.playoffsRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Primetime vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.primetimeAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.primetimeAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.primetimeAtsRank}</p:column>
+								<p:column>Overall Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.rawRecord}</p:column>
+								<p:column>#{playerStatsBean.rawWinPct}</p:column>
+								<p:column>#{playerStatsBean.rawRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>MNF Record:</p:column>
-								<p:column>#{teamStatsViewBean.mnfRecord}</p:column>
-								<p:column>#{teamStatsViewBean.mnfWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.mnfRank}</p:column>
+								<p:column>Overall Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.recordAts}</p:column>
+								<p:column>#{playerStatsBean.atsWinPct}</p:column>
+								<p:column>#{playerStatsBean.atsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>MNF vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.mnfAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.mnfAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.mnfAtsRank}</p:column>
+								<p:column>MNF Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.mnfRecord}</p:column>
+								<p:column>#{playerStatsBean.mnfWinPct}</p:column>
+								<p:column>#{playerStatsBean.mnfRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>TNT Record:</p:column>
-								<p:column>#{teamStatsViewBean.tntRecord}</p:column>
-								<p:column>#{teamStatsViewBean.tntWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.tntRank}</p:column>
+								<p:column>MNF Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.mnfAtsRecord}</p:column>
+								<p:column>#{playerStatsBean.mnfAtsWinPct}</p:column>
+								<p:column>#{playerStatsBean.mnfAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>TNT vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.tntAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.tntAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.tntAtsRank}</p:column>
+								<p:column>TNT Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.tntRecord}</p:column>
+								<p:column>#{playerStatsBean.tntWinPct}</p:column>
+								<p:column>#{playerStatsBean.tntRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>MNF/TNT Combined:</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntCombinedRecord}</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntCombinedWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntCombinedRank}</p:column>
+								<p:column>TNT Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.tntAtsRecord}</p:column>
+								<p:column>#{playerStatsBean.tntAtsWinPct}</p:column>
+								<p:column>#{playerStatsBean.tntAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>MNF/TNT vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.mnfTntAtsRank}</p:column>
+								<p:column>MNF/TNT Straight-Up Combined:</p:column>
+								<p:column>#{playerStatsBean.mnfTntCombinedRecord}</p:column>
+								<p:column>#{playerStatsBean.mnfTntCombinedWinPct}</p:column>
+								<p:column>#{playerStatsBean.mnfTntCombinedRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.divisionName} Record:</p:column>
-								<p:column>#{teamStatsViewBean.divisionRecord}</p:column>
-								<p:column>#{teamStatsViewBean.divisionWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.divisionRank}</p:column>
+								<p:column>MNF/TNT Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.mnfTntAtsRecord}</p:column>
+								<p:column>#{playerStatsBean.mnfTntAtsWinPct}</p:column>
+								<p:column>#{playerStatsBean.mnfTntAtsRank}</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column colspan="4" styleClass="ui-widget-header">Pick Statistics: </p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.divisionName} vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.divisionAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.divisionAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.divisionAtsRank}</p:column>
+								<p:column>Home Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.homeRecord}</p:column>
+								<p:column>#{playerStatsBean.homeWinPct}</p:column>
+								<p:column>#{playerStatsBean.homeRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.conferenceName} Record:</p:column>
-								<p:column>#{teamStatsViewBean.conferenceRecord}</p:column>
-								<p:column>#{teamStatsViewBean.conferenceWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.conferenceRank}</p:column>
+								<p:column>Home Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.homeAtsRecord}</p:column>
+								<p:column>#{playerStatsBean.homeAtsWinPct}</p:column>
+								<p:column>#{playerStatsBean.homeAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.conferenceName} vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.conferenceAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.conferenceAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.conferenceAtsRank}</p:column>
-							</p:row>
-						</p:panelGrid>
-						<hr/>
-						<p:panelGrid>
-							<f:facet name="header">
-								<p:row>
-									<p:column colspan="4">Next Game Stats:</p:column>
-								</p:row>
-								<p:row>
-									<p:column></p:column>
-									<p:column>Record:</p:column>
-									<p:column>Win %:</p:column>
-									<p:column>Rank:</p:column>
-								</p:row>
-							</f:facet>
-							
-							<p:row>
-								<p:column>Opponent Record:</p:column>
-								<p:column>#{teamStatsViewBean.opponentRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentRank}</p:column>
+								<p:column>Road Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.roadRecord}</p:column>
+								<p:column>#{playerStatsBean.roadWinPct}</p:column>
+								<p:column>#{playerStatsBean.roadRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Opponent vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.opponentAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentAtsRank}</p:column>
+								<p:column>Road Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.roadAtsRecord}</p:column>
+								<p:column>#{playerStatsBean.roadAtsWinPct}</p:column>
+								<p:column>#{playerStatsBean.roadAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Last 5 Games vs Opponent:</p:column>
-								<p:column>#{teamStatsViewBean.last5Record}</p:column>
-								<p:column>#{teamStatsViewBean.last5WinPct}</p:column>
-								<p:column></p:column>
+								<p:column>Primetime Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.primetimeRecord}</p:column>
+								<p:column>#{playerStatsBean.primetimeWinPct}</p:column>
+								<p:column>#{playerStatsBean.primetimeRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Last 5 vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.last5AtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.last5AtsWinPct}</p:column>
-								<p:column></p:column>
+								<p:column>Primetime Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.primetimeAtsRecord}</p:column>
+								<p:column>#{playerStatsBean.primetimeAtsWinPct}</p:column>
+								<p:column>#{playerStatsBean.primetimeAtsRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Opponent Division Record:</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionRank}</p:column>
+								<p:column colspan="4" styleClass="ui-widget-header">AFC Statistics: </p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Opponent Division vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentDivisionAtsRank}</p:column>
+								<p:column>AFC Overall Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.afcRecord}</p:column>
+								<p:column>#{playerStatsBean.afcWinPct}</p:column>
+								<p:column>#{playerStatsBean.afcRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Opponent Conference Record:</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceRank}</p:column>
+								<p:column>AFC Overall Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.afcRecordAts}</p:column>
+								<p:column>#{playerStatsBean.afcWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.afcRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Opponent Conference vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.opponentConferenceAtsRank}</p:column>
+								<p:column>AFC East Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.afcEastRecord}</p:column>
+								<p:column>#{playerStatsBean.afcEastWinPct}</p:column>
+								<p:column>#{playerStatsBean.afcRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Record in #{teamStatsViewBean.stadiumName}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumRecord}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumRank}</p:column>
+								<p:column>AFC East Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.afcEastRecordAts}</p:column>
+								<p:column>#{playerStatsBean.afcEastWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.afcRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.stadiumName} vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.stadiumAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.stadiumAtsRank}</p:column>
+								<p:column>AFC North Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.afcRecord}</p:column>
+								<p:column>#{playerStatsBean.afcWinPct}</p:column>
+								<p:column>#{playerStatsBean.afcRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>Record in #{teamStatsViewBean.roofType} Roof:</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeRecord}</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeRank}</p:column>
+								<p:column>AFC North Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.afcRecordAts}</p:column>
+								<p:column>#{playerStatsBean.afcWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.afcRankAts}</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>AFC South Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.afcRecord}</p:column>
+								<p:column>#{playerStatsBean.afcWinPct}</p:column>
+								<p:column>#{playerStatsBean.afcRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.roofType} Roof vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.roofTypeAtsRank}</p:column>
+								<p:column>AFC South Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.afcRecordAts}</p:column>
+								<p:column>#{playerStatsBean.afcWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.afcRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.timezone} Timezone Record:</p:column>
-								<p:column>#{teamStatsViewBean.timezoneRecord}</p:column>
-								<p:column>#{teamStatsViewBean.timezoneWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.timezoneRank}</p:column>
+								<p:column>AFC West Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.afcRecord}</p:column>
+								<p:column>#{playerStatsBean.afcWinPct}</p:column>
+								<p:column>#{playerStatsBean.afcRank}</p:column>
 							</p:row>
 							
 							<p:row>
-								<p:column>#{teamStatsViewBean.timezone} Timezone vs Spread:</p:column>
-								<p:column>#{teamStatsViewBean.timezoneAtsRecord}</p:column>
-								<p:column>#{teamStatsViewBean.timezoneAtsWinPct}</p:column>
-								<p:column>#{teamStatsViewBean.timezoneAtsRank}</p:column>
+								<p:column>AFC West Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.afcRecordAts}</p:column>
+								<p:column>#{playerStatsBean.afcWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.afcRankAts}</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column colspan="4" styleClass="ui-widget-header">NFC Statistics: </p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>NFC Overall Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.nfcRecord}</p:column>
+								<p:column>#{playerStatsBean.nfcWinPct}</p:column>
+								<p:column>#{playerStatsBean.nfcRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>NFC Overall Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.nfcRecordAts}</p:column>
+								<p:column>#{playerStatsBean.nfcWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.nfcRankAts}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>NFC East Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.nfcEastRecord}</p:column>
+								<p:column>#{playerStatsBean.nfcEastWinPct}</p:column>
+								<p:column>#{playerStatsBean.nfcRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>NFC East Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.nfcEastRecordAts}</p:column>
+								<p:column>#{playerStatsBean.nfcEastWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.nfcRankAts}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>NFC North Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.nfcRecord}</p:column>
+								<p:column>#{playerStatsBean.nfcWinPct}</p:column>
+								<p:column>#{playerStatsBean.nfcRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>NFC North Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.nfcRecordAts}</p:column>
+								<p:column>#{playerStatsBean.nfcWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.nfcRankAts}</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>NFC South Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.nfcRecord}</p:column>
+								<p:column>#{playerStatsBean.nfcWinPct}</p:column>
+								<p:column>#{playerStatsBean.nfcRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>NFC South Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.nfcRecordAts}</p:column>
+								<p:column>#{playerStatsBean.nfcWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.nfcRankAts}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>NFC West Straight-Up Record:</p:column>
+								<p:column>#{playerStatsBean.nfcRecord}</p:column>
+								<p:column>#{playerStatsBean.nfcWinPct}</p:column>
+								<p:column>#{playerStatsBean.nfcRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>NFC West Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.nfcRecordAts}</p:column>
+								<p:column>#{playerStatsBean.nfcWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.nfcRankAts}</p:column>
 							</p:row>
 						</p:panelGrid>
 					</p:outputPanel>
 				</div>
 				
-				<!-- Team Chart -->
+				<!-- Player Chart -->
 				<div class="ui-g-12 ui-md-12 ui-lg-7" >
 					<p:tabView orientation="bottom" activeIndex="#{playerChartBean.activeIndex}" >
 						<p:tab title="First Half" id="firstHalfTab" >
 							<div class="row columns">
-								<p:chart type="line" model="#{playerChartBean.firstHalfChartModel}" style="height:25rem;" responsive="true" />
+								<p:chart type="line" model="#{playerChartBean.firstHalfModel}" style="height:25rem;" responsive="true" />
 							</div>
 						</p:tab>
 						<p:tab title="Second Half" id="secondHalfTab" >
 							<div class="row columns">
-								<p:chart type="line" model="#{playerChartBean.secondHalfChartModel}" style="height:25rem;" responsive="true" />
+								<p:chart type="line" model="#{playerChartBean.secondHalfModel}" style="height:25rem;" responsive="true" />
 							</div>
 						</p:tab> 
 						<p:tab title="Playoffs" id="playoffsTab" >
 							<div class="row columns">
-								<p:chart type="line" model="#{playerChartBean.playoffChartModel}"  />
+								<p:chart type="line" model="#{playerChartBean.playoffModel}"  />
 							</div>
 						</p:tab>
 						<p:tab title="Season" id="seasonTab" >
@@ -342,12 +405,12 @@
 								<p:chart type="line" model="#{playerChartBean.seasonChartModel}" style="height:25rem;" responsive="true" />
 							</div>
 						</p:tab>
-						 <p:ajax event="tabChange" listener="#{playerChartBean.onTabChange}" update="summary"/>
+						 <p:ajax event="tabChange" listener="#{playerChartBean.onTabChange}" />
 					</p:tabView>
 					
-					<p:fieldSet legend="Summary:">
+					<p:fieldset legend="Summary:">
 						<p id="summary">#{playerChartBean.summary}</p>
-					</p:fieldSet>	
+					</p:fieldset>	
 				</div>
 			</div>
 		</ui:define>

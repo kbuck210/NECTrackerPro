@@ -1,6 +1,5 @@
 package com.nectp.beans.remote.daos;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 
 import com.nectp.jpa.entities.Game;
@@ -16,8 +15,8 @@ public interface GameFactory extends GameService {
 								 TeamForSeason awayTeam, 
 								 Integer homeScore, 
 								 Integer awayScore, 
-								 BigDecimal spread1, 
-								 BigDecimal spread2, 
+								 String spread1, 
+								 String spread2, 
 								 Calendar gameDate,
 								 GameStatus gameStatus,
 								 Boolean homeFavoredSpread1,

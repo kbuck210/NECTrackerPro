@@ -178,8 +178,16 @@ public class LiveDataService {
 		
 			boolean redZone = !"0".equals(red_zone);
 			
+			String spread1 = null, spread2 = null;
+			if (game.getSpread1() != null) {
+				spread1 = game.getSpread1().toPlainString();
+			}
+			if (game.getSpread2() != null) {
+				spread2 = game.getSpread2().toPlainString();
+			}
+			
 			Game updated = gameFactory.createGameInWeek(currentWeek, homeTeam, awayTeam, homeScore, 
-					awayScore, game.getSpread1(), game.getSpread2(), parsedDate, 
+					awayScore, spread1, spread2, parsedDate, 
 					newStatus, game.getHomeFavoredSpread1(), game.getHomeFavoredSpread2(), 
 					parsedTimeRemaining, possession, redZone, game.getStadium());
 			if (updated == null) {

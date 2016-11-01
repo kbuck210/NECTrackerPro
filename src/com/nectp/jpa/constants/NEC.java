@@ -19,7 +19,8 @@ public enum NEC {
 	TNT,
 	TWO_AND_OUT, 
 	ONE_AND_OUT,
-	POW;
+	POW,
+	ALL_TIME;
 	
 	@Override
 	public String toString() {
@@ -48,6 +49,8 @@ public enum NEC {
 			return "One and Out";
 		case POW:
 			return "Pick of the week";
+		case ALL_TIME:
+			return "All Time";
 		default:
 			return null;
 		}

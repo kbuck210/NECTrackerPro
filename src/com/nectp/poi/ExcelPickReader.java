@@ -133,6 +133,8 @@ public class ExcelPickReader {
 			boolean picksMade = false;
 			if (sheetSuccess) {
 				picksMade = makePicks();
+				
+				//	If the picks were made, update non-specific records (i.e. mnf/tnt, moneyback, 
 			}
 			
 			//	After picks attempted to be made, close the workbook
@@ -487,12 +489,24 @@ public class ExcelPickReader {
 			PickType pickType = useSpread2(player, pickedTeams) ? PickType.SPREAD2 : PickType.SPREAD1;
 			NEC subseasonType = currentWeek.getSubseason().getSubseasonType();
 			
-			//	Create the player record if not already exists
-			Record record = recordFactory.createWeekRecordForAtfs(currentWeek, player, subseasonType);
-			if (record == null) {
+			//	Create the player record if not already exists, otherwise retrieve existing
+			Record subseasonRecord = recordFactory.createWeekRecordForAtfs(currentWeek, player, subseasonType);
+			if (subseasonRecord == null) {
 				log.severe("Failed to create/retrieve record for: " + player.getNickname() + " can't create picks!");
 				continue;
 			}
+			//	Check if picks already exist for this record (i.e. a reupload of the pick sheet), if so, remove old picks
+			else if (!subseasonRecord.getPicksInRecord().isEmpty()) {
+				List<Pick> failedDeletes = pickFactory.removePicksForReplacement(subseasonRecord);
+				if (!failedDeletes.isEmpty()) {
+					log.severe("Failed to delete existing picks before replacement! Can not replace picks.");
+					for (Pick p : failedDeletes) {
+						log.severe("FAILED DELETE: PickID " + p.getPickId());
+					}
+					return false;
+				}
+			}
+			
 			for (TeamForSeason pick : pickedTeams) {
 				Game game = null;
 				try {
@@ -502,7 +516,8 @@ public class ExcelPickReader {
 					log.severe(e.getMessage());
 					continue;
 				}
-				Pick p = pickFactory.createPlayerPickForRecord(record, game, pick, pickType);
+				//	Create pick for the subseason
+				Pick p = pickFactory.createPlayerPickForRecord(subseasonRecord, game, pick, pickType);
 				if (p == null) {
 					success = false;
 				}
@@ -526,6 +541,18 @@ public class ExcelPickReader {
 				log.severe("Failed to create/retrieve TNO record for: " + player.getNickname() + " can't create picks!");
 				continue;
 			}
+			//	Check if picks already exist for this record (i.e. a reupload of the pick sheet), if so, remove old picks
+			else if (!record.getPicksInRecord().isEmpty()) {
+				List<Pick> failedDeletes = pickFactory.removePicksForReplacement(record);
+				if (!failedDeletes.isEmpty()) {
+					log.severe("Failed to delete existing picks before replacement! Can not replace picks.");
+					for (Pick p : failedDeletes) {
+						log.severe("FAILED DELETE: PickID " + p.getPickId());
+					}
+					return false;
+				}
+			}
+			
 			Game game = null;
 			try {
 				game = gameService.selectGameByTeamWeek(pickedTeam, currentWeek);
@@ -559,6 +586,18 @@ public class ExcelPickReader {
 				log.severe("Failed to create/retrieve MNF record for: " + player.getNickname() + " can't create picks!");
 				continue;
 			}
+			//	Check if picks already exist for this record (i.e. a reupload of the pick sheet), if so, remove old picks
+			else if (!record.getPicksInRecord().isEmpty()) {
+				List<Pick> failedDeletes = pickFactory.removePicksForReplacement(record);
+				if (!failedDeletes.isEmpty()) {
+					log.severe("Failed to delete existing picks before replacement! Can not replace picks.");
+					for (Pick p : failedDeletes) {
+						log.severe("FAILED DELETE: PickID " + p.getPickId());
+					}
+					return false;
+				}
+			}
+			
 			for (TeamForSeason pick : pickedTeams) {
 				Game game = null;
 				try {
@@ -594,6 +633,18 @@ public class ExcelPickReader {
 				log.severe("Failed to create/retrieve TNT record for: " + player.getNickname() + " can't create picks!");
 				continue;
 			}
+			//	Check if picks already exist for this record (i.e. a reupload of the pick sheet), if so, remove old picks
+			else if (!record.getPicksInRecord().isEmpty()) {
+				List<Pick> failedDeletes = pickFactory.removePicksForReplacement(record);
+				if (!failedDeletes.isEmpty()) {
+					log.severe("Failed to delete existing picks before replacement! Can not replace picks.");
+					for (Pick p : failedDeletes) {
+						log.severe("FAILED DELETE: PickID " + p.getPickId());
+					}
+					return false;
+				}
+			}
+			
 			for (TeamForSeason pick : pickedTeams) {
 				Game game = null;
 				try {

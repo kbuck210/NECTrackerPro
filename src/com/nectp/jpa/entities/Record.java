@@ -252,6 +252,18 @@ public class Record implements Serializable {
 	public void setTieModifier(int tieModifier) {
 		this.tieModifier = tieModifier;
 	}
+	
+	public void reset() {
+		wins = 0;
+		winsATS1 = 0;
+		winsATS2 = 0;
+		losses = 0;
+		lossesATS1 = 0;
+		lossesATS2 = 0;
+		ties = 0;
+		tiesATS1 = 0;
+		tiesATS2 = 0;
+	}
 
 	public AbstractTeamForSeason getTeam() {
 		return this.team;

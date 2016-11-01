@@ -75,6 +75,7 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 			log.warning("Attempting to add Null record, scores not processed.");
 		}
 		else if (!record.getTeam().equals(atfs)) {
+			log.warning("Objects not equal: RaggId: " + atfs.getAbstractTeamForSeasonId() + " RecordId: " + record.getTeam().getAbstractTeamForSeasonId());
 			log.warning("Attempting to add record for incorrect Team to aggregation, scores not processed.");
 		}
 		else {

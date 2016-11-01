@@ -1,5 +1,6 @@
 package com.nectp.beans.ejb.daos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -67,7 +68,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				Record applicableRecord = null;
 				try {
 					//	If the record doesn't already exist, creates one
-					applicableRecord = recordFactory.createWeekRecordForAtfs(week, pickedTeam, pickFor);
+					applicableRecord = recordFactory.createWeekRecordForAtfs(week, player, pickFor);
 					pick.setApplicableRecord(applicableRecord);
 					applicableRecord.addPickInRecord(pick);
 				} catch (NoExistingEntityException ex) {
@@ -169,7 +170,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 			maxLosses = 1;
 		}
 		if (maxLosses != 0) {
-			RecordAggregator ragg = recordFactory.getAggregateRecordForAtfsForType(pickedTeam, pickFor, false);
+			RecordAggregator ragg = recordFactory.getAggregateRecordForAtfsForType(player, pickFor, false);
 			//	Check the number of losses
 			if (ragg.getRawLosses() >= maxLosses) {
 				log.warning(player.getNickname() + " has already exceeded the number of "
@@ -197,6 +198,24 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 		return true;
 	}
 
+	@Override
+	public List<Pick> removePicksForReplacement(Record r) {
+		//	Get picks (as copied array to avoid ConcurrentModificationException)
+		List<Pick> picksInRecord = new ArrayList<Pick>(r.getPicksInRecord());
+		List<Pick> failedDeletes = new ArrayList<Pick>();
+		
+		for (Pick pickToDelete : picksInRecord) {
+			r.removePickInRecord(pickToDelete);
+			if (!remove(pickToDelete)) {
+				failedDeletes.add(pickToDelete);
+			}
+		}
+		
+		//	Reset the record score to zero
+		r.reset();
+		
+		return failedDeletes;
+	}
 }
 
 

@@ -24,7 +24,7 @@ import java.util.List;
 				query="SELECT DISTINCT s FROM Season s "
 					+ "WHERE s.seasonYear = :year")
 })
-public class Season implements Serializable {
+public class Season implements Serializable, Comparable<Season> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -168,7 +168,7 @@ public class Season implements Serializable {
 		return minPicks;
 	}
 	
-	public void setMinPicks(int minPicks) {
+	public void setMinPicks(Integer minPicks) {
 		this.minPicks = minPicks;
 	}
 	
@@ -176,7 +176,7 @@ public class Season implements Serializable {
 		return maxPicks;
 	}
 	
-	public void setMaxPicks(int maxPicks) {
+	public void setMaxPicks(Integer maxPicks) {
 		this.maxPicks = maxPicks;
 	}
 
@@ -308,4 +308,9 @@ public class Season implements Serializable {
     public String toString() {
         return "com.nectp.entities.jpa.Season[ seasonNumber=" + seasonNumber + " ]";
     }
+
+	@Override
+	public int compareTo(Season otherSeason) {
+		return seasonNumber.compareTo(otherSeason.seasonNumber);
+	}
 }

@@ -129,10 +129,10 @@ public class Game implements Serializable, Comparable<Game> {
 	private boolean redZone;
 
 	@Basic(optional=false)
-	private BigDecimal spread1;
+	private String spread1;
 
 	@Basic(optional=true)
-	private BigDecimal spread2 = null;
+	private String spread2 = null;
 
 	@Basic(optional=false)
 	private String timeRemaining;
@@ -260,18 +260,18 @@ public class Game implements Serializable, Comparable<Game> {
 	}
 
 	public BigDecimal getSpread1() {
-		return this.spread1;
+		return spread1 != null ? new BigDecimal(spread1) : null;
 	}
 
-	public void setSpread1(BigDecimal spread1) {
+	public void setSpread1(String spread1) {
 		this.spread1 = spread1;
 	}
 
 	public BigDecimal getSpread2() {
-		return this.spread2;
+		return spread2 != null ? new BigDecimal(spread2) : null;
 	}
 
-	public void setSpread2(BigDecimal spread2) {
+	public void setSpread2(String spread2) {
 		this.spread2 = spread2;
 	}
 
@@ -355,7 +355,7 @@ public class Game implements Serializable, Comparable<Game> {
 		return homeCoveringSpread(spread2);
 	}
 	
-	private Boolean homeCoveringSpread(BigDecimal spread) {
+	private Boolean homeCoveringSpread(String spread) {
 		//	If spread is null, return null
 		if (spread == null) return null;
 		
@@ -369,14 +369,14 @@ public class Game implements Serializable, Comparable<Game> {
 			if (homeFavoredSpread1) {
 				//	If the home team is favored, get it's score margin over the away team
 				margin = new BigDecimal(homeScore - awayScore);
-				int compare = margin.compareTo(spread1);
+				int compare = margin.compareTo(new BigDecimal(spread1));
 				//	Compared to the spread, if it is equal return null, otherwise return whether the home margin > 0
 				return compare == 0 ? null : compare > 0;
 			}
 			else {
 				//	If the away team is favored, get it's score margin over the home team
 				margin = new BigDecimal(awayScore - homeScore);
-				int compare = margin.compareTo(spread1);
+				int compare = margin.compareTo(new BigDecimal(spread1));
 				//	Compared to the spread, if it is equal return null, otherwise return whether the away margin < 0 (home covering)
 				return compare == 0 ? null : compare < 0;
 			}

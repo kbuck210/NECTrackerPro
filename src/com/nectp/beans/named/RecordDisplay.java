@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.jpa.entities.AbstractTeamForSeason;
+import com.nectp.jpa.entities.Record;
 
 public class RecordDisplay {
 
@@ -14,7 +15,9 @@ public class RecordDisplay {
 	
 	private String pctStr;
 	
-	private String rankStr = "N/a";
+	private String rankStr;
+	
+	private int rank = 1;
 	
 	private RecordAggregator ragg;
 	
@@ -36,6 +39,10 @@ public class RecordDisplay {
 		this.ragg = ragg;
 		format = new DecimalFormat(".##");
 		setWLT(againstSpread);
+	}
+	
+	public RecordAggregator getRecordAggregator() {
+		return ragg;
 	}
 	
 	public void setRecordAggregator(RecordAggregator ragg) {
@@ -74,7 +81,6 @@ public class RecordDisplay {
 	}
 
 	public void setRank(TreeMap<RecordAggregator, List<AbstractTeamForSeason>> rankMap) {
-		int rank = 1;
 		List<AbstractTeamForSeason> leaders = new ArrayList<AbstractTeamForSeason>();
 		for (RecordAggregator ragg : rankMap.keySet()) {
 			if (this.ragg.equals(ragg)) {
@@ -87,20 +93,29 @@ public class RecordDisplay {
 			rankStr = "N/a";
 		}
 		else {
-			if (leaders.size() > 1) {
-				rankStr = "T(" + leaders.size() + ")-";
+			//	Check if the leader's first record has no picks against it
+			List<Record> records = ragg.getRecords();
+			if (records.isEmpty() || records.get(0).getPicksInRecord().isEmpty()) {
+				rankStr = "N/a";
 			}
-			if (rank == 1) {
-				rankStr += "1st";
-			}
-			else if (rank == 2) {
-				rankStr += "2nd";
-			}
-			else if (rank == 3) {
-				rankStr += "3rd";
-			}
+			//	If there are picks to this record, set the string
 			else {
-				rankStr += rank + "th";
+				rankStr = "";
+				if (leaders.size() > 1) {
+					rankStr = "T(" + leaders.size() + ")-";
+				}
+				if (rank == 1) {
+					rankStr += "1st";
+				}
+				else if (rank == 2) {
+					rankStr += "2nd";
+				}
+				else if (rank == 3) {
+					rankStr += "3rd";
+				}
+				else {
+					rankStr += rank + "th";
+				}
 			}
 		}
 	}
@@ -115,6 +130,10 @@ public class RecordDisplay {
 	
 	public String getRankString() {
 		return rankStr;
+	}
+	
+	public int getRank() {
+		return rank;
 	}
 	
 }

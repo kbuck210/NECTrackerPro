@@ -26,13 +26,19 @@ import com.nectp.beans.remote.daos.PlayerFactory;
 import com.nectp.beans.remote.daos.PlayerForSeasonFactory;
 import com.nectp.beans.remote.daos.PrizeFactory;
 import com.nectp.beans.remote.daos.PrizeForSeasonFactory;
+import com.nectp.beans.remote.daos.RecordFactory;
 import com.nectp.beans.remote.daos.SeasonFactory;
 import com.nectp.beans.remote.daos.StadiumService;
 import com.nectp.beans.remote.daos.SubseasonFactory;
 import com.nectp.beans.remote.daos.TeamFactory;
 import com.nectp.beans.remote.daos.TeamForSeasonFactory;
 import com.nectp.beans.remote.daos.WeekFactory;
+import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.PlayerForSeason;
+import com.nectp.jpa.entities.PrizeForSeason;
 import com.nectp.jpa.entities.Season;
+import com.nectp.jpa.entities.Subseason;
+import com.nectp.jpa.entities.Week;
 import com.nectp.webtools.DOMParser;
 
 @Named(value="uploadSeasons")
@@ -84,6 +90,9 @@ public class UploadSeason extends FileUploadImpl {
 	@EJB
 	private GameFactory gameFactory;
 	
+	@EJB
+	private RecordFactory recordFactory;
+	
 	private Season season;
 	
 	private Logger log;
@@ -122,27 +131,35 @@ public class UploadSeason extends FileUploadImpl {
 							season = createSeasonFromAttributes(seasonNum, seasonRoot);
 						}
 						
+						//	Create the subseasons
 						parser.setQualifiedNodeName("subseasons");
 						List<Element> elements = parser.generateElementList();
 						parseSubseasons(elements);
 						
+						//	Create the players
 						parser.setQualifiedNodeName("players");
 						elements = parser.generateElementList();
 						parsePlayers(elements);
 						
+						//	Create the teams
 						parser.setQualifiedNodeName("teams");
 						elements = parser.generateElementList();
 						parseTeams(elements);
 						
+						//	Create the prizes
 						parser.setQualifiedNodeName("prizes");
 						elements = parser.generateElementList();
 						parsePrizes(elements);
 						
+						//	Create the weeks
 						parser.setQualifiedNodeName("weeks");
 						elements = parser.generateElementList();
 						parseWeeks(elements);
 						
 						seasonFactory.update(season);
+						
+						//	After the season is merged, create the records for each player for each category
+						generateRecords();
 					}
 				}	
 			}
@@ -337,6 +354,38 @@ public class UploadSeason extends FileUploadImpl {
 			List<Element> weeks = parser.getSubElementsByTagName(t, "week");
 			XmlWeekUpdater.updateWeeks(parser, weeks, weekFactory, gameFactory,
 					stadiumService, tfsFactory, subseasonFactory, season);
+		}
+	}
+	
+	private void generateRecords() {
+		//	For each player, create records based on the prizes for the year
+		for (PlayerForSeason player : season.getPlayers()) {
+			//	Loop over each of the prizes for the season
+			for (PrizeForSeason pzfs : season.getPrizes()) {
+				//	Get the subseason for the prize, if correlates to a specific subseason, create records for those weeks
+				Subseason subseason = pzfs.getSubseason();
+				if (subseason != null) {
+					for (Week week : subseason.getWeeks()) {
+						recordFactory.createWeekRecordForAtfs(week, player, subseason.getSubseasonType());
+					}
+				}
+				//	If not tied to a subseason, only other prize requiring record is two and out (other prizes are determined by aggregation of other records)
+				else if (pzfs.getPrize().getPrizeType().equals(NEC.TWO_AND_OUT)){
+					for (Subseason ss : season.getSubseasons()) {
+						for (Week week : ss.getWeeks()) {
+							recordFactory.createWeekRecordForAtfs(week, player, pzfs.getPrize().getPrizeType());
+						}
+					}
+				}
+			}
+			
+			//	Create other statistical records (i.e. MNF/TNT)
+			for (Subseason subseason : season.getSubseasons()) {
+				for (Week week : subseason.getWeeks()) {
+					recordFactory.createWeekRecordForAtfs(week, player, NEC.MNF);
+					recordFactory.createWeekRecordForAtfs(week, player, NEC.TNT);
+				}
+			}
 		}
 	}
 }
