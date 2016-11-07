@@ -34,6 +34,26 @@ public interface StatisticService<T> extends RecordService {
 	 */
 	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getHomeAwayRank(T tfs, NEC subseasonType, boolean home, boolean againstSpread);
 	
+	/** Finds the aggregate Favorite, Underdog, or Even record for the specified team for the specified subseason
+	 * 
+	 * @param tfs the AbstractTeamForSeason for which to find the aggregate record
+	 * @param favorite true if finding rank for favorites, false for underdogs, or null for evens
+	 * @param subseasonType a NEC filter used to select specific subseasons for the aggregation, use NEC.SEASON to select all games
+	 * @param againstSpread boolean used for sorting/equality purposes only, in determining rank ordering
+	 * @return an aggregation of records combining all Favorite, Underdog, or Even records for the specified criteria
+	 */
+	public RecordAggregator getFavUdogEvenRecord(T tfs, Boolean favorite, NEC subseasonType, boolean againstSpread);
+	
+	/** Compiles a map of Teams in ranked order of Favorite/Underdog/Even records
+	 * 
+	 * @param tfs the AbstractTeamForSeason for which to use as a basis for the ranking
+	 * @param favorite true if finding rank for favorites, false for underdogs, or null for evens
+	 * @param subseasonType a NEC filter used to select specific subseasons for the aggregation, use NEC.SEASON to select all games
+	 * @param againstSpread boolean used for sorting/equality purposes only, in determining rank ordering
+	 * @return an ordered map, where each entry maps a list of AbstractTeamForSeason objects that have the same record
+	 */
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getFavUdogEvenRank(T tfs, Boolean favorite, NEC subseasonType, boolean againstSpread);
+	
 	/** Finds the aggregate Divisional record for the specified team for the specified subeseason
 	 * 
 	 * @param tfs the AbstractTeamForSeason for which to find the aggregate record

@@ -1,5 +1,6 @@
 package com.nectp.beans.ejb.daos;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -141,6 +142,93 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		}
 		
 		return homeAwayRanks;
+	}
+	
+	@Override
+	public RecordAggregator getFavUdogEvenRecord(TeamForSeason tfs, Boolean favorite, NEC subseasonType,
+			boolean againstSpread) {
+		RecordAggregator favUdogEvenRagg = null;
+		if (tfs == null || subseasonType == null) {
+			log.warning("No team/type specified, can not get favorite/underdog/even record.");
+		}
+		else {
+			favUdogEvenRagg = new RecordAggregator(tfs, againstSpread);
+			
+			//	Get the games & the records for the TFS, sorting both by week number
+			List<Game> allGames = new ArrayList<Game>();
+			allGames.addAll(tfs.getHomeGames());
+			allGames.addAll(tfs.getAwayGames());
+			if (subseasonType.equals(NEC.SEASON)) {
+				allGames = getGamesSortedByWeekNumber(allGames);
+			}
+			else {
+				List<Game> subseasonGames = new ArrayList<Game>();
+				for (Game g : allGames) {
+					if (g.getWeek().getSubseason().getSubseasonType().equals(subseasonType)) {
+						subseasonGames.add(g);
+					}
+				}
+				
+				allGames = getGamesSortedByWeekNumber(subseasonGames);
+			}
+			
+			List<Game> favUdogEvenGames = new ArrayList<Game>();
+			for (Game g : allGames) {
+				//	If looking for even-spread games, add to games where spread = zero
+				if (favorite == null && BigDecimal.ZERO.equals(g.getSpread1())) {
+					favUdogEvenGames.add(g);
+				}
+				//	If looking for games where the team is favorite or underdog
+				else {
+					Boolean homeFavored = g.getHomeFavoredSpread1();
+					TeamForSeason tfsFavorite = null;
+					//	If this is the home team and the home team is favored, set favorite
+					if (homeFavored != null && homeFavored) {
+						tfsFavorite = g.getHomeTeam();
+					}
+					//	If this is the away team and the away team is favored, set favorite
+					else if (homeFavored != null && !homeFavored) {
+						tfsFavorite = g.getAwayTeam();
+					}
+					
+					//	If looking for games where tfs is the favorite, and the found favorite equals tfs, add to games
+					if (favorite && tfsFavorite != null && tfsFavorite.equals(tfs)) {
+						favUdogEvenGames.add(g);
+					}
+					//	If looking for games where tfs is underdog, and tfs is the other team in the game for the favorite, add to games
+					else if (!favorite && tfsFavorite != null && tfs.equals(g.getOtherTeam(tfsFavorite))) {
+						favUdogEvenGames.add(g);
+					}
+				}
+			}
+			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
+
+			//	For any home games whose week number matches a record's week number, add the record to the aggregate
+			addRecordsToAggregate(favUdogEvenRagg, records, favUdogEvenGames);
+		}
+		
+		return favUdogEvenRagg;
+	}
+
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getFavUdogEvenRank(TeamForSeason tfs,
+			Boolean favorite, NEC subseasonType, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> favUdogEvenRank = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		Season season = tfs.getSeason();
+		for (TeamForSeason team : season.getTeams()) {
+			RecordAggregator favUdogEvenAgg = getFavUdogEvenRecord(team, favorite, subseasonType, againstSpread);
+			if (favUdogEvenRank.containsKey(favUdogEvenAgg)) {
+				favUdogEvenRank.get(favUdogEvenAgg).add(team);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(team);
+				favUdogEvenRank.put(favUdogEvenAgg, rankList);
+			}
+		}
+		
+		return favUdogEvenRank;
 	}
 
 	@Override

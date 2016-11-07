@@ -84,13 +84,19 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 			rawLosses += record.getLosses();
 			rawTies += record.getTies();
 			
-			winsATS1 += record.getWinsATS1();
-			lossATS1 += record.getLossesATS1();
-			tiesATS1 += record.getTiesATS1();
+			//	Determine which ATS scores to use (default ATS1)
+			boolean useAts2 = !record.getPicksInRecord().isEmpty() && record.getPicksInRecord().get(0).getPickType().equals(PickType.SPREAD2);
 			
-			winsATS2 += record.getWinsATS2();
-			lossATS2 += record.getLossesATS2();
-			tiesATS2 += record.getTiesATS2();
+			if (useAts2) {
+				winsATS2 += record.getWinsATS2();
+				lossATS2 += record.getLossesATS2();
+				tiesATS2 += record.getTiesATS2();
+			}
+			else {
+				winsATS1 += record.getWinsATS1();
+				lossATS1 += record.getLossesATS1();
+				tiesATS1 += record.getTiesATS1();
+			}
 			
 			//	If no season-scope win value defined, but win modifier applied, use win modifier for scoring
 			if (season.getWinValue() == 0 && record.getWinModifier() != 0) {

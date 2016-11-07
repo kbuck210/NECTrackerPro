@@ -3,7 +3,6 @@ package com.nectp.beans.named.profile;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -45,6 +44,12 @@ public class PlayerStatsBean extends StatsBean<PlayerForSeason> implements Seria
 	private RecordDisplay homeAts;
 	private RecordDisplay roadRecord;
 	private RecordDisplay roadAts;
+	private RecordDisplay favsRecord;
+	private RecordDisplay favsAtsRecord;
+	private RecordDisplay uDogsRecord;
+	private RecordDisplay uDogsAtsRecord;
+	private RecordDisplay evensRecord;
+	private RecordDisplay evensAtsRecord;
 	private RecordDisplay primetimeRecord; 
 	private RecordDisplay primetimeAts;
 	private RecordDisplay mnfRecord;
@@ -122,6 +127,24 @@ public class PlayerStatsBean extends StatsBean<PlayerForSeason> implements Seria
 		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> roadRecordRanks = playerStats.getHomeAwayRank(profileEntity, NEC.SEASON, false, false);
 		roadRecord = getRankedRecordDisplay(roadRecordRanks, profileEntity, false);
 		roadAts = getRankedRecordDisplay(roadAtsRanks, profileEntity, true);
+		
+		//	Get the favorites record for this season for the displayed team (ordering by spread scores for rank)
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> favsRanks = playerStats.getFavUdogEvenRank(profileEntity, true, NEC.SEASON, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> favsAtsRanks = playerStats.getFavUdogEvenRank(profileEntity, true, NEC.SEASON, true);
+		favsRecord = getRankedRecordDisplay(favsRanks, profileEntity, false);
+		favsAtsRecord = getRankedRecordDisplay(favsAtsRanks, profileEntity, true);
+		
+		//	Get the underdogs record for this season for the displayed team (ordering by spread scores for rank)
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> uDogRanks = playerStats.getFavUdogEvenRank(profileEntity, false, NEC.SEASON, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> uDogAtsRanks = playerStats.getFavUdogEvenRank(profileEntity, false, NEC.SEASON, true);
+		uDogsRecord = getRankedRecordDisplay(uDogRanks, profileEntity, false);
+		uDogsAtsRecord = getRankedRecordDisplay(uDogAtsRanks, profileEntity, true);
+		
+		//	Get the evens record for this season for the dispalyed team (ordering by spread scores for rank)
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> evensRank = playerStats.getFavUdogEvenRank(profileEntity, null, NEC.SEASON, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> evensRankAts = playerStats.getFavUdogEvenRank(profileEntity, null, NEC.SEASON, true);
+		evensRecord = getRankedRecordDisplay(evensRank, profileEntity, false);
+		evensAtsRecord = getRankedRecordDisplay(evensRankAts, profileEntity, true);
 
 		//	Get the primetime record for this season for the displayed team (ordering by spread scores for rank)
 		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> primtimeAtsRanks = playerStats.getPrimetimeRank(profileEntity, NEC.SEASON, true);
@@ -130,14 +153,14 @@ public class PlayerStatsBean extends StatsBean<PlayerForSeason> implements Seria
 		primetimeAts = getRankedRecordDisplay(primtimeAtsRanks, profileEntity, true);
 
 		//	Get the MNF record for this season for the displayed team (ordering by spread scores for rank)
-		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfAtsRanks = playerStats.getDateTimeRank(profileEntity, null, GregorianCalendar.MONDAY, null, NEC.SEASON, true);
-		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfRanks = playerStats.getDateTimeRank(profileEntity, null, GregorianCalendar.MONDAY, null, NEC.SEASON, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfAtsRanks = playerStats.getPlayerRankedScoresForType(NEC.MNF, season, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfRanks = playerStats.getPlayerRankedScoresForType(NEC.MNF, season, false);
 		mnfRecord = getRankedRecordDisplay(mnfRanks, profileEntity, false);
 		mnfAts = getRankedRecordDisplay(mnfAtsRanks, profileEntity, true);
 
 		//	Get the TNT record for this season for the displayed team (ordering by spread scores for rank)
-		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntRanks = playerStats.getDateTimeRank(profileEntity, null, GregorianCalendar.THURSDAY, null, NEC.SEASON, false);
-		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntAtsRanks = playerStats.getDateTimeRank(profileEntity, null, GregorianCalendar.THURSDAY, null, NEC.SEASON, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntAtsRanks = playerStats.getPlayerRankedScoresForType(NEC.TNT, season, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntRanks = playerStats.getPlayerRankedScoresForType(NEC.TNT, season, false);
 		tntRecord = getRankedRecordDisplay(tntRanks, profileEntity, false);
 		tntAts = getRankedRecordDisplay(tntAtsRanks, profileEntity, true);
 
@@ -510,6 +533,78 @@ public class PlayerStatsBean extends StatsBean<PlayerForSeason> implements Seria
 		return roadAts != null ? roadAts.getRankString() : "N/a";
 	}
 	
+	public String getFavsRecord() {
+		return favsRecord != null ? favsRecord.getWltString() : "N/a";
+	}
+	
+	public String getFavsWinPct() {
+		return favsRecord != null ? favsRecord.getPctString() : "N/a";
+	}
+	
+	public String getFavsRank() {
+		return favsRecord != null ? favsRecord.getRankString() : "N/a";
+	}
+	
+	public String getFavsAtsRecord() {
+		return favsAtsRecord != null ? favsAtsRecord.getWltString() : "N/a";
+	}
+	
+	public String getFavsAtsWinPct() {
+		return favsAtsRecord != null ? favsAtsRecord.getPctString() : "N/a";
+	}
+	
+	public String getFavsAtsRank() {
+		return favsAtsRecord != null ? favsAtsRecord.getRankString() : "N/a";
+	}
+	
+	public String getUdogRecord() {
+		return uDogsRecord != null ? uDogsRecord.getWltString() : "N/a";
+	}
+	
+	public String getUdogWinPct() {
+		return uDogsRecord != null ? uDogsRecord.getPctString() : "N/a";
+	}
+	
+	public String getUdogRank() {
+		return uDogsRecord != null ? uDogsRecord.getRankString() : "N/a";
+	}
+	
+	public String getUdogAtsRecord() {
+		return uDogsAtsRecord != null ? uDogsAtsRecord.getWltString() : "N/a";
+	}
+	
+	public String getUdogAtsWinPct() {
+		return uDogsAtsRecord != null ? uDogsAtsRecord.getPctString() : "N/a";
+	}
+	
+	public String getUdogAtsRank() {
+		return uDogsAtsRecord != null ? uDogsAtsRecord.getRankString() : "N/a";
+	}
+	
+	public String getEvenRecord() {
+		return evensRecord != null ? evensRecord.getWltString() : "N/a";
+	}
+	
+	public String getEvenWinPct() {
+		return evensRecord != null ? evensRecord.getPctString() : "N/a";
+	}
+	
+	public String getEvenRank() {
+		return evensRecord != null ? evensRecord.getRankString() : "N/a";
+	}
+	
+	public String getEvenAtsRecord() {
+		return evensAtsRecord != null ? evensAtsRecord.getWltString() : "N/a";
+	}
+	
+	public String getEvenAtsWinPct() {
+		return evensAtsRecord != null ? evensAtsRecord.getPctString() : "N/a";
+	}
+	
+	public String getEvenAtsRank() {
+		return evensAtsRecord != null ? evensAtsRecord.getRankString() : "N/a";
+	}
+	
 	public String getPrimetimeRecord() {
 		return primetimeRecord != null ? primetimeRecord.getWltString() : "N/a";
 	}
@@ -591,7 +686,7 @@ public class PlayerStatsBean extends StatsBean<PlayerForSeason> implements Seria
 	}
 	
 	public String getMnfTntCombinedRank() {
-		return mnfTntCombined != null ? mnfTntCombined.getRankString() : "N/a";
+		return mnfTntCombined != null ? mnfTntCombined.getRankString() : "Null";
 	}
 	
 	public String getMnfTntAtsRecord() {
@@ -603,7 +698,7 @@ public class PlayerStatsBean extends StatsBean<PlayerForSeason> implements Seria
 	}
 	
 	public String getMnfTntAtsRank() {
-		return mnfTntAts != null ? mnfTntAts.getRankString() : "N/a";
+		return mnfTntAts != null ? mnfTntAts.getRankString() : "Null";
 	}
 	
 	public String getAfcEastRecord() {

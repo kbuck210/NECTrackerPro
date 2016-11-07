@@ -478,7 +478,7 @@ public class ExcelPickReader {
     
 	private boolean makePicks() {
 		boolean success = true;
-		
+		log.info("making picks: ");
 		//	First make the player picks
 		for (PlayerForSeason player : playerPickMap.keySet()) {
 			List<TeamForSeason> pickedTeams = playerPickMap.get(player);
@@ -617,13 +617,19 @@ public class ExcelPickReader {
 				}
 			}
 		}
-		
+		log.info("Making TNT picks: ");
 		//	Next make the TNT picks
 		for (PlayerForSeason player : tntPickMap.keySet()) {
 			List<TeamForSeason> pickedTeams = tntPickMap.get(player);
+			log.info(player.getNickname() + " picked " + pickedTeams.size() + " TNT games");
 			if (pickedTeams.isEmpty()) {
 				log.warning("No TNT teams picked for: " + player.getNickname() + "!");
 				continue;
+			}
+			else {
+				for (TeamForSeason tfs : pickedTeams) {
+					log.info(player.getNickname() + " picked: " + tfs.getNickname() + " for TNT");
+				}
 			}
 			PickType pickType = useSpread2(player, pickedTeams) ? PickType.SPREAD2 : PickType.SPREAD1;
 			

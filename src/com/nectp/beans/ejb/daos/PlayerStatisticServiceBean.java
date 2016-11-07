@@ -1,5 +1,6 @@
 package com.nectp.beans.ejb.daos;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -20,6 +21,7 @@ import com.nectp.jpa.entities.Conference;
 import com.nectp.jpa.entities.Division;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
+import com.nectp.jpa.entities.Pick.PickType;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.Record;
 import com.nectp.jpa.entities.Season;
@@ -60,6 +62,7 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 			if ((home && pickedTeam.equals(g.getHomeTeam())) || 
 				(!home && pickedTeam.equals(g.getAwayTeam()))) {
 				updateRecordForGame(homeAwayRecord, g, pickedTeam);
+				homeAwayRecord.addPickInRecord(p);
 			}
 		}
 		
@@ -88,6 +91,96 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 
 		return homeAwayRanks;
 	}
+	
+	@Override
+	public RecordAggregator getFavUdogEvenRecord(PlayerForSeason pfs, Boolean favorite, NEC subseasonType,
+			boolean againstSpread) {
+		List<Pick> favUdogEvenPicks;
+		if (subseasonType == NEC.SEASON) {
+			favUdogEvenPicks = new ArrayList<Pick>();
+			favUdogEvenPicks.addAll(pickService.selectPlayerPicksForType(pfs, NEC.FIRST_HALF));
+			favUdogEvenPicks.addAll(pickService.selectPlayerPicksForType(pfs, NEC.SECOND_HALF));
+			favUdogEvenPicks.addAll(pickService.selectPlayerPicksForType(pfs, NEC.PLAYOFFS));
+			favUdogEvenPicks.addAll(pickService.selectPlayerPicksForType(pfs, NEC.SUPER_BOWL));
+		}
+		else {
+			favUdogEvenPicks = pickService.selectPlayerPicksForType(pfs, subseasonType);
+		}
+		
+		//	Have to create a local record because managed records store all fav/udog/even picks
+		Record favUdogEvenRecord = new Record();
+		favUdogEvenRecord.setRecordType(subseasonType);
+		favUdogEvenRecord.setTeam(pfs);
+		
+		for (Pick p : favUdogEvenPicks) {
+			Game g = p.getGame();
+			TeamForSeason pickedTeam = p.getPickedTeam();
+			PickType pType = p.getPickType();
+			
+			boolean updateRecord = false;
+			//	Determine whether looking for favorite/underdog/even based on parameter
+			//	If favorite == null, looking for even spreads
+			if (favorite == null) {
+				//	If the pick type is spread 1 or 2 && the specified spread is zero (i.e. even), update the record
+				updateRecord = (pType.equals(PickType.SPREAD1) && BigDecimal.ZERO.equals(g.getSpread1())) ||
+							   (pType.equals(PickType.SPREAD2) && BigDecimal.ZERO.equals(g.getSpread2()));
+			}
+			//	If looking for games where the favorite or underdog was picked
+			else {
+				TeamForSeason tfsFavorite = null;
+				if (pType.equals(PickType.SPREAD1)) {
+					if (g.getHomeFavoredSpread1() != null && g.getHomeFavoredSpread1()) {
+						tfsFavorite = g.getHomeTeam();
+					}
+					else if (g.getHomeFavoredSpread1() != null) {
+						tfsFavorite = g.getAwayTeam();
+					}
+				}
+				else if (pType.equals(PickType.SPREAD2)) {
+					if (g.getHomeFavoredSpread2() != null && g.getHomeFavoredSpread2()) {
+						tfsFavorite = g.getHomeTeam();
+					}
+					else if (g.getHomeFavoredSpread2() != null) {
+						tfsFavorite= g.getAwayTeam();
+					}
+				}
+				
+				//	Update the record if the looking for fav/underdog, and the pickedTeam is equal to either the fav or udog
+				updateRecord = (favorite && tfsFavorite != null && tfsFavorite.equals(pickedTeam)) ||
+							   (!favorite && tfsFavorite != null && pickedTeam.equals(g.getOtherTeam(tfsFavorite)));
+			}
+			
+			if (updateRecord) {
+				updateRecordForGame(favUdogEvenRecord, g, pickedTeam);
+				favUdogEvenRecord.addPickInRecord(p);
+			}
+		}
+		
+		RecordAggregator favUdogEvenRagg = new RecordAggregator(pfs, againstSpread);
+		favUdogEvenRagg.addRecord(favUdogEvenRecord);
+		return favUdogEvenRagg;
+	}
+
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getFavUdogEvenRank(PlayerForSeason pfs,
+			Boolean favorite, NEC subseasonType, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> favUdogEvenRanks = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		Season season = pfs.getSeason();
+		for (PlayerForSeason player : season.getPlayers()) {
+			RecordAggregator divisionRagg = getFavUdogEvenRecord(player, favorite, subseasonType, againstSpread);
+			if (favUdogEvenRanks.containsKey(divisionRagg)) {
+				favUdogEvenRanks.get(divisionRagg).add(player);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(player);
+				favUdogEvenRanks.put(divisionRagg, rankList);
+			}
+		}
+
+		return favUdogEvenRanks;
+	}
 
 	@Override
 	public RecordAggregator getDivisionRecord(PlayerForSeason pfs, Division division, NEC subseasonType,
@@ -115,6 +208,7 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 			//	Check that the picked team is in the specified division, if not skip
 			if (pickedTeam.getDivision().equals(division)) {
 				updateRecordForGame(divisionRecord, g, pickedTeam);
+				divisionRecord.addPickInRecord(p);
 			}
 		}
 		
@@ -168,6 +262,7 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 			TeamForSeason pickedTeam = p.getPickedTeam();
 			if (pickedTeam.getDivision().getConference().equals(conference)) {
 				updateRecordForGame(conferenceRecord, g, pickedTeam);
+				conferenceRecord.addPickInRecord(p);
 			}
 		}
 
@@ -221,6 +316,7 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 			if (g.getPrimeTime()) {
 				TeamForSeason pickedTeam = p.getPickedTeam();
 				updateRecordForGame(primetimeRecord, g, pickedTeam);
+				primetimeRecord.addPickInRecord(p);
 			}
 		}
 
@@ -287,6 +383,7 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 			}
 			TeamForSeason pickedTeam = p.getPickedTeam();
 			updateRecordForGame(dateTimeRecord, g, pickedTeam);
+			dateTimeRecord.addPickInRecord(p);
 		}
 		
 		RecordAggregator dateTimeRagg = new RecordAggregator(pfs, againstSpread);
@@ -340,9 +437,11 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 			TeamForSeason pickedTeam = p.getPickedTeam();
 			if (g.getStadium().equals(stadium)) {
 				updateRecordForGame(stadiumRecord, g, pickedTeam);
+				stadiumRecord.addPickInRecord(p);
 			}
 			else if (g.getStadium().getRoofType().equals(roofType)) {
 				updateRecordForGame(stadiumRecord, g, pickedTeam);
+				stadiumRecord.addPickInRecord(p);
 			}
 		}
 		
@@ -397,6 +496,7 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 			if (g.getStadium().getTimezone().equals(timezone)) {
 				TeamForSeason pickedTeam = p.getPickedTeam();
 				updateRecordForGame(timezoneRecord, g, pickedTeam);
+				timezoneRecord.addPickInRecord(p);
 			}
 		}
 		
@@ -438,7 +538,7 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 			
 			mnfPicks.addAll(tntPicks);
 			Record mnfTntRecord = new Record();
-			mnfTntRecord.setRecordType(subseasonType);
+			mnfTntRecord.setRecordType(NEC.MNF_TNT);
 			mnfTntRecord.setTeam(player);
 			
 			for (Pick p : mnfPicks) {
@@ -448,6 +548,7 @@ public class PlayerStatisticServiceBean extends RecordServiceBean implements Sta
 				   (g.getWeek().getSubseason().getSubseasonType().equals(subseasonType))) {
 					TeamForSeason pickedTeam = p.getPickedTeam();
 					updateRecordForGame(mnfTntRecord, g, pickedTeam);
+					mnfTntRecord.addPickInRecord(p);
 				}
 			}
 			

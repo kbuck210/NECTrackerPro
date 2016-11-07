@@ -1,6 +1,5 @@
 package com.nectp.beans.named;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -27,17 +26,13 @@ public class RecordDisplay {
 	
 	private double winPct;
 	
-	private DecimalFormat format;
-	
 	public RecordDisplay() {
 		wltStr = "(-/-/-)";
 		pctStr = "%N/a";
-		format = new DecimalFormat(".##");
 	}
 	
 	public RecordDisplay(RecordAggregator ragg, boolean againstSpread) {
 		this.ragg = ragg;
-		format = new DecimalFormat(".##");
 		setWLT(againstSpread);
 	}
 	
@@ -76,7 +71,8 @@ public class RecordDisplay {
 			}
 			wltStr += ")";
 			
-			pctStr = format.format(winPct);
+			Integer pctNormal = (int)(winPct * 100);
+			pctStr = pctNormal.toString() + "%";
 		}
 	}
 
@@ -95,7 +91,10 @@ public class RecordDisplay {
 		else {
 			//	Check if the leader's first record has no picks against it
 			List<Record> records = ragg.getRecords();
-			if (records.isEmpty() || records.get(0).getPicksInRecord().isEmpty()) {
+			if (records.isEmpty()) {
+				rankStr = "N/a";
+			}
+			else if (records.get(0).getPicksInRecord().isEmpty()) {
 				rankStr = "N/a";
 			}
 			//	If there are picks to this record, set the string

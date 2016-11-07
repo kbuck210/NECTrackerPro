@@ -70,7 +70,7 @@
 					
 					<!-- Player Statistics Column -->
 					<p:outputPanel deferred="true">
-						<p:panelGrid responsive="true">
+						<p:panelGrid responsive="true" style="width:100%">
 							<f:facet name="header">
 								<p:row>
 									<p:column colspan="4">NEC #{playerStatsBean.seasonNumber} Stats:</p:column>
@@ -218,6 +218,48 @@
 							</p:row>
 							
 							<p:row>
+								<p:column>Favorites Straight-up Record:</p:column>
+								<p:column>#{playerStatsBean.favsRecord}</p:column>
+								<p:column>#{playerStatsBean.favsWinPct}</p:column>
+								<p:column>#{playerStatsBean.favsRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>Favorites Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.favsAtsRecord}</p:column>
+								<p:column>#{playerStatsBean.favsAtsWinPct}</p:column>
+								<p:column>#{playerStatsBean.favsAtsRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>Underdogs Straight-up Record:</p:column>
+								<p:column>#{playerStatsBean.udogRecord}</p:column>
+								<p:column>#{playerStatsBean.udogWinPct}</p:column>
+								<p:column>#{playerStatsBean.udogRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>Underdogs Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.udogAtsRecord}</p:column>
+								<p:column>#{playerStatsBean.udogAtsWinPct}</p:column>
+								<p:column>#{playerStatsBean.udogAtsRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>Evens Straight-up Record:</p:column>
+								<p:column>#{playerStatsBean.evenRecord}</p:column>
+								<p:column>#{playerStatsBean.evenWinPct}</p:column>
+								<p:column>#{playerStatsBean.evenRank}</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>Evens Record vs Spread:</p:column>
+								<p:column>#{playerStatsBean.evenAtsRecord}</p:column>
+								<p:column>#{playerStatsBean.evenAtsWinPct}</p:column>
+								<p:column>#{playerStatsBean.evenAtsRank}</p:column>
+							</p:row>
+							
+							<p:row>
 								<p:column>Primetime Straight-Up Record:</p:column>
 								<p:column>#{playerStatsBean.primetimeRecord}</p:column>
 								<p:column>#{playerStatsBean.primetimeWinPct}</p:column>
@@ -253,56 +295,56 @@
 								<p:column>AFC East Straight-Up Record:</p:column>
 								<p:column>#{playerStatsBean.afcEastRecord}</p:column>
 								<p:column>#{playerStatsBean.afcEastWinPct}</p:column>
-								<p:column>#{playerStatsBean.afcRank}</p:column>
+								<p:column>#{playerStatsBean.afcEastRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>AFC East Record vs Spread:</p:column>
 								<p:column>#{playerStatsBean.afcEastRecordAts}</p:column>
 								<p:column>#{playerStatsBean.afcEastWinPctAts}</p:column>
-								<p:column>#{playerStatsBean.afcRankAts}</p:column>
+								<p:column>#{playerStatsBean.afcEastRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>AFC North Straight-Up Record:</p:column>
-								<p:column>#{playerStatsBean.afcRecord}</p:column>
-								<p:column>#{playerStatsBean.afcWinPct}</p:column>
-								<p:column>#{playerStatsBean.afcRank}</p:column>
+								<p:column>#{playerStatsBean.afcNorthRecord}</p:column>
+								<p:column>#{playerStatsBean.afcNorthWinPct}</p:column>
+								<p:column>#{playerStatsBean.afcNorthRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>AFC North Record vs Spread:</p:column>
-								<p:column>#{playerStatsBean.afcRecordAts}</p:column>
-								<p:column>#{playerStatsBean.afcWinPctAts}</p:column>
-								<p:column>#{playerStatsBean.afcRankAts}</p:column>
+								<p:column>#{playerStatsBean.afcNorthRecordAts}</p:column>
+								<p:column>#{playerStatsBean.afcNorthWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.afcNorthRankAts}</p:column>
 							</p:row>
 
 							<p:row>
 								<p:column>AFC South Straight-Up Record:</p:column>
-								<p:column>#{playerStatsBean.afcRecord}</p:column>
-								<p:column>#{playerStatsBean.afcWinPct}</p:column>
-								<p:column>#{playerStatsBean.afcRank}</p:column>
+								<p:column>#{playerStatsBean.afcSouthRecord}</p:column>
+								<p:column>#{playerStatsBean.afcSouthWinPct}</p:column>
+								<p:column>#{playerStatsBean.afcSouthRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>AFC South Record vs Spread:</p:column>
-								<p:column>#{playerStatsBean.afcRecordAts}</p:column>
-								<p:column>#{playerStatsBean.afcWinPctAts}</p:column>
-								<p:column>#{playerStatsBean.afcRankAts}</p:column>
+								<p:column>#{playerStatsBean.afcSouthRecordAts}</p:column>
+								<p:column>#{playerStatsBean.afcSouthWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.afcSouthRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>AFC West Straight-Up Record:</p:column>
-								<p:column>#{playerStatsBean.afcRecord}</p:column>
-								<p:column>#{playerStatsBean.afcWinPct}</p:column>
-								<p:column>#{playerStatsBean.afcRank}</p:column>
+								<p:column>#{playerStatsBean.afcWestRecord}</p:column>
+								<p:column>#{playerStatsBean.afcWestWinPct}</p:column>
+								<p:column>#{playerStatsBean.afcWestRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>AFC West Record vs Spread:</p:column>
-								<p:column>#{playerStatsBean.afcRecordAts}</p:column>
-								<p:column>#{playerStatsBean.afcWinPctAts}</p:column>
-								<p:column>#{playerStatsBean.afcRankAts}</p:column>
+								<p:column>#{playerStatsBean.afcWestRecordAts}</p:column>
+								<p:column>#{playerStatsBean.afcWestWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.afcWestRankAts}</p:column>
 							</p:row>
 
 							<p:row>
@@ -327,56 +369,56 @@
 								<p:column>NFC East Straight-Up Record:</p:column>
 								<p:column>#{playerStatsBean.nfcEastRecord}</p:column>
 								<p:column>#{playerStatsBean.nfcEastWinPct}</p:column>
-								<p:column>#{playerStatsBean.nfcRank}</p:column>
+								<p:column>#{playerStatsBean.nfcEastRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>NFC East Record vs Spread:</p:column>
 								<p:column>#{playerStatsBean.nfcEastRecordAts}</p:column>
 								<p:column>#{playerStatsBean.nfcEastWinPctAts}</p:column>
-								<p:column>#{playerStatsBean.nfcRankAts}</p:column>
+								<p:column>#{playerStatsBean.nfcEastRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>NFC North Straight-Up Record:</p:column>
-								<p:column>#{playerStatsBean.nfcRecord}</p:column>
-								<p:column>#{playerStatsBean.nfcWinPct}</p:column>
-								<p:column>#{playerStatsBean.nfcRank}</p:column>
+								<p:column>#{playerStatsBean.nfcNorthRecord}</p:column>
+								<p:column>#{playerStatsBean.nfcNorthWinPct}</p:column>
+								<p:column>#{playerStatsBean.nfcNorthRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>NFC North Record vs Spread:</p:column>
-								<p:column>#{playerStatsBean.nfcRecordAts}</p:column>
-								<p:column>#{playerStatsBean.nfcWinPctAts}</p:column>
-								<p:column>#{playerStatsBean.nfcRankAts}</p:column>
+								<p:column>#{playerStatsBean.nfcNorthRecordAts}</p:column>
+								<p:column>#{playerStatsBean.nfcNorthWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.nfcNorthRankAts}</p:column>
 							</p:row>
 
 							<p:row>
 								<p:column>NFC South Straight-Up Record:</p:column>
-								<p:column>#{playerStatsBean.nfcRecord}</p:column>
-								<p:column>#{playerStatsBean.nfcWinPct}</p:column>
-								<p:column>#{playerStatsBean.nfcRank}</p:column>
+								<p:column>#{playerStatsBean.nfcSouthRecord}</p:column>
+								<p:column>#{playerStatsBean.nfcSouthWinPct}</p:column>
+								<p:column>#{playerStatsBean.nfcSouthRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>NFC South Record vs Spread:</p:column>
-								<p:column>#{playerStatsBean.nfcRecordAts}</p:column>
-								<p:column>#{playerStatsBean.nfcWinPctAts}</p:column>
-								<p:column>#{playerStatsBean.nfcRankAts}</p:column>
+								<p:column>#{playerStatsBean.nfcSouthRecordAts}</p:column>
+								<p:column>#{playerStatsBean.nfcSouthWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.nfcSouthRankAts}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>NFC West Straight-Up Record:</p:column>
-								<p:column>#{playerStatsBean.nfcRecord}</p:column>
-								<p:column>#{playerStatsBean.nfcWinPct}</p:column>
-								<p:column>#{playerStatsBean.nfcRank}</p:column>
+								<p:column>#{playerStatsBean.nfcWestRecord}</p:column>
+								<p:column>#{playerStatsBean.nfcWestWinPct}</p:column>
+								<p:column>#{playerStatsBean.nfcWestRank}</p:column>
 							</p:row>
 							
 							<p:row>
 								<p:column>NFC West Record vs Spread:</p:column>
-								<p:column>#{playerStatsBean.nfcRecordAts}</p:column>
-								<p:column>#{playerStatsBean.nfcWinPctAts}</p:column>
-								<p:column>#{playerStatsBean.nfcRankAts}</p:column>
+								<p:column>#{playerStatsBean.nfcWestRecordAts}</p:column>
+								<p:column>#{playerStatsBean.nfcWestWinPctAts}</p:column>
+								<p:column>#{playerStatsBean.nfcWestRankAts}</p:column>
 							</p:row>
 						</p:panelGrid>
 					</p:outputPanel>
@@ -411,6 +453,34 @@
 					<p:fieldset legend="Summary:">
 						<p id="summary">#{playerChartBean.summary}</p>
 					</p:fieldset>	
+					<hr/>
+					<!-- Player History -->
+					<p:fieldset legend="Player History:">
+						<p:scrollPanel style="width:100%;height:100%" >
+							<ui:repeat value="#{playerHistoryBean.instances}" var="instance">
+								<p:panelGrid columns="2" style="width:100%">
+									<f:facet name="header">
+										NEC #{playerHistoryBean.getSeasonNumber(instance)}:
+									</f:facet>
+									<h:panelGroup>
+										<p:graphicImage value="#{instance.player.avatarUrl}" class="thumbnail avatar" style="width:50%; height:50%" />	
+									</h:panelGroup>
+									<h:panelGroup>
+										<h3>#{instance.nickname} <small>#{playerHistoryBean.getRecord(instance)}</small></h3>
+										<div class="row column align-spaced award-row">
+											<span><p:graphicImage value="#{playerHistoryBean.getFirstHalfIcon(instance)}" /></span>
+											<span><p:graphicImage value="#{playerHistoryBean.getSecondHalfIcon(instance)}" /></span>
+											<span><p:graphicImage value="#{playerHistoryBean.getPlayoffIcon(instance)}" /></span>
+											<span><p:graphicImage value="#{playerHistoryBean.getMnfTntIcon(instance)}" /></span>
+											<span><p:graphicImage value="#{playerHistoryBean.getTnoIcon(instance)}" /></span>
+											<span><p:graphicImage value="#{playerHistoryBean.getMoneybackIcon(instance)}" /></span>
+											<span><p:graphicImage value="#{playerHistoryBean.getSuperbowlIcon(instance)}" /></span>
+										</div>
+									</h:panelGroup>
+								</p:panelGrid>
+							</ui:repeat>
+						</p:scrollPanel>
+					</p:fieldset>
 				</div>
 			</div>
 		</ui:define>
