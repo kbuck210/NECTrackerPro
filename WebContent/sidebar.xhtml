@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<!-- Sidebar -->
+	<h:panelGroup layout="block" id="leaderboard" class="small-12 columns blog-post">
+	    <h3 class="sticky-title">Leaderboard:</h3>
+		<div id="interface" class="interface">
+
+	  		<div class="headerwrapper stuck">
+				<div class="menu-wrapper">
+					<div id="showMenu" class="show-menu">
+						<a href="#" id="showMenulink"><i class="burger">&#9776;</i></a>
+					</div>
+					<h5 id="leaderboard-title" class="menu-title">Current Week: <small id="week-modifier">#{leaderboardBean.currentWeek}</small></h5>
+				</div>
+
+				<div id="surface" class="surface">
+
+		  			<div class="site-panel">
+						<div class="menu-label-row">
+							<a href="#!" id="panelCloselink"><i class="arrow">&laquo;</i></a>
+							<h5 class="menu-label"><label class="list-label">Category:</label></h5>
+						</div>
+						<nav class="nav">
+							<ul>
+								<li><a href="#" class="is-active">Current Week: <small>#{leaderboardBean.currentWeek}</small></a></li>
+								<li><a href="#">First Half</a></li>
+								<li><a href="#">Second Half</a></li>
+								<li><a href="#">MNF</a></li>
+								<li><a href="#">2 and Out</a></li>
+								<li><a href="#">Playoffs</a></li>
+								<li><a href="#">Money Back</a></li>
+							</ul>
+						</nav>
+		  			</div><!-- site-panel -->
+				</div><!-- surface -->
+  			</div><!-- headerwrapper -->
+
+			<div class="row">
+				<div class="medium-12 columns leader-container">
+					<ui:repeat value="#{leaderboardBean.leaders}" var="leader" >
+						<h:link outcome="playerPage">
+							<f:param name="pfsId" value="#{leader.pfsId}" />
+							<!-- Create the leader rows -->
+							<p:panelGrid class="leaderboard-padding">
+								<!-- Avatar & Name row -->
+								<p:row>
+									<p:column colspan="1">
+										<span><p:graphicImage value="#{leader.position}" /></span>
+										<p:graphicImage value="#{leader.avatar}" class="thumbnail avatar leader-avatar" />
+									</p:column>
+									<p:column colspan="2">
+										<h4>#{leader.nickname}:</h4>
+										<h5>#{leader.score}<small>&nbsp;&nbsp;#{leader.record}</small></h5>
+										<!-- prize icon row -->
+										<div class="row column align-spaced award-row">
+											<span><p:graphicImage value="#{leader.firstHalfIcon}" /></span>
+											<span><p:graphicImage value="#{leader.secondHalfIcon}" /></span>
+											<span><p:graphicImage value="#{leader.playoffIcon}" /></span>
+											<span><p:graphicImage value="#{leader.mnfTntIcon}" /></span>
+											<span><p:graphicImage value="#{leader.tnoIcon}" /></span>
+											<span><p:graphicImage value="#{leader.moneybackIcon}" /></span>
+											<span><p:graphicImage value="#{leader.superbowlIcon}" /></span>
+										</div>
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</h:link>
+					</ui:repeat>
+				</div>
+			</div>
+		</div>
+	</h:panelGroup>
+</h:body>
+</html>

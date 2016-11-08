@@ -12,83 +12,55 @@
 			<ui:include src="/header.xhtml" />
 		</ui:define>
 		<ui:define name="content">
-			<!-- Center content Game area -->
-			<h:form id="picksForm">
-				<p:growl id="picksGrowl" life="2000" showDetail="true" sticky="true" />
-				<p:tabView>
-					<p:tab title="#{makePicksContentBean.regularPicksTitle}">
-						<!-- Make Picks blog post area -->
-						<gc:gameContainer gcBean="#{makeRegularPicksBean}" 
-											  headline="#{makePicksContentBean.playerPickHeadline}" 
-											  subheadline="#{makePicksContentBean.playerRecord}" 
-											  blogstyle="player-picks" />
-					</p:tab>
-					<!-- Make Two and out picks only rendered if user is still in the running -->
-					<ui:fragment rendered="#{makePicksContentBean.renderTnoPicks}">
-						<p:tab title="Two And Out">
-							<gc:gameContainer gcBean="#{makeTnoPicksBean}" 
-											  headline="#{makePicksContentBean.playerTnoHeadline}" 
-											  subheadline="#{makePicksContentBean.playerTnoRecord}" 
-											  blogstyle="player-picks" />
-						</p:tab>
-					</ui:fragment>
-				</p:tabView>
-				
-		        <p:commandButton value="Submit Picks:" id="submit" update="picksGrowl" styleClass="ui-priority-primary" >
-		        	<f:actionListener binding="#{makeRegularPicksBean.submit()}" />
-		        	<f:actionListener binding="#{makeTnoPicksBean.submit()}" />
-		        </p:commandButton>
-			</h:form>
-		
-			<p:growl id="right-aside-growl" showDetail="true" />
-	    
-		    <!-- Sidebar -->
-		    <f:facet name="right">
-		    	<h:form>
-		    		<p:panelGrid id="leaderPanel" columns="1" class="ui-g-12 ui-md-3 ui-lg-3">
-		    			<f:facet name="header">
-		    				<f:facet name="left">
-		    					<p:menuButton value="&#9776;">
-		    						<p:menuitem value="Category:" disabled="true" />
-		    						<p:separator />
-					        		<p:repeat value="#{leaderListBean.prizeCategories}" var="prize">
-					        			<p:menuitem value="#{prize.title}" actionListener="#{leaderListBean.changeCategory}" >
-					        				<f:attribute name="category" value="#{prize}" />
-					        			</p:menuitem>
-				        			</p:repeat>
-			        			</p:menuButton>
-		    				</f:facet>
-		    				<h3 class="sticky-title">#{leaderListBean.headerTitle}</h3>
-		    			</f:facet>
-	
-						<p:repeat value="#{leaderListBean.leaderList}" var="leader">
-							<a class="leader-link" href="#{leader.teamUrl}">
-								<p:panelGrid columns="2" layout="grid">
-									<h:panelGroup class="ui-g-12 ui-md-5 ui-lg-5 avatar-col">
-										<span class="position-badge"><img src="#{leader.positionImg}" /></span>
-										<img class="avatar" src="#{leader.avatar}" />
-									</h:panelGroup>
-									<h:panelGroup class="ui-g-12 ui-md-7 ui-lg-7 name-col">
-										<h5 class="leader-name">#{leader.nickname}</h5>
-										<h5 class="leader-record"><small>#{leader.record}</small></h5>
-										<p:panelGrid columns="#{leader.prizeCount}" layout="grid" >
-											<p:repeat value="#{leader.prizeCategories}" var="prize">
-												<h:panelGroup>
-													<img id="#{prize.id}" class="thumbnail icon-item" src="#{prize.getIcon(leader.leader)}" />
-													<pe:tooltip for="#{prize.id}" value="#{prize.title}" showEffect="fadeIn" hideEffect="fadeIn"/>
-												</h:panelGroup>
-											</p:repeat>
-										</p:panelGrid>
-									</h:panelGroup>
-								</p:panelGrid>
-							</a>
-						</p:repeat>
-			    	</p:panelGrid>
-		    	</h:form>
-		    </f:facet>
-		    
-		    <p:sticky target="leaderPanel" />
+			<p:growl id="growl" life="2000" showDetail="true" />
+			
+			<!-- If the user is logged in, show the make picks screen -->
+			<ui:fragment id="pickFragment" rendered="#{makePicksBean.showPickForm}" >
+				<div class="row" >
+					<div class="small-12 medium-12 large-9" >
+						<!-- If player is logged in, show pick form -->
+						<h:form id="picksForm">
+							<p:tabView>
+								<p:tab title="#{makePicksBean.regularPicksTitle}">
+									<!-- Make Picks blog post area -->
+									<gc:gameContainer gameBeans="#{makePicksBean.gameBeans}"  
+				 									  headline="#{makePicksBean.makePicksHeadline}"  
+				 									  subheadline="#{makePicksBean.weekHeadline}"  
+				 									  blogstyle="player-picks" /> 
+								</p:tab>
+								<!-- Make Two and out picks only rendered if user is still in the running -->
+								<ui:fragment rendered="#{makePicksBean.renderTnoPicks}">
+									<p:tab title="Two And Out:">
+										<gc:gameContainer gameBeans="#{makePicksBean.tnoBeans}"  
+				 									  	  headline="#{makePicksBean.tnoPickHeadline}"  
+				 									  	  subheadline="#{makePicksBean.weekHeadline}"  
+				 									 	  blogstyle="player-picks" /> 
+									</p:tab>
+								</ui:fragment>
+							</p:tabView>
+							
+					        <p:commandButton value="Submit Picks:" id="submit" update="picksGrowl" styleClass="ui-priority-primary" >
+					        	<f:actionListener binding="#{makePicksBean.submit}" />
+					        	<f:actionListener binding="#{makePicksBean.submitTno}" />
+					        </p:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</ui:fragment>
+			
+			<!-- If the user is not logged in, do not display pick form, display error. -->
+			<ui:fragment id="loginWarning" rendered="#{!makePicksBean.showPickForm}" >
+				<div class="row columns blog-post shadow">
+					<h:graphicImage value="img/warning.png" />
+					<h3>You are not logged in. Please log in to make picks!</h3>
+				</div>
+			</ui:fragment>
 		</ui:define>
+		
+		<ui:define name="sidebar">
+			<ui:include src="/sidebar.xhtml" />
+		</ui:define>
+		
 		<ui:define name="footer">
 			<ui:include src="/footer.xhtml" />
 		</ui:define>

@@ -100,8 +100,8 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 			
 			//	If no season-scope win value defined, but win modifier applied, use win modifier for scoring
 			if (season.getWinValue() == 0 && record.getWinModifier() != 0) {
-				winScore1 += (winsATS1 * record.getWinModifier());
-				winScore2 += (winsATS2 * record.getWinModifier());
+				winScore1 = (winsATS1 * record.getWinModifier());
+				winScore2 = (winsATS2 * record.getWinModifier());
 			}
 			//	If season-scope win value is not zero, use to calculate points
 			else {
@@ -111,13 +111,13 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 					winTotal1 *= record.getWinModifier();
 					winTotal2 *= record.getWinModifier();
 				}
-				winScore1 += winTotal1;
-				winScore2 += winTotal2;
+				winScore1 = winTotal1;
+				winScore2 = winTotal2;
 			}
 			//	If no season-scope loss value defined, but loss modifier applied, use loss modifier for scoring
 			if (season.getLossValue() == 0 && record.getLossModifier() != 0) {
-				lossScore1 += (lossATS1 * record.getLossModifier());
-				lossScore2 += (lossATS2 * record.getLossModifier());
+				lossScore1 = (lossATS1 * record.getLossModifier());
+				lossScore2 = (lossATS2 * record.getLossModifier());
 			}
 			//	If season-scope loss value is not zero, use to calculate points
 			else {
@@ -127,13 +127,13 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 					lossTotal1 *= record.getLossModifier();
 					lossTotal2 *= record.getLossModifier();
 				}
-				lossScore1 += lossTotal1;
-				lossScore2 += lossTotal2;
+				lossScore1 = lossTotal1;
+				lossScore2 = lossTotal2;
 			}
 			//	If no season-scope tie value defined, but tie modifier applied, use tie modifier for scoring
 			if (season.getTieValue() == 0 && record.getTieModifier() != 0) {
-				tieScore1 += (tiesATS1 * record.getTieModifier());
-				tieScore2 += (tiesATS2 * record.getTieModifier());
+				tieScore1 = (tiesATS1 * record.getTieModifier());
+				tieScore2 = (tiesATS2 * record.getTieModifier());
 			}
 			//	If season-scope tie value is not zero, use to calculate points
 			else {
@@ -143,8 +143,8 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 					tieTotal1 *= record.getTieModifier();
 					tieTotal2 *= record.getTieModifier();
 				}
-				tieScore1 += tieTotal1;
-				tieScore2 += tieTotal2;
+				tieScore1 = tieTotal1;
+				tieScore2 = tieTotal2;
 			}
 			
 			rawTotal = rawWins - rawLosses;
@@ -163,18 +163,24 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 			rawLosses -= record.getLosses();
 			rawTies -= record.getTies();
 			
-			winsATS1 -= record.getWinsATS1();
-			lossATS1 -= record.getLossesATS1();
-			tiesATS1 -= record.getTiesATS1();
-			
-			winsATS2 -= record.getWinsATS2();
-			lossATS2 -= record.getLossesATS2();
-			tiesATS2 -= record.getTiesATS2();
+			//	Determine which ATS scores to use (default ATS1)
+			boolean useAts2 = !record.getPicksInRecord().isEmpty() && record.getPicksInRecord().get(0).getPickType().equals(PickType.SPREAD2);
+
+			if (useAts2) {
+				winsATS2 -= record.getWinsATS2();
+				lossATS2 -= record.getLossesATS2();
+				tiesATS2 -= record.getTiesATS2();
+			}
+			else {
+				winsATS1 -= record.getWinsATS1();
+				lossATS1 -= record.getLossesATS1();
+				tiesATS1 -= record.getTiesATS1();
+			}
 			
 			//	If no season-scope win value defined, but win modifier applied, use win modifier for scoring
 			if (season.getWinValue() == 0 && record.getWinModifier() != 0) {
-				winScore1 -= (winsATS1 * record.getWinModifier());
-				winScore2 -= (winsATS2 * record.getWinModifier());
+				winScore1 = (winsATS1 * record.getWinModifier());
+				winScore2 = (winsATS2 * record.getWinModifier());
 			}
 			//	If season-scope win value is not zero, use to calculate points
 			else {
@@ -184,13 +190,13 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 					winTotal1 *= record.getWinModifier();
 					winTotal2 *= record.getWinModifier();
 				}
-				winScore1 -= winTotal1;
-				winScore2 -= winTotal2;
+				winScore1 = winTotal1;
+				winScore2 = winTotal2;
 			}
 			//	If no season-scope loss value defined, but loss modifier applied, use loss modifier for scoring
 			if (season.getLossValue() == 0 && record.getLossModifier() != 0) {
-				lossScore1 -= (lossATS1 * record.getLossModifier());
-				lossScore2 -= (lossATS2 * record.getLossModifier());
+				lossScore1 = (lossATS1 * record.getLossModifier());
+				lossScore2 = (lossATS2 * record.getLossModifier());
 			}
 			//	If season-scope loss value is not zero, use to calculate points
 			else {
@@ -200,13 +206,13 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 					lossTotal1 *= record.getLossModifier();
 					lossTotal2 *= record.getLossModifier();
 				}
-				lossScore1 -= lossTotal1;
-				lossScore2 -= lossTotal2;
+				lossScore1 = lossTotal1;
+				lossScore2 = lossTotal2;
 			}
 			//	If no season-scope tie value defined, but tie modifier applied, use tie modifier for scoring
 			if (season.getTieValue() == 0 && record.getTieModifier() != 0) {
-				tieScore1 -= (tiesATS1 * record.getTieModifier());
-				tieScore2 -= (tiesATS2 * record.getTieModifier());
+				tieScore1 = (tiesATS1 * record.getTieModifier());
+				tieScore2 = (tiesATS2 * record.getTieModifier());
 			}
 			//	If season-scope tie value is not zero, use to calculate points
 			else {
@@ -216,8 +222,8 @@ public class RecordAggregator implements Comparable<RecordAggregator>, Serializa
 					tieTotal1 *= record.getTieModifier();
 					tieTotal2 *= record.getTieModifier();
 				}
-				tieScore1 -= tieTotal1;
-				tieScore2 -= tieTotal2;
+				tieScore1 = tieTotal1;
+				tieScore2 = tieTotal2;
 			}
 			
 			rawTotal = rawWins - rawLosses;
