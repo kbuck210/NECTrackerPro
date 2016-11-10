@@ -18,6 +18,7 @@ import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartSeries;
 import org.primefaces.model.chart.CategoryAxis;
+import org.primefaces.model.chart.LegendPlacement;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
@@ -53,11 +54,11 @@ import com.nectp.jpa.entities.Week;
 public abstract class ChartBean<T> implements Serializable, ChartInterface<T> {
 	private static final long serialVersionUID = -4821276965879685539L;
 	
-	private LineChartModel seasonChartModel;
-	private LineChartModel firstHalfModel;
-	private LineChartModel secondHalfModel;
-	private LineChartModel playoffModel;
-	private LineChartModel allTimeModel;
+	protected LineChartModel seasonChartModel;
+	protected LineChartModel firstHalfModel;
+	protected LineChartModel secondHalfModel;
+	protected LineChartModel playoffModel;
+	protected LineChartModel allTimeModel;
 	
 	private String seasonSummary;
 	private String firstHalfSummary;
@@ -176,18 +177,21 @@ public abstract class ChartBean<T> implements Serializable, ChartInterface<T> {
 	 * @param displayType the NEC enum corresponding to the scope of the model to create
 	 * @return a LineChartModel initialized with the data for the specified scope
 	 */
-	private LineChartModel createAnimatedModel(NEC displayType) {
+	protected LineChartModel createAnimatedModel(NEC displayType) {
 		if (profileEntity instanceof AbstractTeamForSeason) {
 			//	Call the abstracted set chart title method, suche that an appropriate title is set based on the runtime type
 			setChartTitle();
 			
 			AbstractTeamForSeason atfs = (AbstractTeamForSeason) profileEntity;
 			
-			LineChartModel chartModel = createChartModel(chartTitle, "Win Percentage:", 1.0, 0.0, "Week Number:", -1, 1);
-	
 			Integer rangeStart = getRangeStart(displayType);
 			Integer rangeEnd = getRangeEnd(displayType);
 			
+			LineChartModel chartModel = createChartModel(chartTitle, "Win Percentage:", 100.0, 0.0, "Week Number:", rangeEnd+1, rangeStart-1);
+			chartModel.setExtender("digitExt");
+			chartModel.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
+			chartModel.setResetAxesOnResize(false);
+	
 			boolean againstSpread = (displayType != NEC.TWO_AND_OUT && displayType != NEC.ONE_AND_OUT);
 			RecordAggregator ragg = recordService.getRecordForConcurrentWeeksForAtfs(atfs, rangeStart, rangeEnd, displayType, againstSpread);
 			
@@ -228,7 +232,10 @@ public abstract class ChartBean<T> implements Serializable, ChartInterface<T> {
 			AbstractTeamForSeason atfs = (AbstractTeamForSeason) profileEntity;
 			
 			//	Create the chart model, specifying only the Y-Axis parameters
-			LineChartModel model = createChartModel("All Time Performance:", "Win Percentage:", 1.0, 0.0, null, -1, -1);
+			LineChartModel model = createChartModel("All Time Performance:", "Win Percentage:", 100.0, 0.0, null, -1, -1);
+			model.setExtender("digitExt");
+			model.setLegendPlacement(LegendPlacement.OUTSIDEGRID);
+			model.setResetAxesOnResize(false);
 			
 			//	Get all persisted seasons in order by season number
 			List<Season> allSeasons = seasonService.findAll();

@@ -40,7 +40,7 @@ public enum NEC {
 		case TNT:
 			return "TNT";
 		case MNF_TNT:
-			return "MNF_TNT";
+			return "MNF & TNT";
 		case TWO_AND_OUT:
 			return "Two and Out";
 		case MONEY_BACK:

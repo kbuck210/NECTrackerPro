@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:decorate template="profileTemplate.xhtml">
+		<ui:define name="title">#{playerProfileBean.profileEntity.nickname}</ui:define>
 		<ui:define name="header">
 			<ui:include src="/header.xhtml" />
 		</ui:define>
@@ -483,6 +484,18 @@
 					</p:fieldset>
 				</div>
 			</div>
+			
+			<script type="text/javascript">
+   				function digitExt() {
+   					this.cfg.axes.xaxis.tickInterval = 1;
+			        this.cfg.axes.xaxis.tickOptions = {
+			            	formatString : '%d'
+			        	};
+		        	this.cfg.axes.yaxis.tickOptions = {
+		        			formatString : '%d'
+				        };
+		    	}
+			</script>
 		</ui:define>
 		
 		<ui:define name="footer">

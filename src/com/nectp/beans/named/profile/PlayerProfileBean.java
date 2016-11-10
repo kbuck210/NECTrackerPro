@@ -5,14 +5,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.nectp.beans.named.RecordDisplay;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
 import com.nectp.beans.remote.daos.SeasonService;
-import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.PlayerForSeason;
-import com.nectp.jpa.entities.Subseason;
-import com.nectp.jpa.entities.Week;
-import com.nectp.jpa.entities.Week.WeekStatus;
 
 @Named(value="playerProfileBean")
 @ViewScoped

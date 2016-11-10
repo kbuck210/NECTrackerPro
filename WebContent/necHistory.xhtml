@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:decorate template="profileTemplate.xhtml" >
+		<ui:define name="title">NEC History</ui:define>
+		<ui:define name="header">
+			<ui:include src="/header.xhtml" />
+		</ui:define>
+		
+		<ui:define name="content">
+			<div class="row columns" >
+				<p:fieldset>
+					<h2 class="hero-main-header blue">NEC Season History:</h2>
+				</p:fieldset>
+				<hr/>
+			</div>
+			<ui:repeat value="#{necHistoryBean.seasons}" var="season" >
+				<div class="row columns blog-post shadow">
+					<h2>NEC #{season.seasonNumber} - #{season.seasonYear}</h2>
+					<p:tabView orientation="bottom" >
+						<p:tab title="First Half" >
+							<div class="row columns">
+								<p:chart type="line" widgetVar="chartNEC#{season.seasonNumber}FirstHalf" model="#{season.historyChart.firstHalfModel}" style="height:30rem;" responsive="true" />
+							</div>
+						</p:tab>
+						<p:tab title="Second Half">
+							<div class="row columns">
+								<p:chart type="line" widgetVar="chartNEC#{season.seasonNumber}SecondHalf" model="#{season.historyChart.secondHalfModel}" style="height:30rem;" responsive="true" />
+							</div>
+						</p:tab> 
+						<p:tab title="Playoffs">
+							<div class="row columns">
+								<p:chart type="line" widgetVar="chartNEC#{season.seasonNumber}Playoffs" model="#{season.historyChart.playoffModel}" style="height:30rem;" responsive="true" />
+							</div>
+						</p:tab>
+						<p:tab title="Season">
+							<div class="row columns">
+								<p:chart type="line" widgetVar="chartNEC#{season.seasonNumber}Season" model="#{season.historyChart.seasonChartModel}" style="height:30rem;" responsive="true" />
+							</div>
+						</p:tab>
+					</p:tabView>
+					<p:dataTable var="prize" value="#{season.prizes}" style="text-align:center;" >
+						<p:column headerText="Prize:">
+							<h:outputText value="#{prize.name}" />
+						</p:column>
+						<p:column headerText="Winner:">
+							<h:outputText value="#{prize.winner}" />
+						</p:column>
+						<p:column headerText="Record:">
+							<h:outputText value="#{prize.record}"/>
+						</p:column>
+						<p:column headerText="Score:">
+							<h:outputText value="#{prize.score}" />
+						</p:column>
+						<p:column headerText="Payout:">
+							<h:outputText value="#{prize.payout}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</ui:repeat>
+			<script type="text/javascript">
+   				function digitExt() {
+	                this.cfg.axes.xaxis.tickInterval = 1;
+			        this.cfg.axes.xaxis.tickOptions = {
+			            	formatString : '%d'
+			        	};
+		    	}
+			</script>
+		</ui:define>
+		
+		<ui:define name="footer">
+			<ui:include src="/footer.xhtml" />
+		</ui:define>
+	</ui:decorate>
+	
+	
+</html>

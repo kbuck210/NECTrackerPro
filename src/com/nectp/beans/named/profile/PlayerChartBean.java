@@ -59,7 +59,7 @@ public class PlayerChartBean extends ChartBean<PlayerForSeason> {
 				currentWinPct = (double) wins / (double) totalPicks;
 			}
 			
-			series.set(r.getWeek().getWeekNumber(), currentWinPct);
+			series.set(r.getWeek().getWeekNumber(), currentWinPct * 100);
 		}
 		
 		return series;
@@ -85,7 +85,7 @@ public class PlayerChartBean extends ChartBean<PlayerForSeason> {
 			}
 			double seasonWinPct = (double) wins / (double) seasonRagg.getRecords().size();
 			
-			barSeries.set(season.getSeasonNumber().toString(), seasonWinPct);
+			barSeries.set(season.getSeasonNumber().toString(), seasonWinPct * 100);
 		}
 		
 		return barSeries;
