@@ -157,18 +157,16 @@ public class HomeContentBean implements Serializable {
 					GameBean bean = new GameBean();
 					Game game = p.getGame();
 					bean.setPlayer(userInstance);
-					NEC displayType = p.getApplicableRecord().getRecordType();
-					boolean againstSpread = (displayType != NEC.TWO_AND_OUT && displayType != NEC.ONE_AND_OUT);
-					bean.setGameDisplayType(displayType);
+					bean.setGameDisplayType(NEC.SEASON);
 					bean.setGame(game);
 					bean.setHomeSelectable(false);
 					bean.setAwaySelectable(false);
 					TeamForSeason homeTeam = game.getHomeTeam();
-					RecordAggregator homeRagg = recordService.getAggregateRecordForAtfsForType(homeTeam, displayType, againstSpread);
+					RecordAggregator homeRagg = recordService.getOverallRecordThroughWeekForAtfs(homeTeam, displayWeek, NEC.SEASON, false);
 					bean.setHomeRecord(homeRagg.toString(PickType.STRAIGHT_UP));
 
 					TeamForSeason awayTeam = game.getAwayTeam();
-					RecordAggregator awayRagg = recordService.getAggregateRecordForAtfsForType(awayTeam, displayType, againstSpread);
+					RecordAggregator awayRagg = recordService.getOverallRecordThroughWeekForAtfs(awayTeam, displayWeek, NEC.SEASON, false);
 					bean.setAwayRecord(awayRagg.toString(PickType.STRAIGHT_UP));
 
 					playerPickBeans.add(bean);
@@ -179,17 +177,16 @@ public class HomeContentBean implements Serializable {
 				//	Create game beans for other games
 				for (Game g : otherGames) {
 					GameBean bean = new GameBean();
-					NEC displayType = displayWeek.getSubseason().getSubseasonType();
-					bean.setGameDisplayType(displayType);
+					bean.setGameDisplayType(NEC.SEASON);
 					bean.setGame(g);
 					bean.setHomeSelectable(false);
 					bean.setAwaySelectable(false);
 					TeamForSeason homeTeam = g.getHomeTeam();
-					RecordAggregator homeRagg = recordService.getAggregateRecordForAtfsForType(homeTeam, displayType, false);
+					RecordAggregator homeRagg = recordService.getOverallRecordThroughWeekForAtfs(homeTeam, displayWeek, NEC.SEASON, false);
 					bean.setHomeRecord(homeRagg.toString(PickType.STRAIGHT_UP));
 					
 					TeamForSeason awayTeam = g.getAwayTeam();
-					RecordAggregator awayRagg = recordService.getAggregateRecordForAtfsForType(awayTeam, displayType, false);
+					RecordAggregator awayRagg = recordService.getOverallRecordThroughWeekForAtfs(awayTeam, displayWeek, NEC.SEASON, false);
 					bean.setAwayRecord(awayRagg.toString(PickType.STRAIGHT_UP));
 					
 					otherGameBeans.add(bean);
@@ -200,17 +197,16 @@ public class HomeContentBean implements Serializable {
 				//	Create game beans for other games
 				for (Game g : displayWeek.getGames()) {
 					GameBean bean = new GameBean();
-					NEC displayType = displayWeek.getSubseason().getSubseasonType();
-					bean.setGameDisplayType(displayType);
+					bean.setGameDisplayType(NEC.SEASON);
 					bean.setGame(g);
 					bean.setHomeSelectable(false);
 					bean.setAwaySelectable(false);
 					TeamForSeason homeTeam = g.getHomeTeam();
-					RecordAggregator homeRagg = recordService.getAggregateRecordForAtfsForType(homeTeam, displayType, false);
+					RecordAggregator homeRagg = recordService.getOverallRecordThroughWeekForAtfs(homeTeam, displayWeek, NEC.SEASON, false);
 					bean.setHomeRecord(homeRagg.toString(PickType.STRAIGHT_UP));
 					
 					TeamForSeason awayTeam = g.getAwayTeam();
-					RecordAggregator awayRagg = recordService.getAggregateRecordForAtfsForType(awayTeam, displayType, false);
+					RecordAggregator awayRagg = recordService.getOverallRecordThroughWeekForAtfs(awayTeam, displayWeek, NEC.SEASON, false);
 					bean.setAwayRecord(awayRagg.toString(PickType.STRAIGHT_UP));
 					
 					otherGameBeans.add(bean);
@@ -224,17 +220,16 @@ public class HomeContentBean implements Serializable {
 			//	Create game beans for other games
 			for (Game g : displayWeek.getGames()) {
 				GameBean bean = new GameBean();
-				NEC displayType = displayWeek.getSubseason().getSubseasonType();
-				bean.setGameDisplayType(displayType);
+				bean.setGameDisplayType(NEC.SEASON);
 				bean.setGame(g);
 				bean.setHomeSelectable(false);
 				bean.setAwaySelectable(false);
 				TeamForSeason homeTeam = g.getHomeTeam();
-				RecordAggregator homeRagg = recordService.getAggregateRecordForAtfsForType(homeTeam, displayType, false);
+				RecordAggregator homeRagg = recordService.getOverallRecordThroughWeekForAtfs(homeTeam, displayWeek, NEC.SEASON, false);
 				bean.setHomeRecord(homeRagg.toString(PickType.STRAIGHT_UP));
 
 				TeamForSeason awayTeam = g.getAwayTeam();
-				RecordAggregator awayRagg = recordService.getAggregateRecordForAtfsForType(awayTeam, displayType, false);
+				RecordAggregator awayRagg = recordService.getOverallRecordThroughWeekForAtfs(awayTeam, displayWeek, NEC.SEASON, false);
 				bean.setAwayRecord(awayRagg.toString(PickType.STRAIGHT_UP));
 
 				otherGameBeans.add(bean);

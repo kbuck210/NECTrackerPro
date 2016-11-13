@@ -12,6 +12,7 @@ import javax.inject.Named;
 import com.nectp.beans.remote.daos.RecordService;
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.jpa.entities.Season;
+import com.nectp.poi.ExcelSummaryWriter;
 
 @Named(value="necHistoryBean")
 @ViewScoped
@@ -24,6 +25,9 @@ public class NecHistoryBean implements Serializable {
 	@EJB
 	private RecordService recordService;
 	
+	@EJB
+	private ExcelSummaryWriter excelWriter;
+	
 	private List<SeasonBean> seasons;
 	
 	@PostConstruct
@@ -31,7 +35,7 @@ public class NecHistoryBean implements Serializable {
 		this.seasons = new ArrayList<SeasonBean>();
 		
 		for (Season season : seasonService.findAll()) {
-			SeasonBean sb = new SeasonBean();
+			SeasonBean sb = new SeasonBean(excelWriter);
 			sb.setSeason(season, recordService);
 			seasons.add(sb);
 		}

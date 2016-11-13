@@ -9,7 +9,7 @@
 
 <h:body>
 	<!-- Sidebar -->
-	<h:panelGroup layout="block" id="leaderboard" class="small-12 columns blog-post">
+	<h:panelGroup layout="block" id="leaderboard" class="small-12 columns blog-post bg-color-primary-0">
 	    <h3 class="sticky-title">Leaderboard:</h3>
 		<div id="interface" class="interface">
 
@@ -47,13 +47,14 @@
 				<div class="medium-12 columns leader-container">
 					<ui:repeat value="#{leaderboardBean.leaders}" var="leader" >
 						<h:link outcome="playerPage">
+							<f:param name="nec" value="#{leader.nec}" />
 							<f:param name="pfsId" value="#{leader.pfsId}" />
 							<!-- Create the leader rows -->
 							<p:panelGrid class="leaderboard-padding">
 								<!-- Avatar & Name row -->
 								<p:row>
-									<p:column colspan="1">
-										<span><p:graphicImage value="#{leader.position}" /></span>
+									<p:column colspan="1" class="avatar-col">
+										<span class="avatar-history-badge"><img src="#{leader.position}" /></span>
 										<p:graphicImage value="#{leader.avatar}" class="thumbnail avatar leader-avatar" />
 									</p:column>
 									<p:column colspan="2">

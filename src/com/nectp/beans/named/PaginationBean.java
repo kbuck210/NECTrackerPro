@@ -97,7 +97,7 @@ public class PaginationBean implements Serializable {
 		gotoMinThreeEnabled = displayWeekNum > 3;
 		
 		//	Check whether the forward weeks are enabled
-		int lastWeek = currentSeason.getPlayoffStartWeek() - 1;
+		int lastWeek = currentSeason.getSuperbowlWeek();
 		gotoEndEnabled = displayWeekNum < lastWeek;
 		gotoNextEnabled = displayWeekNum < lastWeek;
 		gotoPlusOneEnabled = displayWeekNum < lastWeek;
@@ -107,6 +107,25 @@ public class PaginationBean implements Serializable {
 		//	Set the link values
 		if (displayWeekNum == currentWeek.getWeekNumber()) {
 			currentWeekText = "Current Week:";
+		}
+		else if (displayWeekNum >= currentSeason.getPlayoffStartWeek()) {
+			switch(displayWeekNum) {
+			case 18:
+				currentWeekText = " Wild Card ";
+				break;
+			case 19:
+				currentWeekText = " Divisionals ";
+				break;
+			case 20:
+				currentWeekText = " Conf Champ ";
+				break;
+			case 22:
+				currentWeekText = " Superbowl ";
+				break;
+			default:
+				currentWeekText = "   Week " + displayWeekNum + ":";
+				break;
+			}
 		}
 		else {
 			currentWeekText = "   Week " + displayWeekNum + ":";
@@ -124,50 +143,91 @@ public class PaginationBean implements Serializable {
 		else {
 			previousDisabled = "";
 		}
+		//	Check whether the minus-one pagination option is enabled
 		if (gotoMinOneEnabled) {
-			weekMinOne = new Integer(displayWeekNum - 1).toString();
-			minOneDisabled = "";
+			weekMinOne = getPageWeekNum(displayWeekNum - 1);
+			if (weekMinOne.isEmpty()) {
+				minOneDisabled = "disabled";
+				weekMinOne = "  ";
+			}
+			else {
+				minOneDisabled = "";
+			}
 		}
 		else {
 			minOneDisabled = "disabled";
 			weekMinOne = "  ";
 		}
+		//	Check whether the minus-two pagination option is enabled
 		if (gotoMinTwoEnabled) {
-			weekMinTwo = new Integer(displayWeekNum - 2).toString();
-			minTwoDisabled = "";
+			weekMinTwo = getPageWeekNum(displayWeekNum - 2);
+			if (weekMinTwo.isEmpty()) {
+				minTwoDisabled = "disabled";
+				weekMinTwo = "  ";
+			}
+			else {
+				minTwoDisabled = "";
+			}
 		}
 		else {
 			minTwoDisabled = "disabled";
 			weekMinTwo = "  ";
 		}
+		//	Check whether the minus-three pagination option is enabled
 		if (gotoMinThreeEnabled) {
-			weekMinThree = new Integer(displayWeekNum - 3).toString();
-			minThreeDisabled = "";
+			weekMinThree = getPageWeekNum(displayWeekNum - 3);
+			if (weekMinThree.isEmpty()) {
+				minThreeDisabled = "disabled";
+				weekMinThree = "  ";
+			}
+			else {
+				minThreeDisabled = "";
+			}
 		}
 		else {
 			minThreeDisabled = "disabled";
 			weekMinThree = "  ";
 		}
-		
+		//	Check whether the plus one pagination option is enabled
 		if (gotoPlusOneEnabled) {
-			weekPlusOne = new Integer(displayWeekNum + 1).toString();
-			plusOneDisabled = "";
+			weekPlusOne = getPageWeekNum(displayWeekNum + 1);
+			if (weekPlusOne.isEmpty()) {
+				plusOneDisabled = "disabled";
+				weekPlusOne = "  ";
+			}
+			else {
+				plusOneDisabled = "";
+			}
 		}
 		else {
 			plusOneDisabled = "disabled";
 			weekPlusOne = "  ";
 		}
+		//	Check whether the plus two pagination is enabled
 		if (gotoPlusTwoEnabled) {
-			weekPlusTwo = new Integer(displayWeekNum + 2).toString();
-			plusTwoDisabled = "";
+			weekPlusTwo = getPageWeekNum(displayWeekNum + 2);
+			if (weekPlusTwo.isEmpty()) {
+				plusTwoDisabled = "disabled";
+				weekPlusTwo = "  ";
+			}
+			else {
+				plusTwoDisabled = "";
+			}
 		}
 		else {
 			plusTwoDisabled = "disabled";
 			weekPlusTwo = "  ";
 		}
+		//	Check whether the plus-three pagination option is enabled
 		if (gotoPlusThreeEnabled) {
-			weekPlusThree = new Integer(displayWeekNum + 3).toString();
-			plusThreeDisabled = "";
+			weekPlusThree = getPageWeekNum(displayWeekNum + 3);
+			if (weekPlusThree.isEmpty()) {
+				plusThreeDisabled = "disabled";
+				weekPlusThree = "  ";
+			}
+			else {
+				plusThreeDisabled = "";
+			}
 		}
 		else {
 			plusThreeDisabled = "disabled";
@@ -359,4 +419,31 @@ public class PaginationBean implements Serializable {
 		displayWeek = weekService.selectWeekByNumberInSeason(lastWeek, currentSeason);
 		initValues();
 	}
+	
+	private String getPageWeekNum(int weekNum) {
+		String pageNum;
+		switch(weekNum) {
+		case 18:
+			pageNum = " WC ";
+			break;
+		case 19:
+			pageNum = " Div ";
+			break;
+		case 20:
+			pageNum = " Conf ";
+			break;
+		case 21:
+			pageNum = "";
+			break;
+		case 22:
+			pageNum = " SB ";
+			break;
+		default:
+			pageNum = new Integer(weekNum).toString();
+			break;
+		}
+		
+		return pageNum;
+	}
+	
 }

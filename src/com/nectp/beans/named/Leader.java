@@ -19,21 +19,21 @@ public class Leader {
 
 	private static Map<Integer, String> rankImgMap = new HashMap<Integer, String>();
 	static {
-		rankImgMap.put(1, "img/first.png");
-		rankImgMap.put(2, "img/second.png");
-		rankImgMap.put(3, "img/third.png");
-		rankImgMap.put(4, "img/fourth.png");
-		rankImgMap.put(5, "img/fifth.png");
-		rankImgMap.put(6, "img/sixth.png");
-		rankImgMap.put(7, "img/seventh.png");
-		rankImgMap.put(8, "img/eighth.png");
-		rankImgMap.put(9, "img/ninth.png");
-		rankImgMap.put(10, "img/tenth.png");
-		rankImgMap.put(11, "img/eleventh.png");
-		rankImgMap.put(12, "img/twelveth.png");
-		rankImgMap.put(13, "img/thirteenth.png");
-		rankImgMap.put(14, "img/fourteenth.png");
-		rankImgMap.put(15, "img/fifteenth.png");
+		rankImgMap.put(1, "img/places/first.png");
+		rankImgMap.put(2, "img/places/second.png");
+		rankImgMap.put(3, "img/places/third.png");
+		rankImgMap.put(4, "img/places/fourth.png");
+		rankImgMap.put(5, "img/places/fifth.png");
+		rankImgMap.put(6, "img/places/sixth.png");
+		rankImgMap.put(7, "img/places/seventh.png");
+		rankImgMap.put(8, "img/places/eighth.png");
+		rankImgMap.put(9, "img/places/ninth.png");
+		rankImgMap.put(10, "img/places/tenth.png");
+		rankImgMap.put(11, "img/places/eleventh.png");
+		rankImgMap.put(12, "img/places/twelveth.png");
+		rankImgMap.put(13, "img/places/thirteenth.png");
+		rankImgMap.put(14, "img/places/fourteenth.png");
+		rankImgMap.put(15, "img/places/fifteenth.png");
 	}
 	
 	private PlayerForSeason pfs;
@@ -50,6 +50,10 @@ public class Leader {
 	
 	public String getPfsId() {
 		return pfs != null ? pfs.getAbstractTeamForSeasonId().toString() : "";
+	}
+	
+	public String getNec() {
+		return pfs != null ? pfs.getSeason().getSeasonNumber().toString() : "";
 	}
 	
 	public String getNickname() {

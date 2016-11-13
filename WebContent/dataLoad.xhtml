@@ -7,7 +7,8 @@
       xmlns:p="http://primefaces.org/ui"
 	  xmlns:pe="http://primefaces.org/ui/extensions" >
 
-	<ui:decorate template="homeTemplate.xhtml">
+	<ui:decorate template="profileTemplate.xhtml">
+		<ui:define name="title">Upload Data</ui:define>
 		<ui:define name="header">
 			<ui:include src="/header.xhtml" />
 		</ui:define>
@@ -53,7 +54,7 @@
 				</h:form>
 				<h:form id="pickUploadForm" enctype="multipart/form-data">
 					<p:fieldset legend="Upload Pick Spreadsheets:">
-						<h:outputText value="Select the Stadiums.xml file to upload: " />
+						<h:outputText value="Select the picks .xls file to upload: " />
 						<p:fileUpload mode="advanced" 
 									  multiple="true"
 									  dragDropSupport="true"

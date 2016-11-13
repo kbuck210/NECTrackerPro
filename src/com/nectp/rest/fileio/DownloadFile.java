@@ -1,9 +1,12 @@
 package com.nectp.rest.fileio;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javax.activation.FileDataSource;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -14,27 +17,57 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
+import com.nectp.poi.ExcelSummaryWriter;
+
 @Stateless
 @Path("/download")
 public class DownloadFile {
 	
 	private Logger log = Logger.getLogger(DownloadFile.class.getName());
+	
+	@EJB
+	private ExcelSummaryWriter excelWriter;
 
 	@GET
 	@Path("/excel/{nec}/{wk}")
 	@Produces("application/vnd.ms-excel")
 	public Response downloadExcelTotals(@PathParam("nec") String seasonNumber, @PathParam("wk") String weekNumber) {
 		//	If the season & week are defined, find the excel file to export
-		//	TODO: change path to a static dir path on host system
-		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-		String relativeExcelPath = "/ExcelData/NEC" + seasonNumber + "/Week" + weekNumber + "-Totals.xls";
-		String excelPath = ctx.getRealPath(relativeExcelPath);
-		FileDataSource eds = new FileDataSource(excelPath);
+		String path = System.getProperty("user.home") + File.separator + "NECTrackerResources" + 
+				File.separator + "Excel" + File.separator + "Totals" + 
+				File.separator + "NEC" + seasonNumber + File.separator;
+		String filename = "NEC " + seasonNumber + " - Week " + weekNumber + " Totals.xls";
+//		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+//		String relativeExcelPath = "/ExcelData/NEC" + seasonNumber + "/Week" + weekNumber + "-Totals.xls";
+//		String excelPath = ctx.getRealPath(relativeExcelPath);
+		FileDataSource eds = new FileDataSource(path + filename);
 		File excelFile = eds.getFile();
 		
-		ResponseBuilder response = Response.ok((Object) excelFile);
-		String headerVal = "attachement; filename=" + excelFile.getName();
-		response.header("Content-Disposition", headerVal);
+		boolean exists = excelFile != null && excelFile.exists();
+		
+		//	Check whether the file is null or doesn't exist - if so, create it
+		if (!exists) {
+			excelWriter.setWeek(seasonNumber, weekNumber);
+			exists = excelWriter.writeTotals();
+		}
+		
+		ResponseBuilder response;
+		if (exists) {
+			response = Response.ok((Object) excelFile);
+			String headerVal = "attachement; filename=" + excelFile.getName();
+			response.header("Content-Disposition", headerVal);
+		}
+		else {
+			URI fail = null;
+			try {
+				fail = new URI("/seasons.xhtml?msg=no-file");
+			} catch (URISyntaxException e) {
+				e.printStackTrace();
+			}
+			response = Response.temporaryRedirect(fail);
+			log.severe("Failed to export excel.");
+		}
+		
 		return response.build();
 	}
 	
@@ -43,7 +76,6 @@ public class DownloadFile {
 	@Produces("application/pdf")
 	public Response downloadPdfTotals(@PathParam("nec") String seasonNumber, @PathParam("wk") String weekNumber) {
 		//	If the season & week are defined, find the excel file to export
-		//	TODO: change path to a static dir path on host system
 		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 		String relativePdfPath = "/ExcelData/NEC" + seasonNumber + "/Week" + weekNumber + "-Totals.pdf";
 		String pdfPath = ctx.getRealPath(relativePdfPath);

@@ -26,6 +26,23 @@
 .color-secondary-2-3 { color: #B2FFB2 }
 .color-secondary-2-4 { color: #7EFE7E }
 
+.bg-color-primary-0 { background-color: #F5FFFF }	/* Main Primary color */
+.bg-color-primary-1 { background-color: #FFFFFF }
+.bg-color-primary-2 { background-color: #FFFFFF }
+.bg-color-primary-3 { background-color: #B2FFFF }
+.bg-color-primary-4 { background-color: #7EFEFE }
+
+.bg-color-secondary-1-0 { background-color: #F6F9FF }	/* Main Secondary color (1) */
+.bg-color-secondary-1-1 { background-color: #FFFFFF }
+.bg-color-secondary-1-2 { background-color: #FFFFFF }
+.bg-color-secondary-1-3 { background-color: #BACFFF }
+.bg-color-secondary-1-4 { background-color: #8BAEFE }
+
+.bg-color-secondary-2-0 { background-color: #F5FFF5 }	/* Main Secondary color (2) */
+.bg-color-secondary-2-1 { background-color: #FFFFFF }
+.bg-color-secondary-2-2 { background-color: #FFFFFF }
+.bg-color-secondary-2-3 { background-color: #B2FFB2 }
+.bg-color-secondary-2-4 { background-color: #7EFE7E }
 
 
 /* As RGBa codes */

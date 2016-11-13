@@ -1,12 +1,16 @@
 package com.nectp.beans.named.profile;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.nectp.beans.ejb.ApplicationState;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
 import com.nectp.beans.remote.daos.SeasonService;
+import com.nectp.jpa.entities.Email;
 import com.nectp.jpa.entities.PlayerForSeason;
 
 @Named(value="playerProfileBean")
@@ -30,6 +34,9 @@ public class PlayerProfileBean extends ProfileBean<PlayerForSeason> {
 	
 	@Inject
 	private PlayerHistoryBean playerHistory;
+	
+	@Inject
+	private ApplicationState appState;
 	
 	@Override
 	public void setProfileEntity(PlayerForSeason profileEntity) {
@@ -77,52 +84,25 @@ public class PlayerProfileBean extends ProfileBean<PlayerForSeason> {
 		return pfsId;
 	}
 	
-//	private String createChartSummary() {
-//		StringBuilder sb = new StringBuilder();
-//		int activeIndex = playerChart.getActiveIndex();
-//		Week currentWeek = season.getCurrentWeek();
-//		if (currentWeek != null) {
-//			Subseason subseason = currentWeek.getSubseason();
-//			//	Create the summary based on the selected tab
-//			NEC activeScope;
-//			RecordDisplay scoreDisplay;
-//			switch(activeIndex) {
-//			case 0:
-//				activeScope = NEC.FIRST_HALF;
-//				scoreDisplay = playerStats.getFirstHalfDisplay();
-//				break;
-//			case 1:
-//				activeScope = NEC.SECOND_HALF;
-//				scoreDisplay = playerStats.getSecondHalfDisplay();
-//				break;
-//			case 2:
-//				activeScope = NEC.PLAYOFFS;
-//				scoreDisplay = playerStats.getPlayoffsDisplay();
-//				break;
-//			case 3:
-//				activeScope = NEC.SEASON;
-//				scoreDisplay = playerStats.getSeasonDisplay();
-//				break;
-//			case 4:
-//				activeScope = NEC.ALL_TIME;
-//				scoreDisplay = null;
-//				break;
-//			default:
-//				return "";
-//			}
-//			
-//			//	If the current week is within the active scope, tailor the summary to that
-//			if (subseason.getSubseasonType().equals(activeScope)) {
-//				if (currentWeek.equals(subseason.getFirstWeek())) {
-//					//	Check if the week is already over
-//					if (currentWeek.getWeekStatus().equals(WeekStatus.COMPLETED)) {
-//						if (scoreDisplay)
-//					}
-//					else {
-//						
-//					}
-//				}
-//			}
-//		}
-//	}
+	public boolean getEditable() {
+		PlayerForSeason user = appState.getUserInstance();
+		if (user != null) {
+			return user.getPlayer().equals(profileEntity.getPlayer());
+		}
+		else return false;
+	}
+	
+	public String getDisableEdits() {
+		return getEditable() ? "" : "disabled";
+	}
+	
+	public String getPrimaryEmail() {
+		if (profileEntity != null) {
+			List<Email> emails = profileEntity.getPlayer().getEmails();
+			if (!emails.isEmpty()) {
+				return emails.get(0).getEmailAddress();
+			}
+		}
+		return "";
+	}
 }

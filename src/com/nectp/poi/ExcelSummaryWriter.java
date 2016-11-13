@@ -13,9 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
+import javax.ejb.Stateless;
 
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -30,14 +29,16 @@ import org.apache.poi.ss.util.CellRangeAddress;
 
 import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.RecordAggregator;
+import com.nectp.beans.remote.daos.ConferenceService;
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.PickService;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
 import com.nectp.beans.remote.daos.PrizeForSeasonService;
-import com.nectp.beans.remote.daos.RecordService;
 import com.nectp.beans.remote.daos.SeasonService;
+import com.nectp.beans.remote.daos.StatisticService;
 import com.nectp.beans.remote.daos.WeekService;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.Conference;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.PlayerForSeason;
@@ -46,9 +47,11 @@ import com.nectp.jpa.entities.Record;
 import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
+import com.nectp.jpa.entities.Conference.ConferenceType;
 import com.nectp.jpa.entities.Pick.PickType;
 import com.nectp.webtools.RomanNumeral;
 
+@Stateless
 public class ExcelSummaryWriter {
 	
 	private Workbook workbook;
@@ -87,22 +90,21 @@ public class ExcelSummaryWriter {
 	private PickService pickService;
 	
 	@EJB
-	private RecordService recordService;
+	private ConferenceService conferenceService;
 
+	@EJB
+	private StatisticService<PlayerForSeason> playerStatService;
+	
 	@EJB
 	private PrizeForSeasonService pzfsService;
 	
 	private Logger log = Logger.getLogger(ExcelSummaryWriter.class.getName());
 	
-	@PostConstruct
-	public void init() {
-		//	Create a map to locally store the player/column mapping for faster lookups
+	
+	public void setWeek(String seasonNum, String weekNum) {
+		//		Create a map to locally store the player/column mapping for faster lookups
 		playerColMap = new HashMap<Integer, PlayerForSeason>();
-		
-		//	Get the season & week from the request parameters, if none defined, use current week of current season
-		String seasonNum = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("nec");
-		String weekNum = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("week");
-		
+
 		//	If the season number was defined, get the season
 		if (seasonNum != null) {
 			Integer nec = null;
@@ -113,7 +115,7 @@ public class ExcelSummaryWriter {
 				log.severe(e.getMessage());
 				return;
 			}
-			
+
 			season = seasonService.selectById(nec);
 		}
 		//	If the week number was defined & the season was defined, set the week & season
@@ -126,7 +128,7 @@ public class ExcelSummaryWriter {
 				log.severe(e.getMessage());
 				return;
 			}
-			
+
 			try {
 				week = weekService.selectWeekByNumberInSeason(weekNumber, season);
 			} catch (NoExistingEntityException e) {
@@ -151,11 +153,11 @@ public class ExcelSummaryWriter {
 				}
 			}
 		}
-		
+
 		//	If the season & week were defined, create the player/column mapping & the subseason type
 		if (season != null && week != null) {
 			subseasonType = week.getSubseason().getSubseasonType();
-			
+
 			for (PlayerForSeason player : season.getPlayers()) {
 				playerColMap.put(player.getExcelColumn(), player);
 			}
@@ -171,27 +173,27 @@ public class ExcelSummaryWriter {
 			}
 		}
 	}
-	
+
 	public boolean writeTotals() {
 		String path = System.getProperty("user.home") + File.separator + "NECTrackerResources" + 
-				 File.separator + "Excel" + File.separator + "Totals" + 
-				 File.separator + "NEC" + season.getSeasonNumber() + File.separator;
+				File.separator + "Excel" + File.separator + "Totals" + 
+				File.separator + "NEC" + season.getSeasonNumber() + File.separator;
 		String filename = "NEC " + season.getSeasonNumber() + " - Week " + week.getWeekNumber() + " Totals.xls";
 		File xlsFile = new File(path + filename);
-		
+		log.info("Writing file: " + xlsFile.getAbsolutePath());
 		workbook = new HSSFWorkbook();
-		
+
 		//	Create workbook styles
 		createWorkbookStyles();
-		
+
 		//	Construct and write the totals Sheet
 		boolean totalsCreated = createTotalsSheet();
-		
+
 		//	Construct and write the Two and Out & MNF/TNT sheets if the totals sheet was constructed
 		if (totalsCreated) {
 			createTnoSheet();
 			createMnfSheet();
-			
+
 			//	With the fully constructed sheet, write the output file
 			try {
 				OutputStream outStream = new FileOutputStream(xlsFile);
@@ -308,18 +310,31 @@ public class ExcelSummaryWriter {
 		for (TeamForSeason team : teams) {
 			Row teamRow = totalsSheet.createRow(curRowNum);
 			Cell teamCell = teamRow.createCell(0);
-			teamCell.setCellValue(team.getExcelPrintName().toUpperCase());
+			String teamCity = team.getTeamCity().toUpperCase();
+			if ("NEW YORK".equals(teamCity)) {
+				teamCity = team.getExcelPrintName();
+			}
+			teamCell.setCellValue(teamCity);
 			teamCell.setCellStyle(teamStyle);
 			
 			//	For each player, determine wether they picked this team this week
 			for (int i = 1; i <= numPlayers; i++) {
 				PlayerForSeason player = playerColMap.get(i);
 				Cell pickCell = teamRow.createCell(i);
-				Game game = gameService.selectGameByTeamWeek(team, week);
+				Game game = null; 
+				try {
+					game = gameService.selectGameByTeamWeek(team, week);
+				} catch (NoExistingEntityException e) {
+					//	No Game found, eat exception
+				}
 				if (game != null) {
 					Pick pick;
 					try {
 						pick = pickService.selectPlayerPickForGameForType(player, game, subseasonType);
+						//	Check whether the picked team is NOT this team row (i.e. the other team in the game)
+						if (!pick.getPickedTeam().equals(team)) {
+							continue;
+						}
 					} catch (NoExistingEntityException e) {
 						//	Player has no pick for this team, continue to next player
 						continue;
@@ -420,6 +435,20 @@ public class ExcelSummaryWriter {
 		nfcTitle.setCellValue("NFC");
 		nfcTitle.setCellStyle(headerStyle);
 		
+		//	Create the home record row
+		curRowNum += 2;
+		Row homeRow = totalsSheet.createRow(curRowNum);
+		Cell homeTitle = homeRow.createCell(0);
+		homeTitle.setCellValue("HOME");
+		homeTitle.setCellStyle(headerStyle);
+		
+		//	Create the away record row
+		curRowNum += 1;
+		Row awayRow = totalsSheet.createRow(curRowNum);
+		Cell awayTitle = awayRow.createCell(0);
+		awayTitle.setCellValue("AWAY");
+		awayTitle.setCellStyle(headerStyle);
+		
 		//	Create the Favs row
 		curRowNum += 2;
 		Row favsRow = totalsSheet.createRow(curRowNum);
@@ -448,39 +477,49 @@ public class ExcelSummaryWriter {
 		tnoTitle.setCellValue("2-And-Out");
 		tnoTitle.setCellStyle(headerStyle);
 		
-		//	Create the base MNF row
+		//	Create the MNF row(s)
 		List<Game> mondayGames = week.getGamesInWeekForDay(GregorianCalendar.MONDAY);
+		curRowNum += 2;
 		Row[] mnfRows = null;
 		if (mondayGames.size() > 0) {
-			curRowNum += 2;
 			//	Create an array of rows to store each of the monday games in order
 			mnfRows = new Row[mondayGames.size()];
-			for (int i = 0; i < mnfRows.length; ++i) {
-				Row mnfRow = totalsSheet.createRow(curRowNum + i);
-				mnfRows[i] = mnfRow;
-				//	For the first monday row, create the title header
-				if (i == 0) {
-					Cell mnfTitle = mnfRow.createCell(0);
-					mnfTitle.setCellValue("MNF'er");
-					mnfTitle.setCellStyle(headerStyle);
-				}
+		}
+		else {
+			mnfRows = new Row[1];	//	If no MNF games, create a single row as a placeholder anyway
+		}
+		//	Create the MNF rows
+		for (int i = 0; i < mnfRows.length; ++i) {
+			Row mnfRow = totalsSheet.createRow(curRowNum + i);
+			mnfRows[i] = mnfRow;
+			//	For the first monday row, create the title header
+			if (i == 0) {
+				Cell mnfTitle = mnfRow.createCell(0);
+				mnfTitle.setCellValue("MNF'er");
+				mnfTitle.setCellStyle(headerStyle);
 			}
 		}
 	
 		//	Create the TNT row (if TNT available)
 		List<Game> thursdayGames = week.getGamesInWeekForDay(GregorianCalendar.THURSDAY);
 		Row[] tntRows = null;
+		if (mondayGames.size() == 0) curRowNum += 2;
+		else curRowNum += (mondayGames.size() + 1);
+		
 		if (thursdayGames.size() > 0) {
-			curRowNum += (mondayGames.size() + 1);
 			tntRows = new Row[thursdayGames.size()];
-			for (int i = 0; i < tntRows.length; ++i) {
-				Row tntRow = totalsSheet.createRow(curRowNum + i);
-				tntRows[i] = tntRow;
-				if (i == 0) {
-					Cell tntTitle = tntRow.createCell(0);
-					tntTitle.setCellValue("TNT'er");
-					tntTitle.setCellStyle(headerStyle);
-				}
+		}
+		else {
+			tntRows = new Row[1];
+		}
+		//	Create the TNT rows
+		for (int i = 0; i < tntRows.length; ++i) {
+			Row tntRow = totalsSheet.createRow(curRowNum + i);
+			tntRows[i] = tntRow;
+			if (i == 0) {
+				Cell tntTitle = tntRow.createCell(0);
+				tntTitle.setCellValue("TNT'er");
+				tntTitle.setCellStyle(headerStyle);
 			}
 		}
 		
@@ -489,7 +528,7 @@ public class ExcelSummaryWriter {
 			PlayerForSeason player = playerColMap.get(i);
 			Record weekRecord;
 			try {
-				weekRecord = recordService.selectWeekRecordForAtfs(week, player, subseasonType);
+				weekRecord = playerStatService.selectWeekRecordForAtfs(week, player, subseasonType);
 			} catch (NoExistingEntityException e) {
 				log.severe("No record found for " + player.getNickname() + " in week " + week.getWeekNumber() + " can not create sheet!");
 				log.severe(e.getMessage());
@@ -497,7 +536,7 @@ public class ExcelSummaryWriter {
 			}
 			//	Get the aggregate record for this player through this week
 			int firstWeekNum = week.getSubseason().getFirstWeek().getWeekNumber();
-			RecordAggregator ragg = recordService.getRecordForConcurrentWeeksForAtfs(player, firstWeekNum, week.getWeekNumber(), subseasonType, true);
+			RecordAggregator ragg = playerStatService.getRecordForConcurrentWeeksForAtfs(player, firstWeekNum, week.getWeekNumber(), subseasonType, true);
 			
 			//	Get the W/L/T values & calculate the weekly score
 			int wins = weekRecord.getWinsATS1() + weekRecord.getWinsATS2();
@@ -526,24 +565,78 @@ public class ExcelSummaryWriter {
 			
 			Cell weekPointsCell = weekPointsRow.createCell(i);
 			weekPointsCell.setCellValue(Integer.toString(pointsForWeek));
-			weekPointsCell.setCellStyle(totalsStyle);
+			weekPointsCell.setCellStyle(playerStyle);
 			
 			Cell halfPointsCell = halfPointsRow.createCell(i);
 			halfPointsCell.setCellValue(ragg.getTotalScore().toString());
-			halfPointsCell.setCellStyle(totalsStyle);
+			halfPointsCell.setCellStyle(playerStyle);
 			
+			//	Get the AFC/NFC records
+			Conference afc = null;
+			Conference nfc = null;
+			try {
+				afc = conferenceService.selectConferenceByType(ConferenceType.AFC);
+				nfc = conferenceService.selectConferenceByType(ConferenceType.NFC);
+			} catch (NoExistingEntityException e) {
+				log.warning("No conference found for afc or nfc! Can not display conference records.");
+			}
+			if (afc != null && nfc != null) {
+				RecordAggregator afcRagg = playerStatService.getConferenceRecord(player, afc, NEC.SEASON, true);
+				RecordAggregator nfcRagg = playerStatService.getConferenceRecord(player, nfc, NEC.SEASON, true);
+				
+				Cell afcCell = afcRow.createCell(i);
+				afcCell.setCellValue(afcRagg.toString(PickType.SPREAD1));
+				afcCell.setCellStyle(totalsStyle);
+				
+				Cell nfcCell = nfcRow.createCell(i);
+				nfcCell.setCellValue(nfcRagg.toString(PickType.SPREAD1));
+				nfcCell.setCellStyle(totalsStyle);
+			}
+			
+			//	Get the home/away records
+			RecordAggregator homeRagg = playerStatService.getHomeAwayRecord(player, NEC.SEASON, true, true);
+			RecordAggregator awayRagg = playerStatService.getHomeAwayRecord(player, NEC.SEASON, false, true);
+			
+			Cell homeCell = homeRow.createCell(i);
+			homeCell.setCellValue(homeRagg.toString(PickType.SPREAD1));
+			homeCell.setCellStyle(totalsStyle);
+			
+			Cell awayCell = awayRow.createCell(i);
+			awayCell.setCellValue(awayRagg.toString(PickType.SPREAD1));
+			awayCell.setCellStyle(totalsStyle);
+			
+			//	Get the favs/udogs/even records
+			RecordAggregator favsRagg = playerStatService.getFavUdogEvenRecord(player, true, NEC.SEASON, true);
+			RecordAggregator udogRagg = playerStatService.getFavUdogEvenRecord(player, false, NEC.SEASON, true);
+			RecordAggregator evenRagg = playerStatService.getFavUdogEvenRecord(player, null, NEC.SEASON, true);
+			
+			Cell favsCell = favsRow.createCell(i);
+			favsCell.setCellValue(favsRagg.toString(PickType.SPREAD1));
+			favsCell.setCellStyle(totalsStyle);
+			
+			Cell dogsCell = dogsRow.createCell(i);
+			dogsCell.setCellValue(udogRagg.toString(PickType.SPREAD1));
+			dogsCell.setCellStyle(totalsStyle);
+			
+			Cell evenCell = evenRow.createCell(i);
+			evenCell.setCellValue(evenRagg.toString(PickType.SPREAD1));
+			evenCell.setCellStyle(totalsStyle);
+		
 			//	Process Two and Out Cell
 			Cell tnoCell = tnoRow.createCell(i);
 			Record tnoRecord = null;
 			try {
-				tnoRecord = recordService.selectWeekRecordForAtfs(week, player, NEC.TWO_AND_OUT);
-				Pick tnoPick = tnoRecord.getPicksInRecord().get(0);
-				tnoCell.setCellValue(tnoPick.getPickedTeam().getExcelPrintName());
-				if (tnoRecord.getWins() > 0) tnoCell.setCellStyle(winStyle);
-				else if (tnoRecord.getLosses() > 0) tnoCell.setCellStyle(lossStyle);
-				else tnoCell.setCellStyle(pushStyle);
+				tnoRecord = playerStatService.selectWeekRecordForAtfs(week, player, NEC.TWO_AND_OUT);
+				List<Pick> tnoPicks = tnoRecord.getPicksInRecord();
+				if (tnoPicks.size() == 1) {
+					Pick tnoPick = tnoRecord.getPicksInRecord().get(0);
+					tnoCell.setCellValue(tnoPick.getPickedTeam().getExcelPrintName());
+					if (tnoRecord.getWins() > 0) tnoCell.setCellStyle(winStyle);
+					else if (tnoRecord.getLosses() > 0) tnoCell.setCellStyle(lossStyle);
+					else tnoCell.setCellStyle(pushStyle);
+				}
 			} catch (NoExistingEntityException e) {
-				tnoCell.setCellValue("'-");
+				tnoCell.setCellValue("-");
 				tnoCell.setCellStyle(totalsStyle);
 			}
 			
@@ -551,13 +644,17 @@ public class ExcelSummaryWriter {
 			if (mnfRows != null) {
 				Record mnfRecord = null;
 				try {
-					mnfRecord = recordService.selectWeekRecordForAtfs(week, player, NEC.MNF);
+					mnfRecord = playerStatService.selectWeekRecordForAtfs(week, player, NEC.MNF);
 					List<Pick> mnfPicks = mnfRecord.getPicksInRecord();
 					Collections.sort(mnfPicks);
 					//	Loop over the mnf rows, filling in the mnf picks
 					for (int j = 0; j < mnfRows.length; ++j) {
 						Cell mnfCell = mnfRows[j].createCell(i);
-						if (j < mnfPicks.size()) {
+						if (mnfPicks.isEmpty()) {
+							mnfCell.setCellValue("-");
+							mnfCell.setCellStyle(totalsStyle);
+						}
+						else if (j < mnfPicks.size()) {
 							Pick mnfPick = mnfPicks.get(j);
 							mnfCell.setCellValue(mnfPick.getPickedTeam().getExcelPrintName());
 							TeamForSeason winner = null;
@@ -596,13 +693,17 @@ public class ExcelSummaryWriter {
 			if (tntRows != null) {
 				Record tntRecord = null;
 				try {
-					tntRecord = recordService.selectWeekRecordForAtfs(week, player, NEC.TNT);
+					tntRecord = playerStatService.selectWeekRecordForAtfs(week, player, NEC.TNT);
 					List<Pick> tntPicks = tntRecord.getPicksInRecord();
 					Collections.sort(tntPicks);
 					//	Loop over the tnt rows, filling in the tnt picks
 					for (int j = 0; j < tntRows.length; ++j) {
 						Cell tntCell = tntRows[j].createCell(i);
-						if (j < tntPicks.size()) {
+						if (tntPicks.isEmpty()) {
+							tntCell.setCellValue("-");
+							tntCell.setCellStyle(totalsStyle);
+						}
+						else if (j < tntPicks.size()) {
 							Pick tntPick = tntPicks.get(j);
 							tntCell.setCellValue(tntPick.getPickedTeam().getExcelPrintName());
 							TeamForSeason winner = null;
@@ -746,7 +847,7 @@ public class ExcelSummaryWriter {
 		for (int i = 1; i <= numPlayers; i++) {
 			Cell totalCell = totalsRow.createCell(i);
 			PlayerForSeason player = playerColMap.get(i);
-			RecordAggregator ragg = recordService.getAggregateRecordForAtfsForType(player, NEC.TWO_AND_OUT, false);
+			RecordAggregator ragg = playerStatService.getAggregateRecordForAtfsForType(player, NEC.TWO_AND_OUT, false);
 			totalCell.setCellValue("(" + ragg.getRawWins() + "-" + ragg.getRawLosses() + "-" + ragg.getRawTies() + ")");
 			totalCell.setCellStyle(totalsStyle);
 		}
@@ -841,7 +942,7 @@ public class ExcelSummaryWriter {
 	
 	private void createMnfSheet() {
 		//	Create MNF/TNT sheet:
-		String mnfSheetTitle = "NEC " + season.getSeasonNumber() + " - MNF/TNT";
+		String mnfSheetTitle = "NEC " + season.getSeasonNumber() + " - MNF_TNT";
 		mnfTntSheet = workbook.createSheet(mnfSheetTitle);
 
 		//	Create title row
@@ -1037,13 +1138,13 @@ public class ExcelSummaryWriter {
 		for (int i = 1; i <= numPlayers; ++i) {
 			PlayerForSeason player = playerColMap.get(i);
 			Cell mnfTotalCell = mnfTotalsRow.createCell(i);
-			RecordAggregator ragg = recordService.getAggregateRecordForAtfsForType(player, NEC.MNF, true);
+			RecordAggregator ragg = playerStatService.getAggregateRecordForAtfsForType(player, NEC.MNF, true);
 			mnfTotalCell.setCellValue("(" + ragg.getTotalWinCount() + "-" + ragg.getTotalLossCount() + "-" + ragg.getTotalTieCount() + ")");
 			mnfTotalCell.setCellStyle(totalsStyle);
 			
 			if (tntTotalsRow != null) {
 				Cell tntTotalCell = tntTotalsRow.createCell(i);
-				RecordAggregator tntRagg = recordService.getAggregateRecordForAtfsForType(player, NEC.TNT, true);
+				RecordAggregator tntRagg = playerStatService.getAggregateRecordForAtfsForType(player, NEC.TNT, true);
 				tntTotalCell.setCellValue("(" + tntRagg.getTotalWinCount() + "-" + tntRagg.getTotalLossCount() + "-" + tntRagg.getTotalTieCount() + ")");
 				tntTotalCell.setCellStyle(totalsStyle);
 				
@@ -1149,7 +1250,6 @@ public class ExcelSummaryWriter {
 		//	TODO: fix pick create logic to support this
 		if (minPicks == null) {
 			rulesBuilder.append("\"MAX THE MAX!\"");
-			
 		}
 		//	If a minimum & maximum  are defined
 		else if (maxPicks != null) {
@@ -1189,15 +1289,8 @@ public class ExcelSummaryWriter {
 		return season;
 	}
 	
-	public void setSeason(Season season) {
-		this.season = season;
-	}
-	
 	public Week getWeek() {
 		return week;
 	}
 	
-	public void setWeek(Week week) {
-		this.week = week;
-	}
 }

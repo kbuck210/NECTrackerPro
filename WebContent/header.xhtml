@@ -47,19 +47,21 @@
 	</p:dialog>
 	
 	<!-- Main Header -->
-	<header class="header large marketing-hero sites">
-		<a href="#"><p class="hero-framework-link">The New England Cup#{headerBean.seasonTitle}</p></a>
-		<h1 class="hero-main-header">NEC Tracker PRO</h1>
-		  <ul class="header-subnav">
-		    <li><a href="#">Take Action!</a></li>
-		    <li><h:link outcome="playerPage" class="is-active">
-				<f:param name="pfsId" value="1" />
-				<f:param name="nec" value="28" />
-				Profile:
-			</h:link></li>
-		    <li><h:link outcome="necHistory">Summary:</h:link></li>
-		  </ul>
-	</header>
+	<h:link outcome="home">
+		<header class="header large marketing-hero sites">
+			<p class="hero-framework-link">The New England Cup#{headerBean.seasonTitle}</p>
+			<h1 class="hero-main-header">NEC Tracker PRO</h1>
+			  <ul class="header-subnav">
+			    <li><a href="#">Take Action!</a></li>
+			    <li><h:link outcome="playerPage" class="is-active">
+					<f:param name="pfsId" value="1" />
+					<f:param name="nec" value="28" />
+					Profile:
+				</h:link></li>
+			    <li><h:link outcome="necHistory">Summary:</h:link></li>
+			  </ul>
+		</header>
+	</h:link>
 	<!-- End Main Header -->
 	
 	<br />

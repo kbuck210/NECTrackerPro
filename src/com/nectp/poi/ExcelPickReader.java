@@ -265,6 +265,7 @@ public class ExcelPickReader {
 								}
 							}
 						}
+						else log.warning("CELL NOT CELL_TYPE_STRING!!!! Can not check for pick.");
 					} 
 				}
 				else {
@@ -507,6 +508,8 @@ public class ExcelPickReader {
 				}
 			}
 			
+			log.info("Picks for " + player.getNickname() + ": ");
+			log.info("-----------------------------------------");
 			for (TeamForSeason pick : pickedTeams) {
 				Game game = null;
 				try {
@@ -524,6 +527,7 @@ public class ExcelPickReader {
 				else {
 					recordFactory.updateRecordForPlayerPick(p);
 				}
+				log.info("Pick: " + pick.getExcelPrintName());
 			}
 		}
 		

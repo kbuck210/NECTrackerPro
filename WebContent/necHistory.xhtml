@@ -5,7 +5,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" >
 
 	<ui:decorate template="profileTemplate.xhtml" >
 		<ui:define name="title">NEC History</ui:define>
@@ -14,6 +14,8 @@
 		</ui:define>
 		
 		<ui:define name="content">
+			<p:growl id="history_growl" life="2000" />
+			
 			<div class="row columns" >
 				<p:fieldset>
 					<h2 class="hero-main-header blue">NEC Season History:</h2>
@@ -21,8 +23,8 @@
 				<hr/>
 			</div>
 			<ui:repeat value="#{necHistoryBean.seasons}" var="season" >
-				<div class="row columns blog-post shadow">
-					<h2>NEC #{season.seasonNumber} - #{season.seasonYear}</h2>
+				<div class="row columns blog-post shadow bg-color-secondary-2-0">
+					<h2 class="picks-headline">NEC #{season.seasonNumber} <small>#{season.seasonYear}</small></h2>
 					<p:tabView orientation="bottom" >
 						<p:tab title="First Half" >
 							<div class="row columns">
@@ -62,6 +64,36 @@
 							<h:outputText value="#{prize.payout}" />
 						</p:column>
 					</p:dataTable>
+					
+       				<p:panel header="Export Totals: (Excel or PDF) ">  
+       					<!-- Downloading modal graphic -->
+       					<p:dialog modal="true" widgetVar="statusDialog" style="width:400px;height:300px;" header="Preparing Download:" draggable="false" closable="false" resizable="false">
+						    <p:graphicImage value="img/gifs/download-gif.gif" />
+						</p:dialog>
+       					<h:form id="exportSelectNEC#{season.seasonNumber}" >
+					        <p:selectOneMenu id="week" value="#{season.exportWeek}" >
+					            <f:selectItem itemLabel="Select Week to Download: " itemValue="" />
+					            <f:selectItems value="#{season.weeks}" />
+		       				</p:selectOneMenu>
+		       				<p:spacer width="20"/>  
+		       				<p:commandButton value="Download Excel: " onclick="PrimeFaces.monitorDownload(start, stop);" ajax="false">
+		       					<p:fileDownload value="#{season.excelDownload}" />
+		       				</p:commandButton>
+							<p:spacer width="20"/>  
+							<p:commandButton value="Download PDF: " onclick="PrimeFaces.monitorDownload(start, stop);" ajax="false">
+								<p:fileDownload value="#{season.downloadPdf}" />
+							</p:commandButton>
+       					</h:form> 
+						<script type="text/javascript">
+							function start() {
+							    PF('statusDialog').show();
+							}
+							 
+							function stop() {
+							    PF('statusDialog').hide();
+							}
+						</script>
+					</p:panel>  
 				</div>
 			</ui:repeat>
 			<script type="text/javascript">

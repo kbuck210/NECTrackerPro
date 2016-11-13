@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:decorate template="profileTemplate.xhtml">
+		<ui:define name="title">#{teamProfileBean.teamAbbr}</ui:define>
 		<ui:define name="header">
 			<ui:include src="/header.xhtml" />
 		</ui:define>

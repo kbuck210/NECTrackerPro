@@ -119,3 +119,10 @@ tbody, tfoot, thead {
 tbody tr:nth-child(2n) {
     background-color: inherit;
 }
+
+.ui-icon-excel {
+	background: url("img/icons/excel-icon.png")  no-repeat top left !important;
+}
+.ui-icon-pdf {
+	background: url("img/icons/pdf-icon.png") no-repeat top left !important;
+}
