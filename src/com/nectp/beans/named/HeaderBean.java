@@ -141,13 +141,19 @@ public class HeaderBean implements Serializable {
         } else {
             loggedIn = false;
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Invalid credentials");
+            if (loginService.getMessages() != null) {
+            	FacesMessage loginMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning:", loginService.getMessages());
+            	FacesContext.getCurrentInstance().addMessage(null, loginMessage);
+            }
         }
          
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("loggedIn", loggedIn);
 	}
 	
-	public void logout() {
+	public String logout() {
 		loginService.logout();
+		
+		return "/home.xhtml?faces-redirect=true";
 	}
 }

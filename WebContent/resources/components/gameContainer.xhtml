@@ -24,8 +24,8 @@
           </div>
           
           <ui:repeat value="#{cc.attrs.gameBeans}" var="gameBean">
-          	<gc:gameRow   season="#{gameBean.seasonNumber}"
-          				  rowId="#{gameBean.rowId}"
+          	<gc:gameRow   rowId="#{gameBean.rowId}"
+          				  season="#{gameBean.seasonNumber}"
           				  homeCity="#{gameBean.homeCity}" 
           				  homeRecord="#{gameBean.homeRecord}"
           				  homeScore="#{gameBean.homeScore}" 

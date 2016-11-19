@@ -11,7 +11,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import com.nectp.beans.ejb.daos.RecordAggregator;
-import com.nectp.beans.remote.daos.RecordService;
+import com.nectp.beans.remote.daos.PlayerStatisticService;
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.AbstractTeamForSeason;
@@ -30,11 +30,13 @@ public class LeaderboardBean implements Serializable {
 	
 	private NEC displayType;
 	
+	private String displayTitle;
+	
 	@EJB
 	private SeasonService seasonService;
 	
 	@EJB
-	private RecordService recordService;
+	private PlayerStatisticService playerStatService;
 	
 	@PostConstruct
 	public void init() {
@@ -43,7 +45,8 @@ public class LeaderboardBean implements Serializable {
 			//	TODO: redirect somehow
 		}
 		displayType = currentSeason.getCurrentWeek().getSubseason().getSubseasonType();
-		updateLeaders(displayType);
+//		updateLeaders(displayType);
+		setDisplayCurrentWeek();
 	}
 	
 	public String getCurrentWeek() {
@@ -62,10 +65,12 @@ public class LeaderboardBean implements Serializable {
 	 * @param displayType the NEC enum object representing the type of record leaderboards to display
 	 */
 	public void updateLeaders(NEC displayType) {
+		displayTitle = displayType.toString();
+		System.out.println("Set display title: " + displayTitle);
 		//	Re-initialize the leader list
 		leaders = new ArrayList<Leader>();
 		boolean againstSpread = displayType != NEC.TWO_AND_OUT;
-		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> playerRanks = recordService.getPlayerRankedScoresForType(displayType, currentSeason, againstSpread);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> playerRanks = playerStatService.getPlayerRankedScoresForType(displayType, currentSeason, againstSpread);
 		
 		//	Get the players from the rank map in order of ranking (players with tied records are in insertion order)
 		for (RecordAggregator ragg : playerRanks.keySet()) {
@@ -74,7 +79,7 @@ public class LeaderboardBean implements Serializable {
 				if (atfs instanceof PlayerForSeason) {
 					PlayerForSeason player = (PlayerForSeason)atfs;
 					//	Can't use ragg from map because while the scores are equal, the individual records may not...
-					RecordAggregator playerRagg = recordService.getAggregateRecordForAtfsForType(player, displayType, againstSpread);
+					RecordAggregator playerRagg = playerStatService.getAggregateRecordForAtfsForType(player, displayType, againstSpread);
 					Leader leader = new Leader(player, playerRagg, playerRanks);
 					leaders.add(leader);
 				}
@@ -84,5 +89,62 @@ public class LeaderboardBean implements Serializable {
 	
 	public List<Leader> getLeaders() {
 		return leaders;
+	}
+	
+	public void setDisplayCurrentWeek() {
+		displayTitle = "Current Week";
+		//	Re-initialize the leader list
+		leaders = new ArrayList<Leader>();
+		Week currentWeek = currentSeason.getCurrentWeek();
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> playerRanks = playerStatService.getWeekRanks(currentWeek, true);
+
+		//	Get the players from the rank map in order of ranking (players with tied records are in insertion order)
+		for (RecordAggregator ragg : playerRanks.keySet()) {
+			List<AbstractTeamForSeason> ranks = playerRanks.get(ragg);
+			for (AbstractTeamForSeason atfs : ranks) {
+				if (atfs instanceof PlayerForSeason) {
+					PlayerForSeason player = (PlayerForSeason)atfs;
+					//	Can't use ragg from map because while the scores are equal, the individual records may not...
+					RecordAggregator playerRagg = playerStatService.getRecordForWeek(player, currentWeek, true);
+					Leader leader = new Leader(player, playerRagg, playerRanks);
+					leaders.add(leader);
+				}
+			}
+		}
+	}
+	
+	public void setDisplayFirstHalf() {
+		System.out.println("changing to first half.");
+		displayType = NEC.FIRST_HALF;
+		updateLeaders(displayType);
+	}
+	
+	public void setDisplaySecondHalf() {
+		displayType = NEC.SECOND_HALF;
+		updateLeaders(displayType);
+	}
+	
+	public void setDisplayPlayoffs() {
+		displayType = NEC.PLAYOFFS;
+		updateLeaders(displayType);
+	}
+	
+	public void setDisplayMnfTnt() {
+		displayType = NEC.MNF_TNT;
+		updateLeaders(displayType);
+	}
+	
+	public void setDisplayTwoAndOut() {
+		displayType = NEC.TWO_AND_OUT;
+		updateLeaders(displayType);
+	}
+	
+	public void setDisplayMoneyback() {
+		displayType = NEC.MONEY_BACK;
+		updateLeaders(displayType);
+	}
+	
+	public String getSelectedDisplay() {
+		return displayTitle;
 	}
 }

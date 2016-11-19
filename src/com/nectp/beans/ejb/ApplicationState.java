@@ -17,13 +17,15 @@ import com.nectp.webtools.CookieFactory;
 
 import java.io.Serializable;
 
-@Named
+@Named(value="applicationStateBean")
 @SessionScoped
 public class ApplicationState implements Serializable {
 
 	private static final long serialVersionUID = -1652402098414950087L;
 
 	private Player user;
+	
+	private PlayerForSeason instance;
 	
 	private Season currentSeason;
 	
@@ -58,15 +60,7 @@ public class ApplicationState implements Serializable {
 	}
 	
 	public PlayerForSeason getUserInstance() {
-		PlayerForSeason userInstance = null;
-		if (user != null && currentSeason != null) {
-			try {
-				userInstance = pfsService.selectPlayerInSeason(user, currentSeason);
-			} catch (NoExistingEntityException e) {
-				/* eat the exception */
-			}
-		}
-		return userInstance;
+		return instance;
 	}
 
 	/**
@@ -74,7 +68,18 @@ public class ApplicationState implements Serializable {
 	 */
 	public void setUser(Player user) {
 		this.user = user;
-		System.out.println("In appstate, user set to: " + user.getName());
+		if (user != null && currentSeason != null) {
+			System.out.println("In appstate, user set to: " + user.getName());
+			try {
+				instance = pfsService.selectPlayerInSeason(user, currentSeason);
+				System.out.println("Got an instance for " + instance.getNickname());
+			} catch (NoExistingEntityException e) {
+				System.out.println("no instance found for " + user.getName());
+			}
+		}
+		else if (user == null) {
+			instance = null;
+		}
 	}
 
 	public Season getCurrentSeason() {
@@ -85,4 +90,11 @@ public class ApplicationState implements Serializable {
 		this.currentSeason = currentSeason;
 	}
 	
+	public String getSeasonNumber() {
+		return currentSeason != null ? currentSeason.getSeasonNumber().toString() : "";
+	}
+	
+	public String getInstanceId() {
+		return instance != null ? instance.getAbstractTeamForSeasonId().toString() : "";
+	}
 }

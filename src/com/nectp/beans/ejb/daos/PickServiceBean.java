@@ -121,4 +121,35 @@ public class PickServiceBean extends DataServiceBean<Pick> implements PickServic
 		
 		return picks;
 	}
+	
+	@Override
+	public List<Pick> selectAllPicksInWeek(Week week) {
+		Logger log = Logger.getLogger(PickServiceBean.class.getName());
+		List<Pick> picks;
+		if (week == null) {
+			log.severe("Week not specified, can not lock picks.");
+			picks = new ArrayList<Pick>();
+		}
+		else {
+			TypedQuery<Pick> pq = em.createNamedQuery("Pick.selectAllPicksInWeek", Pick.class);
+			pq.setParameter("weekId", week.getWeekId());
+			try {
+				picks = pq.getResultList();
+			} catch (Exception e) {
+				log.severe("Exception caught retrieving list of picks: " + e.getMessage());
+				e.printStackTrace();
+				picks = new ArrayList<Pick>();
+			}
+		}
+		
+		return picks;
+	}
+	
+	@Override
+	public void lockPicksInWeek(Week week) {
+		for (Pick p : selectAllPicksInWeek(week)) {
+			p.setPickLocked(true);
+			update(p);
+		}
+	}
 }

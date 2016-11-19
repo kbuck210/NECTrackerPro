@@ -17,10 +17,12 @@
 	    </ul>
 	  </div>
 	  <div class="top-bar-right">
+	  	<h:form id="logoutForm">
 	    <p:commandButton value="#{headerBean.buttonText}" disabled="#{headerBean.buttonDisabled}" type="button" onclick="PF('loginModal').show();" />
-	    <p:commandLink rendered="#{headerBean.buttonDisabled}" actionListener="#{headerBean.logout}" style="padding-left: 0.5rem;">
+	    <p:commandLink rendered="#{headerBean.buttonDisabled}" action="#{headerBean.logout}" style="padding-left: 0.5rem;" ajax="false">
 	    	<h:outputText value="Sign Out:" />
 	    </p:commandLink>
+	    </h:form>
 	    <!-- Foundation implementation
 	    <ul class="menu">
 	      <li><a href="#">Login</a></li>
@@ -33,12 +35,12 @@
 	<!-- Modal Dialog for Login Button -->
 	<p:dialog header="Please Log In:" widgetVar="loginModal" modal="true" resizable="false">
 		<h:form>
-			<p:growl id="header_growl" life="2000" />
+			<p:growl id="header_growl" showDetail="true" life="2000" />
 			<h:panelGrid columns="2" columnClasses="label, value">
-				<h:outputText value="Email: *" />
+				<h:outputText value="Email: *" class="loginPrompt" />
 				<p:inputText id="email" value="#{headerBean.emailAddress}" required="true" label="Email" />
 				
-				<h:outputText value="Password: *" />
+				<h:outputText value="Password: *" class="loginPrompt" />
 				<p:password id="password" value="#{headerBean.password}" required="true" label="Password" />
 			</h:panelGrid>
 			<p:commandButton value="Login" update="header_growl" actionListener="#{headerBean.login}" ajax="false" />
@@ -47,21 +49,24 @@
 	</p:dialog>
 	
 	<!-- Main Header -->
-	<h:link outcome="home">
-		<header class="header large marketing-hero sites">
+	<header class="header large marketing-hero sites">
+		<h:link outcome="home">
 			<p class="hero-framework-link">The New England Cup#{headerBean.seasonTitle}</p>
 			<h1 class="hero-main-header">NEC Tracker PRO</h1>
-			  <ul class="header-subnav">
-			    <li><a href="#">Take Action!</a></li>
-			    <li><h:link outcome="playerPage" class="is-active">
-					<f:param name="pfsId" value="1" />
-					<f:param name="nec" value="28" />
-					Profile:
+		</h:link>
+		<ul class="header-subnav">
+			<li><h:link outcome="makePicksPage" disabled="#{not headerBean.buttonDisabled}" >
+				Select Picks:
 				</h:link></li>
-			    <li><h:link outcome="necHistory">Summary:</h:link></li>
-			  </ul>
-		</header>
-	</h:link>
+			<li><h:link outcome="playerPage" disabled="#{not headerBean.buttonDisabled}">
+				<f:param name="pfsId" value="#{applicationStateBean.instanceId}" />
+				<f:param name="nec" value="#{applicationStateBean.seasonNumber}" />
+				Profile:
+			</h:link></li>
+			<li><h:link outcome="necHistory">Summary:</h:link></li>
+		</ul>
+	</header>
+	
 	<!-- End Main Header -->
 	
 	<br />

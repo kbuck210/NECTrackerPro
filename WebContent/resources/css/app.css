@@ -48,10 +48,6 @@
 	margin-bottom:0.5rem;
 	line-height:1.4}
 
-#content {
-	padding-top: 20px;
-}
-
 .content-column {
 	padding-left: 4rem;
 }
@@ -77,6 +73,9 @@
 .blog-post.player-picks {
 	background-color: #cce0ff;
 }
+.blog-post.other-games {
+	background-color: #fffffe;
+}
 
 .picks-headline {
 	font-family: Georgia, serif;
@@ -95,13 +94,15 @@
 .week-nav {
 	text-align: center;
 	font-family: Tahoma, Geneva, sans-serif;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 .week-nav .week-link {
-	background: rgba(230, 240, 255, 0.5);
+	background: rgba(191, 217, 255, 0.75);
 	border-radius: 5px;
 }
 .week-nav .week-link a:hover {
-	background: rgb(230, 240, 255);
+	background: rgb(191, 217, 255);
 	border-radius: 5px;
 }
 li.current-week {
@@ -125,4 +126,8 @@ tbody tr:nth-child(2n) {
 }
 .ui-icon-pdf {
 	background: url("img/icons/pdf-icon.png") no-repeat top left !important;
+}
+
+small {
+	color: #aaaaaa;
 }

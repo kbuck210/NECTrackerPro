@@ -15,7 +15,7 @@ import com.nectp.beans.named.RecordDisplay;
 import com.nectp.beans.named.profile.StatsBean;
 import com.nectp.beans.remote.daos.ConferenceService;
 import com.nectp.beans.remote.daos.DivisionService;
-import com.nectp.beans.remote.daos.StatisticService;
+import com.nectp.beans.remote.daos.PlayerStatisticService;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.Conference;
@@ -85,7 +85,7 @@ public class PlayerStatsBean extends StatsBean<PlayerForSeason> implements Seria
 	private TreeMap<RecordAggregator, List<AbstractTeamForSeason>> playoffRanks;
 
 	@EJB
-	private StatisticService<PlayerForSeason> playerStats;
+	private PlayerStatisticService playerStats;
 	
 	@EJB
 	private ConferenceService conferenceService;

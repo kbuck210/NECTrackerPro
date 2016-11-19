@@ -400,6 +400,10 @@ public abstract class ChartBean<T> implements Serializable, ChartInterface<T> {
 		return activeIndex;
 	}
 	
+	public void setActiveIndex(int activeIndex) {
+		this.activeIndex = activeIndex;
+	}
+	
 	public void onTabChange(TabChangeEvent event) {
 	    activeIndex = ((TabView) event.getSource()).getIndex();
 	}

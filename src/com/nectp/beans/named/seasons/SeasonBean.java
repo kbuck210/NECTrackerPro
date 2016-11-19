@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -143,11 +145,10 @@ public class SeasonBean implements Serializable {
 	public StreamedContent getExcelDownload() {
 		StreamedContent excelFile = null;
 		
-		String path = System.getProperty("user.home") + File.separator + "NECTrackerResources" + 
-				File.separator + "Excel" + File.separator + "Totals" + 
-				File.separator + "NEC" + season.getSeasonNumber() + File.separator;
+		String path = "/NECTrackerResources/excel/NEC" + season.getSeasonNumber() + File.separator;
 		String filename = "NEC " + season.getSeasonNumber() + " - Week " + exportWeek + " Totals.xls";
-		File xlsFile = new File(path + filename);
+		Path filePath = Paths.get(path + filename);
+		File xlsFile = filePath.toFile();
 		
 		//	If the excel file for the specified week does not exist, first create it
 		boolean exists = xlsFile.exists();

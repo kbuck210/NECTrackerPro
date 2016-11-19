@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
@@ -33,9 +35,9 @@ import com.nectp.beans.remote.daos.ConferenceService;
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.PickService;
 import com.nectp.beans.remote.daos.PlayerForSeasonService;
+import com.nectp.beans.remote.daos.PlayerStatisticService;
 import com.nectp.beans.remote.daos.PrizeForSeasonService;
 import com.nectp.beans.remote.daos.SeasonService;
-import com.nectp.beans.remote.daos.StatisticService;
 import com.nectp.beans.remote.daos.WeekService;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Conference;
@@ -93,7 +95,7 @@ public class ExcelSummaryWriter {
 	private ConferenceService conferenceService;
 
 	@EJB
-	private StatisticService<PlayerForSeason> playerStatService;
+	private PlayerStatisticService playerStatService;
 	
 	@EJB
 	private PrizeForSeasonService pzfsService;
@@ -175,11 +177,11 @@ public class ExcelSummaryWriter {
 	}
 
 	public boolean writeTotals() {
-		String path = System.getProperty("user.home") + File.separator + "NECTrackerResources" + 
-				File.separator + "Excel" + File.separator + "Totals" + 
-				File.separator + "NEC" + season.getSeasonNumber() + File.separator;
+		String path = "/NECTrackerResources/excel/NEC" + season.getSeasonNumber() + File.separator;
 		String filename = "NEC " + season.getSeasonNumber() + " - Week " + week.getWeekNumber() + " Totals.xls";
-		File xlsFile = new File(path + filename);
+		Path filePath = Paths.get(path + filename);
+		File xlsFile = filePath.toFile();
+		
 		log.info("Writing file: " + xlsFile.getAbsolutePath());
 		workbook = new HSSFWorkbook();
 

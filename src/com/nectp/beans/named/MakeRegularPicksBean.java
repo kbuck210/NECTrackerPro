@@ -109,7 +109,6 @@ public class MakeRegularPicksBean implements Serializable, GameContainer {
 					//	Create Beans for regular game picks
 					GameBean gameBean = new GameBean();
 					gameBean.setPlayer(user);
-					gameBean.setGameDisplayType(pickFor);
 					gameBean.setGame(g);
 					
 					//	If picks can still be made, determine whether this game has already locked

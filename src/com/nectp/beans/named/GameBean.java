@@ -22,8 +22,6 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	private PlayerForSeason player;
 	private TeamForSeason pickedTeam;
 	
-	private NEC gameDisplayType = NEC.SEASON;
-	
 	private String seasonNumber;
 	private String rowId;
 	private String homeCity;
@@ -65,13 +63,12 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 		this.player = player;
 	}
 	
-	public void setGameDisplayType(NEC gameDisplayType) {
-		if (gameDisplayType != null) {
-			this.gameDisplayType = gameDisplayType;
-		}
-		else {
-			this.gameDisplayType = NEC.SEASON;
-		}
+	/** Override the default row ID assigned to this gameBean
+	 * 
+	 * @param rowId the row ID to assign to this row
+	 */
+	public void setRowId(String rowId) {
+		this.rowId = rowId;
 	}
 	
 	/**
@@ -80,7 +77,8 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	public Game getGame() {
 		return game;
 	}
-	/**
+	/** IMPORTANT: prior to setting game, spread type, user, and display type must be set
+	 * 
 	 * @param game the game to set
 	 */
 	public void setGame(Game game) {
@@ -95,7 +93,18 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 		setAwayCity(awayTeam);
 		setAwayScore();
 		setAwayHelmet(awayTeam);
-		this.spreadType = setSpread();
+//		this.spreadType = setSpread();
+		switch (spreadType) {
+		case SPREAD2:
+			this.spread = game.getSpread2().toString();
+			break;
+		case STRAIGHT_UP:
+			this.spread = "--";
+			break;
+		default:
+			this.spread = game.getSpread1().toString();
+		}
+		
 		setGameTime();
 		setTimeRemaining();
 		setArrows();
@@ -133,6 +142,7 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	public void setHomeSelectable(boolean selectable) {
 		if (selectable) {
 			this.homeSelectable = "selectable";
+			this.homeTeamUrl = "#";
 		}
 	}
 	
@@ -143,6 +153,7 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	public void setAwaySelectable(boolean selectable) {
 		if (selectable) {
 			this.awaySelectable = "selectable";
+			this.awayTeamUrl = "#";
 		}
 	}
 	
@@ -168,6 +179,48 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	
 	public String getAwayGrayed() {
 		return awayGrayed;
+	}
+	
+	/** Sets the overlaid success image for the home team
+	 * 
+	 * @param homePickImage if true, displays the success image, null displays the warning and false displays the failure image
+	 */
+	public void setHomePickImage(Boolean homePickImage) {
+		if (homePickImage == null) {
+			this.homePickImage = "img/warning.png";
+		}
+		else if (homePickImage) {
+			this.homePickImage = "img/check-smaller.png";
+		}
+		else {
+			this.homePickImage = "img/out-red-smaller.png";
+		}
+	}
+	
+	/** Sets the overlaid success image for the away team
+	 * 
+	 * @param awayPickImage if true, displays the success image, null displays the warning and false displays the failure image
+	 */
+	public void setAwayPickImage(Boolean awayPickImage) {
+		if (awayPickImage == null) {
+			this.awayPickImage = "img/warning.png";
+		}
+		else if (awayPickImage) {
+			this.awayPickImage = "img/check-smaller.png";
+		}
+		else {
+			this.awayPickImage = "img/out-red-smaller.png";
+		}
+	}
+	
+	public void setHomeSelected(boolean selected) {
+		if (selected) this.homeSelected = "selected";
+		else this.homeSelected = "";
+	}
+	
+	public void setAwaySelected(boolean selected) {
+		if (selected) this.awaySelected = "selected";
+		else this.awaySelected = "";
 	}
 	
 	/** 
@@ -349,58 +402,75 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	public String getSpread() {
 		return spread;
 	}
-	/**
+	
+	/** Returns the displayed PickType for this GameBean
+	 * 
+	 * @return
+	 */
+	public PickType getSpreadType() {
+		return spreadType;
+	}
+	
+	/** Explicitly set the spread type for this GameBean
+	 * 
+	 * @param spreadType the PickType representing the type of spread to display
+	 */
+	public void setSpreadType(PickType spreadType) {
+		this.spreadType = spreadType;
+	}
+	
+	/** Try to deterimine the spread to set based on a few parameters
 	 * @param spread the spread to set
 	 */
-	private PickType setSpread() {
-		PickType pickType = PickType.SPREAD1;
-		
-		//	If displaying a two and out game, use a straight-up spread
-		if (NEC.TWO_AND_OUT.equals(gameDisplayType)) {
-			pickType = PickType.STRAIGHT_UP;
-		}
-		
-		//	If not straight up and a spread2 doesn't exist, or a player hasn't been defined, use spread1
-		else if (game.getSpread2() == null || player == null) {
-			pickType = PickType.SPREAD1;
-		}
-		//	If a spread2 exists and displaying a player's picks, check that the player 
-		//	has this game as a pick, and whether it's a spread2 pick
-		else {
-			List<Pick> picksForGame = game.getPicks();
-			for (Pick p : picksForGame) {
-				if (p.getPlayer().equals(player) && p.getPickType().equals(PickType.SPREAD2)) {
-					//	Double check whether the spread is even
-					if (game.getSpread2().compareTo(BigDecimal.ZERO) == 0) {
-						pickType = PickType.STRAIGHT_UP;
-					}
-					//	If the spread is not even, and using spread 2, set the pick type
-					else {
-						pickType = PickType.SPREAD2;
-					}
-					break;
-				}
-			}
-		}
-		
-		//	Double check if using spread1, that the spread is not even
-		if (PickType.SPREAD1.equals(pickType) && game.getSpread1().compareTo(BigDecimal.ZERO) == 0) {
-			pickType = PickType.STRAIGHT_UP;
-		}
-		
-		switch (pickType) {
-		case SPREAD2:
-			this.spread = game.getSpread2().toString();
-			break;
-		case STRAIGHT_UP:
-			this.spread = "--";
-			break;
-		default:
-			this.spread = game.getSpread1().toString();
-		}
-		
-		return pickType;
-	}
+//	public PickType setSpread() {
+//		PickType pickType = PickType.SPREAD1;
+//		
+//		//	If displaying a two and out game, use a straight-up spread
+//		if (NEC.TWO_AND_OUT.equals(gameDisplayType)) {
+//			pickType = PickType.STRAIGHT_UP;
+//		}
+//		
+//		//	If not straight up and a spread2 doesn't exist, or a player hasn't been defined, use spread1
+//		else if (game.getSpread2() == null || player == null) {
+//			pickType = PickType.SPREAD1;
+//		}
+//		//	If a spread2 exists and displaying a player's picks, check that the player 
+//		//	has this game as a pick, and whether it's a spread2 pick
+//		else {
+//			List<Pick> picksForGame = game.getPicks();
+//			for (Pick p : picksForGame) {
+//				if (p.getPlayer().equals(player) && p.getPickType().equals(PickType.SPREAD2)) {
+//					//	Double check whether the spread is even
+//					if (game.getSpread2().compareTo(BigDecimal.ZERO) == 0) {
+//						pickType = PickType.STRAIGHT_UP;
+//					}
+//					//	If the spread is not even, and using spread 2, set the pick type
+//					else {
+//						pickType = PickType.SPREAD2;
+//					}
+//					break;
+//				}
+//			}
+//		}
+//		
+//		//	Double check if using spread1, that the spread is not even
+//		if (PickType.SPREAD1.equals(pickType) && game.getSpread1().compareTo(BigDecimal.ZERO) == 0) {
+//			pickType = PickType.STRAIGHT_UP;
+//		}
+//		
+//		switch (pickType) {
+//		case SPREAD2:
+//			this.spread = game.getSpread2().toString();
+//			break;
+//		case STRAIGHT_UP:
+//			this.spread = "--";
+//			break;
+//		default:
+//			this.spread = game.getSpread1().toString();
+//		}
+//		
+//		return pickType;
+//	}
 	
 	/**
 	 * @return the gameTime

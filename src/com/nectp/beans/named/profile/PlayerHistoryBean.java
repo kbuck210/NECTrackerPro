@@ -11,8 +11,8 @@ import javax.inject.Named;
 
 import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.RecordAggregator;
+import com.nectp.beans.remote.daos.PlayerStatisticService;
 import com.nectp.beans.remote.daos.PrizeForSeasonService;
-import com.nectp.beans.remote.daos.StatisticService;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Player;
 import com.nectp.jpa.entities.PlayerForSeason;
@@ -28,7 +28,7 @@ public class PlayerHistoryBean implements Serializable {
 	private List<PlayerForSeason> instances;
 	
 	@EJB
-	private StatisticService<PlayerForSeason> pfsStatService;
+	private PlayerStatisticService pfsStatService;
 	
 	@EJB
 	private PrizeForSeasonService pzfsService;

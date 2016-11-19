@@ -21,52 +21,55 @@
 			<div class="ui-g">
 				<div class="ui-g-12 ui-md-12 ui-lg-5">
 					<!-- Do Team Profile Card -->
-					<p:panelGrid columns="2">
-						<!-- Avatar Column -->
-						<div class="show-for-medium-up medium-4 columns">
-							<img class="thumbnail avatar" src="#{playerProfileBean.profileEntity.player.avatarUrl}" />
-							<hr/>
-							<a href="editInfo" class="expanded button #{playerProfileBean.disableEdits}">Edit Info:</a>
-						</div>
-		
-						<!-- Player Info Col -->
-						<div class="medium-8 columns">
-							<div class="row columns nickname-col no-pad">
-								<h1 class="nickname no-pad">#{playerProfileBean.profileEntity.nickname}</h1>
-							</div>
-							<div class="row columns">
-								<h3>#{playerProfileBean.profileEntity.player.name}</h3>
-							</div>
-							<div class="row columns">
-								<h5>Active Since #{playerProfileBean.profileEntity.player.sinceYear}</h5>
-							</div>
-		
-							<!-- trend button row -->
-							<div class="row columns">
-								<div class="expanded button-group">
-									<a href="#" class="button trend-left">Score:
-										<p class="no-pad trend">#{playerStatsBean.score}</p>
-									</a>
-									<a href="#" class="button trend-center">Trending:
-										<p class="no-pad trend">#{playerStatsBean.trending}</p>
-									</a>
-									<a href="#" class="button trend-right">Leader:
-										<p class="no-pad trend">#{playerStatsBean.leaderScore}</p>
-									</a>
+					<p:panelGrid style="width:100%">
+						<p:row>
+							<p:column>
+								<!-- Avatar Column -->
+								<div class="row columns no-pad">
+									<h:graphicImage class="thumbnail avatar" value="#{playerProfileBean.profileEntity.player.avatarUrl}" />
+									<hr/>
+									<a href="#editInfo" class="expanded button #{playerProfileBean.disableEdits}">Edit Info:</a>
 								</div>
-							</div>
-		
-							<!-- prize icon row -->
-							<div class="row column align-spaced award-row">
-								<span><img src="img/icons/firstHalfWinner-small.png" /></span>
-								<span><img src="img/icons/secondHalfNonWin-small-light.png" /></span>
-								<span><img src="img/icons/mnfTntNonWin-small-light.png" /></span>
-								<span><img src="img/icons/twoAndOutWinner2-small.png" /></span>
-								<span><img src="img/icons/playoffNonWin-small-light.png" /></span>
-								<span><img src="img/icons/moneyBackNonWin-small-light.png" /></span>
-								<span><img src="img/icons/superbowlWinner-small.png" /></span>
-							</div>
-						</div>
+							</p:column>
+							<p:column>
+								<!-- Player Info Col -->
+								<div class="row columns nickname-col no-pad">
+									<h1 class="nickname no-pad">#{playerProfileBean.profileEntity.nickname}</h1>
+								</div>
+								<div class="row columns">
+									<h3>#{playerProfileBean.profileEntity.player.name}</h3>
+								</div>
+								<div class="row columns">
+									<h5>Active Since #{playerProfileBean.profileEntity.player.sinceYear}</h5>
+								</div>
+			
+								<!-- trend button row -->
+								<div class="row columns">
+									<div class="expanded button-group">
+										<a href="#" class="button trend-left">Score:
+											<p class="no-pad trend">#{playerStatsBean.score}</p>
+										</a>
+										<a href="#" class="button trend-center">Trending:
+											<p class="no-pad trend">#{playerStatsBean.trending}</p>
+										</a>
+										<a href="#" class="button trend-right">Leader:
+											<p class="no-pad trend">#{playerStatsBean.leaderScore}</p>
+										</a>
+									</div>
+								</div>
+			
+								<!-- prize icon row -->
+								<div class="row column align-spaced award-row">
+									<span><img src="img/icons/firstHalfWinner-small.png" /></span>
+									<span><img src="img/icons/secondHalfNonWin-small-light.png" /></span>
+									<span><img src="img/icons/mnfTntNonWin-small-light.png" /></span>
+									<span><img src="img/icons/twoAndOutWinner2-small.png" /></span>
+									<span><img src="img/icons/playoffNonWin-small-light.png" /></span>
+									<span><img src="img/icons/moneyBackNonWin-small-light.png" /></span>
+									<span><img src="img/icons/superbowlWinner-small.png" /></span>
+								</div>
+							</p:column>
+						</p:row>
 					</p:panelGrid>
 					
 					<!-- Player Statistics Column -->
@@ -464,7 +467,7 @@
 										NEC #{playerHistoryBean.getSeasonNumber(instance)}:
 									</f:facet>
 									<h:panelGroup>
-										<p:graphicImage value="#{instance.player.avatarUrl}" class="thumbnail avatar" style="width:50%; height:50%" />	
+										<p:graphicImage value="#{instance.player.avatarUrl}" class="thumbnail avatar" />	
 									</h:panelGroup>
 									<h:panelGroup>
 										<h3>#{instance.nickname} <small>#{playerHistoryBean.getRecord(instance)}</small></h3>
@@ -485,9 +488,10 @@
 				</div>
 			</div>
 			<ui:fragment rendered="#{playerProfileBean.editable}">
-				<h:form id="editInfo">
-					<div class="row">
-						<div class="large-12 columns panel blog-post bg-color-secondary-1-0">
+				<p:growl id="editInfoGrowl" life="2000" showDetail="true" />
+				<div class="row">
+					<div class="large-12 columns panel blog-post bg-color-secondary-1-0">
+						<h:form id="editInfo" enctype="multipart/form-data">
 							<h3 class="text-center">Edit Player Information:</h3>
 							<div class="row">
 								<h4>&nbsp;</h4>
@@ -529,15 +533,18 @@
 											<p:graphicImage value="#{playerProfileBean.profileEntity.player.avatarUrl}" />
 											
 											<p:outputLabel for="editAvatar" value="Upload Avatar:" />
-											<p:fileUpload id="editAvatar" fileUploadListener="#{editInfoBean.upload}" mode="simple" skinSimple="true"/>
+											<p:fileUpload id="editAvatar" value="#{editInfoBean.file}" mode="simple" skinSimple="true"/>
 										</div>
 									</div>
 								</div>
 							</div>
-							<p:commandButton value="Save Changes" actionListener="#{editInfoBean.saveChanges}" update="@form" />
-						</div>
+							<p:commandButton value="Save Changes" actionListener="#{editInfoBean.submit}" ajax="false">
+								<f:param name="pfsId" value="#{applicationStateBean.instanceId}" />
+								<f:param name="nec" value="#{applicationStateBean.seasonNumber}" />
+							</p:commandButton>
+						</h:form>
 					</div>
-				</h:form>
+				</div>
 			</ui:fragment>
 			<script type="text/javascript">
    				function digitExt() {

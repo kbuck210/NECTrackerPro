@@ -3,6 +3,7 @@ package com.nectp.rest.fileio;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 import javax.activation.FileDataSource;
@@ -33,15 +34,15 @@ public class DownloadFile {
 	@Produces("application/vnd.ms-excel")
 	public Response downloadExcelTotals(@PathParam("nec") String seasonNumber, @PathParam("wk") String weekNumber) {
 		//	If the season & week are defined, find the excel file to export
-		String path = System.getProperty("user.home") + File.separator + "NECTrackerResources" + 
-				File.separator + "Excel" + File.separator + "Totals" + 
-				File.separator + "NEC" + seasonNumber + File.separator;
+		String path = "/NECTrackerResources/excel/NEC" + seasonNumber + File.separator;
 		String filename = "NEC " + seasonNumber + " - Week " + weekNumber + " Totals.xls";
+		java.nio.file.Path filePath = Paths.get(path + filename);
+		File excelFile = filePath.toFile();
 //		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
 //		String relativeExcelPath = "/ExcelData/NEC" + seasonNumber + "/Week" + weekNumber + "-Totals.xls";
 //		String excelPath = ctx.getRealPath(relativeExcelPath);
-		FileDataSource eds = new FileDataSource(path + filename);
-		File excelFile = eds.getFile();
+//		FileDataSource eds = new FileDataSource(xlsFile.getAbsolutePath());
+//		File excelFile = eds.getFile();
 		
 		boolean exists = excelFile != null && excelFile.exists();
 		
@@ -76,11 +77,12 @@ public class DownloadFile {
 	@Produces("application/pdf")
 	public Response downloadPdfTotals(@PathParam("nec") String seasonNumber, @PathParam("wk") String weekNumber) {
 		//	If the season & week are defined, find the excel file to export
-		ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-		String relativePdfPath = "/ExcelData/NEC" + seasonNumber + "/Week" + weekNumber + "-Totals.pdf";
-		String pdfPath = ctx.getRealPath(relativePdfPath);
-		FileDataSource eds = new FileDataSource(pdfPath);
-		File pdfFile = eds.getFile();
+		String path = "/NECTrackerResources/excel/NEC" + seasonNumber + File.separator;
+		String filename = "NEC " + seasonNumber + " - Week " + weekNumber + " Totals.pdf";
+		java.nio.file.Path filePath = Paths.get(path + filename);
+		File pdfFile = filePath.toFile();
+//		FileDataSource eds = new FileDataSource(pdfPath);
+//		File pdfFile = eds.getFile();
 
 		ResponseBuilder response = Response.ok((Object) pdfFile);
 		String headerVal = "attachement; filename=" + pdfFile.getName();

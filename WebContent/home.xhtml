@@ -15,27 +15,30 @@
 		<ui:define name="content">
 			<!-- Center content Game area -->
 			<h:form id="GameArea">
-				<ui:include src="/pagination.xhtml" />
-	
-				<!-- Player Picks blog post area - display only if player logged in with picks -->
-				<ui:fragment rendered="#{homeContentBean.renderPlayerPicks}">
-					<gc:gameContainer gameBeans="#{homeContentBean.playerPickBeans}" 
-									  headline="#{homeContentBean.playerPickHeadline}" 
-									  subheadline="#{homeContentBean.playerRecord}" 
-									  blogstyle="player-picks" />
-		        </ui:fragment>
-	       
-		        <!-- Other games blog post - displayed if there are no picks or player registered - or if not all games picked -->
-		        <ui:fragment rendered="#{homeContentBean.renderOtherGames}">
-		        	<gc:gameContainer gameBeans="#{homeContentBean.otherGameBeans}" 
-		        					  headline="#{homeContentBean.otherGamesHeadline}" 
-		        					  subheadline="#{homeContentBean.displayedWeekHeadline}" 
-		        					  blogstyle="other-games" />
-		        </ui:fragment>
+				<p:panel header="Select a Week:">
+					<ui:include src="/pagination.xhtml" />
+				</p:panel>
+				<p:panel>
+					<!-- Player Picks blog post area - display only if player logged in with picks -->
+					<ui:fragment rendered="#{homeContentBean.renderPlayerPicks}">
+						<gc:gameContainer gameBeans="#{homeContentBean.playerPickBeans}" 
+										  headline="#{homeContentBean.playerPickHeadline}" 
+										  subheadline="#{homeContentBean.playerRecord}" 
+										  blogstyle="player-picks" />
+			        </ui:fragment>
+			        <!-- Other games blog post - displayed if there are no picks or player registered - or if not all games picked -->
+			        
+			        <ui:fragment rendered="#{homeContentBean.renderOtherGames}">
+			        	<gc:gameContainer gameBeans="#{homeContentBean.otherGameBeans}" 
+			        					  headline="#{homeContentBean.otherGamesHeadline}" 
+			        					  subheadline="#{homeContentBean.displayedWeekHeadline}" 
+			        					  blogstyle="other-games" />
+			        </ui:fragment>
+		        </p:panel>
 			</h:form>
 		</ui:define>
 		<ui:define name="sidebar" >
-			<ui:include src="/sidebar.xhtml" />
+			<ui:include src="/leaderboardAside.xhtml" />
 		</ui:define>
 		<ui:define name="footer">
 			<ui:include src="/footer.xhtml" />

@@ -57,6 +57,7 @@ public class LoginService implements Serializable {
 		Player player = null;
 		if (email == null || password == null) {
 			log.severe("Email/Password not defined! can not login.");
+			messages = "Email/Password not defined! can not login.";
 		}
 		else {
 			try {
@@ -74,6 +75,9 @@ public class LoginService implements Serializable {
 					String cookieVal = "username:" + email + " password:" + password;
 					CookieFactory.giveCookie("loginCookie", cookieVal, seconds30weeks);
 				}
+			}
+			else {
+				messages = "No player found with primary email: " + email;
 			}
 		}
 		

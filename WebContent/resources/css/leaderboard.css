@@ -4,6 +4,7 @@
 
 .leaderboard-padding {
 	margin-bottom: 0;
+	border: none;
 }
 
 ul.leaderboard-list {
@@ -35,6 +36,41 @@ ul.leaderboard-list li a {
     background: #d7ffff; }
   ul.leaderboard-list li a:active {
     background: #242424; }
+
+a.leaderboard-link {
+  color: rgba(0, 0, 0, 0.7);
+  transition: background 300ms ease; }
+  a.leaderboard-link :hover {
+    background: #d7ffff; }
+  a.leaderboard-link :hover img{
+  	background: rgba(76, 175, 80, 0.0); }
+  a.leaderboard-link :hover span {
+ 	background: rgba(255,255,255,0.45) none repeat scroll 0 0; }
+  a.leaderboard-link :active {
+    background: #242424; }
+
+.leader-row {
+	background: #f0ffff;
+	border: none;
+}
+
+#leaderboardList .ui-panelgrid .ui-panelgrid-cell {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ddd;
+    box-shadow: 0px 1px 1px #888888;
+    -webkit-box-shadow: 0px 1px 1px #888888;
+    -moz-box-shadow: 0px 1px 1px #888888;
+    padding: 4px 10px;
+}
+
+.leader-col {
+	border: none;
+}
+
+.leaderboardTitle{ 
+	color: #fff;
+}
 
 .leader-name {
 	font-family: "Arial Black", Gadget, sans-serif;
@@ -71,6 +107,7 @@ ul.leaderboard-list li a {
 	position-relative;
 	display: inline-block;
 }
+
 .leader-avatar {
 	width: 6.5rem;
 	height: 5rem;

@@ -157,7 +157,7 @@ public class HomeContentBean implements Serializable {
 					GameBean bean = new GameBean();
 					Game game = p.getGame();
 					bean.setPlayer(userInstance);
-					bean.setGameDisplayType(NEC.SEASON);
+					bean.setSpreadType(p.getPickType());
 					bean.setGame(game);
 					bean.setHomeSelectable(false);
 					bean.setAwaySelectable(false);
@@ -174,10 +174,26 @@ public class HomeContentBean implements Serializable {
 				}
 				List<Game> otherGames = new ArrayList<Game>(displayWeek.getGames());
 				otherGames.removeAll(pickedGames);
+				
+				//	Check whether any of the other games have a spread 2
+				boolean hasSpread2 = false;
+				for (Game g : otherGames) {
+					if (g.getSpread2() != null) {
+						hasSpread2 = true;
+						break;
+					}
+				}
+				
+				PickType spreadType = PickType.SPREAD1;
+				Calendar currentTime = new GregorianCalendar();
+				if (hasSpread2 && currentTime.get(GregorianCalendar.DAY_OF_WEEK) < GregorianCalendar.SATURDAY) {
+					spreadType = PickType.SPREAD2;
+				}
+				
 				//	Create game beans for other games
 				for (Game g : otherGames) {
 					GameBean bean = new GameBean();
-					bean.setGameDisplayType(NEC.SEASON);
+					bean.setSpreadType(spreadType);
 					bean.setGame(g);
 					bean.setHomeSelectable(false);
 					bean.setAwaySelectable(false);
@@ -194,10 +210,26 @@ public class HomeContentBean implements Serializable {
 			}
 			else {
 				renderPlayerPicks = false;
+				
+				//	Check whether any of the other games have a spread 2
+				boolean hasSpread2 = false;
+				for (Game g : displayWeek.getGames()) {
+					if (g.getSpread2() != null) {
+						hasSpread2 = true;
+						break;
+					}
+				}
+
+				PickType spreadType = PickType.SPREAD1;
+				Calendar currentTime = new GregorianCalendar();
+				if (hasSpread2 && currentTime.get(GregorianCalendar.DAY_OF_WEEK) < GregorianCalendar.SATURDAY) {
+					spreadType = PickType.SPREAD2;
+				}
+				
 				//	Create game beans for other games
 				for (Game g : displayWeek.getGames()) {
 					GameBean bean = new GameBean();
-					bean.setGameDisplayType(NEC.SEASON);
+					bean.setSpreadType(spreadType);
 					bean.setGame(g);
 					bean.setHomeSelectable(false);
 					bean.setAwaySelectable(false);
@@ -217,10 +249,26 @@ public class HomeContentBean implements Serializable {
 			setPlayerRecord();
 		}
 		else {
+			//	Check whether any of the other games have a spread 2
+			boolean hasSpread2 = false;
+			for (Game g : displayWeek.getGames()) {
+				if (g.getSpread2() != null) {
+					hasSpread2 = true;
+					break;
+				}
+			}
+
+			PickType spreadType = PickType.SPREAD1;
+			Calendar currentTime = new GregorianCalendar();
+			if (hasSpread2 && currentTime.get(GregorianCalendar.DAY_OF_WEEK) < GregorianCalendar.SATURDAY) {
+				spreadType = PickType.SPREAD2;
+			}
+			
+			
 			//	Create game beans for other games
 			for (Game g : displayWeek.getGames()) {
 				GameBean bean = new GameBean();
-				bean.setGameDisplayType(NEC.SEASON);
+				bean.setSpreadType(spreadType);
 				bean.setGame(g);
 				bean.setHomeSelectable(false);
 				bean.setAwaySelectable(false);

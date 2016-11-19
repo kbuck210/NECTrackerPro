@@ -47,7 +47,7 @@
 			  <div class="small-12 columns">
 
 			  	<!-- Game info row - uses attribute as ID for event handling -->
-			  	<div id="#{cc.attrs.rowId}" class="row game-info">
+			  	<div class="row game-info">
 
 			  		<!-- Home Column -->
 			  		<div class="medium-4 columns">
@@ -59,7 +59,7 @@
 			  			<div class="row">
 			  				<div class="medium-12 columns home-helmet">
 			  					<span id="#{cc.attrs.homeBadgeId}" class="selected-badge home #{cc.attrs.homeSelected}">
-			  						<img src="#{cc.attrs.homePickImage}" />
+			  						<img src="#{cc.attrs.homePickImage}" class="#{cc.attrs.homeGrayed}" />
 			  					</span>
 			  					<h:link outcome="teamPage">
 			  						<f:param name="teamAbbr" value="#{cc.attrs.homeTeamUrl}" />
@@ -112,7 +112,7 @@
 						<div class="row">
 							<div class="medium-12 columns away-helmet">
 								<span id="#{cc.attrs.awayBadgeId}" class="selected-badge away #{cc.attrs.awaySelected}" >
-									<img src="#{cc.attrs.awayPickImage}" />
+									<img src="#{cc.attrs.awayPickImage}" class="#{cc.attrs.awayGrayed}" />
 								</span>
 								<h:link outcome="teamPage">
 			  						<f:param name="teamAbbr" value="#{cc.attrs.awayTeamUrl}" />

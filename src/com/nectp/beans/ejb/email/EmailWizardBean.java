@@ -12,6 +12,8 @@ import java.io.Serializable;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -174,11 +176,11 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 		if (file != null) {
 			try {
 				InputStream iStream = file.getInputstream();
-				String filename = file.getFileName();
 				
-				String destination = System.getProperty("user.home") + File.separator + "NECTrackerResources" + 
-									 File.separator + "Uploads" + File.separator + "Images" + File.separator;
-				File newFile = new File(destination + filename);
+				String path = "/NECTrackerResources/images/" + file.getFileName();
+				Path filePath = Paths.get(path);
+				File newFile = filePath.toFile();
+				
 			    OutputStream copyStream = new FileOutputStream(newFile);
 			    
 			    int read = 0;

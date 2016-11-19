@@ -8,7 +8,7 @@
 	  xmlns:pe="http://primefaces.org/ui/extensions" >
 
 	<ui:decorate template="homeTemplate.xhtml">
-		<ui:define name="title">Select Picks</ui:define>
+		<ui:define name="title">Make Picks</ui:define>
 		<ui:define name="header">
 			<ui:include src="/header.xhtml" />
 		</ui:define>
@@ -17,36 +17,42 @@
 			
 			<!-- If the user is logged in, show the make picks screen -->
 			<ui:fragment id="pickFragment" rendered="#{makePicksBean.showPickForm}" >
-				<div class="row" >
-					<div class="small-12 medium-12 large-9" >
-						<!-- If player is logged in, show pick form -->
-						<h:form id="picksForm">
-							<p:tabView>
-								<p:tab title="#{makePicksBean.regularPicksTitle}">
-									<!-- Make Picks blog post area -->
-									<gc:gameContainer gameBeans="#{makePicksBean.gameBeans}"  
-				 									  headline="#{makePicksBean.makePicksHeadline}"  
-				 									  subheadline="#{makePicksBean.weekHeadline}"  
-				 									  blogstyle="player-picks" /> 
-								</p:tab>
-								<!-- Make Two and out picks only rendered if user is still in the running -->
-								<ui:fragment rendered="#{makePicksBean.renderTnoPicks}">
-									<p:tab title="Two And Out:">
-										<gc:gameContainer gameBeans="#{makePicksBean.tnoBeans}"  
-				 									  	  headline="#{makePicksBean.tnoPickHeadline}"  
-				 									  	  subheadline="#{makePicksBean.weekHeadline}"  
-				 									 	  blogstyle="player-picks" /> 
-									</p:tab>
-								</ui:fragment>
-							</p:tabView>
-							
-					        <p:commandButton value="Submit Picks:" id="submit" update="picksGrowl" styleClass="ui-priority-primary" >
-					        	<f:actionListener binding="#{makePicksBean.submit}" />
-					        	<f:actionListener binding="#{makePicksBean.submitTno}" />
-					        </p:commandButton>
-						</h:form>
-					</div>
-				</div>
+				<p:dialog modal="true" widgetVar="statusDialog" style="width:400px;height:300px;" header="Submitting Picks:" draggable="false" closable="false" resizable="false">
+				    <p:graphicImage value="img/gifs/download-gif.gif" />
+				</p:dialog>
+				<!-- If player is logged in, show pick form -->
+				<h:form id="picksForm">
+					<p:tabView>
+						<p:tab title="#{makePicksBean.regularPicksTitle}">
+							<!-- Make Picks blog post area -->
+							<gc:gameContainer id="regularPicksContainer"
+											  gameBeans="#{makePicksBean.gameBeans}"  
+		 									  headline="#{makePicksBean.makePicksHeadline}"  
+		 									  subheadline="#{makePicksBean.weekHeadline}"  
+		 									  blogstyle="player-picks" /> 
+						</p:tab>
+						<!-- Make Two and out picks only rendered if user is still in the running -->
+						<p:tab title="Two And Out:" rendered="#{makePicksBean.renderTnoPicks}">
+							<gc:gameContainer id="tnoPicksContainer"
+											  gameBeans="#{makePicksBean.tnoBeans}"  
+	 									  	  headline="#{makePicksBean.tnoPickHeadline}"  
+	 									  	  subheadline="#{makePicksBean.weekHeadline}"  
+	 									 	  blogstyle="player-picks" /> 
+						</p:tab>
+					</p:tabView>
+					
+			        <p:commandButton value="Submit Picks:" id="submit" update="picksGrowl" actionListener="#{makePicksBean.submit}" 
+			        	styleClass="ui-priority-primary" onclick="PrimeFaces.monitorDownload(start, stop);" ajax="false" />
+				</h:form>
+				<script type="text/javascript">
+					function start() {
+					    PF('statusDialog').show();
+					}
+					 
+					function stop() {
+					    PF('statusDialog').hide();
+					}
+				</script>
 			</ui:fragment>
 			
 			<!-- If the user is not logged in, do not display pick form, display error. -->

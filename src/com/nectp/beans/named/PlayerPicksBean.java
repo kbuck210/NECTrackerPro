@@ -25,6 +25,7 @@ import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.TeamForSeason;
 import com.nectp.jpa.entities.Week;
+import com.nectp.jpa.entities.Pick.PickType;
 import com.nectp.jpa.entities.Week.WeekStatus;
 
 @Named(value="playerPicksBean")
@@ -83,7 +84,7 @@ public class PlayerPicksBean implements Serializable, GameContainer {
 					bean.setPlayer(user);
 					NEC displayType = p.getApplicableRecord().getRecordType();
 					boolean againstSpread = (displayType != NEC.TWO_AND_OUT && displayType != NEC.ONE_AND_OUT);
-					bean.setGameDisplayType(displayType);
+					bean.setSpreadType(PickType.SPREAD1);
 					bean.setGame(game);
 					bean.setHomeSelectable(false);
 					bean.setAwaySelectable(false);

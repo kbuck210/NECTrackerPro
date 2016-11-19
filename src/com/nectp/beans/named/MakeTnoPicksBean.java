@@ -108,7 +108,6 @@ public class MakeTnoPicksBean implements Serializable, GameContainer {
 					//	Create Beans for two and out picks
 					GameBean tnoBean = new GameBean();
 					tnoBean.setPlayer(user);
-					tnoBean.setGameDisplayType(NEC.TWO_AND_OUT);
 					tnoBean.setGame(g);
 					tnoBean.setSinglePick(true);
 					

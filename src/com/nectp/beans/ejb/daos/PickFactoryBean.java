@@ -1,6 +1,8 @@
 package com.nectp.beans.ejb.daos;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -50,6 +52,38 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 			//	First check to determine whether the pick already exists, creating it if not
 			try {
 				pick = selectPlayerPickForGameForType(player, gameForPick, pickFor);
+				
+				//	Check whether any of the pick attributes have changed and change them if eligible
+				if (checkPickEligibility(player, pickedTeam, pickFor) && !pick.getPickLocked()) {
+					
+					//	Check that the existing pick is for a game that has not yet started
+					Calendar currentTime = new GregorianCalendar();
+					if (currentTime.compareTo(gameForPick.getGameDate()) < 0) {
+						
+						//	Check whether updates are required
+						boolean updatePick = false;
+						if (!pick.getPickedTeam().equals(pickedTeam)) {
+							pick.getPickedTeam().removePickForTeam(pick);
+							pick.setPickedTeam(pickedTeam);
+							pickedTeam.addPickForTeam(pick);
+							updatePick = true;
+						}
+						if (!pick.getPickType().equals(pickType)) {
+							pick.setPickType(pickType);
+							updatePick = true;
+						}
+						
+						if (updatePick) {
+							pick.setSubmittedTime(currentTime);
+							boolean success = update(pick);
+							if (!success) {
+								log.severe("Failed to update pick!");
+								pick = null;
+							}
+						}
+					}
+					else log.warning("Current time is beyond game start time! can not update pick!");
+				}else log.warning("Pick failed eligibility test and/or is already locked! Can not update pick.");
 			} catch (NoExistingEntityException e) {
 				if (!checkPickEligibility(player, pickedTeam, pickFor)) {
 					log.severe("The selected pick is ineligible, can not create pick of "
@@ -59,6 +93,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				
 				pick = new Pick();
 				
+				pick.setSubmittedTime(new GregorianCalendar());
 				pick.setPlayer(player);
 				player.addPick(pick);
 				
@@ -217,5 +252,3 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 		return failedDeletes;
 	}
 }
-
-

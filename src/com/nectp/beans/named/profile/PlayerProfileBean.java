@@ -36,6 +36,9 @@ public class PlayerProfileBean extends ProfileBean<PlayerForSeason> {
 	private PlayerHistoryBean playerHistory;
 	
 	@Inject
+	private EditInfoBean editInfoBean;
+	
+	@Inject
 	private ApplicationState appState;
 	
 	@Override
@@ -70,6 +73,7 @@ public class PlayerProfileBean extends ProfileBean<PlayerForSeason> {
 			playerChart.setSummary("Summary Placeholder - it'll be really cool hopefully.");
 			playerStats.setProfileEntity(player);
 			playerHistory.setProfileEntity(player);
+			editInfoBean.setProfileEntity(player);
 		}
 		else {
 			log.severe("No PlayerForSeason found for id: " + pfsId + " in season " + nec);

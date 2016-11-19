@@ -14,7 +14,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import com.nectp.beans.remote.daos.PickService;
-import com.nectp.beans.remote.daos.StatisticService;
+import com.nectp.beans.remote.daos.PlayerStatisticService;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.AbstractTeamForSeason;
 import com.nectp.jpa.entities.Conference;
@@ -28,13 +28,48 @@ import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.Stadium;
 import com.nectp.jpa.entities.Stadium.RoofType;
 import com.nectp.jpa.entities.TeamForSeason;
+import com.nectp.jpa.entities.Week;
 
 @Stateless
-public class PlayerStatisticServiceBean extends RecordServiceBean implements StatisticService<PlayerForSeason> {
+public class PlayerStatisticServiceBean extends RecordServiceBean implements PlayerStatisticService {
 	private static final long serialVersionUID = -2372141169706701464L;
 
 	@EJB
 	private PickService pickService;
+	
+	@Override
+	public RecordAggregator getRecordForWeek(PlayerForSeason pfs, Week week, boolean againstSpread) {
+		NEC recordType = week.getSubseason().getSubseasonType();
+		RecordAggregator weekRagg = new RecordAggregator(pfs, againstSpread);
+		try {
+			Record record = selectWeekRecordForAtfs(week, pfs, recordType);
+			weekRagg.addRecord(record);
+		} catch (NoExistingEntityException e) {
+			//	Eat exception
+		}
+		
+		return weekRagg;
+	}
+	
+	@Override
+	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getWeekRanks(Week week, boolean againstSpread) {
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> weekRank = new TreeMap<RecordAggregator, List<AbstractTeamForSeason>>(Collections.reverseOrder());
+		
+		Season season = week.getSubseason().getSeason();
+		for (PlayerForSeason player : season.getPlayers()) {
+			RecordAggregator homeAwayAgg = getRecordForWeek(player, week, againstSpread);
+			if (weekRank.containsKey(homeAwayAgg)) {
+				weekRank.get(homeAwayAgg).add(player);
+			}
+			else {
+				List<AbstractTeamForSeason> rankList = new ArrayList<AbstractTeamForSeason>();
+				rankList.add(player);
+				weekRank.put(homeAwayAgg, rankList);
+			}
+		}
+		
+		return weekRank;
+	}
 	
 	@Override
 	public RecordAggregator getHomeAwayRecord(PlayerForSeason pfs, NEC subseasonType, boolean home, boolean againstSpread) {
