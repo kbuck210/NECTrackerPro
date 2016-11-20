@@ -21,9 +21,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.nectp.beans.ejb.ApplicationState;
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.daos.PickFactory;
 import com.nectp.beans.remote.daos.RecordService;
+import com.nectp.beans.remote.daos.TeamForSeasonService;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
@@ -52,6 +54,9 @@ public class MakePicksBean implements Serializable {
 	private PlayerForSeason user;
 	private Season season;
 	private Week week;
+	
+	@EJB
+	private TeamForSeasonService tfsService;
 	
 	@EJB
 	private RecordService recordService;
@@ -397,6 +402,41 @@ public class MakePicksBean implements Serializable {
 			}
 		}
 		return null;
+	}
+	
+	public void selectTeam(ActionEvent event) {
+		String selectedTeam = (String) event.getComponent().getAttributes().get("selectedTeam");
+		TeamForSeason team = null;
+		try {
+			team = tfsService.selectTfsByCitySeason(selectedTeam, season);
+		} catch (NoExistingEntityException e) {
+			log.severe("No team found for: " + selectedTeam + " can not create pick!");
+			FacesMessage selectError = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!", "Failed to find selected team - pick not saved");
+			FacesContext.getCurrentInstance().addMessage(null, selectError);
+			return;
+		}
+		
+		//	Get the gameBean representing the selected team
+		for (GameBean gb : gameBeans) {
+			//	If the selected team is the home team, update game bean
+			if (gb.getHomeCity().equals(team.getTeamCity())) {
+				if ("selectable".equals(gb.getHomeSelectable())) {
+					gb.setHomeSelected(true);
+					gb.setAwaySelected(false);
+				}
+			}
+			//	If the selected team is the away team
+			else if (gb.getAwayCity().equals(team.getTeamCity())) {
+				if ("selectable".equals(gb.getAwaySelectable())) {
+					gb.setAwaySelected(true);
+					gb.setHomeSelected(false);
+				}
+			}
+		}
+		
+		//	TODO: change to actually create pick
+		FacesMessage successMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success!", "Selected: " + team.getTeamCity());
+		FacesContext.getCurrentInstance().addMessage(null, successMessage);
 	}
 	
 	private Pick makePicksForRow(UIComponent gameRow, Game g, NEC picksFor) {

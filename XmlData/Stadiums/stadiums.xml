@@ -454,4 +454,52 @@
 		<roof>retractable</roof>
 		<timezone>EASTERN</timezone>
 	</stadium>
+	<stadium>
+		<name>Los Angeles Memorial Coliseum</name>
+		<street>3911 South Figueroa Street</street>
+		<city>Los Angeles</city>
+		<state>CA</state>
+		<zip>90037</zip>
+		<country>US</country>
+		<lat>34.014167</lat>
+		<long>-118.287778</long>
+		<capacity>80000</capacity>
+		<roof>open</roof>
+		<timezone>PACIFIC</timezone>
+	</stadium>
+	<stadium>
+		<name>U.S. Bank Stadium</name>
+		<street>900 South 5th Street</street>
+		<city>Minneapolis</city>
+		<state>MN</state>
+		<zip>55415</zip>
+		<country>US</country>
+		<lat>44.973889</lat>
+		<long>-93.258056</long>
+		<capacity>66655</capacity>
+		<roof>dome</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
+	<stadium>
+		<name>Twickenham Stadium</name>
+		<street>Whitton Road</street>
+		<city>Twickenham</city>
+		<country>UK</country>
+		<lat>51.456111</lat>
+		<long>-0.341667</long>
+		<capacity>82000</capacity>
+		<roof>open</roof>
+		<timezone>GMT</timezone>
+	</stadium>
+	<stadium>
+		<name>Estadio Azteca</name>
+		<street>3465 Calzada de Tlalpan</street>
+		<city>Mexico City</city>
+		<country>MX</country>
+		<lat>19.301718</lat>
+		<long>-99.147397</long>
+		<capacity>87000</capacity>
+		<roof>open</roof>
+		<timezone>CENTRAL</timezone>
+	</stadium>
 </stadiums>

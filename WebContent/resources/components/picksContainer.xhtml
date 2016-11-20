@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:ui="http://java.sun.com/jsf/facelets"
+	   xmlns:h="http://java.sun.com/jsf/html"
+	   xmlns:f="http://java.sun.com/jsf/core"
+	   xmlns:composite="http://java.sun.com/jsf/composite"
+	   xmlns:p="http://primefaces.org/ui"
+	   xmlns:pc="http://java.sun.com/jsf/composite/components">
+
+	<composite:interface>
+		<composite:attribute name="gameBeans" required="true" />
+		<composite:attribute name="headline" required="true" />
+		<composite:attribute name="subheadline" />
+		<composite:attribute name="blogstyle" default="other-games" />
+	</composite:interface>
+
+	<composite:implementation>
+		<div class="blog-post shadow #{cc.attrs.blogstyle}">
+          <!-- Player Picks Area -->
+		  <div class="picks-area-title">
+			<h3 class="picks-headline">#{cc.attrs.headline}<small class="week-number">#{cc.attrs.subheadline}</small></h3>
+          </div>
+          
+          <ui:repeat value="#{cc.attrs.gameBeans}" var="gameBean">
+          	<pc:picksRow   rowId="#{gameBean.rowId}"
+          				  season="#{gameBean.seasonNumber}"
+          				  homeCity="#{gameBean.homeCity}" 
+          				  homeRecord="#{gameBean.homeRecord}"
+          				  homeScore="#{gameBean.homeScore}" 
+          				  homeHelmet="#{gameBean.homeHelmet}"
+          				  homeHelmetId="#{gameBean.homeHelmetId}"
+          				  homeBadgeId="#{gameBean.homeBadgeId}"
+          				  homeSelected="#{gameBean.homeSelected}"
+          				  homePickImage="#{gameBean.homePickImage}"
+          				  homeTeamUrl="#{gameBean.homeTeamUrl}"
+          				  awayCity="#{gameBean.awayCity}"
+          				  awayRecord="#{gameBean.awayRecord}"
+          				  awayScore="#{gameBean.awayScore}"
+          				  awayHelmet="#{gameBean.awayHelmet}"
+          				  awayHelmetId="#{gameBean.awayHelmetId}"
+          				  awayBadgeId="#{gameBean.awayBadgeId}"
+          				  awaySelected="#{gameBean.awaySelected}"
+          				  awayPickImage="#{gameBean.awayPickImage}"
+          				  awayTeamUrl="#{gameBean.awayTeamUrl}"
+          				  spread="#{gameBean.spread}"
+          				  gameTime="#{gameBean.gameTime}"
+          				  timeRemaining="#{gameBean.timeRemaining}"
+          				  homeArrow="#{gameBean.homeArrow}"
+          				  awayArrow="#{gameBean.awayArrow}"
+          				  homeSelectable="#{gameBean.homeSelectable}" 
+          				  awaySelectable="#{gameBean.awaySelectable}" 
+          				  homeGrayed="#{gameBean.homeGrayed}" 
+          				  awayGrayed="#{gameBean.awayGrayed}" 
+          				  singlePick="#{gameBean.singlePick}" > 
+          	
+          		<p:effect type="drop" event="load" > 
+          			<f:param name="mode" value="'show'" />
+          		</p:effect>
+          	</pc:picksRow>
+          </ui:repeat>
+        </div>
+	</composite:implementation>
+
+</html>

@@ -3,7 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:gc="http://java.sun.com/jsf/composite/components"
+      xmlns:pc="http://java.sun.com/jsf/composite/components"
       xmlns:p="http://primefaces.org/ui"
 	  xmlns:pe="http://primefaces.org/ui/extensions" >
 
@@ -25,19 +25,19 @@
 					<p:tabView>
 						<p:tab title="#{makePicksBean.regularPicksTitle}">
 							<!-- Make Picks blog post area -->
-							<gc:gameContainer id="regularPicksContainer"
-											  gameBeans="#{makePicksBean.gameBeans}"  
-		 									  headline="#{makePicksBean.makePicksHeadline}"  
-		 									  subheadline="#{makePicksBean.weekHeadline}"  
-		 									  blogstyle="player-picks" /> 
+							<pc:picksContainer id="regularPicksContainer"
+											   gameBeans="#{makePicksBean.gameBeans}"  
+		 									   headline="#{makePicksBean.makePicksHeadline}"  
+		 									   subheadline="#{makePicksBean.weekHeadline}"  
+		 									   blogstyle="player-picks" /> 
 						</p:tab>
 						<!-- Make Two and out picks only rendered if user is still in the running -->
 						<p:tab title="Two And Out:" rendered="#{makePicksBean.renderTnoPicks}">
-							<gc:gameContainer id="tnoPicksContainer"
-											  gameBeans="#{makePicksBean.tnoBeans}"  
-	 									  	  headline="#{makePicksBean.tnoPickHeadline}"  
-	 									  	  subheadline="#{makePicksBean.weekHeadline}"  
-	 									 	  blogstyle="player-picks" /> 
+							<pc:picksContainer id="tnoPicksContainer"
+											   gameBeans="#{makePicksBean.tnoBeans}"  
+	 									  	   headline="#{makePicksBean.tnoPickHeadline}"  
+	 									  	   subheadline="#{makePicksBean.weekHeadline}"  
+	 									 	   blogstyle="player-picks" /> 
 						</p:tab>
 					</p:tabView>
 					

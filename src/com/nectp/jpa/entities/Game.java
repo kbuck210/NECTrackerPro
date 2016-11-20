@@ -264,7 +264,10 @@ public class Game implements Serializable, Comparable<Game> {
 	}
 
 	public void setSpread1(String spread1) {
-		this.spread1 = spread1;
+		if (spread1 == null || spread1.isEmpty()) {
+			this.spread1 = "0";
+		}
+		else this.spread1 = spread1;
 	}
 
 	public BigDecimal getSpread2() {
@@ -307,6 +310,11 @@ public class Game implements Serializable, Comparable<Game> {
 		this.awayTeam = awayTeam;
 	}
 	
+	/** For the specified team, get their opponent in this game
+	 * 
+	 * @param team the TeamForSeason that may be either the home or away team
+	 * @return the away team if home specified, home team if away specified, or null if this team is not in the game
+	 */
 	public TeamForSeason getOtherTeam(TeamForSeason team) {
 		if (homeTeam.equals(team)) {
 			return awayTeam;
@@ -317,6 +325,15 @@ public class Game implements Serializable, Comparable<Game> {
 		else return null;
 	}
 
+	/** Checks whether or not the specified team is part of this game
+	 * 
+	 * @param team the TeamForSeason entity to check whether or not is in this game
+	 * @return true if the specified team is either the home or away team, false otherwise
+	 */
+	public boolean hasTeam(TeamForSeason team) {
+		return homeTeam.equals(team) || awayTeam.equals(team);
+	}
+	
 	public Week getWeek() {
 		return this.week;
 	}
