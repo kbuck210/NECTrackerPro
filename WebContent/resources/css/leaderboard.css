@@ -39,7 +39,8 @@ ul.leaderboard-list li a {
 
 a.leaderboard-link {
   color: rgba(0, 0, 0, 0.7);
-  transition: background 300ms ease; }
+  transition: background 300ms ease; 
+  width: inherit; }
   a.leaderboard-link :hover {
     background: #d7ffff; }
   a.leaderboard-link :hover img{
@@ -63,6 +64,7 @@ a.leaderboard-link {
     -moz-box-shadow: 0px 1px 1px #888888;
     padding: 4px 10px;
 }
+
 
 .leader-col {
 	border: none;
@@ -109,8 +111,8 @@ a.leaderboard-link {
 }
 
 .leader-avatar {
-	width: 6.5rem;
-	height: 5rem;
+	width: 6rem;
+	height: 6rem;
 	border: 2px solid #fefefe;
 }
 .position-badge {

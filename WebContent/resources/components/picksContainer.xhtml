@@ -23,10 +23,11 @@
 			<h3 class="picks-headline">#{cc.attrs.headline}<small class="week-number">#{cc.attrs.subheadline}</small></h3>
           </div>
           
-          <ui:repeat value="#{cc.attrs.gameBeans}" var="gameBean">
-          	<pc:picksRow   rowId="#{gameBean.rowId}"
+          <ui:repeat value="#{cc.attrs.gameBeans}" var="gameBean" varStatus="row">
+          	<pc:picksRow  rowId="#{row.index}"
           				  season="#{gameBean.seasonNumber}"
           				  homeCity="#{gameBean.homeCity}" 
+          				  homeAbbr="#{gameBean.homeAbbr}"
           				  homeRecord="#{gameBean.homeRecord}"
           				  homeScore="#{gameBean.homeScore}" 
           				  homeHelmet="#{gameBean.homeHelmet}"
@@ -36,6 +37,7 @@
           				  homePickImage="#{gameBean.homePickImage}"
           				  homeTeamUrl="#{gameBean.homeTeamUrl}"
           				  awayCity="#{gameBean.awayCity}"
+          				  awayAbbr="#{gameBean.awayAbbr}"
           				  awayRecord="#{gameBean.awayRecord}"
           				  awayScore="#{gameBean.awayScore}"
           				  awayHelmet="#{gameBean.awayHelmet}"

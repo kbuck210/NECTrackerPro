@@ -129,6 +129,7 @@ public class MakePicksBean implements Serializable {
 			}
 			
 			//	Create the game beans
+			log.info("Reinitializing GameBeans");
 			gameBeans = new ArrayList<GameBean>();
 			tnoBeans = new ArrayList<GameBean>();
 			
@@ -299,7 +300,6 @@ public class MakePicksBean implements Serializable {
 	 * @return false if the user is already out, true otherwise
 	 */
 	public boolean getRenderTnoPicks() {
-		log.info("Rendering tno picks: " + renderTnoPicks);
 		return renderTnoPicks;
 	}
 	
@@ -404,11 +404,12 @@ public class MakePicksBean implements Serializable {
 		return null;
 	}
 	
-	public void selectTeam(ActionEvent event) {
-		String selectedTeam = (String) event.getComponent().getAttributes().get("selectedTeam");
+	public void selectTeam(String selectedTeam) {
+//		String selectedTeam = (String) event.getComponent().getAttributes().get("selectedTeam");
+		log.info("Selected team: " + selectedTeam);
 		TeamForSeason team = null;
 		try {
-			team = tfsService.selectTfsByCitySeason(selectedTeam, season);
+			team = tfsService.selectTfsByAbbrSeason(selectedTeam, season);
 		} catch (NoExistingEntityException e) {
 			log.severe("No team found for: " + selectedTeam + " can not create pick!");
 			FacesMessage selectError = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!", "Failed to find selected team - pick not saved");
@@ -419,17 +420,21 @@ public class MakePicksBean implements Serializable {
 		//	Get the gameBean representing the selected team
 		for (GameBean gb : gameBeans) {
 			//	If the selected team is the home team, update game bean
-			if (gb.getHomeCity().equals(team.getTeamCity())) {
+			if (gb.getHomeAbbr().equals(team.getTeamAbbr())) {
+				log.info(gb.getHomeAbbr() + " Selectable: " + gb.getHomeSelectable());
 				if ("selectable".equals(gb.getHomeSelectable())) {
 					gb.setHomeSelected(true);
 					gb.setAwaySelected(false);
+					log.info("set home selected: " + gb.getHomeSelected());
 				}
 			}
 			//	If the selected team is the away team
-			else if (gb.getAwayCity().equals(team.getTeamCity())) {
+			else if (gb.getAwayAbbr().equals(team.getTeamAbbr())) {
+				log.info(gb.getAwayAbbr() + " Selectable: " + gb.getAwaySelectable());
 				if ("selectable".equals(gb.getAwaySelectable())) {
 					gb.setAwaySelected(true);
 					gb.setHomeSelected(false);
+					log.info("set away selected: " + gb.getAwaySelected());
 				}
 			}
 		}

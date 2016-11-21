@@ -176,8 +176,10 @@ public class Game implements Serializable, Comparable<Game> {
 		return this.awayScore;
 	}
 
-	public void setAwayScore(int awayScore) {
-		this.awayScore = awayScore;
+	public void setAwayScore(Integer awayScore) {
+		if (awayScore != null) {
+			this.awayScore = awayScore;
+		}
 	}
 
 	public Calendar getGameDate() {
@@ -231,8 +233,10 @@ public class Game implements Serializable, Comparable<Game> {
 		return this.homeScore;
 	}
 
-	public void setHomeScore(int homeScore) {
-		this.homeScore = homeScore;
+	public void setHomeScore(Integer homeScore) {
+		if (homeScore != null) {
+			this.homeScore = homeScore;
+		}
 	}
 
 	public String getPossession() {

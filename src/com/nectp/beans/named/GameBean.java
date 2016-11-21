@@ -1,12 +1,10 @@
 package com.nectp.beans.named;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.Pick.PickType;
@@ -25,6 +23,7 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	private String seasonNumber;
 	private String rowId;
 	private String homeCity;
+	private String homeAbbr;
 	private String homeRecord;
 	private String homeScore;
 	private String homeHelmet;
@@ -32,6 +31,7 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	private String homeHelmetId;
 	private String homeSelected = "";
 	private String awayCity;
+	private String awayAbbr;
 	private String awayRecord;
 	private String awayScore;
 	private String awayHelmet;
@@ -85,7 +85,9 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 		this.game = game;
 		this.seasonNumber = game.getWeek().getSubseason().getSeason().getSeasonNumber().toString();
 		TeamForSeason homeTeam = game.getHomeTeam();
+		this.homeAbbr = homeTeam.getTeamAbbr();
 		TeamForSeason awayTeam = game.getAwayTeam();
+		this.awayAbbr = awayTeam.getTeamAbbr();
 		checkPickedTeam(homeTeam, awayTeam);
 		setHomeCity(homeTeam);
 		setHomeScore();
@@ -197,6 +199,10 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 		}
 	}
 	
+	public void clearHomePickImage() {
+		this.homePickImage = "img/arrows/blank.png";
+	}
+	
 	/** Sets the overlaid success image for the away team
 	 * 
 	 * @param awayPickImage if true, displays the success image, null displays the warning and false displays the failure image
@@ -211,6 +217,10 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 		else {
 			this.awayPickImage = "img/out-red-smaller.png";
 		}
+	}
+	
+	public void clearAwayPickImage() {
+		this.awayPickImage = "img/arrows/blank.png";
 	}
 	
 	public void setHomeSelected(boolean selected) {
@@ -290,11 +300,16 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	public String getHomeCity() {
 		return homeCity;
 	}
+	
 	/**
 	 * @param homeCity the homeCity to set
 	 */
 	private void setHomeCity(TeamForSeason homeTeam) {
 		this.homeCity = homeTeam.getTeamCity();
+	}
+	
+	public String getHomeAbbr() {
+		return this.homeAbbr;
 	}
 	/**
 	 * @return the homeRecord
@@ -352,6 +367,11 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	private void setAwayCity(TeamForSeason awayTeam) {
 		this.awayCity = awayTeam.getTeamCity();
 	}
+	
+	public String getAwayAbbr() {
+		return this.awayAbbr;
+	}
+	
 	/**
 	 * @return the awayRecord
 	 */
