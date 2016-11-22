@@ -40,12 +40,13 @@
 		<composite:attribute name="awaySelectable" default="unselectable" />
 		<composite:attribute name="homeGrayed" default="" />
 		<composite:attribute name="awayGrayed" default="" />
+		<composite:attribute name="rowGrayed" default="" />
 		<composite:attribute name="singlePick" default="" />
 	</composite:interface>
 	
 	<composite:implementation>
 		<!-- Game container -->
-		  <div class="row game-container">
+		  <div class="row game-container #{cc.attrs.rowGrayed}">
 			  <div class="small-12 columns">
 
 			  	<!-- Game info row - uses attribute as ID for event handling -->
@@ -63,7 +64,7 @@
 			  					<p:outputPanel styleClass="selected-badge home #{cc.attrs.homeSelected}">
 			  						<h:graphicImage value="img/check-smaller.png" class="#{cc.attrs.homeGrayed}" />
 			  					</p:outputPanel>
-			  					<p:commandLink action="#{makePicksBean.selectTeam(cc.attrs.homeAbbr)}" update="@form" >
+			  					<p:commandLink action="#{makePicksBean.selectTeam(cc.attrs.homeAbbr, cc.attrs.rowId)}" update="@form growl" >
 			  						<f:attribute name="selectedTeam" value="#{cc.attrs.homeCity}" />
 			  						<figure><img class="helmet #{cc.attrs.homeSelectable} #{cc.attrs.homeGrayed} #{cc.attrs.singlePick}" src="#{cc.attrs.homeHelmet}" /></figure>
 			  					</p:commandLink>
@@ -115,7 +116,7 @@
 								<p:outputPanel styleClass="selected-badge away #{cc.attrs.awaySelected}" >
 									<h:graphicImage value="img/check-smaller.png" class="#{cc.attrs.awayGrayed}" />
 								</p:outputPanel>
-								<p:commandLink action="#{makePicksBean.selectTeam(cc.attrs.awayAbbr)}" update="@form">
+								<p:commandLink action="#{makePicksBean.selectTeam(cc.attrs.awayAbbr, cc.attrs.rowId)}" update="@form growl">
 									<f:attribute name="selectedTeam" value="#{cc.attrs.awayCity}" />
 									<figure><img class="helmet #{cc.attrs.awaySelectable} #{cc.attrs.awayGrayed} #{cc.attrs.singlePick}" src="#{cc.attrs.awayHelmet}" /></figure>
 								</p:commandLink>

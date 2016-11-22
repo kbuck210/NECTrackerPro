@@ -13,7 +13,7 @@
 			<ui:include src="/header.xhtml" />
 		</ui:define>
 		<ui:define name="content">
-			<p:growl id="growl" life="2000" showDetail="true" />
+			<p:growl id="growl" life="5000" showDetail="true" />
 			
 			<!-- If the user is logged in, show the make picks screen -->
 			<ui:fragment id="pickFragment" rendered="#{makePicksBean.showPickForm}" >
@@ -22,8 +22,8 @@
 				</p:dialog>
 				<!-- If player is logged in, show pick form -->
 				<h:form id="picksForm">
-					<p:tabView>
-						<p:tab title="#{makePicksBean.regularPicksTitle}">
+					<p:tabView id="picksTabs" >
+						<p:tab id="regularPicksTab" title="#{makePicksBean.regularPicksTitle}">
 							<!-- Make Picks blog post area -->
 							<pc:picksContainer id="regularPicksContainer"
 											   gameBeans="#{makePicksBean.gameBeans}"  

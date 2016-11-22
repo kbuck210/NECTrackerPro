@@ -41,13 +41,13 @@ a.leaderboard-link {
   color: rgba(0, 0, 0, 0.7);
   transition: background 300ms ease; 
   width: inherit; }
-  a.leaderboard-link :hover {
+  .leaderboard-link :hover {
     background: #d7ffff; }
-  a.leaderboard-link :hover img{
+  .leaderboard-link :hover img{
   	background: rgba(76, 175, 80, 0.0); }
-  a.leaderboard-link :hover span {
+  .leaderboard-link :hover span {
  	background: rgba(255,255,255,0.45) none repeat scroll 0 0; }
-  a.leaderboard-link :active {
+  .leaderboard-link :active {
     background: #242424; }
 
 .leader-row {
@@ -59,9 +59,11 @@ a.leaderboard-link {
     border-width: 1px;
     border-style: solid;
     border-color: #ddd;
+    /*
     box-shadow: 0px 1px 1px #888888;
     -webkit-box-shadow: 0px 1px 1px #888888;
     -moz-box-shadow: 0px 1px 1px #888888;
+    */
     padding: 4px 10px;
 }
 
@@ -104,15 +106,15 @@ a.leaderboard-link {
 .position-badge {
 	position:relative;
 }
-*/
+
 .avatar-col {
-	position-relative;
+	position: relative;
 	display: inline-block;
 }
+*/
 
 .leader-avatar {
 	width: 6rem;
-	height: 6rem;
 	border: 2px solid #fefefe;
 }
 .position-badge {

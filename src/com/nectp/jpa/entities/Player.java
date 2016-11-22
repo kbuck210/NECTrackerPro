@@ -35,6 +35,9 @@ public class Player extends AbstractTeam implements Serializable {
 	
 	@Basic(optional=false)
 	private String avatarUrl;
+	
+	@Basic(optional=false)
+	private boolean admin = false;
 
 	//bi-directional many-to-one association to Email
 	@OneToMany(mappedBy="player")
@@ -80,6 +83,14 @@ public class Player extends AbstractTeam implements Serializable {
 
 	public void setAvatarUrl(String avatarUrl) {
 		this.avatarUrl = avatarUrl;
+	}
+	
+	public boolean isAdmin() {
+		return admin;
+	}
+	
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 	public List<Email> getEmails() {

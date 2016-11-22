@@ -12,7 +12,7 @@ public class PlayerFactoryBean extends PlayerServiceBean implements PlayerFactor
 	private static final long serialVersionUID = -1508918084157632909L;
 
 	@Override
-	public Player createPlayer(String playerName, Integer sinceYear, String avatarUrl) {
+	public Player createPlayer(String playerName, boolean admin, Integer sinceYear, String avatarUrl) {
 		Logger log = Logger.getLogger(PlayerFactoryBean.class.getName());
 		Player player = null;
 		if (playerName == null) {
@@ -25,6 +25,10 @@ public class PlayerFactoryBean extends PlayerServiceBean implements PlayerFactor
 				
 				//	If player found, check whether sinceyear or avatar are updated
 				boolean update = false;
+				if (!player.isAdmin() == admin) {
+					player.setAdmin(admin);
+					update = true;
+				}
 				if (!player.getSinceYear().equals(sinceYear)) {
 					player.setSinceYear(sinceYear);
 					update = true;
@@ -40,6 +44,7 @@ public class PlayerFactoryBean extends PlayerServiceBean implements PlayerFactor
 			} catch (NoExistingEntityException e) {
 				player = new Player();
 				player.setName(playerName);
+				player.setAdmin(admin);
 				player.setSinceYear(sinceYear);
 				player.setAvatarUrl(avatarUrl);
 				player.setPassword(playerName);	//	Default password is player name

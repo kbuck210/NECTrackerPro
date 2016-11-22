@@ -26,6 +26,7 @@ public class XmlPlayerUpdater {
 		for (Element pl : players) {
 			//	Get the Player info from the player elements
 			String name = parser.getTextSubElementByTagName(pl, "name");
+			String admin = parser.getTextSubElementByTagName(pl, "admin");
 			String since = parser.getTextSubElementByTagName(pl, "sinceYear");
 			String avatar = parser.getTextSubElementByTagName(pl, "avatar");
 			List<String> emails = parser.getTextSubElementsByTagName(pl, "email");
@@ -43,6 +44,11 @@ public class XmlPlayerUpdater {
 				avatar = "img/avatars/default.png";
 			}
 			
+			boolean isAdmin = false;
+			if (admin != null) {
+				isAdmin = Boolean.parseBoolean(admin);
+			}
+			
 			Integer sinceYear = null; 
 			try {
 				sinceYear = Integer.parseInt(since);
@@ -55,7 +61,7 @@ public class XmlPlayerUpdater {
 			boolean receieveUpdates = updates != null ? updates.trim().toUpperCase().equals("Y") : false;
 			
 			//	Create or update the specified player based on the supplied information
-			Player player = playerFactory.createPlayer(name, sinceYear, avatar);
+			Player player = playerFactory.createPlayer(name, isAdmin, sinceYear, avatar);
 			
 			//	Using the list of emails, get/create Email entities
 			for (String address : emails) {

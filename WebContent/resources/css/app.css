@@ -128,6 +128,6 @@ tbody tr:nth-child(2n) {
 	background: url("img/icons/pdf-icon.png") no-repeat top left !important;
 }
 
-small {
-	color: #aaaaaa;
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+	color: #777777;
 }

@@ -183,6 +183,13 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 		return awayGrayed;
 	}
 	
+	public String getRowGrayed() {
+		if ("grayed".equals(homeGrayed) && "grayed".equals(awayGrayed)) {
+			return "grayed";
+		}
+		else return "";
+	}
+	
 	/** Sets the overlaid success image for the home team
 	 * 
 	 * @param homePickImage if true, displays the success image, null displays the warning and false displays the failure image

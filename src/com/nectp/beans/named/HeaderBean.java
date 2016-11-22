@@ -91,6 +91,15 @@ public class HeaderBean implements Serializable {
 	public void setButtonDisabled(boolean buttonDisabled) {
 		this.buttonDisabled = buttonDisabled;
 	}
+	
+	/** Gets whether or not to display the link to the admin page
+	 * 
+	 * @return true for admin profiles, false otherwise
+	 */
+	public boolean isAdminEnabled() {
+		Player user = appState.getUser();
+		return user != null && user.isAdmin();
+	}
 
 	/**
 	 * @return the emailAddress

@@ -159,7 +159,7 @@ public class UploadSeason extends FileUploadImpl {
 						seasonFactory.update(season);
 						
 						//	After the season is merged, create the records for each player for each category
-						generateRecords();
+//						generateRecords();
 					}
 				}	
 			}
@@ -357,7 +357,9 @@ public class UploadSeason extends FileUploadImpl {
 		}
 	}
 	
-	private void generateRecords() {
+	public void generateRecords() {
+		log.info("action called.");
+		season = seasonFactory.selectCurrentSeason();
 		//	For each player, create records based on the prizes for the year
 		for (PlayerForSeason player : season.getPlayers()) {
 			//	Loop over each of the prizes for the season

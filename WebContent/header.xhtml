@@ -18,10 +18,13 @@
 	  </div>
 	  <div class="top-bar-right">
 	  	<h:form id="logoutForm">
-	    <p:commandButton value="#{headerBean.buttonText}" disabled="#{headerBean.buttonDisabled}" type="button" onclick="PF('loginModal').show();" />
-	    <p:commandLink rendered="#{headerBean.buttonDisabled}" action="#{headerBean.logout}" style="padding-left: 0.5rem;" ajax="false">
-	    	<h:outputText value="Sign Out:" />
-	    </p:commandLink>
+		    <p:commandButton value="#{headerBean.buttonText}" disabled="#{headerBean.buttonDisabled}" type="button" onclick="PF('loginModal').show();" />
+		    <p:spacer width="5" rendered="#{headerBean.buttonDisabled}" />
+		    <p:button value="Admin" icon="fa fa-cog" outcome="dataLoad" rendered="#{headerBean.adminEnabled}" />
+		    <p:spacer width="5" rendered="#{headerBean.buttonDisabled}" />
+		    <p:commandLink rendered="#{headerBean.buttonDisabled}" action="#{headerBean.logout}" style="padding-left: 0.5rem;" ajax="false">
+		    	<h:outputText value="Sign Out:" />
+		    </p:commandLink>
 	    </h:form>
 	    <!-- Foundation implementation
 	    <ul class="menu">

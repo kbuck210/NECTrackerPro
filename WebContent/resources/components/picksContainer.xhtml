@@ -23,8 +23,9 @@
 			<h3 class="picks-headline">#{cc.attrs.headline}<small class="week-number">#{cc.attrs.subheadline}</small></h3>
           </div>
           
-          <ui:repeat value="#{cc.attrs.gameBeans}" var="gameBean" varStatus="row">
-          	<pc:picksRow  rowId="#{row.index}"
+          <ui:repeat id="rowRepeat" value="#{cc.attrs.gameBeans}" var="gameBean" varStatus="row">
+          	<pc:picksRow  id="picksRow"
+          				  rowId="#{gameBean.rowId}"
           				  season="#{gameBean.seasonNumber}"
           				  homeCity="#{gameBean.homeCity}" 
           				  homeAbbr="#{gameBean.homeAbbr}"
@@ -55,6 +56,7 @@
           				  awaySelectable="#{gameBean.awaySelectable}" 
           				  homeGrayed="#{gameBean.homeGrayed}" 
           				  awayGrayed="#{gameBean.awayGrayed}" 
+          				  rowGrayed="#{gameBean.rowGrayed}" 
           				  singlePick="#{gameBean.singlePick}" > 
           	
           		<p:effect type="drop" event="load" > 

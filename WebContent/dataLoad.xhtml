@@ -40,6 +40,11 @@
 					    <p:commandButton value="Submit Seasons: " update="growl" actionListener="#{uploadSeasons.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
 					</p:fieldset>
 				</h:form>
+				<h:form id="generateRecords">
+					<p:fieldset legend="Generate Records:">
+						<p:commandButton value="Generate:" actionListener="#{uploadSeasons.generateRecords}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+					</p:fieldset>
+				</h:form>
 				<h:form id="weekUploadForm" enctype="multipart/form-data">
 					<p:fieldset legend="Upload Weeks:">
 						<h:outputText value="Select the Week.xml file(s) to upload: " />

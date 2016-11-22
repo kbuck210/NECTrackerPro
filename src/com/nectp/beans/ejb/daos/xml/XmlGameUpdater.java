@@ -68,13 +68,16 @@ public class XmlGameUpdater {
 			try {
 				homeScore = Integer.parseInt(homeScoreStr);
 			} catch (NumberFormatException e) {
-				log.warning("Invalid format for home score: will not be set.");
+				log.warning("Invalid format for home score: will not be set - default to zero");
+				homeScore = 0;
+				
 			}
 			Integer awayScore = null;
 			try {
 				awayScore = Integer.parseInt(awayScoreStr);
 			} catch (NumberFormatException e) {
-				log.warning("Invalid format for away score: will not be set.");
+				log.warning("Invalid format for away score: will not be set - default to zero");
+				awayScore = 0;
 			}
 			
 			Boolean isHomeFavored1 = homeFavored1 != null ? homeFavored1.toUpperCase().equals("Y") : null;

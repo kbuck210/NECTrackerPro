@@ -104,6 +104,9 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				try {
 					//	If the record doesn't already exist, creates one
 					applicableRecord = recordFactory.createWeekRecordForAtfs(week, player, pickFor);
+					if (applicableRecord == null) {
+						log.severe("No record found for " + pickFor + " - can't create picks!");
+					}
 					pick.setApplicableRecord(applicableRecord);
 					applicableRecord.addPickInRecord(pick);
 				} catch (NoExistingEntityException ex) {
