@@ -14,62 +14,84 @@
 		</ui:define>
 		<ui:define name="content">
 			<p:growl id="growl" showDetail="true" life="2000" />
-			<!-- Center content update area -->
-			<h:panelGrid columns="2">
-				<h:form id="stadiumUploadForm" enctype="multipart/form-data">
-					<p:fieldset legend="Upload Stadiums:">
-						<h:outputText value="Select the Stadiums.xml file to upload: " />
-						<p:fileUpload mode="advanced" 
-									  multiple="false"
-									  dragDropSupport="true"
-									  skinSimple="true"
-									  allowTypes="/(\.|\/)(xml)$/"
-									  fileUploadListener="#{uploadStadiums.upload}" />
-					    <p:commandButton value="Submit Stadiums: " update="growl" actionListener="#{uploadStadiums.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
-					</p:fieldset>
-				</h:form>
-				<h:form id="seasonUploadForm" enctype="multipart/form-data">
-					<p:fieldset legend="Upload Seasons:">
-						<h:outputText value="Select the Season.xml file(s) to upload: " />
-						<p:fileUpload mode="advanced" 
-									  multiple="true"
-									  dragDropSupport="true"
-									  skinSimple="true"
-									  allowTypes="/(\.|\/)(xml)$/"
-									  fileUploadListener="#{uploadSeasons.upload}" />
-					    <p:commandButton value="Submit Seasons: " update="growl" actionListener="#{uploadSeasons.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
-					</p:fieldset>
-				</h:form>
-				<h:form id="generateRecords">
-					<p:fieldset legend="Generate Records:">
-						<p:commandButton value="Generate:" actionListener="#{uploadSeasons.generateRecords}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
-					</p:fieldset>
-				</h:form>
-				<h:form id="weekUploadForm" enctype="multipart/form-data">
-					<p:fieldset legend="Upload Weeks:">
-						<h:outputText value="Select the Week.xml file(s) to upload: " />
-						<p:fileUpload mode="advanced" 
-									  multiple="true"
-									  dragDropSupport="true"
-									  skinSimple="true"
-									  allowTypes="/(\.|\/)(xml)$/"
-									  fileUploadListener="#{uploadWeeks.upload}" />
-					    <p:commandButton value="Submit Seasons: " update="growl" actionListener="#{uploadWeeks.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
-					</p:fieldset>
-				</h:form>
-				<h:form id="pickUploadForm" enctype="multipart/form-data">
-					<p:fieldset legend="Upload Pick Spreadsheets:">
-						<h:outputText value="Select the picks .xls file to upload: " />
-						<p:fileUpload mode="advanced" 
-									  multiple="true"
-									  dragDropSupport="true"
-									  skinSimple="true"
-									  allowTypes="/(\.|\/)(xlsx?)$/"
-									  fileUploadListener="#{uploadExcelPicks.upload}" />
-						<p:commandButton value="Submit Picks: " update="growl" actionListener="#{uploadExcelPicks.submit}"  icon="ui-icon-disk" styleClass="ui-priority-primary" />
-					</p:fieldset>
-				</h:form>
-			</h:panelGrid>
+			<div class="row columns">
+				<p:fieldset legend="Send an Email" >
+					<ui:include src="/emailWizard.xhtml" />
+					<!-- 
+					<h:panelGrid columns="2" >
+						<h:outputLabel for="subject" value="Enter Subject:" />
+						<p:inputText id="subject" value="#{emailWizardBean.subject}" />
+						
+						<h:outputLabel for="title" value="Message Headline:" />
+						<p:inputText id="title" value="#{emailWizardBean.title}" />
+						
+						<h:outputLabel for="subtitle" value="Headline Details:" />
+						<p:inputText id="subtitle" value="#{emailWizardBean.subtitle}" />
+						
+						<h:outputLabel for="message" value="Enter Message:" />
+						<p:inputTextArea id="message" value="#{emailWizardBean.messageText}" />
+					</h:panelGrid>
+					 -->
+				</p:fieldset>
+				<!-- Center content update area -->
+				<p:fieldset legend="Update Data" >
+					<h:panelGrid columns="2">
+						<h:form id="stadiumUploadForm" enctype="multipart/form-data">
+							<p:fieldset legend="Upload Stadiums:">
+								<h:outputText value="Select the Stadiums.xml file to upload: " />
+								<p:fileUpload mode="advanced" 
+											  multiple="false"
+											  dragDropSupport="true"
+											  skinSimple="true"
+											  allowTypes="/(\.|\/)(xml)$/"
+											  fileUploadListener="#{uploadStadiums.upload}" />
+							    <p:commandButton value="Submit Stadiums: " update="growl" actionListener="#{uploadStadiums.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+							</p:fieldset>
+						</h:form>
+						<h:form id="seasonUploadForm" enctype="multipart/form-data">
+							<p:fieldset legend="Upload Seasons:">
+								<h:outputText value="Select the Season.xml file(s) to upload: " />
+								<p:fileUpload mode="advanced" 
+											  multiple="true"
+											  dragDropSupport="true"
+											  skinSimple="true"
+											  allowTypes="/(\.|\/)(xml)$/"
+											  fileUploadListener="#{uploadSeasons.upload}" />
+							    <p:commandButton value="Submit Seasons: " update="growl" actionListener="#{uploadSeasons.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+							</p:fieldset>
+						</h:form>
+						<h:form id="generateRecords">
+							<p:fieldset legend="Generate Records:">
+								<p:commandButton value="Generate:" actionListener="#{uploadSeasons.generateRecords}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+							</p:fieldset>
+						</h:form>
+						<h:form id="weekUploadForm" enctype="multipart/form-data">
+							<p:fieldset legend="Upload Weeks:">
+								<h:outputText value="Select the Week.xml file(s) to upload: " />
+								<p:fileUpload mode="advanced" 
+											  multiple="true"
+											  dragDropSupport="true"
+											  skinSimple="true"
+											  allowTypes="/(\.|\/)(xml)$/"
+											  fileUploadListener="#{uploadWeeks.upload}" />
+							    <p:commandButton value="Submit Seasons: " update="growl" actionListener="#{uploadWeeks.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+							</p:fieldset>
+						</h:form>
+						<h:form id="pickUploadForm" enctype="multipart/form-data">
+							<p:fieldset legend="Upload Pick Spreadsheets:">
+								<h:outputText value="Select the picks .xls file to upload: " />
+								<p:fileUpload mode="advanced" 
+											  multiple="true"
+											  dragDropSupport="true"
+											  skinSimple="true"
+											  allowTypes="/(\.|\/)(xlsx?)$/"
+											  fileUploadListener="#{uploadExcelPicks.upload}" />
+								<p:commandButton value="Submit Picks: " update="growl" actionListener="#{uploadExcelPicks.submit}"  icon="ui-icon-disk" styleClass="ui-priority-primary" />
+							</p:fieldset>
+						</h:form>
+					</h:panelGrid>
+				</p:fieldset>
+			</div>
 		</ui:define>
 		<ui:define name="footer">
 			<ui:include src="/footer.xhtml" />

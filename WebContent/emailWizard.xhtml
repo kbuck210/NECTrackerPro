@@ -4,7 +4,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:gc="http://java.sun.com/jsf/composite/components"
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" >
 
 	<ui:decorate template="homeTemplate.xhtml">
 		<ui:define name="header">
@@ -72,7 +73,11 @@
 						<p:tab id="messageText" title="Message" >
 							<h3 style="margin-top:0">Edit Message Text:</h3>
 							<p:messages />
-							<p:textEditor widgetVar="editor1" value="#{emailWizardBean.messageText}" height="300" style="margin-bottom:10px"/>
+							<pe:ckEditor id="editor" value="#{editorController.content}" 
+								toolbar="[['Cut','Copy','Paste','PasteText','PasteFromWord','-', 'SpellChecker', 'Scayt']]">  
+    							<p:ajax event="save" listener="#{editorController.saveListener}" update="growl"/>  
+							</pe:ckEditor>  
+							<!-- <p:textEditor widgetVar="editor1" value="#{emailWizardBean.messageText}" height="300" style="margin-bottom:10px"/>  -->
 							<h:panelGrid columns="2" columnClasses="label, value" >
 								<h:outputText value="Submit: " />
 								<p:commandButton value="Submit" actionListener="#{emailWizardBean.send}" update="growl" process="@this"/>
