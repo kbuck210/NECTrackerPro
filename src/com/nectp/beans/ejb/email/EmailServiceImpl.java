@@ -10,6 +10,7 @@ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -28,7 +29,7 @@ import com.nectp.jpa.entities.Email;
 public class EmailServiceImpl implements EmailService {
 
 	private final String DEFAULT_HEADER_BACKGROUND = "/img/stadium-smaller.png";
-	private final String DEFAULT_MAIN_IMAGE = "/img/NECDefaultMainImage.png";
+	private final String DEFAULT_MAIN_IMAGE = "/img/NECTrackerPro-Logo.png";
 	
 	private Logger log;
 	
@@ -63,7 +64,12 @@ public class EmailServiceImpl implements EmailService {
 		    		addresses.add(address);
 		    	}
 		    }
-		    
+		    if (addresses.size() == 0) {
+		    	log.severe("No recipients specified. Can not send email.");
+		    	FacesMessage noRecipients = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!", "No recipients specified!");
+		    	FacesContext.getCurrentInstance().addMessage(null, noRecipients);
+		    	return false;
+		    }
 		    InternetAddress[] addressArray = addresses.toArray(new InternetAddress[addresses.size()]);
 		    message.setRecipients(RecipientType.TO, addressArray);
 		    message.setSubject(subject);
@@ -111,7 +117,8 @@ public class EmailServiceImpl implements EmailService {
 			    else {
 			    	relativeMainImagePath = mainImgRelPath;
 			    }
-			    String mainImagePath = ctx.getRealPath(relativeMainImagePath);
+//			    String mainImagePath = ctx.getRealPath(relativeMainImagePath);
+			    String mainImagePath = relativeMainImagePath;
 			    
 			    MimeBodyPart background = new MimeBodyPart();
 			    MimeBodyPart mainImage = new MimeBodyPart();

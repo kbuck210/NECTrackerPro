@@ -100,6 +100,7 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 			if (subseasonType.equals(NEC.SEASON)) {
 				if (home) games = getGamesSortedByWeekNumber(tfs.getHomeGames());
 				else games = getGamesSortedByWeekNumber(tfs.getAwayGames());
+				log.info("Games for home/away record: " + games.size());
 			}
 			else {
 				List<Game> subseasonGames = new ArrayList<Game>();
@@ -112,11 +113,11 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 						subseasonGames.add(g);
 					}
 				}
-				
+				log.info("Games for home/away record: " + subseasonGames.size());
 				games = getGamesSortedByWeekNumber(subseasonGames);
 			}
 			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
-
+			log.info("Home/Away records: " + records.size());
 			//	For any home games whose week number matches a record's week number, add the record to the aggregate
 			addRecordsToAggregate(homeAwayAgg, records, games);
 		}
@@ -759,6 +760,5 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		
 		return mnfTntRanks;
 	}
-
 }
 

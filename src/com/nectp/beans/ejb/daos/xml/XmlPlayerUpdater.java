@@ -58,7 +58,8 @@ public class XmlPlayerUpdater {
 				e.printStackTrace();
 				continue;
 			}
-			boolean receieveUpdates = updates != null ? updates.trim().toUpperCase().equals("Y") : false;
+			//	Set the default recieve updates state to true
+			boolean receieveUpdates = updates != null ? !updates.trim().toUpperCase().equals("N") : true;
 			
 			//	Create or update the specified player based on the supplied information
 			Player player = playerFactory.createPlayer(name, isAdmin, sinceYear, avatar);

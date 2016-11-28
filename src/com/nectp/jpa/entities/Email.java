@@ -19,9 +19,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 					+ "INNER JOIN FETCH e.player p "
 					+ "WHERE e.emailAddress = :emailAddress "
 					+ "AND p.abstractTeamId = :playerId"),
-	@NamedQuery(name="selectByAddress",
+	@NamedQuery(name="Email.selectByAddress",
 				query="SELECT e FROM Email e WHERE e.emailAddress = :emailAddress"),
-	@NamedQuery(name="selectAllByPlayer", 
+	@NamedQuery(name="Email.selectAllByPlayer", 
 				query="SELECT e FROM Email e "
 					+ "INNER JOIN FETCH e.player p "
 					+ "WHERE p.abstractTeamId = :playerId"),

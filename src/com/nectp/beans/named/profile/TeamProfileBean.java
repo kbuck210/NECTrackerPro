@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.nectp.beans.ejb.daos.NoExistingEntityException;
+import com.nectp.beans.named.NextGameBean;
 import com.nectp.beans.named.profile.ProfileBean;
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.beans.remote.daos.TeamForSeasonService;
@@ -29,6 +30,9 @@ public class TeamProfileBean extends ProfileBean<TeamForSeason> {
 	
 	@Inject
 	private TeamStatsBean teamStats;
+	
+	@Inject
+	private NextGameBean nextGame;
 	
 	/** Set teamAbbr is called from the f:viewParam pre-render method
 	 * 
@@ -64,6 +68,7 @@ public class TeamProfileBean extends ProfileBean<TeamForSeason> {
 			setProfileEntity(team);
 			teamChart.setProfileEntity(team);
 			teamStats.setProfileEntity(team);
+			nextGame.setDisplayTeam(team);
 		} catch (NoExistingEntityException e) {
 			log.severe("No TeamForSeason entity found for abbr: " + teamAbbr + " in season: " + season);
 			log.severe(e.getMessage());

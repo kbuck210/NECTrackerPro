@@ -75,6 +75,9 @@ public class LoginService implements Serializable {
 					String cookieVal = "username:" + email + " password:" + password;
 					CookieFactory.giveCookie("loginCookie", cookieVal, seconds30weeks);
 				}
+				else {
+					player = null;
+				}
 			}
 			else {
 				messages = "No player found with primary email: " + email;

@@ -65,7 +65,7 @@ public class TeamChartBean extends ChartBean<TeamForSeason> {
 			else {
 				wins += r.getWinsATS1();
 			}
-			double currentWinPct = (double) wins / (double) i;
+			double currentWinPct = ((double) wins / (double) i) * 100;
 			
 			series.set(r.getWeek().getWeekNumber(), currentWinPct);
 		}

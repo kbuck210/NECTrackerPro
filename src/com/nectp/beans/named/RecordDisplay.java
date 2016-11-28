@@ -6,6 +6,7 @@ import java.util.TreeMap;
 
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.jpa.entities.AbstractTeamForSeason;
+import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.Record;
 
 public class RecordDisplay {
@@ -86,15 +87,18 @@ public class RecordDisplay {
 			rank += 1;
 		}
 		if (leaders.isEmpty()) {
+			System.out.println("No leaders in rank Map!.");
 			rankStr = "N/a";
 		}
 		else {
+			boolean isPlayer = (leaders.get(0) instanceof PlayerForSeason);
 			//	Check if the leader's first record has no picks against it
 			List<Record> records = ragg.getRecords();
 			if (records.isEmpty()) {
+				System.out.println("No Records found for the ragg!");
 				rankStr = "N/a";
 			}
-			else if (records.get(0).getPicksInRecord().isEmpty()) {
+			else if (isPlayer && records.get(0).getPicksInRecord().isEmpty()) {
 				rankStr = "N/a";
 			}
 			//	If there are picks to this record, set the string

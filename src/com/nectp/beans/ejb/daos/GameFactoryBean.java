@@ -1,6 +1,7 @@
 package com.nectp.beans.ejb.daos;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
@@ -8,6 +9,7 @@ import javax.ejb.Stateless;
 
 import com.nectp.beans.remote.daos.GameFactory;
 import com.nectp.beans.remote.daos.RecordFactory;
+import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Game;
 import com.nectp.jpa.entities.Game.GameStatus;
 import com.nectp.jpa.entities.Stadium;
@@ -123,8 +125,18 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 					update = true;
 				}
 				
-				recordFactory.createWeekRecordForGame(game, homeTeam);
-				recordFactory.createWeekRecordForGame(game, awayTeam);
+				NEC ssType = week.getSubseason().getSubseasonType();
+				recordFactory.createWeekRecordForGame(game, homeTeam, ssType);
+				recordFactory.createWeekRecordForGame(game, awayTeam, ssType);
+				
+				if (gameDate.get(GregorianCalendar.DAY_OF_WEEK) == GregorianCalendar.MONDAY) {
+					recordFactory.createWeekRecordForGame(game, homeTeam, NEC.MNF);
+					recordFactory.createWeekRecordForGame(game, awayTeam, NEC.MNF);
+				}
+				else if (gameDate.get(GregorianCalendar.DAY_OF_WEEK) == GregorianCalendar.THURSDAY) {
+					recordFactory.createWeekRecordForGame(game, homeTeam, NEC.TNT);
+					recordFactory.createWeekRecordForGame(game, awayTeam, NEC.TNT);
+				}
 				
 				if (update) {
 					boolean updateSuccess = update(game);
@@ -155,8 +167,18 @@ public class GameFactoryBean extends GameServiceBean implements GameFactory {
 				game.setHomeFavoredSpread2(homeFavoredSpread2);
 				game.setTimeRemaining(timeRemaining);
 				
-				recordFactory.createWeekRecordForGame(game, homeTeam);
-				recordFactory.createWeekRecordForGame(game, awayTeam);
+				NEC ssType = week.getSubseason().getSubseasonType();
+				recordFactory.createWeekRecordForGame(game, homeTeam, ssType);
+				recordFactory.createWeekRecordForGame(game, awayTeam, ssType);
+				
+				if (gameDate.get(GregorianCalendar.DAY_OF_WEEK) == GregorianCalendar.MONDAY) {
+					recordFactory.createWeekRecordForGame(game, homeTeam, NEC.MNF);
+					recordFactory.createWeekRecordForGame(game, awayTeam, NEC.MNF);
+				}
+				else if (gameDate.get(GregorianCalendar.DAY_OF_WEEK) == GregorianCalendar.THURSDAY) {
+					recordFactory.createWeekRecordForGame(game, homeTeam, NEC.TNT);
+					recordFactory.createWeekRecordForGame(game, awayTeam, NEC.TNT);
+				}
 				
 				boolean success = insert(game);
 				if (!success) {

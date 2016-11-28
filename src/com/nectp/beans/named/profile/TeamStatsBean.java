@@ -138,14 +138,15 @@ public class TeamStatsBean extends StatsBean<TeamForSeason> implements Serializa
 		primetimeAts = getRankedRecordDisplay(primtimeAtsRanks, profileEntity, true);
 
 		//	Get the MNF record for this season for the displayed team (ordering by spread scores for rank)
-		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfRanks = teamStats.getDateTimeRank(profileEntity, null, GregorianCalendar.MONDAY, null, statScope, false);
-		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfAtsRanks = teamStats.getDateTimeRank(profileEntity, null, GregorianCalendar.MONDAY, null, statScope, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfRanks = teamStats.getTeamRankedScoresForType(NEC.MNF, season, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> mnfAtsRanks = teamStats.getTeamRankedScoresForType(NEC.MNF, season, true);
 		mnfRecord = getRankedRecordDisplay(mnfRanks, profileEntity, false);
+		
 		mnfAts = getRankedRecordDisplay(mnfAtsRanks, profileEntity, true);
 
 		//	Get the TNT record for this season for the displayed team (ordering by spread scores for rank)
-		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntRanks = teamStats.getDateTimeRank(profileEntity, null, GregorianCalendar.THURSDAY, null, statScope, false);
-		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntAtsRanks = teamStats.getDateTimeRank(profileEntity, null, GregorianCalendar.THURSDAY, null, statScope, true);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntRanks = teamStats.getTeamRankedScoresForType(NEC.TNT, season, false);
+		TreeMap<RecordAggregator, List<AbstractTeamForSeason>> tntAtsRanks = teamStats.getTeamRankedScoresForType(NEC.TNT, season, true);
 		tntRecord = getRankedRecordDisplay(tntRanks, profileEntity, false);
 		tntAts = getRankedRecordDisplay(tntAtsRanks, profileEntity, true);
 

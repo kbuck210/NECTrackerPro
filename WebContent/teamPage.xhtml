@@ -19,63 +19,52 @@
 				<f:event type="preRenderView" listener="#{teamProfileBean.initialize}" /> 
 			</f:metadata>
 			
-			<div class="row">
-				<div class="small-12 medium-12 large-5 columns">
+			<div class="ui-g">
+				<div class="ui-g-12 ui-md-12 ui-lg-5">
 					<!-- Do Team Profile Card -->
-					<p:panelGrid columns="2">
-						<!-- Avatar Column -->
-						<div class="show-for-medium-up medium-4 columns">
-							<img class="helmet-avatar" src="#{teamProfileBean.profileEntity.homeHelmetUrl}" />
-							<hr/>
-							<a href="#" class="expanded button">Edit Info:</a>
-						</div>
-		
-						<!-- Team Info Col -->
-						<div class="medium-8 columns">
-							<div class="row columns nickname-col no-pad">
-								<h1 class="nickname no-pad">#{teamProfileBean.profileEntity.teamCity}</h1>
-							</div>
-							<div class="row columns">
-								<h3>#{teamChartBean.profileEntity.name}</h3>
-							</div>
-							<div class="row columns">
-								<h5>Active Since 2005</h5>
-							</div>
-		
-							<!-- trend button row -->
-							<div class="row columns">
-								<div class="expanded button-group">
-									<a href="#" class="button trend-left">Division:
-										<p class="no-pad">#{teamStatsBean.divisionRank} #{teamStatsBean.rawRecord}</p>
-									</a>
-									<a href="#" class="button trend-center">Trending:
-										<p class="no-pad">#{teamStatsBean.trending}</p>
-									</a>
-									<a href="#" class="button trend-right">Games Back:
-										<p class="no-pad">#{teamStatsBean.gamesBack}</p>
-									</a>
+					<p:panelGrid style="width:100%">
+						<p:row>
+							<p:column>
+								<!-- Avatar Column -->
+								<div class="row columns no-pad" >
+									<h:graphicImage class="helmet-avatar" value="#{teamProfileBean.profileEntity.homeHelmetUrl}" />
+									<hr />
 								</div>
-							</div>
-		
-							<!-- prize icon row -->
-							<div class="row column align-spaced award-row">
-								<span><img src="img/icons/firstHalfWinner-small.png" /></span>
-								<span><img src="img/icons/secondHalfNonWin-small-light.png" /></span>
-								<span><img src="img/icons/mnfTntNonWin-small-light.png" /></span>
-								<span><img src="img/icons/twoAndOutWinner2-small.png" /></span>
-								<span><img src="img/icons/playoffNonWin-small-light.png" /></span>
-								<span><img src="img/icons/moneyBackNonWin-small-light.png" /></span>
-								<span><img src="img/icons/superbowlWinner-small.png" /></span>
-							</div>
-						</div>
+							</p:column>
+							<p:column>
+								<div class="row columns nickname-col no-pad" >
+									<h1 class="nickname no-pad">#{teamProfileBean.profileEntity.teamCity}</h1>
+								</div>
+								<div class="row columns" >
+									<h3>#{teamChartBean.profileEntity.name}</h3>
+								</div>
+								<div class="row columns" >
+									<h5>#{teamStatsBean.rawRecord}</h5>
+								</div>
+								
+								<!-- trend button row -->
+								<div class="row columns">
+									<div class="expanded button-group">
+										<a href="#" class="button trend-left">Division:
+											<p class="no-pad">#{teamStatsBean.divisionRank}</p>
+										</a>
+										<a href="#" class="button trend-center">Trending:
+											<p class="no-pad">#{teamStatsBean.trending}</p>
+										</a>
+										<a href="#" class="button trend-right">Games Back:
+											<p class="no-pad">#{teamStatsBean.gamesBack}</p>
+										</a>
+									</div>
+								</div>
+							</p:column>
+						</p:row>
 					</p:panelGrid>
 					
 					<!-- Team Statistics Column -->
-					<div class="row columns">
-					<p:outputPanel deferred="true">
-						<p:panelGrid>
-							<f:facet name="header">
-								<p:row>
+					<p:outputPanel deferred="true" >
+						<p:panelGrid responsive="true" style="width:100%" >
+							<f:facet name="header" >
+							 	<p:row>
 									<p:column colspan="4">NEC #{teamStatsBean.seasonNumber} Stats:</p:column>
 								</p:row>
 								<p:row>
@@ -85,6 +74,10 @@
 									<p:column>Rank:</p:column>
 								</p:row>
 							</f:facet>
+							
+							<p:row>
+								<p:column colspan="4" styleClass="ui-widget-header">Score Statistics: </p:column>
+							</p:row>
 							
 							<p:row>
 								<p:column>Overall Record:</p:column>
@@ -211,20 +204,10 @@
 								<p:column>#{teamStatsBean.conferenceAtsWinPct}</p:column>
 								<p:column>#{teamStatsBean.conferenceAtsRank}</p:column>
 							</p:row>
-						</p:panelGrid>
-						<hr/>
-						<p:panelGrid>
-							<f:facet name="header">
-								<p:row>
-									<p:column colspan="4">Next Game Stats:</p:column>
-								</p:row>
-								<p:row>
-									<p:column></p:column>
-									<p:column>Record:</p:column>
-									<p:column>Win %:</p:column>
-									<p:column>Rank:</p:column>
-								</p:row>
-							</f:facet>
+							
+							<p:row>
+								<p:column colspan="4" styleClass="ui-widget-header">Next Game Stats: </p:column>
+							</p:row>
 							
 							<p:row>
 								<p:column>Opponent Record:</p:column>
@@ -325,11 +308,10 @@
 							</p:row>
 						</p:panelGrid>
 					</p:outputPanel>
-					</div>
 				</div>
 				
 				<!-- Team Chart -->
-				<div class="small-12 medium-12 large-7 columns" >
+				<div class="ui-g-12 ui-md-12 ui-lg-7" >
 					<p:tabView orientation="bottom" >
 						<p:tab title="Season" >
 							<div class="row columns">
@@ -350,11 +332,6 @@
 						<p:tab title="Playoffs" >
 							<div class="row columns">
 								<p:chart type="line" model="#{teamChartBean.playoffModel}"  />
-							</div>
-						</p:tab>
-						<p:tab title="Super Bowl">
-							<div class="row columns">
-								<p:chart type="line" model="#{teamChartBean.superbowlModel}"  />
 							</div>
 						</p:tab>
 						-->
@@ -388,6 +365,17 @@
 					</p:fieldset>
 				</div>
 			</div>
+			<script type="text/javascript">
+   				function digitExt() {
+   					this.cfg.axes.xaxis.tickInterval = 1;
+			        this.cfg.axes.xaxis.tickOptions = {
+			            	formatString : '%d'
+			        	};
+		        	this.cfg.axes.yaxis.tickOptions = {
+		        			formatString : '%d'
+				        };
+		    	}
+			</script>
 		</ui:define>
 		
 		<ui:define name="footer">

@@ -5,16 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.beans.remote.daos.TeamForSeasonService;
@@ -43,9 +39,6 @@ public class NextGameBean implements Serializable {
 
 	@EJB
 	private SeasonService seasonService;
-	
-	@EJB
-	private TeamProfileBean profile;
 
 	private Season currentSeason;
 	private Game nextGame;
@@ -57,46 +50,6 @@ public class NextGameBean implements Serializable {
 
 	public NextGameBean() {
 		log = Logger.getLogger(NextGameBean.class.getName());
-	}
-
-	@PostConstruct
-	public void init() {
-		setDisplayTeam(profile.getDisplayTeam());
-//		Map<String, String> paramMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-//		String teamAbbr = paramMap.get("teamAbbr");
-//		String seasonNum = paramMap.get("nec");
-//		try {
-//			Integer seasonNumber = Integer.parseInt(seasonNum);
-//			currentSeason = seasonService.selectById(seasonNumber);
-//		} catch (NumberFormatException e) {
-//			//	TODO: Handle error
-//		} catch (NoExistingEntityException e) {
-//			//	TODO: Handle error
-//		}
-//
-//		try {
-//			displayTeam = teamService.selectTfsByAbbrSeason(teamAbbr, currentSeason);
-//		} catch (NoExistingEntityException e) {
-//			//	Eat exception
-//		}
-//
-//		Week currentWeek = currentSeason.getCurrentWeek();
-//		if (WeekStatus.COMPLETED.equals(currentWeek.getWeekStatus())) {
-//			//	Get all of the weeks in the season sorted by week number
-//			List<Week> weeksInSeason = weekService.listAllWeeksInSeason(currentSeason);
-//			Collections.sort(weeksInSeason, new Comparator<Week>() {
-//				@Override
-//				public int compare(Week w1, Week w2) {
-//					return w1.getWeekNumber().compareTo(w2.getWeekNumber());
-//				}
-//			});
-//			currentWeek = weeksInSeason.get(weeksInSeason.indexOf(currentWeek) + 1);
-//		}
-//		
-//		nextGame = gameService.selectGameByTeamWeek(displayTeam, currentWeek);
-//		if (nextGame != null) {
-//			opponent = nextGame.getOtherTeam(displayTeam);
-//		}
 	}
 	
 	public void setDisplayTeam(TeamForSeason displayTeam) {

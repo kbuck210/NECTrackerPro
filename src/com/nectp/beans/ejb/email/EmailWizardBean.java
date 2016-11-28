@@ -91,14 +91,20 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 	
 	private String altText = null;
 	private String messageText;
+	private String emailContent;
 	
 	private String mainImgUrl;
 	
 	private boolean useDefaultImage = true;
 	
-	private String destination;
-	private List<SelectItem> destinations;
+	private String captionDestination;
+	private List<SelectItem> pageDestinations;
 	private Map<String, String> labelMap;
+	
+	private boolean sendToAll = true;
+	
+	private String[] selectedRecipients;
+	private List<SelectItem> recipients;
 	
 	private String documentText;
 	
@@ -134,11 +140,19 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 			labelMap = new HashMap<String, String>();
 			SelectItemGroup players = new SelectItemGroup("Players:");
 			ArrayList<SelectItem> playerItems = new ArrayList<SelectItem>();
+			recipients = new ArrayList<SelectItem>();
 			for (PlayerForSeason player : currentSeason.getPlayers()) {
 				String playerPath = "/nec" + seasonNum + "/players/" + player.getNickname();
-				SelectItem playerItem = new SelectItem(player.getNickname(), playerPath);
+				SelectItem playerItem = new SelectItem(playerPath, player.getNickname());
 				playerItems.add(playerItem);
 				labelMap.put(playerPath, player.getNickname());
+				
+				List<Email> playerEmails = emailRetrieval.selectAllByPlayer(player.getPlayer());
+				for (Email email : playerEmails) {
+					String display = player.getNickname() + " (" + email.getEmailAddress() + ")";
+					SelectItem playerEmail = new SelectItem(display, email.getEmailAddress());
+					recipients.add(playerEmail);
+				}
 			}
 			players.setSelectItems(playerItems.toArray(new SelectItem[playerItems.size()]));
 			
@@ -146,15 +160,22 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 			ArrayList<SelectItem> teamItems = new ArrayList<SelectItem>();
 			for (TeamForSeason team : currentSeason.getTeams()) {
 				String teamPath = "/nec" + seasonNum + "/teams/" + team.getTeamAbbr();
-				SelectItem teamItem = new SelectItem(team.getTeamCity(), teamPath);
+				String teamLabel;
+				if (team.getTeamAbbr().equals("NYJ") || team.getTeamAbbr().equals("NYG")) {
+					teamLabel = "NY " + team.getName();
+				}
+				else {
+					teamLabel = team.getTeamCity();
+				}
+				SelectItem teamItem = new SelectItem(teamPath, teamLabel);
 				teamItems.add(teamItem);
 				labelMap.put(teamPath, team.getTeamCity());
 			}
 			teams.setSelectItems(teamItems.toArray(new SelectItem[teamItems.size()]));
 			
-			destinations = new ArrayList<SelectItem>();
-			destinations.add(players);
-			destinations.add(teams);
+			pageDestinations = new ArrayList<SelectItem>();
+			pageDestinations.add(players);
+			pageDestinations.add(teams);
 			
 			currentWeek = currentSeason.getCurrentWeek();
 			if (currentWeek != null) {
@@ -177,9 +198,12 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 			try {
 				InputStream iStream = file.getInputstream();
 				
-				String path = "/NECTrackerResources/images/" + file.getFileName();
+//				String path = "/NECTrackerResources/images/" + file.getFileName();
+				String path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("upload.images") + file.getFileName();
+				
 				Path filePath = Paths.get(path);
 				File newFile = filePath.toFile();
+				log.info("Writing to file: " + newFile.getAbsolutePath());
 				
 			    OutputStream copyStream = new FileOutputStream(newFile);
 			    
@@ -215,6 +239,26 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 
 	
 	/* Getters & Setters for Wizard */
+	
+	public boolean isSendToAll() {
+		return sendToAll;
+	}
+	
+	public void setSendToAll(boolean sendToAll) {
+		this.sendToAll = sendToAll;
+	}
+	
+	public String[] getSelectedRecipients() {
+		return selectedRecipients;
+	}
+	
+	public void setSelectedRecipients(String[] selectedRecipients) {
+		this.selectedRecipients = selectedRecipients;
+	}
+	
+	public List<SelectItem> getRecipients() {
+		return recipients;
+	}
 	
 	public String getSubject() {
 		return subject;
@@ -264,13 +308,17 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 		this.imgCaption = imgCaption;
 	}
 	
-	public String getDestination() {
-		return destination;
+	public String getCaptionDestination() {
+		return captionDestination;
 	}
 	
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setCaptionDestination(String destination) {
+		this.captionDestination = destination;
 		this.imgUrlText = labelMap.get(destination) + " &raquo;";
+	}
+	
+	public List<SelectItem> getPageDestinations() {
+		return pageDestinations;
 	}
 	
 	public String getMessageText() {
@@ -286,6 +334,14 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 		paragraph.append("</p>");
 //		this.messageText = rtfToHtml(new StringReader(messageText));
 		this.messageText = paragraph.toString();
+	}
+	
+	public void setEmailContent(String emailContent) {
+		this.emailContent = emailContent;
+	}
+	
+	public String getEmailContent() {
+		return emailContent;
 	}
 	
 //	/** Replaces the '#Summary' tag in the html template with the input text, wrapped in paragraph tags
@@ -360,9 +416,9 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 	    inline = inline.replace(REPLACE_SUBTITLE, subtitle);
 	    inline = inline.replace(REPLACE_HEADLINE, headline);
 	    inline = inline.replace(REPLACE_CAPTION, imgCaption);
-	    inline = inline.replace(REPLACE_CAPTION_LINK, destination);
+	    inline = inline.replace(REPLACE_CAPTION_LINK, captionDestination);
 	    inline = inline.replace(REPLACE_CAPTION_LINK_TEXT, imgUrlText);
-	    inline = inline.replace(REPLACE_SUMMARY, messageText);
+	    inline = inline.replace(REPLACE_SUMMARY, emailContent);
 	    inline = inline.replace(REPLACE_LEADER_TITLE, leaderTitle);
 	    inline = inline.replace(REPLACE_LEADERS, leaders);
 	    inline = inline.replace(REPLACE_EXCEL_DOWNLOAD_LINK, downloadExcel);
@@ -371,20 +427,53 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 	    return inline;
 	}
 	
-	public void send() {
+	public void saveListener() {
+		emailContent = emailContent.replaceAll("\\r|\\n", "");  
+//		  
+//        final FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Content",  
+//        		emailContent.length() > 150 ? emailContent.substring(0, 100) : emailContent);  
+//  
+//        FacesContext.getCurrentInstance().addMessage(null, msg);  
+	}
+	
+	public boolean isSendDisabled() {
+		return emailContent == null || emailContent.isEmpty();
+	}
+	
+	public String send() {
 		if (currentSeason == null) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Send Error:", "Current season not defined!");
 	        FacesContext.getCurrentInstance().addMessage(null, message);
-			return;
+			return "/dataLoad.xhtml";
 		}
 		
-		List<Email> addresses = emailRetrieval.selectAllRecipientsBySeason(currentSeason);
+		List<Email> addresses;
+		if (sendToAll) {
+			addresses = emailRetrieval.selectAllRecipientsBySeason(currentSeason);
+		}
+		else {
+			addresses = new ArrayList<Email>();
+			for (String selectedAddress : selectedRecipients) {
+				log.info("Selected: " + selectedAddress);
+				int addStart = selectedAddress.indexOf("(") + 1;
+				int addEnd = selectedAddress.indexOf(")");
+				String address = selectedAddress.substring(addStart, addEnd);
+				log.info("Got address: " + address);
+				List<Email> selectedEmail = emailRetrieval.selectByAddress(address);
+				addresses.addAll(selectedEmail);
+			}
+		}
 	
 		documentText = getDocumentText();
 		if (documentText == null) {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Document Error:", "Failed to get inline document!");
 	        FacesContext.getCurrentInstance().addMessage(null, message);
 		}
+		
+		for (Email email : addresses) {
+			log.info("Sending to: " + email.getEmailAddress());
+		}
+		log.info("Message content: " + emailContent);
 		
 		boolean sent = emailService.sendEmail(addresses, subject, altText, documentText, null, mainImgUrl);
 		if (sent) {
@@ -395,6 +484,8 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Email failed to send.");
 	        FacesContext.getCurrentInstance().addMessage(null, message);
 		}
+		
+		return "/dataLoad.xhtml";
 	}
 	
 	public String onFlowProcess(FlowEvent event) {

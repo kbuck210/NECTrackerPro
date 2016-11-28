@@ -49,17 +49,17 @@ public class RecordFactoryBean extends RecordServiceBean implements RecordFactor
 	}
 
 	@Override
-	public Record createWeekRecordForGame(Game game, TeamForSeason team) {
+	public Record createWeekRecordForGame(Game game, TeamForSeason team, NEC recordType) {
 		Logger log = Logger.getLogger(RecordFactoryBean.class.getName());
 		Record record = null;
-		if (game == null || team == null) {
+		if (game == null || team == null || recordType == null) {
 			log.severe("Parameters not defined, can not create record!");
 		}
 		else {
 			Week week = game.getWeek();
 			//	Check whether the record already exists, if not, create it
 			try {
-				record = selectWeekRecordForAtfs(week, team, week.getSubseason().getSubseasonType());
+				record = selectWeekRecordForAtfs(week, team, recordType);
 				
 				//	Determine whether the record needs to be updated
 				boolean update = false;
@@ -132,7 +132,7 @@ public class RecordFactoryBean extends RecordServiceBean implements RecordFactor
 				
 			} catch (NoExistingEntityException e) {
 				record = new Record();
-				record.setRecordType(week.getSubseason().getSubseasonType());
+				record.setRecordType(recordType);
 				
 				record.setTeam(team);
 				team.addRecord(record);

@@ -11,6 +11,6 @@ public interface RecordFactory extends RecordService {
 
 	public Record createWeekRecordForAtfs(Week week, AbstractTeamForSeason atfs, NEC recordType);
 	
-	public Record createWeekRecordForGame(Game game, TeamForSeason team);
+	public Record createWeekRecordForGame(Game game, TeamForSeason team, NEC recordType);
 	
 }
