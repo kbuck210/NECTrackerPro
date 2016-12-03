@@ -34,7 +34,8 @@ public class DownloadFile {
 	@Produces("application/vnd.ms-excel")
 	public Response downloadExcelTotals(@PathParam("nec") String seasonNumber, @PathParam("wk") String weekNumber) {
 		//	If the season & week are defined, find the excel file to export
-		String path = "/NECTrackerResources/excel/NEC" + seasonNumber + File.separator;
+//		String path = "/NECTrackerResources/excel/NEC" + seasonNumber + File.separator;
+		String path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("upload.excel");
 		String filename = "NEC " + seasonNumber + " - Week " + weekNumber + " Totals.xls";
 		java.nio.file.Path filePath = Paths.get(path + filename);
 		File excelFile = filePath.toFile();
@@ -77,7 +78,8 @@ public class DownloadFile {
 	@Produces("application/pdf")
 	public Response downloadPdfTotals(@PathParam("nec") String seasonNumber, @PathParam("wk") String weekNumber) {
 		//	If the season & week are defined, find the excel file to export
-		String path = "/NECTrackerResources/excel/NEC" + seasonNumber + File.separator;
+//		String path = "/NECTrackerResources/excel/NEC" + seasonNumber + File.separator;
+		String path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("upload.excel");
 		String filename = "NEC " + seasonNumber + " - Week " + weekNumber + " Totals.pdf";
 		java.nio.file.Path filePath = Paths.get(path + filename);
 		File pdfFile = filePath.toFile();

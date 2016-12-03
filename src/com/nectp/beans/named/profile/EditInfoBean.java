@@ -116,7 +116,9 @@ public class EditInfoBean implements Serializable {
 		if (file != null) {
 			File destFile = null;
 			try {
-				String path = "/NECTrackerResources/avatars/" + file.getFileName();
+//				String path = "/NECTrackerResources/avatars/" + file.getFileName();
+				String path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("upload.avatars") + file.getFileName();
+				
 				Path filePath = Paths.get(path);
 				destFile = filePath.toFile();
 				
