@@ -5,3 +5,4 @@
 login.properties
 
 .DS_Store
+/target/
