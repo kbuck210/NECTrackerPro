@@ -12,8 +12,6 @@
 		<p:panel>
 			<f:facet name="header">
 				<p:menuButton id="scopeSelect" value="Leaderboard: #{leaderboardBean.selectedDisplay}" style="display:inline;padding:0">
-			        <p:menuitem value="Current Week" actionListener="#{leaderboardBean.setDisplayCurrentWeek()}" update="@form" icon="fa fa-calendar"/>
-			        <p:separator />
 			        <p:menuitem value="First Half" actionListener="#{leaderboardBean.setDisplayFirstHalf()}" update="@form" icon="fa fa-bar-chart"/>
 			        <p:menuitem value="Second Half" actionListener="#{leaderboardBean.setDisplaySecondHalf()}" update="@form" icon="fa fa-bar-chart"/>
 			        <p:menuitem value="Playoffs" actionListener="#{leaderboardBean.setDisplayPlayoffs()}" update="@form" icon="fa fa-sitemap"/>

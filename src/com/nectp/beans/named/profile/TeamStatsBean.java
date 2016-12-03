@@ -268,6 +268,9 @@ public class TeamStatsBean extends StatsBean<TeamForSeason> implements Serializa
 	}
 	
 	public String getTrending() {
+		if (rawRecord == null) {
+			return "0";
+		}
 		RecordAggregator overallRecord = rawRecord.getRecordAggregator();
 		if (overallRecord != null) {
 			//	Get the records & sort by most recent week first

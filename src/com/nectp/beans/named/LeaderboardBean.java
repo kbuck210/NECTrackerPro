@@ -45,8 +45,8 @@ public class LeaderboardBean implements Serializable {
 			//	TODO: redirect somehow
 		}
 		displayType = currentSeason.getCurrentWeek().getSubseason().getSubseasonType();
-//		updateLeaders(displayType);
-		setDisplayCurrentWeek();
+		updateLeaders(displayType);
+//		setDisplayCurrentWeek();
 	}
 	
 	public String getCurrentWeek() {
@@ -65,6 +65,8 @@ public class LeaderboardBean implements Serializable {
 	 * @param displayType the NEC enum object representing the type of record leaderboards to display
 	 */
 	public void updateLeaders(NEC displayType) {
+		//	There is no good data to show for the superbowl, so display playoffs instead
+		if (displayType == NEC.SUPER_BOWL) displayType = NEC.PLAYOFFS;
 		displayTitle = displayType.toString();
 		System.out.println("Set display title: " + displayTitle);
 		//	Re-initialize the leader list

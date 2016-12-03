@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -177,7 +178,8 @@ public class ExcelSummaryWriter {
 	}
 
 	public boolean writeTotals() {
-		String path = "/NECTrackerResources/excel/NEC" + season.getSeasonNumber() + File.separator;
+		String path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("upload.excel");
+//		String path = "/NECTrackerResources/excel/NEC" + season.getSeasonNumber() + File.separator;
 		String filename = "NEC " + season.getSeasonNumber() + " - Week " + week.getWeekNumber() + " Totals.xls";
 		Path filePath = Paths.get(path + filename);
 		File xlsFile = filePath.toFile();
@@ -314,7 +316,7 @@ public class ExcelSummaryWriter {
 			Cell teamCell = teamRow.createCell(0);
 			String teamCity = team.getTeamCity().toUpperCase();
 			if ("NEW YORK".equals(teamCity)) {
-				teamCity = team.getExcelPrintName();
+				teamCity = team.getExcelPrintName().toUpperCase();
 			}
 			teamCell.setCellValue(teamCity);
 			teamCell.setCellStyle(teamStyle);

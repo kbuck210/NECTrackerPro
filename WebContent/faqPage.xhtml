@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:gc="http://java.sun.com/jsf/composite/components"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:pe="http://primefaces.org/ui/extensions" >
+
+	<ui:decorate template="profileTemplate.xhtml">
+		<ui:define name="title">Frequently Asked Questions</ui:define>
+		<ui:define name="header">
+			<ui:include src="/header.xhtml" />
+		</ui:define>
+		<ui:define name="content">
+			<!-- Center content update area -->
+			<div class="row columns blog-post">
+				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-5,ui-grid-col-7">
+					<f:facet name="header" >
+						<p:row><p:column colspan="2">
+							<h:outputText value="What is NEC Tracker Pro?" class="faq-headline" />
+						</p:column></p:row>
+					</f:facet>
+					<div class="faq-text">
+						<h:outputText value="NECTrackerPro is a web-based application designed to create an interactive exerperience to maintain live, 
+										up-to-date scoring for all NEC players, along with provide new levels of never-before possible statistical 
+										insight as a means to aid players in selecting their weekly picks." />
+					</div>
+					<p:graphicImage value="http://placehold.it/850x350" />
+				</p:panelGrid>
+				<br />
+				
+				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-7,ui-grid-col-5">
+					<f:facet name="header" >
+						<p:row><p:column colspan="2">
+							<h:outputText value="How do I use it?" class="faq-headline" />
+						</p:column></p:row>
+					</f:facet>
+					<p:graphicImage value="http://placehold.it/850x350" />
+					<h:outputText value="Each player has an account already set up for them, and upon logging in will be able to enter their weekly 
+											picks by clicking on the 'Select Picks' tab in the main menu in the header.  Simply click on each desired 
+											team to select/unselect your pick, then when complete, submit picks with the button at the bottom.  
+											Picks can be changed at any time up until kickoff of the first selected game, and/or 1PM Sunday, whichever comes first." />
+				</p:panelGrid>
+				<br />
+				
+				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-5,ui-grid-col-7">
+					<f:facet name="header" >
+						<p:row><p:column colspan="2">
+							<h:outputText value="The old way was just fine, why is this better?" class="faq-headline" />
+						</p:column></p:row>
+					</f:facet>
+					<h:outputText value="Like anything else, Tracking the NEC was overdue for a technological upgrade.  Tracking picks becomes virtually autonomous, 
+											and scores are updated live.  When logged in, players can see how their picked teams for the week are fairing in real-time, 
+											and see how they stack up against the competition in any of the prize categories.  Along with the usual statistical information, 
+											players will have access to a far wider array of team statistics ranging from winning percentages against the spread 
+											to game-specific stats like how teams have faired in specific stadiums, etc.  From the home page, by clicking on any team helmet or
+											leaderboard player, and/or clicking on the 'Profile' link in the main menu will bring you to the player/team profile page, where you
+											will find all of this statistical information." />
+					<p:graphicImage value="http://placehold.it/850x350" />
+				</p:panelGrid>
+				<br />
+				
+				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-7,ui-grid-col-5">
+					<f:facet name="header" >
+						<p:row><p:column colspan="2">
+							<h:outputText value="Sounds pretty cool, what else is there?" class="faq-headline" />
+						</p:column></p:row>
+					</f:facet>
+					<p:graphicImage value="http://placehold.it/850x350" />
+					<h:outputText value="Along with unprecedented access to statistical information to aid in your picks, the curious NEC'er no longer has to dig through piles 
+											of emails to remember how a previous season unfolded.  By clicking on the 'Summary' tab in the main menu, players will have access to a 
+											summary of all of the available NEC data from previous seasons.  We're working on getting all of the backdata filled, but for now all 
+											data going forward will be logged and accessible.  From this screen individual week data can be downloaded via excel or PDF format, 
+											exactly like you're used to seeing, no there should be a minimal learning curve!" />
+				</p:panelGrid>
+				<br />
+				
+				<p:panelGrid  columns="2" layout="grid" columnClasses="ui-grid-col-5,ui-grid-col-7">
+					<f:facet name="header" >
+						<p:row><p:column colspan="2">
+							<h:outputText value="This is all pretty great, but what if I have questions?" class="faq-headline" />
+						</p:column></p:row>
+					</f:facet>
+					
+					<h:outputText value="Understandably not everything is perfect out of the gate, so if you have any questions, comments, or concerns, please direct them to 
+											our new support email - nectrackerpro@gmail.com - This email will be monitored constantly, so all questions should be addressed in a 
+											timely manner.  Expect to recieve weekly email updates from this address as well, as we now have an enhanced delivery mechanism to 
+											create the best NEC experience possible!" />
+					<p:graphicImage value="http://placehold.it/850x350" />
+					<f:facet name="footer" >
+						<p:row><p:column colspan="2">
+							<h:outputText value="Thanks for playing! Hope you enjoy the new site!" class="faq-headline" />
+						</p:column></p:row>
+					</f:facet>
+				</p:panelGrid>
+			</div>
+		</ui:define>
+		<ui:define name="footer">
+			<ui:include src="/footer.xhtml" />
+		</ui:define>
+	</ui:decorate>
+</html>

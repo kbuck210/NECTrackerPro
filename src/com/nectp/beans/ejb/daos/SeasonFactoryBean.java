@@ -39,6 +39,15 @@ public class SeasonFactoryBean extends SeasonServiceBean implements SeasonFactor
 				season.setSeasonNumber(seasonNumber);
 				season.setSeasonYear(seasonYear);
 				season.setCurrentSeason(current);
+				
+				//	If creating the current season, make the current current season not current
+				if (current) {
+					Season currentCurrent = selectCurrentSeason();
+					if (currentCurrent != null) {
+						currentCurrent.setCurrentSeason(false);
+						update(currentCurrent);
+					}
+				}
 
 				//	For conditional values, if null, leave for Entity to use default values, otherwise use specified
 				if (winValue != null)  season.setWinValue(winValue);
@@ -96,6 +105,16 @@ public class SeasonFactoryBean extends SeasonServiceBean implements SeasonFactor
 		}
 		if (season.getCurrentSeason() != current) {
 			season.setCurrentSeason(current);
+			
+			//	If updating the current season, make the current current season not current
+			if (current) {
+				Season currentCurrent = selectCurrentSeason();
+				if (currentCurrent != null) {
+					currentCurrent.setCurrentSeason(false);
+					update(currentCurrent);
+				}
+			}
+			
 			update = true;
 		}
 		if (winValue != null && season.getWinValue() != winValue) {

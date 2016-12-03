@@ -25,7 +25,17 @@ public class PrizeBean implements Serializable {
 			this.prizeType = prize.getPrize().getPrizeType();
 			this.againstSpread = prizeType != NEC.TWO_AND_OUT && prizeType != NEC.ONE_AND_OUT;
 			if (winner != null) {
-				ragg = recordService.getAggregateRecordForAtfsForType(winner, prizeType, againstSpread);
+				if (prizeType == NEC.MNF_TNT) {
+					RecordAggregator mnfRagg = recordService.getAggregateRecordForAtfsForType(winner, NEC.MNF, true);
+					RecordAggregator tntRagg = recordService.getAggregateRecordForAtfsForType(winner, NEC.TNT, true);
+					ragg = RecordAggregator.combine(mnfRagg, tntRagg);
+				}
+				else if (prizeType == NEC.MONEY_BACK) {
+					ragg = recordService.getAggregateRecordForAtfsForType(winner, NEC.SEASON, true);
+				}
+				else {
+					ragg = recordService.getAggregateRecordForAtfsForType(winner, prizeType, againstSpread);
+				}	
 			}
 		}
 	}

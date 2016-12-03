@@ -277,22 +277,25 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 		//	If the end week is not contingent on a subseason (season-long record) get the current week or last week in regular season
 		if (endWeek == null) {
 			Week currentWeek = currentSeason.getCurrentWeek();
-			int currentWeekNum = currentWeek.getWeekNumber();
-			//	If the current week is in the playoffs, and are selecting a season-long record, get the end week of only the regular season
-			if (currentWeekNum >= currentSeason.getPlayoffStartWeek()) {
-				try {
-					Subseason firstHalf = subseasonService.selectSubseasonInSeason(NEC.FIRST_HALF, currentSeason);
-					Subseason secondHalf = subseasonService.selectSubseasonInSeason(NEC.SECOND_HALF, currentSeason);
-					endWeek = firstHalf.getWeeks().size() + secondHalf.getWeeks().size();
-				} catch (NoExistingEntityException e) {
-					log.warning("No results found for subseason queries, defaulting to playoff week minus one.");
-					endWeek = currentSeason.getPlayoffStartWeek() - 1;
-				}
-			}
-			//	If not past the playoff start, use the current week number as the range end
-			else {
-				endWeek = currentWeekNum;
-			}
+			endWeek = currentWeek.getWeekNumber();
+			
+			//	Commented out becuase want to consider playoff records as well as regular season
+//			int currentWeekNum = currentWeek.getWeekNumber();
+//			//	If the current week is in the playoffs, and are selecting a season-long record, get the end week of only the regular season
+//			if (currentWeekNum >= currentSeason.getPlayoffStartWeek()) {
+//				try {
+//					Subseason firstHalf = subseasonService.selectSubseasonInSeason(NEC.FIRST_HALF, currentSeason);
+//					Subseason secondHalf = subseasonService.selectSubseasonInSeason(NEC.SECOND_HALF, currentSeason);
+//					endWeek = firstHalf.getWeeks().size() + secondHalf.getWeeks().size();
+//				} catch (NoExistingEntityException e) {
+//					log.warning("No results found for subseason queries, defaulting to playoff week minus one.");
+//					endWeek = currentSeason.getPlayoffStartWeek() - 1;
+//				}
+//			}
+//			//	If not past the playoff start, use the current week number as the range end
+//			else {
+//				endWeek = currentWeekNum;
+//			}
 		}
 
 		return endWeek;

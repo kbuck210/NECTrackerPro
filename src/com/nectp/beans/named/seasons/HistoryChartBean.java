@@ -216,13 +216,13 @@ public class HistoryChartBean implements Serializable {
 		else if (displayType == NEC.FIRST_HALF) {
 			rangeEnd = season.getSecondHalfStartWeek() - 1;
 		}
-		//	If the display type is the playoffs, but currently outside of the playoffs, get the end of the playoffs
-		else if (displayType == NEC.PLAYOFFS) {
-			rangeEnd = season.getSuperbowlWeek() - 2;
-		}
-		//	If the display type is either the second half or a non-subseason type, get the end of the regular season
-		else {
+		//	If the display type is the second half, get the end of the second half
+		else if (displayType == NEC.SECOND_HALF) {
 			rangeEnd = season.getPlayoffStartWeek() - 1;
+		}
+		//	If the display type is either the playoffs or a non-subseason type, get the end of the playoffs
+		else {
+			rangeEnd = season.getSuperbowlWeek() - 2;
 		}
 		
 		return rangeEnd;

@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.faces.model.SelectItemGroup;
 
@@ -145,7 +146,8 @@ public class SeasonBean implements Serializable {
 	public StreamedContent getExcelDownload() {
 		StreamedContent excelFile = null;
 		
-		String path = "/NECTrackerResources/excel/NEC" + season.getSeasonNumber() + File.separator;
+		String path = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("upload.excel");
+//		String path = "/NECTrackerResources/excel/NEC" + season.getSeasonNumber() + File.separator;
 		String filename = "NEC " + season.getSeasonNumber() + " - Week " + exportWeek + " Totals.xls";
 		Path filePath = Paths.get(path + filename);
 		File xlsFile = filePath.toFile();

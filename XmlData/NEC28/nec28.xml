@@ -16,6 +16,7 @@
 		<player>
 			<name>Kevin Buckley</name>
 			<nickname>The Terp</nickname>
+			<admin>true</admin>
 			<sinceYear>2004</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/terps_logo.png</avatar>
@@ -27,6 +28,7 @@
 		<player>
 			<name>Brian Buckley</name>
 			<nickname>The Tracker</nickname>
+			<admin>true</admin>
 			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/tracker_logo.png</avatar>
@@ -38,6 +40,7 @@
 		<player>
 			<name>John Thompson</name>
 			<nickname>Iceman</nickname>
+			<admin>true</admin>
 			<sinceYear>2013</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/iceman_logo.jpg</avatar>
@@ -49,6 +52,7 @@
 		<player>
 			<name>Joe Buckley</name>
 			<nickname>The Senator</nickname>
+			<admin>false</admin>
 			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/porgy.jpg</avatar>
@@ -60,6 +64,7 @@
 		<player>
 			<name>David Buckley</name>
 			<nickname>Vegas Varmint</nickname>
+			<admin>false</admin>
 			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/vegas.png</avatar>
@@ -71,6 +76,7 @@
 		<player>
 			<name>Pete Peterson</name>
 			<nickname>Kingfish</nickname>
+			<admin>false</admin>
 			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/Kingfish_logo.jpg</avatar>
@@ -82,6 +88,7 @@
 		<player>
 			<name>Derek Peterson</name>
 			<nickname>The Big Cat</nickname>
+			<admin>false</admin>
 			<sinceYear>1997</sinceYear>
 			<commish>Y</commish>
 			<avatar>img/avatars/big_cat_logo.png</avatar>
@@ -94,6 +101,7 @@
 		<player>
 			<name>Paul Buckley</name>
 			<nickname>The Clam Man</nickname>
+			<admin>false</admin>
 			<sinceYear>1987</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/clam_man_logo.png</avatar>
@@ -105,6 +113,7 @@
 		<player>
 			<name>Daniel Buckley</name>
 			<nickname>The Chief</nickname>
+			<admin>false</admin>
 			<sinceYear>1997</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/chief_logo.png</avatar>
@@ -116,6 +125,7 @@
 		<player>
 			<name>Will Buckley</name>
 			<nickname>Willy B</nickname>
+			<admin>false</admin>
 			<sinceYear>1998</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/honduras-flag.gif</avatar>
@@ -127,6 +137,7 @@
 		<player>
 			<name>Javier Vargas</name>
 			<nickname>Po' Boy</nickname>
+			<admin>false</admin>
 			<sinceYear>2007</sinceYear>
 			<commish>N</commish>
 			<avatar>img/avatars/shrimp_poboy.jpg</avatar>

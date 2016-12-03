@@ -66,7 +66,9 @@ public class NextGameBean implements Serializable {
 						return w1.getWeekNumber().compareTo(w2.getWeekNumber());
 					}
 				});
-				currentWeek = weeksInSeason.get(weeksInSeason.indexOf(currentWeek) + 1);
+				if (weeksInSeason.size() < (currentWeek.getWeekNumber() + 1)) {
+					currentWeek = weeksInSeason.get(weeksInSeason.indexOf(currentWeek) + 1);
+				}
 			}
 			
 			nextGame = gameService.selectGameByTeamWeek(displayTeam, currentWeek);
