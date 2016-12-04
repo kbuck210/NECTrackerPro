@@ -1,5 +1,13 @@
 # NECTrackerPro
-Masters Project Repo
+Masters Project Repo  
+
+Setup Instructions:  
+Install Glassfish 4  
+Install MySQL Server, client (and workbench if desired)  
+Modify domainX domain.xml file to add JDBC Resource & connection pool (admin console broken...)  
+Add MySQL Driver .jar file to domain /lib directory  
+Start the domain & launch admin console  
+Deploy .war file  
 
 Instal Instructions:  
 1. Pull from Master  
