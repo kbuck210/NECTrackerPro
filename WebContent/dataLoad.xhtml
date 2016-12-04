@@ -15,6 +15,9 @@
 		<ui:define name="content">
 			<p:growl id="growl" showDetail="true" life="2000" />
 			<div class="row columns">
+				<p:dialog modal="true" widgetVar="statusDialog" style="width:400px;height:300px;" header="Uploading Data:" draggable="false" closable="false" resizable="false">
+				    <p:graphicImage value="img/gifs/download-gif.gif" />
+				</p:dialog>
 				<p:fieldset legend="Send an Email" >
 					<ui:include src="/emailWizard.xhtml" />
 					<!-- 
@@ -45,7 +48,8 @@
 											  skinSimple="true"
 											  allowTypes="/(\.|\/)(xml)$/"
 											  fileUploadListener="#{uploadStadiums.upload}" />
-							    <p:commandButton value="Submit Stadiums: " update="growl" actionListener="#{uploadStadiums.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+							    <p:commandButton value="Submit Stadiums: " update="growl" actionListener="#{uploadStadiums.submit}" 
+							    				onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" />
 							</p:fieldset>
 						</h:form>
 						<h:form id="seasonUploadForm" enctype="multipart/form-data">
@@ -57,12 +61,14 @@
 											  skinSimple="true"
 											  allowTypes="/(\.|\/)(xml)$/"
 											  fileUploadListener="#{uploadSeasons.upload}" />
-							    <p:commandButton value="Submit Seasons: " update="growl" actionListener="#{uploadSeasons.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+							    <p:commandButton value="Submit Seasons: " update="growl" actionListener="#{uploadSeasons.submit}" 
+							    				onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" />
 							</p:fieldset>
 						</h:form>
 						<h:form id="generateRecords">
 							<p:fieldset legend="Generate Records:">
-								<p:commandButton value="Generate:" actionListener="#{uploadSeasons.generateRecords}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+								<p:commandButton value="Generate:" update="growl" actionListener="#{recordGenerator.generateRecords}" 
+												onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" />
 							</p:fieldset>
 						</h:form>
 						<h:form id="weekUploadForm" enctype="multipart/form-data">
@@ -74,7 +80,8 @@
 											  skinSimple="true"
 											  allowTypes="/(\.|\/)(xml)$/"
 											  fileUploadListener="#{uploadWeeks.upload}" />
-							    <p:commandButton value="Submit Seasons: " update="growl" actionListener="#{uploadWeeks.submit}" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+							    <p:commandButton value="Submit Weeks: " update="growl" actionListener="#{uploadWeeks.submit}" 
+							    				onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" />
 							</p:fieldset>
 						</h:form>
 						<h:form id="pickUploadForm" enctype="multipart/form-data">
@@ -86,11 +93,21 @@
 											  skinSimple="true"
 											  allowTypes="/(\.|\/)(xlsx?)$/"
 											  fileUploadListener="#{uploadExcelPicks.upload}" />
-								<p:commandButton value="Submit Picks: " update="growl" actionListener="#{uploadExcelPicks.submit}"  icon="ui-icon-disk" styleClass="ui-priority-primary" />
+								<p:commandButton value="Submit Picks: " update="growl" actionListener="#{uploadExcelPicks.submit}"  
+												onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" />
 							</p:fieldset>
 						</h:form>
 					</h:panelGrid>
 				</p:fieldset>
+				<script type="text/javascript">
+					function start() {
+					    PF('statusDialog').show();
+					}
+					 
+					function stop() {
+					    PF('statusDialog').hide();
+					}
+				</script>
 			</div>
 		</ui:define>
 		<ui:define name="footer">

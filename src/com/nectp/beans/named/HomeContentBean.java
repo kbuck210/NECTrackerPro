@@ -105,17 +105,16 @@ public class HomeContentBean implements Serializable {
 
 		user = appState.getUser();
 		
-		updateDisplayedWeek(displayWeek);
-		
+		log.info("Display week status: " + displayWeek.getWeekStatus().name());
 		if (displayWeek.getWeekStatus() == WeekStatus.ACTIVE) {
-			List<Game> gamesInWeek = displayWeek.getGames();
-			Collections.sort(gamesInWeek);
-			Calendar firstGameDate = gamesInWeek.get(0).getGameDate();
 			Calendar now = new GregorianCalendar();
-			if (now.compareTo(firstGameDate) > 1) {
+			int currentDay = now.get(GregorianCalendar.DAY_OF_WEEK);
+			if (currentDay < GregorianCalendar.TUESDAY || currentDay > GregorianCalendar.WEDNESDAY) {
 				liveDataService.updateGames();
 			}
 		}
+		
+		updateDisplayedWeek(displayWeek);
 		
 //		if (user != null) {
 //			userInstance = pfsService.selectPlayerInSeason(user, currentSeason);
@@ -160,6 +159,7 @@ public class HomeContentBean implements Serializable {
 				else renderOtherGames = true;
 				//	Create game beans for player picks
 				List<Game> pickedGames = new ArrayList<Game>();
+				Collections.sort(pickedGames);
 				for (Pick p : userPicks) {
 					GameBean bean = new GameBean();
 					Game game = p.getGame();
@@ -198,6 +198,7 @@ public class HomeContentBean implements Serializable {
 				}
 				
 				//	Create game beans for other games
+				Collections.sort(otherGames);
 				for (Game g : otherGames) {
 					GameBean bean = new GameBean();
 					bean.setSpreadType(spreadType);
@@ -234,7 +235,9 @@ public class HomeContentBean implements Serializable {
 				}
 				
 				//	Create game beans for other games
-				for (Game g : displayWeek.getGames()) {
+				List<Game> games = displayWeek.getGames();
+				Collections.sort(games);
+				for (Game g : games) {
 					GameBean bean = new GameBean();
 					bean.setSpreadType(spreadType);
 					bean.setGame(g);
@@ -258,7 +261,9 @@ public class HomeContentBean implements Serializable {
 		else {
 			//	Check whether any of the other games have a spread 2
 			boolean hasSpread2 = false;
-			for (Game g : displayWeek.getGames()) {
+			List<Game> games = displayWeek.getGames();
+			Collections.sort(games);
+			for (Game g : games) {
 				if (g.getSpread2() != null) {
 					hasSpread2 = true;
 					break;
@@ -273,7 +278,7 @@ public class HomeContentBean implements Serializable {
 			
 			
 			//	Create game beans for other games
-			for (Game g : displayWeek.getGames()) {
+			for (Game g : games) {
 				GameBean bean = new GameBean();
 				bean.setSpreadType(spreadType);
 				bean.setGame(g);

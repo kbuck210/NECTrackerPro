@@ -152,6 +152,7 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 			}
 			try {
 				pick = selectPlayerPickForGameForType(player, game, pickFor);
+				log.info("pick exists for " + player.getNickname() + " - " + pickedTeam.getName());
 			} catch (NoExistingEntityException e) {
 				if (!checkPickEligibility(player, pickedTeam, pickFor)) {
 					log.severe("The selected pick is ineligible, can not create pick of "
@@ -182,7 +183,9 @@ public class PickFactoryBean extends PickServiceBean implements PickFactory {
 				boolean success = insert(pick);
 				if (!success) {
 					pick = null;
+					log.info("failed inserting pick for: " + pickedTeam.getName());
 				}
+				else log.info("Inserted pick for: " + player.getNickname() + " - " + pickedTeam.getName());
 			}
 		}
 		

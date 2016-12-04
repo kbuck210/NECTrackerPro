@@ -6,13 +6,17 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.w3c.dom.Element;
 
+import com.nectp.beans.ejb.ApplicationState;
 import com.nectp.beans.ejb.daos.xml.XmlPlayerUpdater;
 import com.nectp.beans.ejb.daos.xml.XmlPrizeUpdater;
 import com.nectp.beans.ejb.daos.xml.XmlSubseasonUpdater;
@@ -93,6 +97,9 @@ public class UploadSeason extends FileUploadImpl {
 	@EJB
 	private RecordFactory recordFactory;
 	
+	@Inject
+	private ApplicationState appState;
+	
 	private Season season;
 	
 	private Logger log;
@@ -141,6 +148,12 @@ public class UploadSeason extends FileUploadImpl {
 						elements = parser.generateElementList();
 						parsePlayers(elements);
 						
+						//	Check if a player is logged in, and if this season is current, switch instance
+						if (appState.getUser() != null && season.getCurrentSeason()) {
+							PlayerForSeason newInstance = pfsFactory.selectPlayerInSeason(appState.getUser(), season);
+							appState.setUserInstance(newInstance);
+						}
+						
 						//	Create the teams
 						parser.setQualifiedNodeName("teams");
 						elements = parser.generateElementList();
@@ -164,6 +177,9 @@ public class UploadSeason extends FileUploadImpl {
 				}	
 			}
 		}
+		
+		FacesMessage uploadComplete = new FacesMessage(FacesMessage.SEVERITY_INFO, "Season Submission Complete.", "");
+		FacesContext.getCurrentInstance().addMessage(null, uploadComplete);
 	}
 	
 	/** Parse the 'nec' attribute from the document root element, which provides the season number
@@ -389,5 +405,7 @@ public class UploadSeason extends FileUploadImpl {
 				}
 			}
 		}
+		FacesMessage recordsComplete = new FacesMessage(FacesMessage.SEVERITY_INFO, "Records Generated.", "");
+		FacesContext.getCurrentInstance().addMessage(null, recordsComplete);
 	}
 }

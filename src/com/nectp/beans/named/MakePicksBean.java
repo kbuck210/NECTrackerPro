@@ -13,6 +13,8 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -51,8 +53,12 @@ public class MakePicksBean implements Serializable {
 	private List<GameBean> tnoBeans;
 	
 	private PlayerForSeason user;
+	private boolean admin = false;
 	private Season season;
 	private Week week;
+	
+	private PlayerForSeason picksUser;
+	private List<SelectItem> players;
 	
 	@EJB
 	private TeamForSeasonService tfsService;
@@ -90,7 +96,30 @@ public class MakePicksBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, userError);
 			return;
 		}
-		else showPickForm = true;
+		else {
+			showPickForm = true;
+			admin = user.getPlayer().isAdmin();
+			
+			SelectItemGroup playerGroup = new SelectItemGroup("Players: ");
+			SelectItem[] playerItems = new SelectItem[season.getPlayers().size()];
+			SelectItem userSelect = new SelectItem(user, user.getNickname());
+			playerItems[0] = userSelect;
+			int arrIndex = 1;
+			for (PlayerForSeason pfs : season.getPlayers()) {
+				if (pfs.equals(user)) continue; //	Skip user - already accounted for
+				else {
+					SelectItem nextUser = new SelectItem(pfs, pfs.getNickname());
+					playerItems[arrIndex] = nextUser;
+					arrIndex += 1;
+				}
+			}
+			playerGroup.setSelectItems(playerItems);
+			players = new ArrayList<SelectItem>();
+			players.add(playerGroup);
+			
+			//	Default to logged in user for picks
+			picksUser = user;
+		}
 		
 		week = season.getCurrentWeek();
 		
@@ -100,71 +129,115 @@ public class MakePicksBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, weekError);
 		}
 		else {
-			//	Create the title strings
-			int weekNumber = week.getWeekNumber();
-			
-			//	Get the date of the first game in the week
-			int month=-1, day=-1, year=-1;
-			List<Game> games =	week.getGames();
-			if (!games.isEmpty()) {
-				Collections.sort(games);
-				Calendar gameDate = games.get(0).getGameDate();
-				month = gameDate.get(GregorianCalendar.MONTH);
-				if (month == 0) {
-					month = 12;
-				}
-				day = gameDate.get(GregorianCalendar.DAY_OF_MONTH);
-				year = gameDate.get(GregorianCalendar.YEAR);
+			updateDisplayForUser(picksUser);
+		}
+	}
+	
+	public PlayerForSeason getPicksUser() {
+		return picksUser;
+	}
+	
+	public void setPicksUser(PlayerForSeason picksUser) {
+		this.picksUser = picksUser;
+		updateDisplayForUser(picksUser);
+	}
+	
+	public boolean isAdmin() {
+		return admin;
+	}
+	
+	public List<SelectItem> getPlayers() {
+		return players;
+	}
+	
+	public void setPlayers(List<SelectItem> players) {
+		this.players = players;
+	}
+	
+	public void updateDisplayForUser(PlayerForSeason user) {
+		//	Create the title strings
+		int weekNumber = week.getWeekNumber();
+
+		//	Get the date of the first game in the week
+		int month=-1, day=-1, year=-1;
+		List<Game> games =	week.getGames();
+		if (!games.isEmpty()) {
+			Collections.sort(games);
+			Calendar gameDate = games.get(0).getGameDate();
+			month = gameDate.get(GregorianCalendar.MONTH);
+			if (month == 0) {
+				month = 12;
 			}
+			day = gameDate.get(GregorianCalendar.DAY_OF_MONTH);
+			year = gameDate.get(GregorianCalendar.YEAR);
+		}
+
+		//	Create the title strings for the main tab title & the game container titles
+		createTitleStrings(weekNumber, month, day, year);
+
+		RecordAggregator tnoRecord = recordFactory.getAggregateRecordForAtfsForType(user, NEC.TWO_AND_OUT, false);
+		log.info("Current losses: " + tnoRecord.getRawLosses() + " acceptable: " + season.getTnoAcceptableLosses());
+		renderTnoPicks = tnoRecord.getRawLosses() < season.getTnoAcceptableLosses();
+
+		List<Pick> previousTnoPicks = new ArrayList<Pick>();
+		if (renderTnoPicks) {
+			tnoPickHeadline = "Two And Out:";
+			previousTnoPicks = pickFactory.selectPlayerPicksForType(user, NEC.TWO_AND_OUT);
+		}
+
+		//	Create the game beans
+		log.info("Reinitializing GameBeans");
+		gameBeans = new ArrayList<GameBean>();
+		tnoBeans = new ArrayList<GameBean>();
+
+		//	Fill the pick beans
+		Calendar currentTime = new GregorianCalendar();
+		Calendar cutoffTime = null;
+		boolean selectable = true;
+		NEC pickFor = week.getSubseason().getSubseasonType();
+		List<Pick> playerPicksForWeek = pickFactory.selectPlayerPicksForWeekForType(user, week, pickFor);
+		if (!playerPicksForWeek.isEmpty()) {
+			selectable = !playerPicksForWeek.get(0).getPickLocked();
+		}
+		
+		//	Check whether the logged in user is an administrator, if not, set the cutoff time for picks
+		if (!admin) {
+			//	Get the pick cutoff time from the earliest game of the week
+			List<Game> weekGames = week.getGames();
+			Collections.sort(weekGames);
+			Calendar gameDate = weekGames.get(0).getGameDate();
+			//	Get the calendar week for the games, adding 1 if game date is after monday (i.e. thursday, following sunday is the next week)
+			int weekOfMonth = gameDate.get(GregorianCalendar.WEEK_OF_MONTH);
+			if (gameDate.get(GregorianCalendar.DAY_OF_WEEK) > GregorianCalendar.MONDAY) {
+				weekOfMonth += 1;
+			}
+			cutoffTime = new GregorianCalendar();
+			cutoffTime.set(GregorianCalendar.WEEK_OF_MONTH, weekOfMonth);
+			cutoffTime.set(GregorianCalendar.DAY_OF_WEEK, GregorianCalendar.SUNDAY);
+			cutoffTime.set(GregorianCalendar.HOUR_OF_DAY, 13);
+		}
+
+		//	Check whether any of the games in the week have a spread2
+		boolean hasSpread2 = false;
+		for (Game g : week.getGames()) {
+			if (g.getSpread2() != null) {
+				hasSpread2 = true;
+				break;
+			}
+		}
+		PickType pickType = PickType.SPREAD1;
+		if (hasSpread2 && currentTime.get(GregorianCalendar.DAY_OF_WEEK) < GregorianCalendar.SATURDAY) {
+			pickType = PickType.SPREAD2;
+		}
+
+		for (Game g : week.getGames()) {
 			
-			//	Create the title strings for the main tab title & the game container titles
-			createTitleStrings(weekNumber, month, day, year);
-			
-			RecordAggregator tnoRecord = recordFactory.getAggregateRecordForAtfsForType(user, NEC.TWO_AND_OUT, false);
-			log.info("Current losses: " + tnoRecord.getRawLosses() + " acceptable: " + season.getTnoAcceptableLosses());
-			renderTnoPicks = tnoRecord.getRawLosses() < season.getTnoAcceptableLosses();
-			
-			List<Pick> previousTnoPicks = new ArrayList<Pick>();
+			GameBean pickBean = createGameBean(g, pickFor, selectable, cutoffTime, pickType, null);
+			gameBeans.add(pickBean);
+
 			if (renderTnoPicks) {
-				tnoPickHeadline = "Two And Out:";
-				previousTnoPicks = pickFactory.selectPlayerPicksForType(user, NEC.TWO_AND_OUT);
-			}
-			
-			//	Create the game beans
-			log.info("Reinitializing GameBeans");
-			gameBeans = new ArrayList<GameBean>();
-			tnoBeans = new ArrayList<GameBean>();
-			
-			//	Fill the pick beans
-			Calendar currentTime = new GregorianCalendar();
-			boolean selectable = true;
-			NEC pickFor = week.getSubseason().getSubseasonType();
-			List<Pick> playerPicksForWeek = pickFactory.selectPlayerPicksForWeekForType(user, week, pickFor);
-			if (!playerPicksForWeek.isEmpty()) {
-				selectable = !playerPicksForWeek.get(0).getPickLocked();
-			}
-			
-			//	Check whether any of the games in the week have a spread2
-			boolean hasSpread2 = false;
-			for (Game g : week.getGames()) {
-				if (g.getSpread2() != null) {
-					hasSpread2 = true;
-					break;
-				}
-			}
-			PickType pickType = PickType.SPREAD1;
-			if (hasSpread2 && currentTime.get(GregorianCalendar.DAY_OF_WEEK) < GregorianCalendar.SATURDAY) {
-				pickType = PickType.SPREAD2;
-			}
-			
-			for (Game g : week.getGames()) {
-				GameBean pickBean = createGameBean(g, pickFor, selectable, currentTime, pickType, null);
-				gameBeans.add(pickBean);
-				
-				if (renderTnoPicks) {
-					GameBean tnoBean = createGameBean(g, NEC.TWO_AND_OUT, selectable, currentTime, PickType.STRAIGHT_UP, previousTnoPicks);
-					tnoBeans.add(tnoBean);
-				}
+				GameBean tnoBean = createGameBean(g, NEC.TWO_AND_OUT, selectable, cutoffTime, PickType.STRAIGHT_UP, previousTnoPicks);
+				tnoBeans.add(tnoBean);
 			}
 		}
 	}
@@ -175,11 +248,11 @@ public class MakePicksBean implements Serializable {
 	 * @param type the type of Pick this display is for
 	 * @param selectable true if the game is still selectable, false otherwise
 	 * @param pickType PickType representing the spread type to display
-	 * @param currentTime the current time the page is rendered
+	 * @param cutoffTime the current time the page is rendered
 	 * @param previousPicks null for regular picks case, for TNO list contains previous TNO picks
 	 * @return a created GameBean instance representing a displayable game
 	 */
-	private GameBean createGameBean(Game g, NEC type, boolean selectable, Calendar currentTime, PickType pickType, List<Pick> previousPicks) {
+	private GameBean createGameBean(Game g, NEC type, boolean selectable, Calendar cutoffTime, PickType pickType, List<Pick> previousPicks) {
 		//	Create Beans for regular game picks
 		GameBean gameBean = new GameBean();
 		gameBean.setPlayer(user);
@@ -195,7 +268,14 @@ public class MakePicksBean implements Serializable {
 		TeamForSeason awayTeam = g.getAwayTeam();
 		
 		//	Check whether the individual game is selectable
-		boolean singleSelectable = selectable && currentTime.compareTo(g.getGameDate()) < 0;
+		boolean singleSelectable;
+		if (cutoffTime == null) {
+			singleSelectable = selectable;
+		}
+		else {
+			Calendar now = new GregorianCalendar();
+			singleSelectable = selectable && now.compareTo(cutoffTime) < 0;
+		}
 		//	Set the selectable & grayed properties
 		gameBean.setHomeSelectable(singleSelectable);
 		gameBean.setAwaySelectable(singleSelectable);

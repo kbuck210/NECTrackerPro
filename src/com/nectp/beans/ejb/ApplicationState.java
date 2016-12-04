@@ -16,6 +16,7 @@ import com.nectp.jpa.entities.Season;
 import com.nectp.webtools.CookieFactory;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 @Named(value="applicationStateBean")
 @SessionScoped
@@ -38,7 +39,10 @@ public class ApplicationState implements Serializable {
 	@Inject
 	private LoginService loginService;
 	
+	private Logger log;
+	
 	public ApplicationState() {
+		log = Logger.getLogger(ApplicationState.class.getName());
 	}
 	
 	@PostConstruct
@@ -79,6 +83,15 @@ public class ApplicationState implements Serializable {
 		}
 		else if (user == null) {
 			instance = null;
+		}
+	}
+	
+	public void setUserInstance(PlayerForSeason instance) {
+		if (instance == null || !instance.getPlayer().equals(user)) {
+			log.severe("Specified player instance is null or does not match the logged in user!");
+		}
+		else {
+			this.instance = instance;
 		}
 	}
 

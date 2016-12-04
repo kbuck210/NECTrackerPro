@@ -523,11 +523,12 @@ public class ExcelPickReader {
 				Pick p = pickFactory.createPlayerPickForRecord(subseasonRecord, game, pick, pickType);
 				if (p == null) {
 					success = false;
+					log.warning("Failed to update player pick!");
 				}
 				else {
 					recordFactory.updateRecordForPlayerPick(p);
+					log.info("Pick: " + pick.getExcelPrintName());
 				}
-				log.info("Pick: " + pick.getExcelPrintName());
 			}
 		}
 		

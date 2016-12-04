@@ -22,6 +22,14 @@
 				</p:dialog>
 				<!-- If player is logged in, show pick form -->
 				<h:form id="picksForm">
+					<!-- If player is admin, provide option to override times & submit for other players -->
+					<p:panelGrid columns="2" rendered="#{makePicksBean.admin}" >
+						<p:selectOneMenu id="userSelect" value="#{makePicksBean.picksUser}">
+							<f:selectItem itemLabel="Select Player:" itemValue="" />
+				            <f:selectItems value="#{makePicksBean.players}" />
+				        </p:selectOneMenu>
+				        <p:commandButton value="Change Player:" update="@form" />
+					</p:panelGrid>
 					<p:tabView id="picksTabs" >
 						<p:tab id="regularPicksTab" title="#{makePicksBean.regularPicksTitle}">
 							<!-- Make Picks blog post area -->

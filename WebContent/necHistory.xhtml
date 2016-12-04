@@ -71,7 +71,7 @@
 						    <p:graphicImage value="img/gifs/download-gif.gif" />
 						</p:dialog>
        					<h:form id="exportSelectNEC#{season.seasonNumber}" >
-					        <p:selectOneMenu id="week" value="#{season.exportWeek}" >
+					        <p:selectOneMenu id="#{season.seasonNumber}week" value="#{season.exportWeek}" >
 					            <f:selectItem itemLabel="Select Week to Download: " itemValue="" />
 					            <f:selectItems value="#{season.weeks}" />
 		       				</p:selectOneMenu>

@@ -2756,7 +2756,7 @@
 				<stadium>Lincoln Financial Field</stadium>
 			</game>
 		</week>
-		<week number="13" current="false" ss="SECOND_HALF" status="active" >
+		<week number="13" current="true" ss="SECOND_HALF" status="active" >
 			<game>
 				<homeTeam>MIN</homeTeam>
 				<homeScore>15</homeScore>

@@ -6,11 +6,9 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
 
-import javax.activation.FileDataSource;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;

@@ -54,7 +54,7 @@ public class UploadExcelPicks extends FileUploadImpl {
 		        FacesContext.getCurrentInstance().addMessage(null, message);
 			}
 			else {
-				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error!",  "Some errors occurred uploading picks, check the logs for details.");
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!",  "Warnings occurred uploading picks, check the logs for details.");
 		        FacesContext.getCurrentInstance().addMessage(null, message);
 			}
 		}

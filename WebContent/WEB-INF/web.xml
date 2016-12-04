@@ -23,6 +23,15 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Jersey Web Application</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>Jersey Web Application</servlet-name>
+	<url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
   <context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>home</param-value>

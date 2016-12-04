@@ -185,8 +185,9 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 				rankMap = recordService.getPlayerRankedScoresForType(subseasonType, currentSeason, true);
 				setLeaders();
 				
-				downloadExcel = "/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
-				downloadPdf = "/download/pdf/" + seasonNum + "/" + currentWeek.getWeekNumber();
+				downloadExcel = "http://24.147.36.125:8080/NECTrackerPro/rest/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
+//				downloadExcel = "/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
+//				downloadPdf = "/download/pdf/" + seasonNum + "/" + currentWeek.getWeekNumber();
 			}
 		}
 	}
