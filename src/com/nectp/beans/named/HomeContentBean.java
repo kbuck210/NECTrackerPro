@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -88,12 +89,18 @@ public class HomeContentBean implements Serializable {
 	
 	private List<GameBean> otherGameBeans;
 	
+	private Logger log;
+	
 	public HomeContentBean() {
+		log = Logger.getLogger(HomeContentBean.class.getName());
 	}
 	
 	@PostConstruct
 	public void init() {
+		log.info("Post constructing HomeContentBean");
 		currentSeason = seasonService.selectCurrentSeason();
+		String seasonNum = currentSeason != null ? currentSeason.getSeasonYear() : " not found!";
+		log.info("Got current season: " + seasonNum);
 		displayWeek = weekService.selectCurrentWeekInSeason(currentSeason);
 
 		user = appState.getUser();

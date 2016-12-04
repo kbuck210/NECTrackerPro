@@ -2392,7 +2392,7 @@
 				<stadium>MetLife Stadium</stadium>
 			</game>
 		</week>
-		<week number="11" current="true" ss="SECOND_HALF" status="active" >
+		<week number="11" current="false" ss="SECOND_HALF" status="completed" >
 			<game>
 				<homeTeam>CAR</homeTeam>
 				<homeScore>23</homeScore>
@@ -2407,361 +2407,373 @@
 			</game>
 			<game>
 				<homeTeam>MIN</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>30</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>0</spread1>
-				<awayScore></awayScore>
+				<awayScore>24</awayScore>
 				<awayTeam>ARI</awayTeam>
 				<date>11.20.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>U.S. Bank Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>CIN</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>12</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>2</spread1>
-				<awayScore></awayScore>
+				<awayScore>16</awayScore>
 				<awayTeam>BUF</awayTeam>
 				<date>11.20.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Paul Brown Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>NYG</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>22</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
-				<awayScore></awayScore>
+				<awayScore>16</awayScore>
 				<awayTeam>CHI</awayTeam>
 				<date>11.20.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>MetLife Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>CLE</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>9</homeScore>
 				<homeFavored1>N</homeFavored1>
 				<spread1>8</spread1>
-				<awayScore></awayScore>
+				<awayScore>24</awayScore>
 				<awayTeam>PIT</awayTeam>
 				<date>11.20.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>FirstEnergy Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>KC</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>17</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>7.5</spread1>
-				<awayScore></awayScore>
+				<awayScore>19</awayScore>
 				<awayTeam>TB</awayTeam>
 				<date>11.20.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Arrowhead Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>DAL</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>27</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>7</spread1>
-				<awayScore></awayScore>
+				<awayScore>17</awayScore>
 				<awayTeam>BAL</awayTeam>
 				<date>11.20.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>AT&amp;T Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>DET</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>26</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
-				<awayScore></awayScore>
+				<awayScore>19</awayScore>
 				<awayTeam>JAX</awayTeam>
 				<date>11.20.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Ford Field</stadium>
 			</game>
 			<game>
 				<homeTeam>IND</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>24</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>3</spread1>
-				<awayScore></awayScore>
+				<awayScore>17</awayScore>
 				<awayTeam>TEN</awayTeam>
 				<date>11.20.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Lucas Oil Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>LA</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>10</homeScore>
 				<homeFavored1>N</homeFavored1>
 				<spread1>1.5</spread1>
-				<awayScore></awayScore>
+				<awayScore>14</awayScore>
 				<awayTeam>MIA</awayTeam>
 				<date>11.20.2016</date>
 				<time>4:05:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Los Angeles Memorial Coliseum</stadium>
 			</game>
 			<game>
 				<homeTeam>SF</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>17</homeScore>
 				<homeFavored1>N</homeFavored1>
 				<spread1>13</spread1>
-				<awayScore></awayScore>
+				<awayScore>30</awayScore>
 				<awayTeam>NE</awayTeam>
 				<date>11.20.2016</date>
 				<time>4:25:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Levi's Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>SEA</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>26</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
-				<awayScore></awayScore>
+				<awayScore>15</awayScore>
 				<awayTeam>PHI</awayTeam>
 				<date>11.20.2016</date>
 				<time>4:25:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>CenturyLink Field</stadium>
 			</game>
 			<game>
 				<homeTeam>WAS</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>42</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>2.5</spread1>
-				<awayScore></awayScore>
+				<awayScore>24</awayScore>
 				<awayTeam>GB</awayTeam>
 				<date>11.20.2016</date>
 				<time>8:30:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>FedEx Field</stadium>
 			</game>
 			<game>
 				<homeTeam>OAK</homeTeam>
-				<homeScore></homeScore>
+				<homeScore>27</homeScore>
 				<homeFavored1>Y</homeFavored1>
 				<spread1>6</spread1>
-				<awayScore></awayScore>
+				<awayScore>20</awayScore>
 				<awayTeam>HOU</awayTeam>
 				<date>11.21.2016</date>
 				<time>8:30:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Estadio Azteca</stadium>
 			</game>
 		</week>
-		<week number="12" current="false" ss="SECOND_HALF" status="waiting" >
+		<week number="12" current="false" ss="SECOND_HALF" status="completed" >
 			<game>
 				<homeTeam>DET</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>16</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>2</spread1>
+				<awayScore>13</awayScore>
 				<awayTeam>MIN</awayTeam>
 				<date>11.24.2016</date>
 				<time>12:30:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Ford Field</stadium>
 			</game>
 			<game>
 				<homeTeam>DAL</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>26</awayScore>
 				<awayTeam>WAS</awayTeam>
 				<date>11.24.2016</date>
 				<time>4:30:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>AT&amp;T Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>IND</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>7</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>9</spread1>
+				<awayScore>28</awayScore>
 				<awayTeam>PIT</awayTeam>
 				<date>11.24.2016</date>
 				<time>8:30:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Lucas Oil Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>NO</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>49</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>21</awayScore>
 				<awayTeam>LA</awayTeam>
 				<date>11.27.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>The Superdome</stadium>
 			</game>
 			<game>
 				<homeTeam>CHI</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>21</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5</spread1>
+				<awayScore>27</awayScore>
 				<awayTeam>TEN</awayTeam>
 				<date>11.27.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Soldier Field</stadium>
 			</game>
 			<game>
 				<homeTeam>ATL</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>38</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>19</awayScore>
 				<awayTeam>ARI</awayTeam>
 				<date>11.27.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Georgia Dome</stadium>
 			</game>
 			<game>
 				<homeTeam>CLE</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>13</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>27</awayScore>
 				<awayTeam>NYG</awayTeam>
 				<date>11.27.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>FirstEnergy Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>HOU</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1</spread1>
+				<awayScore>21</awayScore>
 				<awayTeam>SD</awayTeam>
 				<date>11.27.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>NRG Stadium</stadium>
 			</game>
 			<game>
+				<homeTeam>BUF</homeTeam>
+				<homeScore>28</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
+				<awayScore>21</awayScore>
+				<awayTeam>JAX</awayTeam>
+				<date>11.27.2016</date>
+				<time>1:00:PM</time>
+				<status>FINAL</status>
+				<stadium>Ralph Wilson Stadium</stadium>
+			</game>
+			<game>
 				<homeTeam>BAL</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>19</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
+				<awayScore>14</awayScore>
 				<awayTeam>CIN</awayTeam>
 				<date>11.27.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>M&amp;T Bank Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>MIA</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>31</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>8</spread1>
+				<awayScore>24</awayScore>
 				<awayTeam>SF</awayTeam>
 				<date>11.27.2016</date>
 				<time>1:00:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Sun Life Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>TB</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>14</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>5.5</spread1>
+				<awayScore>5</awayScore>
 				<awayTeam>SEA</awayTeam>
 				<date>11.27.2016</date>
 				<time>4:05:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Raymond James Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>NYJ</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>17</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>8</spread1>
+				<awayScore>22</awayScore>
 				<awayTeam>NE</awayTeam>
 				<date>11.27.2016</date>
 				<time>4:25:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>MetLife Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>OAK</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>35</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>32</awayScore>
 				<awayTeam>CAR</awayTeam>
 				<date>11.27.2016</date>
 				<time>4:25:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>O.co Coliseum</stadium>
 			</game>
 			<game>
 				<homeTeam>DEN</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>27</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>30</awayScore>
 				<awayTeam>KC</awayTeam>
 				<date>11.27.2016</date>
 				<time>8:30:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Mile High Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>PHI</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>13</homeScore>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
+				<awayScore>27</awayScore>
 				<awayTeam>GB</awayTeam>
 				<date>11.28.2016</date>
 				<time>8:30:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>Lincoln Financial Field</stadium>
 			</game>
 		</week>
-		<week number="13" current="false" ss="SECOND_HALF" status="waiting" >
+		<week number="13" current="false" ss="SECOND_HALF" status="active" >
 			<game>
 				<homeTeam>MIN</homeTeam>
-				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
-				<awayScore></awayScore>
+				<homeScore>15</homeScore>
+				<homeFavored1>N</homeFavored1>
+				<spread1>3</spread1>
+				<awayScore>17</awayScore>
 				<awayTeam>DAL</awayTeam>
 				<date>12.1.2016</date>
 				<time>8:25:PM</time>
-				<status>PREGAME</status>
+				<status>FINAL</status>
 				<stadium>U.S. Bank Stadium</stadium>
 			</game>
 			<game>
 				<homeTeam>NO</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
 				<awayScore></awayScore>
 				<awayTeam>DET</awayTeam>
 				<date>12.4.2016</date>
@@ -2772,8 +2784,8 @@
 			<game>
 				<homeTeam>NE</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>13.5</spread1>
 				<awayScore></awayScore>
 				<awayTeam>LA</awayTeam>
 				<date>12.4.2016</date>
@@ -2784,8 +2796,8 @@
 			<game>
 				<homeTeam>JAX</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>N</homeFavored1>
+				<spread1>4</spread1>
 				<awayScore></awayScore>
 				<awayTeam>DEN</awayTeam>
 				<date>12.4.2016</date>
@@ -2796,8 +2808,8 @@
 			<game>
 				<homeTeam>CHI</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>1</spread1>
 				<awayScore></awayScore>
 				<awayTeam>SF</awayTeam>
 				<date>12.4.2016</date>
@@ -2808,8 +2820,8 @@
 			<game>
 				<homeTeam>GB</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
 				<awayScore></awayScore>
 				<awayTeam>HOU</awayTeam>
 				<date>12.4.2016</date>
@@ -2820,8 +2832,8 @@
 			<game>
 				<homeTeam>ATL</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>4</spread1>
 				<awayScore></awayScore>
 				<awayTeam>KC</awayTeam>
 				<date>12.4.2016</date>
@@ -2832,8 +2844,8 @@
 			<game>
 				<homeTeam>BAL</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
 				<awayScore></awayScore>
 				<awayTeam>MIA</awayTeam>
 				<date>12.4.2016</date>
@@ -2844,8 +2856,8 @@
 			<game>
 				<homeTeam>CIN</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>0</spread1>
 				<awayScore></awayScore>
 				<awayTeam>PHI</awayTeam>
 				<date>12.4.2016</date>
@@ -2856,8 +2868,8 @@
 			<game>
 				<homeTeam>OAK</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
 				<awayScore></awayScore>
 				<awayTeam>BUF</awayTeam>
 				<date>12.4.2016</date>
@@ -2868,8 +2880,8 @@
 			<game>
 				<homeTeam>SD</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3.5</spread1>
 				<awayScore></awayScore>
 				<awayTeam>TB</awayTeam>
 				<date>12.4.2016</date>
@@ -2880,8 +2892,8 @@
 			<game>
 				<homeTeam>PIT</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>6</spread1>
 				<awayScore></awayScore>
 				<awayTeam>NYG</awayTeam>
 				<date>12.4.2016</date>
@@ -2892,8 +2904,8 @@
 			<game>
 				<homeTeam>ARI</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>3</spread1>
 				<awayScore></awayScore>
 				<awayTeam>WAS</awayTeam>
 				<date>12.4.2016</date>
@@ -2904,8 +2916,8 @@
 			<game>
 				<homeTeam>SEA</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>Y</homeFavored1>
+				<spread1>7</spread1>
 				<awayScore></awayScore>
 				<awayTeam>CAR</awayTeam>
 				<date>12.4.2016</date>
@@ -2916,8 +2928,8 @@
 			<game>
 				<homeTeam>NYJ</homeTeam>
 				<homeScore></homeScore>
-				<homeFavored1></homeFavored1>
-				<spread1></spread1>
+				<homeFavored1>N</homeFavored1>
+				<spread1>1</spread1>
 				<awayScore></awayScore>
 				<awayTeam>IND</awayTeam>
 				<date>12.5.2016</date>
