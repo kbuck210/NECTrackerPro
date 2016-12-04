@@ -3,7 +3,4 @@
 <!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN" "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
 <glassfish-web-app>
     <context-root>/NECTrackerPro</context-root>
-    <property name="alternatedocroot_1" value="from=/avatars/* dir=/Users/kbuck/Documents/MastersProject/NECTrackerResources" />
-    <property name="alternatedocroot_2" value="from=/excel/* dir=/Users/kbuck/Documents/MastersProject/NECTrackerResources" />
-    <property name="alternatedocroot_3" value="from=/images/* dir=/Users/kbuck/Documents/MastersProject/NECTrackerResources" />
 </glassfish-web-app>

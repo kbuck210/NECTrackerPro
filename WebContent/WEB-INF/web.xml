@@ -33,14 +33,14 @@
   </context-param>
   <context-param>
   		<param-name>upload.images</param-name>
-  		<param-value>/Users/kbuck/Documents/MastersProject/NECTrackerResources/images/</param-value>
+  		<param-value>/home/pi/NECTrackerResources/images/</param-value>
   </context-param>
   <context-param>
   		<param-name>upload.avatars</param-name>
-  		<param-value>/Users/kbuck/Documents/MastersProject/NECTrackerResources/avatars/</param-value>
+  		<param-value>/home/pi/NECTrackerResources/avatars/</param-value>
   </context-param>
   <context-param>
   		<param-name>upload.excel</param-name>
-  		<param-value>/Users/kbuck/Documents/MastersProject/NECTrackerResources/excel/</param-value>
+  		<param-value>/home/pi/NECTrackerResources/excel/</param-value>
   </context-param>
 </web-app>
