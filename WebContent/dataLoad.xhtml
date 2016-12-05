@@ -61,8 +61,8 @@
 											  skinSimple="true"
 											  allowTypes="/(\.|\/)(xml)$/"
 											  fileUploadListener="#{uploadSeasons.upload}" />
-							    <p:commandButton value="Submit Seasons: " update="growl" actionListener="#{uploadSeasons.submit}" 
-							    				onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+							    <p:commandButton value="Submit Seasons: " update="growl header" actionListener="#{uploadSeasons.submit}" 
+							    				onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" ajax="false" />
 							</p:fieldset>
 						</h:form>
 						<h:form id="generateRecords">
@@ -95,6 +95,15 @@
 											  fileUploadListener="#{uploadExcelPicks.upload}" />
 								<p:commandButton value="Submit Picks: " update="growl" actionListener="#{uploadExcelPicks.submit}"  
 												onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" />
+								
+								<h:outputLabel for="overwriteCheck" value="Overwrite Existing Picks: " />				
+								<p:selectBooleanCheckbox id="overwriteCheck" value="#{uploadExcelPicks.overwrite}" />
+							</p:fieldset>
+						</h:form>
+						<h:form id="resetRecords">
+							<p:fieldset legend="Update Current Week's Records:" >
+								<p:commandButton value="Update Records:" update="growl" actionListener="#{recordGenerator.updateRecords}" 
+												onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" ajax="false"/>
 							</p:fieldset>
 						</h:form>
 					</h:panelGrid>

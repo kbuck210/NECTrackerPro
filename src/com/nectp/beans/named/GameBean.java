@@ -127,6 +127,18 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 		}
 	}
 	
+	public void setPickedTeam(TeamForSeason pickedTeam) {
+		this.pickedTeam = pickedTeam;
+		if (pickedTeam != null) {
+			if (pickedTeam.equals(game.getHomeTeam())) {
+				this.homeSelected = "selected";
+			}
+			else if (pickedTeam.equals(game.getAwayTeam())) {
+				this.awaySelected = "selected";
+			}
+		}
+	}
+	
 	public String getSeasonNumber() {
 		return seasonNumber;
 	}
@@ -257,7 +269,6 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 					}
 					else if (pickedTeam.equals(awayTeam)) {
 						this.pickedTeam = awayTeam;
-
 						break;
 					}
 				}
@@ -312,7 +323,11 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	 * @param homeCity the homeCity to set
 	 */
 	private void setHomeCity(TeamForSeason homeTeam) {
-		this.homeCity = homeTeam.getTeamCity();
+		String teamCity = homeTeam.getTeamCity();
+		if (teamCity.toUpperCase().equals("NEW YORK")) {
+			this.homeCity = "NY " + homeTeam.getName();
+		}
+		else this.homeCity = teamCity;
 	}
 	
 	public String getHomeAbbr() {
@@ -372,7 +387,11 @@ public class GameBean implements Serializable, Comparable<GameBean> {
 	 * @param awayCity the awayCity to set
 	 */
 	private void setAwayCity(TeamForSeason awayTeam) {
-		this.awayCity = awayTeam.getTeamCity();
+		String awayCity = awayTeam.getTeamCity();
+		if (awayCity.toUpperCase().equals("NEW YORK")) {
+			this.awayCity = "NY " + awayTeam.getName();
+		}
+		else this.awayCity = awayCity;
 	}
 	
 	public String getAwayAbbr() {

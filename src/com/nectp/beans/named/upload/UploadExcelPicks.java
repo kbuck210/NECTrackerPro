@@ -22,8 +22,18 @@ public class UploadExcelPicks extends FileUploadImpl {
 	
 	private Logger log;
 	
+	private boolean overwrite = false;
+	
 	@EJB
 	private ExcelPickReader excelReader;
+	
+	public boolean isOverwrite() {
+		return overwrite;
+	}
+	
+	public void setOverwrite(boolean overwrite) {
+		this.overwrite = overwrite;
+	}
 	
 	@Override
 	public void upload(FileUploadEvent event) {
@@ -48,7 +58,7 @@ public class UploadExcelPicks extends FileUploadImpl {
 		        FacesContext.getCurrentInstance().addMessage(null, message);
 		        continue;
 			}
-			boolean success = excelReader.processFile(filename, iStream);
+			boolean success = excelReader.processFile(filename, iStream, overwrite);
 			if (!success) {
 				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Success!",  "All picks read successfully!");
 		        FacesContext.getCurrentInstance().addMessage(null, message);

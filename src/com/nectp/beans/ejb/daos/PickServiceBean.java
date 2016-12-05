@@ -152,4 +152,26 @@ public class PickServiceBean extends DataServiceBean<Pick> implements PickServic
 			update(p);
 		}
 	}
+
+	@Override
+	public List<Pick> selectAllPlayerPicksInWeek(PlayerForSeason player, Week week) {
+		Logger log = Logger.getLogger(PickServiceBean.class.getName());
+		List<Pick> picks = null;
+		if (player == null || week == null) {
+			log.severe("Player/Week not defined, can not retrieve pick!");
+		}
+		else {
+			TypedQuery<Pick> pq = em.createNamedQuery("Pick.selectAllPlayerPicksInWeek", Pick.class);
+			pq.setParameter("playerId", player.getAbstractTeamForSeasonId());
+			pq.setParameter("weekId", week.getWeekId());
+			try {
+				picks = pq.getResultList();
+			} catch (Exception e) {
+				log.severe("Exception caught retrieving picks: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+		return picks != null ? picks : new ArrayList<Pick>();
+	}
 }

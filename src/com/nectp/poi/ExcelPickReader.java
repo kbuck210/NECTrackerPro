@@ -57,6 +57,8 @@ public class ExcelPickReader {
 	private Week currentWeek;
 	private Season season;
 	
+	private boolean overwrite;
+	
 	private Logger log = Logger.getLogger(ExcelPickReader.class.getName());
 	
 	@EJB
@@ -84,7 +86,8 @@ public class ExcelPickReader {
 		this.log = Logger.getLogger(ExcelPickReader.class.getName());
 	}
 	
-	public boolean processFile(String filename, InputStream excelStream) {
+	public boolean processFile(String filename, InputStream excelStream, boolean overwrite) {
+		this.overwrite = overwrite;
 		if (excelStream != null) {
 			this.currentWeek = null;
 			this.season = null;
@@ -498,13 +501,21 @@ public class ExcelPickReader {
 			}
 			//	Check if picks already exist for this record (i.e. a reupload of the pick sheet), if so, remove old picks
 			else if (!subseasonRecord.getPicksInRecord().isEmpty()) {
-				List<Pick> failedDeletes = pickFactory.removePicksForReplacement(subseasonRecord);
-				if (!failedDeletes.isEmpty()) {
-					log.severe("Failed to delete existing picks before replacement! Can not replace picks.");
-					for (Pick p : failedDeletes) {
-						log.severe("FAILED DELETE: PickID " + p.getPickId());
+				//	If overwrite was not selected - skip this player
+				if (!overwrite) {
+					log.info("Picks already registered for " + player.getNickname() + " - overwrite false - skipping");
+					continue;
+				}
+				//	If overwrite was selected - delete the picks for the current player & replace them
+				else {
+					List<Pick> failedDeletes = pickFactory.removePicksForReplacement(subseasonRecord);
+					if (!failedDeletes.isEmpty()) {
+						log.severe("Failed to delete existing picks before replacement! Can not replace picks.");
+						for (Pick p : failedDeletes) {
+							log.severe("FAILED DELETE: PickID " + p.getPickId());
+						}
+						return false;
 					}
-					return false;
 				}
 			}
 			

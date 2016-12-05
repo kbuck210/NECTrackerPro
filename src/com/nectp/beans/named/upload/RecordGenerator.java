@@ -1,5 +1,6 @@
 package com.nectp.beans.named.upload;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
@@ -8,9 +9,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import com.nectp.beans.remote.daos.PickService;
 import com.nectp.beans.remote.daos.RecordFactory;
 import com.nectp.beans.remote.daos.SeasonFactory;
 import com.nectp.jpa.constants.NEC;
+import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.PlayerForSeason;
 import com.nectp.jpa.entities.PrizeForSeason;
 import com.nectp.jpa.entities.Season;
@@ -28,6 +31,9 @@ public class RecordGenerator {
 	
 	@EJB
 	private RecordFactory recordFactory;
+	
+	@EJB
+	private PickService pickService;
 	
 	private Season season;
 	
@@ -69,5 +75,14 @@ public class RecordGenerator {
 		}
 		FacesMessage recordsComplete = new FacesMessage(FacesMessage.SEVERITY_INFO, "Records Generated.", "");
 		FacesContext.getCurrentInstance().addMessage(null, recordsComplete);
+	}
+	
+	public void updateRecords() {
+		season = seasonFactory.selectCurrentSeason();
+		Week currentWeek = season.getCurrentWeek();
+		for (PlayerForSeason pfs : season.getPlayers()) {
+			List<Pick> playerPicks = pickService.selectAllPlayerPicksInWeek(pfs, currentWeek);
+			recordFactory.resetRecordsForPicks(playerPicks);
+		}
 	}
 }

@@ -8,8 +8,10 @@ import java.util.TreeMap;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.nectp.beans.ejb.ApplicationState;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.daos.PlayerStatisticService;
 import com.nectp.beans.remote.daos.SeasonService;
@@ -38,11 +40,14 @@ public class LeaderboardBean implements Serializable {
 	@EJB
 	private PlayerStatisticService playerStatService;
 	
+	@Inject
+	private ApplicationState appState;
+	
 	@PostConstruct
 	public void init() {
-		currentSeason = seasonService.selectCurrentSeason();
+		currentSeason = appState.getCurrentSeason();
 		if (currentSeason == null) {
-			//	TODO: redirect somehow
+			currentSeason = seasonService.selectCurrentSeason();
 		}
 		displayType = currentSeason.getCurrentWeek().getSubseason().getSubseasonType();
 		updateLeaders(displayType);

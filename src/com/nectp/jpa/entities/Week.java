@@ -180,7 +180,8 @@ public class Week implements Serializable, Comparable<Week> {
 	public List<Game> getEarlyGames() {
 		List<Game> earlyGames = new ArrayList<Game>();
 		for (Game g : games) {
-			if (g.getGameDate().get(GregorianCalendar.DAY_OF_WEEK) > GregorianCalendar.MONDAY) {
+			int dayOfWeek = g.getGameDate().get(GregorianCalendar.DAY_OF_WEEK);
+			if (dayOfWeek > GregorianCalendar.MONDAY && dayOfWeek < GregorianCalendar.SATURDAY) {
 				earlyGames.add(g);
 			}
 		}

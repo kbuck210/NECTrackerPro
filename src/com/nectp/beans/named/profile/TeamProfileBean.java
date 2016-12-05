@@ -5,6 +5,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.nectp.beans.ejb.ApplicationState;
 import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.named.NextGameBean;
 import com.nectp.beans.named.profile.ProfileBean;
@@ -34,6 +35,9 @@ public class TeamProfileBean extends ProfileBean<TeamForSeason> {
 	@Inject
 	private NextGameBean nextGame;
 	
+	@Inject
+	private ApplicationState appState;
+	
 	/** Set teamAbbr is called from the f:viewParam pre-render method
 	 * 
 	 * @param teamAbbr the abbreviation of the TeamForSeason entity to select
@@ -60,7 +64,10 @@ public class TeamProfileBean extends ProfileBean<TeamForSeason> {
 		} catch (NumberFormatException e) {
 			log.warning("Invalid numerical format for season number: " + nec + " - defaulting to current season");
 			log.warning(e.getMessage());
-			season = seasonService.selectCurrentSeason();
+			season = appState.getCurrentSeason();
+			if (season == null) {
+				season = seasonService.selectCurrentSeason();
+			}
 		}
 		
 		try {

@@ -18,6 +18,8 @@ public interface PickService extends DataService<Pick> {
 
 	public List<Pick> selectPlayerPicksForType(PlayerForSeason player, NEC pickType);
 	
+	public List<Pick> selectAllPlayerPicksInWeek(PlayerForSeason player, Week week);
+	
 	public List<Pick> selectAllPicksInWeek(Week week);
 	
 	public void lockPicksInWeek(Week week);

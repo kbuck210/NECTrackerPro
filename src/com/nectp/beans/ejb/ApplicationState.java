@@ -85,15 +85,6 @@ public class ApplicationState implements Serializable {
 			instance = null;
 		}
 	}
-	
-	public void setUserInstance(PlayerForSeason instance) {
-		if (instance == null || !instance.getPlayer().equals(user)) {
-			log.severe("Specified player instance is null or does not match the logged in user!");
-		}
-		else {
-			this.instance = instance;
-		}
-	}
 
 	public Season getCurrentSeason() {
 		return currentSeason;
@@ -101,6 +92,14 @@ public class ApplicationState implements Serializable {
 	
 	public void setCurrentSeason(Season currentSeason) {
 		this.currentSeason = currentSeason;
+		if (instance != null) {
+			instance = null;
+			try {
+				instance = pfsService.selectPlayerInSeason(user, currentSeason);
+			} catch (NoExistingEntityException e) {
+				//	Eat error, do not assign instance
+			}
+		}
 	}
 	
 	public String getSeasonNumber() {

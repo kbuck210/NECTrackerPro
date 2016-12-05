@@ -3,7 +3,9 @@ package com.nectp.beans.ejb.daos;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 
+import com.nectp.beans.remote.daos.PickService;
 import com.nectp.beans.remote.daos.RecordService;
 import com.nectp.beans.remote.daos.SubseasonService;
 import com.nectp.beans.remote.daos.WeekService;
@@ -37,6 +40,9 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 	
 	@EJB
 	private WeekService weekService;
+	
+	@EJB
+	private PickService pickService;
 	
 	private Logger log;
 	
@@ -350,6 +356,36 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 	}
 	
 	@Override
+	public boolean resetRecordsForPicks(List<Pick> picks) {
+		Logger log = Logger.getLogger(PickServiceBean.class.getName());
+		if (picks == null) {
+			log.warning("No picks specified! can not update player records.");
+		}
+		else {
+			//	Collect a set of unique records for the list of picks (typically size 1)
+			Set<Record> uniqueRecords = new HashSet<Record>();
+			for (Pick p : picks) {
+				Record applicableRecord = p.getApplicableRecord();
+				uniqueRecords.add(applicableRecord);
+			}
+			
+			//	Reset & update each record to zero
+			for (Record r : uniqueRecords) {
+				r.reset();
+				boolean success = update(r);
+				if (!success) return false;
+			}
+			
+			//	For each of the picks to update, call the method to update the pick's record
+			for (Pick p : picks) {
+				updateRecordForPlayerPick(p);
+			}
+		}
+		
+		return true;
+	}
+	
+	@Override
 	public void updateRecordForPlayerPick(Pick p) {
 		Logger log = Logger.getLogger(PickServiceBean.class.getName());
 		if (p == null) {
@@ -361,6 +397,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 				log.severe("Game either not defined or not complete. Skipping update.");
 				return;
 			}
+			
 			Record applicableRecord = p.getApplicableRecord();
 			TeamForSeason pickedTeam = p.getPickedTeam();
 			

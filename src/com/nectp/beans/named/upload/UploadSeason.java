@@ -148,11 +148,8 @@ public class UploadSeason extends FileUploadImpl {
 						elements = parser.generateElementList();
 						parsePlayers(elements);
 						
-						//	Check if a player is logged in, and if this season is current, switch instance
-						if (appState.getUser() != null && season.getCurrentSeason()) {
-							PlayerForSeason newInstance = pfsFactory.selectPlayerInSeason(appState.getUser(), season);
-							appState.setUserInstance(newInstance);
-						}
+						//	Update the application state's current season
+						appState.setCurrentSeason(season);
 						
 						//	Create the teams
 						parser.setQualifiedNodeName("teams");

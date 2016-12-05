@@ -98,7 +98,10 @@ public class HomeContentBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		log.info("Post constructing HomeContentBean");
-		currentSeason = seasonService.selectCurrentSeason();
+		currentSeason = appState.getCurrentSeason();
+		if (currentSeason == null) {
+			currentSeason = seasonService.selectCurrentSeason();
+		}
 		String seasonNum = currentSeason != null ? currentSeason.getSeasonYear() : " not found!";
 		log.info("Got current season: " + seasonNum);
 		displayWeek = weekService.selectCurrentWeekInSeason(currentSeason);
@@ -166,6 +169,7 @@ public class HomeContentBean implements Serializable {
 					bean.setPlayer(userInstance);
 					bean.setSpreadType(p.getPickType());
 					bean.setGame(game);
+					bean.setPickedTeam(p.getPickedTeam());
 					bean.setHomeSelectable(false);
 					bean.setAwaySelectable(false);
 					TeamForSeason homeTeam = game.getHomeTeam();

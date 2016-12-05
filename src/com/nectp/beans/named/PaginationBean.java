@@ -6,8 +6,10 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.nectp.beans.ejb.ApplicationState;
 import com.nectp.beans.remote.daos.SeasonService;
 import com.nectp.beans.remote.daos.WeekService;
 import com.nectp.jpa.entities.Season;
@@ -54,6 +56,9 @@ public class PaginationBean implements Serializable {
 	@EJB
 	private WeekService weekService;
 	
+	@Inject
+	private ApplicationState appState;
+	
 	private Season currentSeason;
 	
 	private Week currentWeek;
@@ -68,7 +73,11 @@ public class PaginationBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		log = Logger.getLogger(PaginationBean.class.getName());
-		currentSeason = seasonService.selectCurrentSeason();
+		currentSeason = appState.getCurrentSeason();
+		if (currentSeason == null) {
+			currentSeason = seasonService.selectCurrentSeason();
+		}
+		
 		if (currentSeason == null) {
 			log.severe("Failed to retrieve current season! Can not display pagination.");
 		}

@@ -53,6 +53,7 @@ public class DataServiceBean<T> implements Serializable, DataService<T> {
         Logger log = Logger.getLogger(obj.getClass().getName());
         try {
         	em.persist(obj);
+        	em.flush();
             log.info("Inserted " + obj.getClass().getSimpleName());
         } catch (Exception e) {
         	log.severe("Rollback inserting " + obj.getClass().getSimpleName() + ": " + e.getMessage());
@@ -69,6 +70,7 @@ public class DataServiceBean<T> implements Serializable, DataService<T> {
         Logger log = Logger.getLogger(obj.getClass().getName());
         try {
         	em.merge(obj);
+        	em.flush();
             log.info("Merged " + obj.getClass().getSimpleName());
         } catch (Exception e) {
         	log.severe("Rollback merging " + obj.getClass().getSimpleName() + ": " + e.getMessage());
@@ -85,6 +87,7 @@ public class DataServiceBean<T> implements Serializable, DataService<T> {
         Logger log = Logger.getLogger(obj.getClass().getName());
         try {
         	em.remove(obj);
+        	em.flush();
         	log.info("Removed " + obj.getClass().getSimpleName());
         } catch (Exception e) {
         	log.severe("Rollback removing " + obj.getClass().getSimpleName() + ": " + e.getMessage());

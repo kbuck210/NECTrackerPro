@@ -24,11 +24,13 @@
 				<h:form id="picksForm">
 					<!-- If player is admin, provide option to override times & submit for other players -->
 					<p:panelGrid columns="2" rendered="#{makePicksBean.admin}" >
-						<p:selectOneMenu id="userSelect" value="#{makePicksBean.picksUser}">
+						<!-- 
+						<p:selectOneMenu id="userSelect" value="#{makePicksBean.picksUserNickname}">
 							<f:selectItem itemLabel="Select Player:" itemValue="" />
 				            <f:selectItems value="#{makePicksBean.players}" />
 				        </p:selectOneMenu>
 				        <p:commandButton value="Change Player:" update="@form" />
+				         -->
 					</p:panelGrid>
 					<p:tabView id="picksTabs" >
 						<p:tab id="regularPicksTab" title="#{makePicksBean.regularPicksTitle}">
@@ -49,8 +51,9 @@
 						</p:tab>
 					</p:tabView>
 					
-			        <p:commandButton value="Submit Picks:" id="submit" update="picksGrowl" actionListener="#{makePicksBean.submit}" 
-			        	styleClass="ui-priority-primary" onclick="PrimeFaces.monitorDownload(start, stop);" ajax="false" />
+			        <p:commandButton value="Submit Picks:" id="submit" update="picksGrowl" styleClass="ui-priority-primary"
+			        	actionListener="#{makePicksBean.submit}" action="#{makePicksBean.navigate()}" ajax="false" 
+			        	onclick="start()" oncomplete="stop()" />
 				</h:form>
 				<script type="text/javascript">
 					function start() {

@@ -55,7 +55,10 @@ public class PlayerProfileBean extends ProfileBean<PlayerForSeason> {
 		} catch (NumberFormatException e) {
 			log.warning("Invalid numerical format for season number: " + nec + " - defaulting to current season.");
 			log.warning(e.getMessage());
-			season = seasonService.selectCurrentSeason();
+			season = appState.getCurrentSeason();
+			if (season == null) {
+				season = seasonService.selectCurrentSeason();
+			}
 		}
 		
 		Long playerId = null;

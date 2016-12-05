@@ -25,6 +25,8 @@ public interface RecordService extends DataService<Record> {
 	
 	public TreeMap<RecordAggregator, List<AbstractTeamForSeason>> getTeamRankedScoresForType(NEC recordType, Season season, boolean againstSpread);
 	
+	public boolean resetRecordsForPicks(List<Pick> picks);
+	
 	public void updateRecordForPlayerPick(Pick p);
 }
 

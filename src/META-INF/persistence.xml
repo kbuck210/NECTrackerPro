@@ -22,6 +22,7 @@
 		<class>com.nectp.jpa.entities.Team</class>
 		<class>com.nectp.jpa.entities.TeamForSeason</class>
 		<class>com.nectp.jpa.entities.Week</class>
+		<shared-cache-mode>NONE</shared-cache-mode>
 		<properties>
 			<property name="URL" value="jdbc:mysql://localhost:3306/NECTrackerPro"/> 
 			<property name="driverClass" value="com.mysql.jdbc.Driver"/> 

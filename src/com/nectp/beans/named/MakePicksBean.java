@@ -24,6 +24,7 @@ import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.ejb.daos.RecordAggregator;
 import com.nectp.beans.remote.daos.GameService;
 import com.nectp.beans.remote.daos.PickFactory;
+import com.nectp.beans.remote.daos.PlayerForSeasonService;
 import com.nectp.beans.remote.daos.RecordFactory;
 import com.nectp.beans.remote.daos.TeamForSeasonService;
 import com.nectp.jpa.constants.NEC;
@@ -49,6 +50,8 @@ public class MakePicksBean implements Serializable {
 	private String tnoPickHeadline;
 	private String weekHeadline;
 	
+	private String navigateTo;
+	
 	private List<GameBean> gameBeans;
 	private List<GameBean> tnoBeans;
 	
@@ -57,11 +60,15 @@ public class MakePicksBean implements Serializable {
 	private Season season;
 	private Week week;
 	
+	private String picksUserNickname;
 	private PlayerForSeason picksUser;
 	private List<SelectItem> players;
 	
 	@EJB
 	private TeamForSeasonService tfsService;
+	
+	@EJB
+	private PlayerForSeasonService pfsService;
 	
 	@EJB
 	private RecordFactory recordFactory;
@@ -102,13 +109,13 @@ public class MakePicksBean implements Serializable {
 			
 			SelectItemGroup playerGroup = new SelectItemGroup("Players: ");
 			SelectItem[] playerItems = new SelectItem[season.getPlayers().size()];
-			SelectItem userSelect = new SelectItem(user, user.getNickname());
+			SelectItem userSelect = new SelectItem(user.getNickname(), user.getNickname());
 			playerItems[0] = userSelect;
 			int arrIndex = 1;
 			for (PlayerForSeason pfs : season.getPlayers()) {
 				if (pfs.equals(user)) continue; //	Skip user - already accounted for
 				else {
-					SelectItem nextUser = new SelectItem(pfs, pfs.getNickname());
+					SelectItem nextUser = new SelectItem(pfs.getNickname(), pfs.getNickname());
 					playerItems[arrIndex] = nextUser;
 					arrIndex += 1;
 				}
@@ -133,13 +140,20 @@ public class MakePicksBean implements Serializable {
 		}
 	}
 	
-	public PlayerForSeason getPicksUser() {
-		return picksUser;
+	public String getPicksUserNickname() {
+		return picksUserNickname;
 	}
 	
-	public void setPicksUser(PlayerForSeason picksUser) {
-		this.picksUser = picksUser;
-		updateDisplayForUser(picksUser);
+	public void setPicksUserNickname(String picksUserNickname) {
+		if (picksUserNickname != null) {
+			this.picksUserNickname = picksUserNickname;
+			try {
+				this.picksUser = pfsService.selectPlayerByNickname(picksUserNickname, season);
+				updateDisplayForUser(this.picksUser);
+			} catch (NoExistingEntityException e) {
+				log.severe("No PFS found for nickname: " + picksUser);
+			}
+		}
 	}
 	
 	public boolean isAdmin() {
@@ -255,7 +269,7 @@ public class MakePicksBean implements Serializable {
 	private GameBean createGameBean(Game g, NEC type, boolean selectable, Calendar cutoffTime, PickType pickType, List<Pick> previousPicks) {
 		//	Create Beans for regular game picks
 		GameBean gameBean = new GameBean();
-		gameBean.setPlayer(user);
+		gameBean.setPlayer(picksUser);
 		gameBean.setSpreadType(pickType);
 		gameBean.setGame(g);
 		
@@ -288,6 +302,7 @@ public class MakePicksBean implements Serializable {
 			
 			//	Check the list of previous picks to make previous picks unselectable
 			for (Pick p : previousPicks) {
+				gameBean.setPickedTeam(p.getPickedTeam());
 				TeamForSeason winner = p.getGame().getWinner();
 				TeamForSeason pickedTeam = p.getPickedTeam();
 				//	If the home team was already picked, set unselectable & greyed, set pick image to whether or not the team won it's pick
@@ -438,33 +453,56 @@ public class MakePicksBean implements Serializable {
 		//	Loop over both the list of GameBeans, and if rendered the TnoBeans
 		List<TeamForSeason> selectedTeams = getSelectedTeams(gameBeans);
 		
+		//	Get the minimum number of picks allowed
+		int minPicks;
+		if (season.getMinPicks() == null) {
+			List<Game> nonRequiredGames = week.getEarlyGames();
+			minPicks = gameBeans.size() - nonRequiredGames.size();
+		}
+		else minPicks = season.getMinPicks();
+		
 		//	Validate that the correct number of picks were submitted
-		int minPicks = season.getMinPicks() == null ? gameBeans.size() : season.getMinPicks();
+//		int minPicks = season.getMinPicks() == null ? gameBeans.size() : season.getMinPicks();
 		int maxPicks = season.getMaxPicks() == null ? gameBeans.size() : season.getMaxPicks();
 		//	Check that there were enough picks made
 		if (selectedTeams.size() < minPicks) {
 			FacesMessage notEnoughPicks = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
 					"ERROR!", "Not enough picks selected - min " + minPicks + " picks");
 			FacesContext.getCurrentInstance().addMessage(null, notEnoughPicks);
+			navigateTo = null;
 		}
 		//	Check that not too many picks made
 		else if (selectedTeams.size() > maxPicks) {
 			FacesMessage tooManyPicks = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
 					"ERROR!", "Too many picks selected - max " + maxPicks + " picks");
 			FacesContext.getCurrentInstance().addMessage(null, tooManyPicks);
+			navigateTo = null;
 		}
 		//	If enough picks selected, make picks & display results
 		else {
 			List<Pick> createdPicks = createPicks(selectedTeams, ssType);
 			if (createdPicks.size() == selectedTeams.size()) {
-				FacesMessage success = new FacesMessage(FacesMessage.SEVERITY_INFO, 
-						"Success!", "Picked " + selectedTeams.size() + " teams");
-				FacesContext.getCurrentInstance().addMessage(null, success);
+				//	Update the records for the added picks (need to get managed versions)
+				List<Pick> playerPicks = pickFactory.selectPlayerPicksForWeekForType(picksUser, week, ssType);
+				boolean updated = recordFactory.resetRecordsForPicks(playerPicks);
+				if (updated) {
+					FacesMessage success = new FacesMessage(FacesMessage.SEVERITY_INFO, 
+							"Success!", "Picked " + selectedTeams.size() + " teams");
+					FacesContext.getCurrentInstance().addMessage(null, success);
+					navigateTo = "home";
+				}
+				else {
+					FacesMessage failedUpdates = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							"ERROR!", "Failed to update records for picks.");
+					FacesContext.getCurrentInstance().addMessage(null, failedUpdates);
+					navigateTo = null;
+				}
 			}
 			else {
 				FacesMessage pickCreateError = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
 						"ERROR!", "Picks failed to create - please submit manually");
 				FacesContext.getCurrentInstance().addMessage(null, pickCreateError);
+				navigateTo = null;
 			}
 		}
 		
@@ -476,26 +514,44 @@ public class MakePicksBean implements Serializable {
 			if (selectedTnos.size() > 1) {
 				FacesMessage tooManyPicks = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!", "Only one Two and Out pick allowed!");
 				FacesContext.getCurrentInstance().addMessage(null, tooManyPicks);
+				navigateTo = null;
 			}
 			else if (selectedTnos.isEmpty()) {
 				FacesMessage noTno = new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "No Two and Out Selected!");
 				FacesContext.getCurrentInstance().addMessage(null, noTno);
+				navigateTo = null;
 			}
 			else {
 				List<Pick> createdPick = createPicks(selectedTnos, NEC.TWO_AND_OUT);
 				if (createdPick.size() == 1) {
-					FacesMessage tnoSuccess = new FacesMessage(FacesMessage.SEVERITY_INFO, 
-							"Success!", "Two and Out selected - " + selectedTnos.get(0).getTeamAbbr());
-					FacesContext.getCurrentInstance().addMessage(null, tnoSuccess);
-					log.info("Selected TNO Pick: " + selectedTnos.get(0).getTeamCity());
+					//	Send the list of picks to update their records
+					List<Pick> tnoPick = pickFactory.selectPlayerPicksForWeekForType(picksUser, week, NEC.TWO_AND_OUT);
+					boolean updated = recordFactory.resetRecordsForPicks(tnoPick);
+					if (updated) {
+						FacesMessage tnoSuccess = new FacesMessage(FacesMessage.SEVERITY_INFO, 
+								"Success!", "Two and Out selected - " + selectedTnos.get(0).getTeamAbbr());
+						FacesContext.getCurrentInstance().addMessage(null, tnoSuccess);
+						log.info("Selected TNO Pick: " + selectedTnos.get(0).getTeamCity()); 
+					}
+					else {
+						FacesMessage failedUpdates = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								"ERROR!", "Failed to update records for TNO pick.");
+						FacesContext.getCurrentInstance().addMessage(null, failedUpdates);
+						navigateTo = null;
+					}
 				}
 				else {
 					FacesMessage tnoFail = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
 							"ERROR!", "Two and Out failed, please submit manually");
 					FacesContext.getCurrentInstance().addMessage(null, tnoFail);
+					navigateTo = null;
 				}
 			}
 		}
+	}
+	
+	public String navigate() {
+		return navigateTo;
 	}
 	
 	/** Given the list of selected teams and the category for the picks, create picks for the player in the week
@@ -519,7 +575,7 @@ public class MakePicksBean implements Serializable {
 				if (pickFor == NEC.TWO_AND_OUT) pickType = PickType.STRAIGHT_UP;
 				else pickType = getPickType(game);
 			}
-			Record applicableRecord = recordFactory.createWeekRecordForAtfs(week, user, pickFor);
+			Record applicableRecord = recordFactory.createWeekRecordForAtfs(week, picksUser, pickFor);
 			Pick p = pickFactory.createPlayerPickForRecord(applicableRecord, game, team, pickType);
 			if (p != null) {
 				createdPicks.add(p);
@@ -529,7 +585,7 @@ public class MakePicksBean implements Serializable {
 			if (pickFor != NEC.TWO_AND_OUT) {
 				int dayOfWeek = game.getGameDate().get(GregorianCalendar.DAY_OF_WEEK);
 				if (dayOfWeek == GregorianCalendar.MONDAY) {
-					Record mnfRecord = recordFactory.createWeekRecordForAtfs(week, user, NEC.MNF);
+					Record mnfRecord = recordFactory.createWeekRecordForAtfs(week, picksUser, NEC.MNF);
 					Pick mnfPick = pickFactory.createPlayerPickForRecord(mnfRecord, game, team, pickType);
 					if (mnfPick == null) {
 						FacesMessage mnfError = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!", "MNF Pick failed - please submit manually");
@@ -537,7 +593,7 @@ public class MakePicksBean implements Serializable {
 					}
 				}
 				else if (dayOfWeek == GregorianCalendar.THURSDAY) {
-					Record tntRecord = recordFactory.createWeekRecordForAtfs(week, user, NEC.TNT);
+					Record tntRecord = recordFactory.createWeekRecordForAtfs(week, picksUser, NEC.TNT);
 					Pick tntPick = pickFactory.createPlayerPickForRecord(tntRecord, game, team, pickType);
 					if (tntPick == null) {
 						FacesMessage tntError = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!", "TNT Pick failed - please submit manually");
