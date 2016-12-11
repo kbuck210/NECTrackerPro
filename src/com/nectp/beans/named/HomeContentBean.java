@@ -129,7 +129,9 @@ public class HomeContentBean implements Serializable {
 			else if (currentDay > GregorianCalendar.WEDNESDAY && gameWeek == (yearWeek - 1)) {
 				updateLive = true;
 			}
-			
+			log.info("GameWeek = " + gameWeek + ", yearWeek = " + yearWeek);
+			log.info("CurrentDay: " + currentDay);
+			log.info("Update Live: " + updateLive);
 			if (updateLive) liveDataService.updateGames();
 		}
 		
@@ -379,9 +381,7 @@ public class HomeContentBean implements Serializable {
 				Collections.sort(games);
 				Calendar gameDate = games.get(0).getGameDate();
 				int month = gameDate.get(GregorianCalendar.MONTH);
-				if (month == 0) {
-					month = 12;
-				}
+				month += 1;
 				
 				displayedWeekHeadline = month 
 						+ "/" + gameDate.get(GregorianCalendar.DAY_OF_MONTH) 

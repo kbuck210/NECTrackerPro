@@ -38,7 +38,7 @@ public class XmlLiveReader {
 				String dayStr = date.substring(6, 8);
 				try {
 					year = Integer.parseInt(yearStr);
-					month = Integer.parseInt(monthStr);
+					month = Integer.parseInt(monthStr) - 1;
 					day = Integer.parseInt(dayStr);
 				} catch (NumberFormatException e) {
 					log.severe("Exception parsing year: " + yearStr + " month: " + monthStr + " day: " + dayStr);

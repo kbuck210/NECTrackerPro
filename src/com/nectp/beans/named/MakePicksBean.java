@@ -216,8 +216,8 @@ public class MakePicksBean implements Serializable {
 		
 		//	Check whether the logged in user is an administrator, if not, set the cutoff time for picks
 		//	NOTE ** Uncomment if statement to turn off requirement for admin
-//		if (!admin) {
-			//	Get the pick cutoff time from the earliest game of the week
+		if (!admin) {
+//				Get the pick cutoff time from the earliest game of the week
 			List<Game> weekGames = week.getGames();
 			Collections.sort(weekGames);
 			Calendar gameDate = weekGames.get(0).getGameDate();
@@ -230,7 +230,7 @@ public class MakePicksBean implements Serializable {
 			cutoffTime.set(GregorianCalendar.WEEK_OF_MONTH, weekOfMonth);
 			cutoffTime.set(GregorianCalendar.DAY_OF_WEEK, GregorianCalendar.SUNDAY);
 			cutoffTime.set(GregorianCalendar.HOUR_OF_DAY, 13);
-//		}
+		}
 
 		//	Check whether any of the games in the week have a spread2
 		boolean hasSpread2 = false;
@@ -283,13 +283,14 @@ public class MakePicksBean implements Serializable {
 		TeamForSeason awayTeam = g.getAwayTeam();
 		
 		//	Check whether the individual game is selectable
-		boolean singleSelectable;
+		boolean singleSelectable = false;
 		if (cutoffTime == null) {
 			singleSelectable = selectable;
 		}
 		else {
 			Calendar now = new GregorianCalendar();
-			singleSelectable = selectable && now.compareTo(cutoffTime) < 0;
+			//	Check that the game is selectable, it's before the cutoff, and before the game start time
+			singleSelectable = selectable && now.compareTo(cutoffTime) < 0 && now.compareTo(g.getGameDate()) < 0;
 		}
 		//	Set the selectable & grayed properties
 		gameBean.setHomeSelectable(singleSelectable);
@@ -457,8 +458,15 @@ public class MakePicksBean implements Serializable {
 		//	Get the minimum number of picks allowed
 		int minPicks;
 		if (season.getMinPicks() == null) {
-			List<Game> nonRequiredGames = week.getEarlyGames();
-			minPicks = gameBeans.size() - nonRequiredGames.size();
+			minPicks = 0;
+			List<Game> games = week.getGames();
+			for (Game g : games) {
+				int gameDay = g.getGameDate().get(GregorianCalendar.DAY_OF_WEEK);
+				log.info("GameDay: " + gameDay + " - " + g.getHomeTeam().getTeamAbbr() + " vs " + g.getAwayTeam().getTeamAbbr());
+				if (gameDay > GregorianCalendar.FRIDAY || gameDay < GregorianCalendar.TUESDAY) {
+					minPicks += 1;
+				}
+			}
 		}
 		else minPicks = season.getMinPicks();
 		
