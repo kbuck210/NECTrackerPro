@@ -24,6 +24,8 @@ public class XmlLiveReader {
 				try {
 					hour = Integer.parseInt(timeParts[0]);
 					min = Integer.parseInt(timeParts[1]);
+					
+					hour += 12;	//	24-hour time
 				} catch (NumberFormatException e) {
 					log.severe("Exception parsing hour: " + timeParts[0] + " and minute: " + timeParts[1]);
 					log.severe(e.getMessage());
