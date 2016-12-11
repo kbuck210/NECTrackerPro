@@ -110,11 +110,27 @@ public class HomeContentBean implements Serializable {
 		
 		log.info("Display week status: " + displayWeek.getWeekStatus().name());
 		if (displayWeek.getWeekStatus() == WeekStatus.ACTIVE) {
+			List<Game> gamesInWeek = displayWeek.getGames();
+			int gameWeek = -1;
+			for (Game g : gamesInWeek) {
+				int gameDay = g.getGameDate().get(GregorianCalendar.DAY_OF_WEEK);
+				if (gameDay == GregorianCalendar.SUNDAY) {
+					gameWeek = g.getGameDate().get(GregorianCalendar.WEEK_OF_YEAR);
+					break;
+				}
+			}
 			Calendar now = new GregorianCalendar();
 			int currentDay = now.get(GregorianCalendar.DAY_OF_WEEK);
-			if (currentDay < GregorianCalendar.TUESDAY || currentDay > GregorianCalendar.WEDNESDAY) {
-				liveDataService.updateGames();
+			int yearWeek = now.get(GregorianCalendar.WEEK_OF_YEAR);
+			boolean updateLive = false;
+			if (currentDay < GregorianCalendar.TUESDAY && gameWeek == yearWeek) {
+				updateLive = true;
 			}
+			else if (currentDay > GregorianCalendar.WEDNESDAY && gameWeek == (yearWeek - 1)) {
+				updateLive = true;
+			}
+			
+			if (updateLive) liveDataService.updateGames();
 		}
 		
 		updateDisplayedWeek(displayWeek);

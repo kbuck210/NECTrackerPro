@@ -136,8 +136,17 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
 	color: #333333;
 }
 
-.faq-text {
+.faq-text .ui-panelgrid .ui-panelgrid-cell {
 	margin: auto;
+}
+
+.faq-text .ui-panelgrid .ui-widget-header {
+	background: #3377bb none repeat scroll 0 0;
+}
+
+.faq-text .ui-panelgrid .ui-widget-content {
+	background: #f0f0f0 none repeat-x scroll 0 0;
+	border: 1px solid #aaaaaa;
 }
 
 .faq-headline {

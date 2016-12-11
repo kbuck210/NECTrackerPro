@@ -53,19 +53,31 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		return games;
 	}
 	
-	/**
+	/** Given the specified list of records, check the query type & return sorted list of records by week
 	 * 
 	 * @param records
 	 * @return
 	 */
-	private List<Record> getRecordsSortedByWeekNumber(List<Record> records) {
-		Collections.sort(records, new Comparator<Record>() {
+	private List<Record> getRecordsSortedByWeekNumber(List<Record> records, NEC recordType) {
+		List<Record> typeRecords = new ArrayList<Record>();
+		for (Record r : records) {
+			NEC type = r.getRecordType();
+			if (recordType == NEC.SEASON) {
+				if (type == NEC.FIRST_HALF || type == NEC.SECOND_HALF || type == NEC.PLAYOFFS || type == NEC.SUPER_BOWL) {
+					typeRecords.add(r);
+				}
+			}
+			else if (type == recordType) {
+				typeRecords.add(r);
+			}
+		}
+		Collections.sort(typeRecords, new Comparator<Record>() {
 			@Override
 			public int compare(Record r1, Record r2) {
 				return r1.getWeek().getWeekNumber().compareTo(r2.getWeek().getWeekNumber());
 			}
 		});
-		return records;
+		return typeRecords;
 	}
 	
 	/** Finds played games who's week matches the team's records' week, and adds the record to the aggregate
@@ -75,6 +87,7 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 	 * @param games
 	 */
 	private void addRecordsToAggregate(RecordAggregator ragg, List<Record> records, List<Game> games) {
+		//TODO: FIX!!
 		for (Record r : records) {
 			Week weekForRecord = r.getWeek();
 			for (Game g : games) {
@@ -116,7 +129,7 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 				log.info("Games for home/away record: " + subseasonGames.size());
 				games = getGamesSortedByWeekNumber(subseasonGames);
 			}
-			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
+			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords(), subseasonType);
 			log.info("Home/Away records: " + records.size());
 			//	For any home games whose week number matches a record's week number, add the record to the aggregate
 			addRecordsToAggregate(homeAwayAgg, records, games);
@@ -156,25 +169,22 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 			favUdogEvenRagg = new RecordAggregator(tfs, againstSpread);
 			
 			//	Get the games & the records for the TFS, sorting both by week number
-			List<Game> allGames = new ArrayList<Game>();
-			allGames.addAll(tfs.getHomeGames());
-			allGames.addAll(tfs.getAwayGames());
-			if (subseasonType.equals(NEC.SEASON)) {
-				allGames = getGamesSortedByWeekNumber(allGames);
-			}
-			else {
-				List<Game> subseasonGames = new ArrayList<Game>();
-				for (Game g : allGames) {
+			TypedQuery<Game> gq = em.createNamedQuery("Game.selectAllGamesForTFS", Game.class);
+			gq.setParameter("atfsId", tfs.getAbstractTeamForSeasonId());
+			List<Game> games = gq.getResultList();
+
+			List<Game> subseasonGames = new ArrayList<Game>();
+			if (!subseasonType.equals(NEC.SEASON)) {
+				for (Game g : games) {
 					if (g.getWeek().getSubseason().getSubseasonType().equals(subseasonType)) {
 						subseasonGames.add(g);
 					}
 				}
-				
-				allGames = getGamesSortedByWeekNumber(subseasonGames);
 			}
+			else subseasonGames = games;
 			
 			List<Game> favUdogEvenGames = new ArrayList<Game>();
-			for (Game g : allGames) {
+			for (Game g : subseasonGames) {
 				//	If looking for even-spread games, add to games where spread = zero
 				if (favorite == null && BigDecimal.ZERO.equals(g.getSpread1())) {
 					favUdogEvenGames.add(g);
@@ -202,7 +212,7 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 					}
 				}
 			}
-			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
+			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords(), subseasonType);
 
 			//	For any home games whose week number matches a record's week number, add the record to the aggregate
 			addRecordsToAggregate(favUdogEvenRagg, records, favUdogEvenGames);
@@ -265,7 +275,7 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 			}
 
 			//	Get the records for the TFS, sorting games & records by week number
-			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
+			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords(), subseasonType);
 
 			//	For any divisional games who's week number matches a record's week number, add to aggregate
 			addRecordsToAggregate(divisionalAgg, records, divisionalGames);
@@ -331,7 +341,7 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 			}
 	
 			//	Get the records for the TFS, sorting games & records by week number
-			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
+			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords(), subseasonType);
 	
 			//	For any conference game games who's week number matches a record's week number, add to aggregate
 			addRecordsToAggregate(conferenceAgg, records, conferenceGames);
@@ -431,9 +441,10 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 				List<Record> records = new ArrayList<Record>();
 				for (Game g : opponentHistory) {
 					//	Create query to get the record
-					TypedQuery<Record> rq = em.createNamedQuery("Record.selectRecordForGame", Record.class);
+					TypedQuery<Record> rq = em.createNamedQuery("Record.selectRecordForGameForType", Record.class);
 					rq.setParameter("atfsId", tfs.getAbstractTeamForSeasonId());
 					rq.setParameter("gameId", g.getGameId());
+					rq.setParameter("recordType", subseasonType.ordinal());
 					Record r = null;
 					try {
 						r = rq.getSingleResult();
@@ -469,24 +480,15 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		}
 		else {
 			primetimeAgg = new RecordAggregator(tfs, againstSpread);
-			//	Get the list of all games for the team, sorted by week number
-			List<Game> games = tfs.getHomeGames();
-			games.addAll(tfs.getAwayGames());
-			games = getGamesSortedByWeekNumber(games);
+				
+			TypedQuery<Game> gq = em.createNamedQuery("Game.selectPrimetimeGamesForTFS", Game.class);
+			gq.setParameter("seasonNumber", tfs.getSeason().getSeasonNumber());
+			gq.setParameter("atfsId", tfs.getAbstractTeamForSeasonId());
 			
-			List<Game> primetimeGames = new ArrayList<Game>();
-			for (Game g : games) {
-				//	Check whether the specified record type matches the subseason for this game (or if Season specified, use all)
-				NEC subseasonType = g.getWeek().getSubseason().getSubseasonType();
-				if (recordType == NEC.SEASON || recordType.equals(subseasonType)){
-					if (g.getPrimeTime()) {
-						primetimeGames.add(g);
-					}
-				}
-			}
+			List<Game> primetimeGames = gq.getResultList();
 			
 			//	Get the records for the TFS, sorting games & records by week number
-			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
+			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords(), recordType);
 			
 			//	For any primetime game who's week number matches a record's week number, add to aggregate
 			addRecordsToAggregate(primetimeAgg, records, primetimeGames);
@@ -525,9 +527,9 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 			gameDateAgg = new RecordAggregator(tfs, againstSpread);
 		
 			//	Get the list of all games for the team, sorted by week number
-			List<Game> games = tfs.getHomeGames();
-			games.addAll(tfs.getAwayGames());
-			games = getGamesSortedByWeekNumber(games);
+			TypedQuery<Game> gq = em.createNamedQuery("Game.selectAllGamesForTFS", Game.class);
+			gq.setParameter("atfsId", tfs.getAbstractTeamForSeasonId());
+			List<Game> games = gq.getResultList();
 			
 			//	If a month parameter is defined, filter the resulting games by their month played
 			if (month != null) {
@@ -573,7 +575,7 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 			}
 			
 			//	Get the records sorted by week number
-			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
+			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords(), NEC.SEASON);
 			
 			//	Add the filtered games & records to the aggregation
 			addRecordsToAggregate(gameDateAgg, records, games);
@@ -612,9 +614,10 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 			stadiumAgg = new RecordAggregator(tfs, againstSpread);
 		
 			//	Get the list of all games for the team, sorted by week number
-			List<Game> games = tfs.getHomeGames();
-			games.addAll(tfs.getAwayGames());
-			games = getGamesSortedByWeekNumber(games);
+			TypedQuery<Game> gq = em.createNamedQuery("Game.selectAllGamesForTFS", Game.class);
+			gq.setParameter("atfsId", tfs.getAbstractTeamForSeasonId());
+			
+			List<Game> games = gq.getResultList();
 			
 			if (stadium != null) {
 				List<Game> stadiumGames = new ArrayList<Game>();
@@ -648,7 +651,7 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 				games.retainAll(subseasonGames);
 			}
 			
-			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
+			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords(), NEC.SEASON);
 			
 			addRecordsToAggregate(stadiumAgg, records, games);
 		}
@@ -686,9 +689,9 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 			timezoneAgg = new RecordAggregator(tfs, againstSpread);
 		
 			//	Get the list of all games for the team, sorted by week number
-			List<Game> games = tfs.getHomeGames();
-			games.addAll(tfs.getAwayGames());
-			games = getGamesSortedByWeekNumber(games);
+			TypedQuery<Game> gq = em.createNamedQuery("Game.selectAllGamesForTFS", Game.class);
+			gq.setParameter("atfsId", tfs.getAbstractTeamForSeasonId());
+			List<Game> games = gq.getResultList();
 			
 			List<Game> timezoneGames = new ArrayList<Game>();
 			for (Game g : games) {
@@ -710,7 +713,7 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 				games.retainAll(subseasonGames);
 			}
 			
-			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords());
+			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords(), NEC.SEASON);
 			
 			addRecordsToAggregate(timezoneAgg, records, timezoneGames);
 		}

@@ -45,6 +45,15 @@ import java.util.List;
 					+ "WHERE w.weekId = :weekId "
 					+ "AND (ht.abstractTeamForSeasonId = :atfsId "
 					+ "OR at.abstractTeamForSeasonId = :atfsId)"),
+	@NamedQuery(name="Game.selectAllGamesForTFS", 
+				query="SELECT g FROM Game g "
+					+ "INNER JOIN FETCH g.homeTeam ht "
+					+ "INNER JOIN FETCH g.awayTeam at "
+					+ "INNER JOIN FETCH ht.season s "
+					+ "INNER JOIN FETCH g.week w "
+					+ "WHERE (ht.abstractTeamForSeasonId = :atfsId "
+					+ "OR at.abstractTeamForSeasonId = :atfsId) "
+					+ "ORDER BY w.weekNumber ASC"),
 	@NamedQuery(name="Game.selectDivisionalGamesForTFS",
 				query="SELECT g FROM Game g "
 					+ "INNER JOIN FETCH g.homeTeam ht "
@@ -62,8 +71,11 @@ import java.util.List;
 	@NamedQuery(name="Game.selectPrimetimeGamesForTFS",
 				query="SELECT g FROM Game g "
 					+ "INNER JOIN FETCH g.homeTeam ht "
+					+ "INNER JOIN FETCH g.awayTeam at "
 					+ "WHERE g.primeTime = true "
-					+ "AND ht.season.seasonNumber = :seasonNumber"),
+					+ "AND ht.season.seasonNumber = :seasonNumber "
+					+ "AND (ht.abstractTeamForSeasonId = :atfsId "
+					+ "OR at.abstractTeamForSeasonId = :atfsId)"),
 	@NamedQuery(name="Game.selectGamesPlayedInStadium",
 				query="SELECT g FROM Game g "
 					+ "INNER JOIN FETCH g.stadium s "

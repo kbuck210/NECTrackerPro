@@ -299,36 +299,35 @@ public class PlayerStatsBean extends StatsBean<PlayerForSeason> implements Seria
 			Collections.sort(records, new Comparator<Record>() {
 				@Override
 				public int compare(Record r1, Record r2) {
-					return -1 * (r1.getWeek().getWeekNumber().compareTo(r2.getWeek().getWeekNumber()));
+					return (r2.getWeek().getWeekNumber().compareTo(r1.getWeek().getWeekNumber()));
 				}
 			});
 			//	Loop over the records from most recent week to end, breaking if trend ends
 			Integer trend = null;
 			for (Record r : records) {
-				//	Get the wins & losses for the record
-				int wins = r.getWins();
-				int losses = r.getLosses();
-				//	If trend not initialized, initialize to either wins/losses, or zero
+				//	Get the total score for the current record
+				int recordScore = r.getTotalAts1();
+				
+				//	If trend not initialized, initialize to the total score
 				if (trend == null) {
-					if (wins > 0) trend = wins;
-					else if (losses > 0) trend = -1 * losses;
-					else trend = 0;
+					trend = recordScore;
 				}
+				//	If trend already initialized, check if current record changes trend
 				else {
 					//	If wins is positive with positive trend, add win to trend
-					if (wins > 0 && trend >= 0) {
-						trend += wins;
+					if (recordScore >= 0 && trend >= 0) {
+						trend += recordScore;
 					}
-					//	If wins is positive with negative trend, found end of trend
-					else if (wins > 0) {
+					//	If negative week score with positive trend, found end of trend
+					else if (trend > 0) {
 						break;
 					}
-					//	If losses positive with negative trend, add negative loss to trend
-					else if (losses > 0 && trend <= 0) {
-						trend -= losses;
+					//	If record score negative with negative trend, add negative score to trend
+					else if (recordScore <= 0 && trend <= 0) {
+						trend += recordScore;
 					}
-					//	If losses positive with positive trend, found end of trend
-					else if (losses > 0) {
+					//	If positive week score with negative trend, found end of trend
+					else if (trend < 0) {
 						break;
 					}
 				}
@@ -342,9 +341,13 @@ public class PlayerStatsBean extends StatsBean<PlayerForSeason> implements Seria
 				trendString += trend.toString();
 				return trendString;
 			}
-			else return "0";
+			else {
+				return "0";
+			}
 		}
-		else return "0";
+		else {
+			return "0";
+		}
 	}
 	
 	public String getLeaderScore() {

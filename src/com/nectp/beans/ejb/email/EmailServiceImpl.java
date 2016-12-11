@@ -111,14 +111,15 @@ public class EmailServiceImpl implements EmailService {
 			    String backgroundPath = ctx.getRealPath(relativeBackgroundPath);
 			    
 			    String relativeMainImagePath;
+			    String mainImagePath;
 			    if (mainImgRelPath == null) {
 			    	relativeMainImagePath = DEFAULT_MAIN_IMAGE;
+			    	mainImagePath = ctx.getRealPath(relativeMainImagePath);
 			    }
 			    else {
 			    	relativeMainImagePath = mainImgRelPath;
+			    	mainImagePath = relativeMainImagePath;
 			    }
-//			    String mainImagePath = ctx.getRealPath(relativeMainImagePath);
-			    String mainImagePath = relativeMainImagePath;
 			    
 			    MimeBodyPart background = new MimeBodyPart();
 			    MimeBodyPart mainImage = new MimeBodyPart();

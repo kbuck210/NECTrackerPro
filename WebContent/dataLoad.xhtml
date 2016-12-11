@@ -8,7 +8,7 @@
 	  xmlns:pe="http://primefaces.org/ui/extensions" >
 
 	<ui:decorate template="profileTemplate.xhtml">
-		<ui:define name="title">Upload Data</ui:define>
+		<ui:define name="title">Admin</ui:define>
 		<ui:define name="header">
 			<ui:include src="/header.xhtml" />
 		</ui:define>
@@ -101,7 +101,9 @@
 							</p:fieldset>
 						</h:form>
 						<h:form id="resetRecords">
-							<p:fieldset legend="Update Current Week's Records:" >
+							<p:fieldset legend="Update Specified Week's Records:" >
+								<h:outputLabel for="inputWeek" value="Enter Week To Update in NEC #{recordGenerator.seasonNumber}" />
+								<p:inputText id="inputWeek" value="#{recordGenerator.weekNumber}" />
 								<p:commandButton value="Update Records:" update="growl" actionListener="#{recordGenerator.updateRecords}" 
 												onclick="start()" oncomplete="stop()" icon="ui-icon-disk" styleClass="ui-priority-primary" ajax="false"/>
 							</p:fieldset>

@@ -7,11 +7,15 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.nectp.beans.ejb.ApplicationState;
+import com.nectp.beans.ejb.daos.NoExistingEntityException;
 import com.nectp.beans.remote.daos.PickService;
 import com.nectp.beans.remote.daos.RecordFactory;
 import com.nectp.beans.remote.daos.SeasonFactory;
+import com.nectp.beans.remote.daos.WeekService;
 import com.nectp.jpa.constants.NEC;
 import com.nectp.jpa.entities.Pick;
 import com.nectp.jpa.entities.PlayerForSeason;
@@ -26,24 +30,30 @@ public class RecordGenerator {
 
 	private Logger log;
 	
-	@EJB
-	private SeasonFactory seasonFactory;
+	@Inject
+	private ApplicationState appState;
 	
 	@EJB
 	private RecordFactory recordFactory;
 	
 	@EJB
+	private WeekService weekService;
+	
+	@EJB
 	private PickService pickService;
 	
 	private Season season;
+	private String seasonNumber;
+	private String weekNumber;
 	
 	public RecordGenerator() {
 		log = Logger.getLogger(RecordGenerator.class.getName());
 	}
 	
 	public void generateRecords() {
-		log.info("action called.");
-		season = seasonFactory.selectCurrentSeason();
+		log.info("entered week: " + weekNumber);
+		season = appState.getCurrentSeason();
+		seasonNumber = season.getSeasonNumber().toString();
 		//	For each player, create records based on the prizes for the year
 		for (PlayerForSeason player : season.getPlayers()) {
 			//	Loop over each of the prizes for the season
@@ -78,11 +88,43 @@ public class RecordGenerator {
 	}
 	
 	public void updateRecords() {
-		season = seasonFactory.selectCurrentSeason();
-		Week currentWeek = season.getCurrentWeek();
-		for (PlayerForSeason pfs : season.getPlayers()) {
-			List<Pick> playerPicks = pickService.selectAllPlayerPicksInWeek(pfs, currentWeek);
-			recordFactory.resetRecordsForPicks(playerPicks);
+		season = appState.getCurrentSeason();
+		if (weekNumber == null) {
+			FacesMessage nullError = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!", "A week number must be specified");
+			FacesContext.getCurrentInstance().addMessage(null, nullError);
 		}
+		else {
+			try {
+				Integer weekNo = Integer.parseInt(weekNumber.trim());
+				Week currentWeek = null;
+				try {
+					currentWeek = weekService.selectWeekByNumberInSeason(weekNo, season);
+					for (PlayerForSeason pfs : season.getPlayers()) {
+						List<Pick> playerPicks = pickService.selectAllPlayerPicksInWeek(pfs, currentWeek);
+						recordFactory.resetRecordsForPicks(playerPicks);
+					}
+				} catch (NoExistingEntityException e) {
+					FacesMessage notFound = new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", 
+							"No week found for " + weekNumber + " - cannot update!");
+					FacesContext.getCurrentInstance().addMessage(null, notFound);
+				}
+			} catch (NumberFormatException e) {
+				FacesMessage validError = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error!", 
+						"The week number specified is in an invalid format - numbers only please!");
+				FacesContext.getCurrentInstance().addMessage(null, validError);
+			}
+		}
+	}
+	
+	public String getSeasonNumber() {
+		return seasonNumber;
+	}
+	
+	public String getWeekNumber() {
+		return weekNumber;
+	}
+	
+	public void setWeekNumber(String weekNumber) {
+		this.weekNumber = weekNumber;
 	}
 }

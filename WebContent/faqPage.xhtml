@@ -4,8 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:gc="http://java.sun.com/jsf/composite/components"
-      xmlns:p="http://primefaces.org/ui"
-	  xmlns:pe="http://primefaces.org/ui/extensions" >
+      xmlns:p="http://primefaces.org/ui" >
 
 	<ui:decorate template="profileTemplate.xhtml">
 		<ui:define name="title">Frequently Asked Questions</ui:define>
@@ -14,36 +13,34 @@
 		</ui:define>
 		<ui:define name="content">
 			<!-- Center content update area -->
-			<div class="row columns blog-post">
+			<div class="row columns blog-post faq-text">
 				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-5,ui-grid-col-7">
 					<f:facet name="header" >
 						<p:row><p:column colspan="2">
 							<h:outputText value="What is NEC Tracker Pro?" class="faq-headline" />
 						</p:column></p:row>
 					</f:facet>
-					<div class="faq-text">
-						<h:outputText value="NECTrackerPro is a web-based application designed to create an interactive exerperience to maintain live, 
+					<h:outputText id="about" value="NECTrackerPro is a web-based application designed to create an interactive exerperience to maintain live, 
 										up-to-date scoring for all NEC players, along with provide new levels of never-before possible statistical 
 										insight as a means to aid players in selecting their weekly picks." />
-					</div>
-					<p:graphicImage value="http://placehold.it/850x350" />
+					<p:graphicImage value="img/faqImages/mainHomeScreen.png" />
 				</p:panelGrid>
 				<br />
-				
+				<br />
 				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-7,ui-grid-col-5">
 					<f:facet name="header" >
 						<p:row><p:column colspan="2">
 							<h:outputText value="How do I use it?" class="faq-headline" />
 						</p:column></p:row>
 					</f:facet>
-					<p:graphicImage value="http://placehold.it/850x350" />
+					<p:graphicImage value="img/faqImages/makePicks.png" />
 					<h:outputText value="Each player has an account already set up for them, and upon logging in will be able to enter their weekly 
 											picks by clicking on the 'Select Picks' tab in the main menu in the header.  Simply click on each desired 
 											team to select/unselect your pick, then when complete, submit picks with the button at the bottom.  
 											Picks can be changed at any time up until kickoff of the first selected game, and/or 1PM Sunday, whichever comes first." />
 				</p:panelGrid>
 				<br />
-				
+				<br />
 				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-5,ui-grid-col-7">
 					<f:facet name="header" >
 						<p:row><p:column colspan="2">
@@ -57,17 +54,17 @@
 											to game-specific stats like how teams have faired in specific stadiums, etc.  From the home page, by clicking on any team helmet or
 											leaderboard player, and/or clicking on the 'Profile' link in the main menu will bring you to the player/team profile page, where you
 											will find all of this statistical information." />
-					<p:graphicImage value="http://placehold.it/850x350" />
+					<p:graphicImage value="img/faqImages/teamProfile.png" />
 				</p:panelGrid>
 				<br />
-				
+				<br />
 				<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-7,ui-grid-col-5">
 					<f:facet name="header" >
 						<p:row><p:column colspan="2">
 							<h:outputText value="Sounds pretty cool, what else is there?" class="faq-headline" />
 						</p:column></p:row>
 					</f:facet>
-					<p:graphicImage value="http://placehold.it/850x350" />
+					<p:graphicImage value="img/faqImages/seasonHistory.png" />
 					<h:outputText value="Along with unprecedented access to statistical information to aid in your picks, the curious NEC'er no longer has to dig through piles 
 											of emails to remember how a previous season unfolded.  By clicking on the 'Summary' tab in the main menu, players will have access to a 
 											summary of all of the available NEC data from previous seasons.  We're working on getting all of the backdata filled, but for now all 
@@ -75,7 +72,7 @@
 											exactly like you're used to seeing, no there should be a minimal learning curve!" />
 				</p:panelGrid>
 				<br />
-				
+				<br />
 				<p:panelGrid  columns="2" layout="grid" columnClasses="ui-grid-col-5,ui-grid-col-7">
 					<f:facet name="header" >
 						<p:row><p:column colspan="2">
@@ -87,7 +84,7 @@
 											our new support email - nectrackerpro@gmail.com - This email will be monitored constantly, so all questions should be addressed in a 
 											timely manner.  Expect to recieve weekly email updates from this address as well, as we now have an enhanced delivery mechanism to 
 											create the best NEC experience possible!" />
-					<p:graphicImage value="http://placehold.it/850x350" />
+					<p:graphicImage value="img/faqImages/renderedEmail.png" />
 					<f:facet name="footer" >
 						<p:row><p:column colspan="2">
 							<h:outputText value="Thanks for playing! Hope you enjoy the new site!" class="faq-headline" />

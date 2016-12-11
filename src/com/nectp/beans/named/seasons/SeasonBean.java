@@ -24,6 +24,7 @@ import com.nectp.jpa.entities.PrizeForSeason;
 import com.nectp.jpa.entities.Season;
 import com.nectp.jpa.entities.Subseason;
 import com.nectp.jpa.entities.Week;
+import com.nectp.jpa.entities.Week.WeekStatus;
 import com.nectp.poi.ExcelSummaryWriter;
 
 public class SeasonBean implements Serializable {
@@ -65,11 +66,17 @@ public class SeasonBean implements Serializable {
 		SelectItemGroup superbowl = new SelectItemGroup("Superbowl:");
 		for (Subseason ss : season.getSubseasons()) {
 			List<Week> ssWeeks = ss.getWeeks();
-			Collections.sort(ssWeeks);
-			SelectItem[] selectItems = new SelectItem[ssWeeks.size()];
+			List<Week> completedWeeks = new ArrayList<Week>();
+			for (Week w : ssWeeks) {
+				if (w.getWeekStatus() == WeekStatus.COMPLETED) {
+					completedWeeks.add(w);
+				}
+			}
+			Collections.sort(completedWeeks);
+			SelectItem[] selectItems = new SelectItem[completedWeeks.size()];
 			switch(ss.getSubseasonType()) {
 			case FIRST_HALF:
-				for (int i = 0; i < ssWeeks.size(); ++i) {
+				for (int i = 0; i < completedWeeks.size(); ++i) {
 					Week week = ssWeeks.get(i);
 					String weekNum = week.getWeekNumber().toString();
 					String label = "Week " + weekNum;
@@ -78,7 +85,7 @@ public class SeasonBean implements Serializable {
 				firstHalf.setSelectItems(selectItems);
 				break;
 			case SECOND_HALF:
-				for (int i = 0; i < ssWeeks.size(); ++i) {
+				for (int i = 0; i < completedWeeks.size(); ++i) {
 					Week week = ssWeeks.get(i);
 					String weekNum = week.getWeekNumber().toString();
 					String label = "Week " + weekNum;
@@ -88,19 +95,26 @@ public class SeasonBean implements Serializable {
 				break;
 			case PLAYOFFS:
 				//	Get the playoff weeks in order
-				if (ssWeeks.size() >= 3) {
-					SelectItem wildcard = new SelectItem(ssWeeks.get(0).getWeekNumber().toString(), "Wildcard");
-					SelectItem divisional = new SelectItem(ssWeeks.get(1).getWeekNumber().toString(), "Divisional");
-					SelectItem conference = new SelectItem(ssWeeks.get(2).getWeekNumber().toString(), "Conf Champ");
-					selectItems[0] = wildcard;
-					selectItems[1] = divisional;
-					selectItems[2] = conference;
-					playoffs.setSelectItems(selectItems);
+				for (int i = 0; i < completedWeeks.size(); ++i) {
+					String label;
+					if (i == 0) {
+						label = "Wildcard";
+					}
+					else if (i == 1) {
+						label = "Divisional";
+					}
+					else if (i == 2) {
+						label = "Conf Champ";
+					}
+					else break;
+					
+					SelectItem playoffItem = new SelectItem(completedWeeks.get(i).getWeekNumber().toString(), label);
+					selectItems[i] = playoffItem;
 				}
 				break;
 			case SUPER_BOWL:
-				if (ssWeeks.size() >= 1) {
-					SelectItem sb = new SelectItem(ssWeeks.get(0).getWeekNumber().toString(), "Superbowl");
+				if (completedWeeks.size() == 1) {
+					SelectItem sb = new SelectItem(completedWeeks.get(0).getWeekNumber().toString(), "Superbowl");
 					selectItems[0] = sb;
 					superbowl.setSelectItems(selectItems);
 				}

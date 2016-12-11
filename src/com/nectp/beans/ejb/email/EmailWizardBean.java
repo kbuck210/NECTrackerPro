@@ -70,7 +70,7 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 	private final String REPLACE_LEADER_TITLE = "#LeaderTitle";
 	private final String REPLACE_LEADERS = "#Leaders";
 	private final String REPLACE_EXCEL_DOWNLOAD_LINK = "#ExcelDownloadLink";
-	private final String REPLACE_PDF_DOWNLOAD_LINK = "#PdfDownloadLink";
+//	private final String REPLACE_PDF_DOWNLOAD_LINK = "#PdfDownloadLink";
 	
 	private final String summaryPTag = "<p style=\"Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;\">";
 	private final String leaderPTag = "<p style=\"Margin: 0; Margin-bottom: 10px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left;\"><a style=\"Margin: 0; color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; margin: 0; padding: 0; text-align: left; text-decoration: none;\" href=\"";
@@ -185,7 +185,8 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 				rankMap = recordService.getPlayerRankedScoresForType(subseasonType, currentSeason, true);
 				setLeaders();
 				
-				downloadExcel = "http://24.147.36.125:8080/NECTrackerPro/rest/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
+				downloadExcel = "http://www.nectrackerpro.com/NECTrackerPro/rest/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
+//				downloadPdf = "http://24.147.36.125:8080/NECTrackerPro/rest/download/pdf/" + seasonNum + "/" + currentWeek.getWeekNumber();
 //				downloadExcel = "/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
 //				downloadPdf = "/download/pdf/" + seasonNum + "/" + currentWeek.getWeekNumber();
 			}
@@ -423,7 +424,7 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 	    inline = inline.replace(REPLACE_LEADER_TITLE, leaderTitle);
 	    inline = inline.replace(REPLACE_LEADERS, leaders);
 	    inline = inline.replace(REPLACE_EXCEL_DOWNLOAD_LINK, downloadExcel);
-	    inline = inline.replace(REPLACE_PDF_DOWNLOAD_LINK, downloadPdf);
+//	    inline = inline.replace(REPLACE_PDF_DOWNLOAD_LINK, downloadPdf);
 	    
 	    return inline;
 	}

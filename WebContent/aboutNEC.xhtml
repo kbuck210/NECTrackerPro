@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:gc="http://java.sun.com/jsf/composite/components"
+      xmlns:p="http://primefaces.org/ui" >
+
+	<ui:decorate template="profileTemplate.xhtml">
+		<ui:define name="title">About The NEC</ui:define>
+		<ui:define name="header">
+			<ui:include src="/header.xhtml" />
+		</ui:define>
+		<ui:define name="content">
+			<!-- Center content update area -->
+			<div class="row columns blog-post">
+				<p:panel header="The New England Cup" >
+					<h:outputText value="Started in 1987, the New England Cup has been a way for family and friends to 
+										come together over football...Putting reputation on the line, (and sometimes littlenecks) 
+										players select winners each week against the spread in hopes that they will rise victorious 
+										and be the one hoisting the NEC trophy as the new 'Commish' - lording their rule 
+										over the rest of the league for the following season." />
+					<br />
+					<br />
+					<h:outputText value="With the league expanding from the original five to now a total of eleven players, 
+										the quest for the cup is fiercer than ever. At the annual Quonnie summit, players convene 
+										for the exchanging of the cup, and to collect their greenbacks 
+										(or 'greenies' - depending on how their season went...)" />
+					
+					<p:graphicImage value="img/faqImages/leaguePhoto.png" />
+					<h:outputText value="Thirty seasons later the NEC is still going strong, and now making its first foray into the 
+										digital realm with the launch of NECTrackerPro!" />
+										
+					<hr />
+					<p:panelGrid columns="2" layout="grid" >
+						<p:outputPanel layout="block" class="row columns" >
+							<h:outputText value="Current Rules:" class="faq-headline" />
+							<ul style="list-style-type: none">
+								<li><h:outputText value="First Half: #{aboutBean.firstHalfWeeks}" /></li>
+								<li><h:outputText value="Second Half: #{aboutBean.secondHalfWeeks}" /></li>
+								<li><h:outputText value="Minimum Picks: #{aboutBean.minPicks}" /></li>
+								<li><h:outputText value="Maximum Picks: #{aboutBean.maxPicks}" /></li>
+								<li><h:outputText value="W/L/T Values: #{aboutBean.wltValue}" /></li>
+							</ul>
+						</p:outputPanel>
+						
+						<p:outputPanel layout="block" class="row columns" >
+							<h:outputText value="Current Prizes:" class="faq-headline" />
+							<ui:repeat value="#{aboutBean.prizes}" var="prize" >
+								<li style="list-style-type: none"><h:outputText value="#{prize.prize.prizeType.toString()}: #{prize.prizeAmount}" /></li>
+							</ui:repeat>
+						</p:outputPanel>
+					</p:panelGrid>
+					<br />
+					
+					<h:outputText value="The New England Cup - Hall of Fame" class="faq-headline" />
+					<p:panelGrid columns="3" layout="grid" >
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 1  - 1987: Joeseph Buckley*</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 2  - 1988: Pete Peterson</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 3  - 1989: Pete Peterson</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 4  - 1990: Pete Peterson</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 5  - 1991: Joeseph Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 6  - 1992: Pete Peterson*</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 7  - 1993: Paul Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 8  - 1994: David Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 9  - 1995: Brian Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 10 - 1996: Paul Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 11 - 1997: Brian Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 12 - 1998: Joeseph Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 13 - 1999: Derek Peterson</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 14 - 2000: Paul Buckley*</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 15 - 2001: David Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 16 - 2002: Derek Peterson*</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 17 - 2003: Pete Peterson</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 18 - 2004: Paul Buckley*</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 19 - 2005: Brian Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 20 - 2006: Josh Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 21 - 2007: Javier Vargas</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 22 - 2008: Michael Buller</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 23 - 2009: Paul Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 24 - 2010: Kevin Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 25 - 2011: Javier Vargas</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 26 - 2012: Brian Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 27 - 2013: Derek Peterson</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 28 - 2014: David Buckley*</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 29 - 2015: William Buckley</p:outputPanel>
+						<p:outputPanel layout="block"><i class="fa fa-trophy" /> NEC 30 - 2016: ?</p:outputPanel>   
+					</p:panelGrid>
+					<h:outputText value="* - indicates player won both First and Second halves" />
+				</p:panel>
+			</div>
+		</ui:define>
+		<ui:define name="footer">
+			<ui:include src="/footer.xhtml" />
+		</ui:define>
+	</ui:decorate>
+</html>

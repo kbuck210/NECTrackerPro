@@ -215,7 +215,8 @@ public class MakePicksBean implements Serializable {
 		}
 		
 		//	Check whether the logged in user is an administrator, if not, set the cutoff time for picks
-		if (!admin) {
+		//	NOTE ** Uncomment if statement to turn off requirement for admin
+//		if (!admin) {
 			//	Get the pick cutoff time from the earliest game of the week
 			List<Game> weekGames = week.getGames();
 			Collections.sort(weekGames);
@@ -229,7 +230,7 @@ public class MakePicksBean implements Serializable {
 			cutoffTime.set(GregorianCalendar.WEEK_OF_MONTH, weekOfMonth);
 			cutoffTime.set(GregorianCalendar.DAY_OF_WEEK, GregorianCalendar.SUNDAY);
 			cutoffTime.set(GregorianCalendar.HOUR_OF_DAY, 13);
-		}
+//		}
 
 		//	Check whether any of the games in the week have a spread2
 		boolean hasSpread2 = false;

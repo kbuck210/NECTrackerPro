@@ -30,7 +30,7 @@ import com.nectp.jpa.constants.NEC;
 					+ "WHERE r.week.weekId = w.weekId "
 					+ "AND g.week.weekId = w.weekId "
 					+ "AND g.homeTeam.abstractTeamForSeasonId = :atfsId"),
-	@NamedQuery(name="Record.selectRecordForGame",
+	@NamedQuery(name="Record.selectRecordForGameForType",
 				query="SELECT DISTINCT r FROM Record r "
 					+ "INNER JOIN FETCH r.week w "
 					+ "INNER JOIN FETCH w.games g "
@@ -40,7 +40,8 @@ import com.nectp.jpa.constants.NEC;
 					+ "WHERE (atfs.abstractTeamForSeasonId = ht.abstractTeamForSeasonId "
 					+ "OR atfs.abstractTeamForSeasonId = at.abstractTeamForSeasonId) "
 					+ "AND atfs.abstractTeamForSeasonId = :atfsId "
-					+ "AND g.gameId = :gameId")
+					+ "AND g.gameId = :gameId "
+					+ "AND r.recordType = :recordType")
 })
 public class Record implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -297,6 +298,23 @@ public class Record implements Serializable {
 		int winTotal = (wins + winsATS1 + winsATS2) * winModifier;
 		int lossTotal = (losses + lossesATS1 + lossesATS2) * lossModifier;
 		int tieTotal = (ties + tiesATS1 + tiesATS2) * tieModifier;
+		
+		return new Integer(winTotal + tieTotal - lossTotal);
+	}
+	
+	public Integer getTotalAts1() {
+		Season season = team.getSeason();
+		int winVal = season.getWinValue();
+		int lossVal = season.getLossValue();
+		int tieVal = season.getTieValue();
+		
+		int winTotal = winsATS1 * winVal;
+		int lossTotal = lossesATS1 * lossVal;
+		int tieTotal = tiesATS1 * tieVal;
+		
+		if (winModifier != 0) winTotal *= winModifier;
+		if (lossModifier != 0) lossTotal *= lossModifier;
+		if (tieModifier != 0) tieTotal *= tieModifier;
 		
 		return new Integer(winTotal + tieTotal - lossTotal);
 	}
