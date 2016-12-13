@@ -108,31 +108,47 @@ public class TeamStatisticServiceBean extends RecordServiceBean implements TeamS
 		else {
 			homeAwayAgg = new RecordAggregator(tfs, againstSpread);
 			
+			Season season = tfs.getSeason();
+			Integer rangeStart = getStartWeekByType(season, subseasonType);
+			Integer rangeEnd = getEndWeek(season, subseasonType);
+			if (rangeStart == null) rangeStart = 1;
+			if (rangeEnd == null) rangeEnd = season.getPlayoffStartWeek() - 1;
+			
+			String query;
+			if (home) query = "Game.selectHomeGamesForTFSForWeeks";
+			else query = "Game.selectAwayGamesForTFSForWeeks";
+			
+			TypedQuery<Game> gq = em.createNamedQuery(query, Game.class);
+			gq.setParameter("atfsId", tfs.getAbstractTeamForSeasonId());
+			gq.setParameter("minWeek", rangeStart);
+			gq.setParameter("maxWeek", rangeEnd);
+			List<Game> homeAwayGames = gq.getResultList();
+			
 			//	Get the games & the records for the TFS, sorting both by week number
-			List<Game> games;
-			if (subseasonType.equals(NEC.SEASON)) {
-				if (home) games = getGamesSortedByWeekNumber(tfs.getHomeGames());
-				else games = getGamesSortedByWeekNumber(tfs.getAwayGames());
-				log.info("Games for home/away record: " + games.size());
-			}
-			else {
-				List<Game> subseasonGames = new ArrayList<Game>();
-				List<Game> homeAwayGames;
-				if (home) homeAwayGames = tfs.getHomeGames();
-				else homeAwayGames = tfs.getAwayGames();
-				
-				for (Game g : homeAwayGames) {
-					if (g.getWeek().getSubseason().getSubseasonType().equals(subseasonType)) {
-						subseasonGames.add(g);
-					}
-				}
-				log.info("Games for home/away record: " + subseasonGames.size());
-				games = getGamesSortedByWeekNumber(subseasonGames);
-			}
+//			List<Game> games;
+//			if (subseasonType.equals(NEC.SEASON)) {
+//				if (home) games = getGamesSortedByWeekNumber(tfs.getHomeGames());
+//				else games = getGamesSortedByWeekNumber(tfs.getAwayGames());
+//				log.info("Games for home/away record: " + games.size());
+//			}
+//			else {
+//				List<Game> subseasonGames = new ArrayList<Game>();
+//				List<Game> homeAwayGames;
+//				if (home) homeAwayGames = tfs.getHomeGames();
+//				else homeAwayGames = tfs.getAwayGames();
+//				
+//				for (Game g : homeAwayGames) {
+//					if (g.getWeek().getSubseason().getSubseasonType().equals(subseasonType)) {
+//						subseasonGames.add(g);
+//					}
+//				}
+//				log.info("Games for home/away record: " + subseasonGames.size());
+//				games = getGamesSortedByWeekNumber(subseasonGames);
+//			}
 			List<Record> records = getRecordsSortedByWeekNumber(tfs.getRecords(), subseasonType);
 			log.info("Home/Away records: " + records.size());
 			//	For any home games whose week number matches a record's week number, add the record to the aggregate
-			addRecordsToAggregate(homeAwayAgg, records, games);
+			addRecordsToAggregate(homeAwayAgg, records, homeAwayGames);
 		}
 		
 		return homeAwayAgg;

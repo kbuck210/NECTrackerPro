@@ -74,15 +74,13 @@
 					        <p:selectOneMenu id="#{season.seasonNumber}week" value="#{season.exportWeek}" >
 					            <f:selectItem itemLabel="Select Week to Download: " itemValue="" />
 					            <f:selectItems value="#{season.weeks}" />
+					            <p:ajax event="change" update="@this" />
 		       				</p:selectOneMenu>
 		       				<p:spacer width="20"/>  
 		       				<p:commandButton value="Download Excel: " onclick="PrimeFaces.monitorDownload(start, stop);" ajax="false">
 		       					<p:fileDownload value="#{season.excelDownload}" />
 		       				</p:commandButton>
 							<p:spacer width="20"/>  
-							<p:commandButton value="Download PDF: " onclick="PrimeFaces.monitorDownload(start, stop);" ajax="false">
-								<p:fileDownload value="#{season.downloadPdf}" />
-							</p:commandButton>
        					</h:form> 
 						<script type="text/javascript">
 							function start() {

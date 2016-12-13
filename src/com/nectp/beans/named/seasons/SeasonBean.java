@@ -111,6 +111,7 @@ public class SeasonBean implements Serializable {
 					SelectItem playoffItem = new SelectItem(completedWeeks.get(i).getWeekNumber().toString(), label);
 					selectItems[i] = playoffItem;
 				}
+				playoffs.setSelectItems(selectItems);
 				break;
 			case SUPER_BOWL:
 				if (completedWeeks.size() == 1) {
@@ -146,6 +147,7 @@ public class SeasonBean implements Serializable {
 	}
 	
 	public void setExportWeek(String exportWeek) {
+		log.info("Export week set: " + exportWeek);
 		this.exportWeek = exportWeek;
 	}
 	

@@ -142,7 +142,8 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 			ArrayList<SelectItem> playerItems = new ArrayList<SelectItem>();
 			recipients = new ArrayList<SelectItem>();
 			for (PlayerForSeason player : currentSeason.getPlayers()) {
-				String playerPath = "/nec" + seasonNum + "/players/" + player.getNickname();
+				String playerPath = "http://www.nectrackerpro.com:8080/NECTrackerPro/faces/playerPage.xhtml?nec=" + seasonNum + "&pfsId=" + player.getAbstractTeamForSeasonId();
+//				String playerPath = "http://localhost:8080/NECTrackerPro/faces/playerPage.xhtml?nec=" + seasonNum + "&pfsId=" + player.getAbstractTeamForSeasonId();
 				SelectItem playerItem = new SelectItem(playerPath, player.getNickname());
 				playerItems.add(playerItem);
 				labelMap.put(playerPath, player.getNickname());
@@ -159,7 +160,8 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 			SelectItemGroup teams = new SelectItemGroup("Teams:");
 			ArrayList<SelectItem> teamItems = new ArrayList<SelectItem>();
 			for (TeamForSeason team : currentSeason.getTeams()) {
-				String teamPath = "/nec" + seasonNum + "/teams/" + team.getTeamAbbr();
+				String teamPath = "http://www.nectrackerpro.com:8080/NECTrackerPro/faces/teamPage.xhtml?teamAbbr=" + team.getTeamAbbr() + "&nec=" + seasonNum;
+//				String teamPath = "http://localhost:8080/NECTrackerPro/faces/teamPage.xhtml?teamAbbr=" + team.getTeamAbbr() + "&nec=" + seasonNum;
 				String teamLabel;
 				if (team.getTeamAbbr().equals("NYJ") || team.getTeamAbbr().equals("NYG")) {
 					teamLabel = "NY " + team.getName();
@@ -185,9 +187,11 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 				rankMap = recordService.getPlayerRankedScoresForType(subseasonType, currentSeason, true);
 				setLeaders();
 				
-				downloadExcel = "http://www.nectrackerpro.com/NECTrackerPro/rest/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
+				downloadExcel = "http://www.nectrackerpro.com:8080/NECTrackerPro/faces/necHistory.xhtml";
+//				downloadExcel = "http://localhost:8080/NECTrackerPro/faces/necHistory.xhtml";
+//				downloadExcel = "http://www.nectrackerpro.com:8080/NECTrackerPro/rest/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
 //				downloadPdf = "http://24.147.36.125:8080/NECTrackerPro/rest/download/pdf/" + seasonNum + "/" + currentWeek.getWeekNumber();
-//				downloadExcel = "/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
+//				downloadExcel = "http://localhost:8080/NECTrackerPro/rest/download/excel/" + seasonNum + "/" + currentWeek.getWeekNumber();
 //				downloadPdf = "/download/pdf/" + seasonNum + "/" + currentWeek.getWeekNumber();
 			}
 		}
@@ -372,7 +376,8 @@ public class EmailWizardBean extends FileUploadImpl implements Serializable {
 			Collections.sort(leaderList);
 			for (AbstractTeamForSeason player : leaderList) {
 				Integer seasonNum = player.getSeason().getSeasonNumber();
-				String leaderLink = "/nec" + seasonNum + "/players/" + player.getNickname();
+				String leaderLink = "http://www.nectrackerpro.com:8080/NECTrackerPro/faces/playerPage.xhtml?nec=" + seasonNum + "&pfsId=" + player.getAbstractTeamForSeasonId();
+//				String leaderLink = "http://localhost:8080/NECTrackerPro/faces/playerPage.xhtml?nec=" + seasonNum + "&pfsId=" + player.getAbstractTeamForSeasonId();
 				Integer leaderScore = rankEntry.getKey().getTotalScore();
 				leadersBuilder.append(leaderPTag);
 				leadersBuilder.append(leaderLink);

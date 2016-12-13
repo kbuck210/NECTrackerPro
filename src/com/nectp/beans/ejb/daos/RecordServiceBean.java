@@ -273,7 +273,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 		return weekService.selectConcurrentWeeksInRangeInSeason(currentSeason, startWeek, endWeek);
 	}
 
-	private Integer getEndWeek(Season currentSeason, NEC recordType) {
+	protected Integer getEndWeek(Season currentSeason, NEC recordType) {
 		Integer endWeek = null;
 
 		//	If the record type corresponds to a subseason type, get the end week contingent on whether or not it is the current subseason
@@ -332,7 +332,7 @@ public class RecordServiceBean extends DataServiceBean<Record> implements Record
 		return endWeek;
 	}
 
-	private Integer getStartWeekByType(Season currentSeason, NEC recordType) {
+	protected Integer getStartWeekByType(Season currentSeason, NEC recordType) {
 		Integer startWeek;
 		if (recordType != null) {
 			switch (recordType) {

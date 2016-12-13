@@ -54,6 +54,22 @@ import java.util.List;
 					+ "WHERE (ht.abstractTeamForSeasonId = :atfsId "
 					+ "OR at.abstractTeamForSeasonId = :atfsId) "
 					+ "ORDER BY w.weekNumber ASC"),
+	@NamedQuery(name="Game.selectHomeGamesForTFSForWeeks", 
+				query="SELECT g FROM Game g "
+					+ "INNER JOIN FETCH g.homeTeam ht "
+					+ "INNER JOIN FETCH g.week w "
+					+ "WHERE ht.abstractTeamForSeasonId = :atfsId "
+					+ "AND w.weekNumber >= :minWeek "
+					+ "AND w.weekNumber <= :maxWeek "
+					+ "ORDER BY w.weekNumber ASC"),
+	@NamedQuery(name="Game.selectAwayGamesForTFSForWeeks", 
+				query="SELECT g FROM Game g "
+					+ "INNER JOIN FETCH g.awayTeam at "
+					+ "INNER JOIN FETCH g.week w "
+					+ "WHERE at.abstractTeamForSeasonId = :atfsId "
+					+ "AND w.weekNumber >= :minWeek "
+					+ "AND w.weekNumber <= :maxWeek "
+					+ "ORDER BY w.weekNumber ASC"),
 	@NamedQuery(name="Game.selectDivisionalGamesForTFS",
 				query="SELECT g FROM Game g "
 					+ "INNER JOIN FETCH g.homeTeam ht "
